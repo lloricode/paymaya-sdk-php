@@ -30,7 +30,7 @@ class AmountRequest extends BaseRequest
     {
         return [
             'value' => $this->value,
-            'details' => $this->amount_request->jsonSerialize(),
+            'details' => $this->amount_request,
         ];
     }
 }

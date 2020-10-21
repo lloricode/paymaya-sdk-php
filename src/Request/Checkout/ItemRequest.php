@@ -66,8 +66,8 @@ class ItemRequest extends BaseRequest
             'quantity' => $this->quantity,
             'code' => $this->code,
             'description' => $this->description,
-            'amount' => $this->amount_request->jsonSerialize(),
-            'totalAmount' => $this->total_amount_request->jsonSerialize(),
+            'amount' => $this->amount_request,
+            'totalAmount' => $this->total_amount_request,
         ];
     }
 }

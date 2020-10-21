@@ -68,19 +68,13 @@ class CheckoutRequest extends BaseRequest
      */
     public function jsonSerialize()
     {
-        $items = [];
-
-        foreach ($this->items as $itemRequest) {
-            $items[] = $itemRequest->jsonSerialize();
-        }
-
         return [
-            'totalAmount' => $this->total_amount_request->jsonSerialize(),
-            'buyer' => $this->buyer_request->jsonSerialize(),
-            'items' => $items,
-            'redirectUrl' => $this->redirect_url_request->jsonSerialize(),
+            'totalAmount' => $this->total_amount_request,
+            'buyer' => $this->buyer_request,
+            'items' => $this->items,
+            'redirectUrl' => $this->redirect_url_request,
             'requestReferenceNumber' => $this->request_reference_number,
-            'metadata' => $this->meta_data_request->jsonSerialize(),
+            'metadata' => $this->meta_data_request,
         ];
     }
 }

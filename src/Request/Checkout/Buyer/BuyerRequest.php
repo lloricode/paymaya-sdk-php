@@ -105,9 +105,9 @@ class BuyerRequest extends BaseRequest
             'birthday' => $birthDate,
             'customerSince' => $customerSince,
             'sex' => $this->gender,
-            'contact' => $this->contact_request->jsonSerialize(),
-            'shippingAddress' => $this->shipping_address_request->jsonSerialize(),
-            'billingAddress' => $this->billing_address_request->jsonSerialize(),
+            'contact' => $this->contact_request,
+            'shippingAddress' => $this->shipping_address_request,
+            'billingAddress' => $this->billing_address_request,
         ];
     }
 }

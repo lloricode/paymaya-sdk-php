@@ -197,6 +197,9 @@ class CheckoutTest extends TestCase
             ->setMetaDataRequest(MetaDataRequest::new());
 
 
-        $this->assertSame(json_decode(self::jsonData(), true), $checkout->jsonSerialize());
+        $this->assertSame(
+            json_encode(json_decode(self::jsonData(), true), JSON_PRETTY_PRINT),
+            json_encode($checkout, JSON_PRETTY_PRINT)
+        );
     }
 }
