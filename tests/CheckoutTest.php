@@ -199,5 +199,4 @@ class CheckoutTest extends TestCase
 
         $this->assertSame(json_decode(self::jsonData(), true), $checkout->jsonSerialize());
     }
-
 }

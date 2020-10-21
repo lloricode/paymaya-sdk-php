@@ -6,7 +6,6 @@ use Lloricode\Paymaya\Request\BaseRequest;
 
 class MetaDataRequest extends BaseRequest
 {
-
     /**
      * @inheritDoc
      */

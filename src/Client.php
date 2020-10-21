@@ -25,9 +25,11 @@ final class Client
         switch ($environment) {
             case self::ENVIRONMENT_PRODUCTION:
                 $this->base_url = self::BASE_URL_PRODUCTION;
+
                 break;
             case self::ENVIRONMENT_SANDBOX:
                 $this->base_url = self::BASE_URL_SANDBOX;
+
                 break;
             default:
                 throw new ErrorException("Invalid environment `$environment`.");
@@ -75,6 +77,4 @@ final class Client
 
         return $client->get($uri, $options);
     }
-
-
 }
