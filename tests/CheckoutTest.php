@@ -21,7 +21,7 @@ class CheckoutTest extends TestCase
     /**
      * @test
      */
-    public function c()
+    public function check_via_sandbox()
     {
         try {
             CheckoutClient::new(self::generateClient())->post(self::buildCheckout());
