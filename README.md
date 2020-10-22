@@ -37,7 +37,7 @@ use Lloricode\Paymaya\Request\Checkout\RedirectUrlRequest;
 use Lloricode\Paymaya\Request\Checkout\TotalAmountRequest;
 
 # sample you can copy then test it
-$checkout = CheckoutRequest::new()
+CheckoutRequest::new()
     ->setTotalAmountRequest(
         TotalAmountRequest::new()
             ->setValue(100)
@@ -121,15 +121,26 @@ $checkout = CheckoutRequest::new()
             ->setFailure('https://www.merchantsite.com/failure')
             ->setCancel('https://www.merchantsite.com/cancel')
     )->setRequestReferenceNumber('1551191039')
-    ->setMetaDataRequest(MetaDataRequest::new());
+    ->setMetaDataRequest(
+        MetaDataRequest::new()
+            ->setSMI('smi')
+            ->setSMN('smn')
+            ->setMCI('mci')
+            ->setMPC('mpc')
+            ->setMCO('mco')
+            ->setMST('mst')
+    );
 
-CheckoutClient::new(
+$checkoutResponse = CheckoutClient::new(
     new PaymayaClient(
         'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl', // secret
         'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah', // public
         PaymayaClient::ENVIRONMENT_SANDBOX
     )
 )->post($checkout);
+
+echo 'id: '.$checkoutResponse->getId();
+echo 'url: '.$checkoutResponse->getUrl();
 ```
 
 ## Testing
