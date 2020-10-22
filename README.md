@@ -139,8 +139,8 @@ $checkoutResponse = CheckoutClient::new(
     )
 )->post($checkout);
 
-echo 'id: '.$checkoutResponse->getId();
-echo 'url: '.$checkoutResponse->getUrl();
+echo 'id: '.$checkoutResponse->getId()."\n";
+echo 'url: '.$checkoutResponse->getUrl()."\n";
 ```
 
 ## Testing
