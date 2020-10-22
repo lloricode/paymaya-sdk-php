@@ -23,7 +23,7 @@ class CheckoutRequest extends BaseRequest
     private ?string $status = null;
     private ?string $payment_status = null;
     private string $request_reference_number;
-    private MetaDataRequest $meta_data_request;
+    private ?MetaDataRequest $meta_data_request = null;
 
     public function setTotalAmountRequest(TotalAmountRequest $totalAmountRequest): self
     {
@@ -60,7 +60,7 @@ class CheckoutRequest extends BaseRequest
         return $this;
     }
 
-    public function setMetaDataRequest(MetaDataRequest $metaDataRequest): self
+    public function setMetaDataRequest(?MetaDataRequest $metaDataRequest): self
     {
         $this->meta_data_request = $metaDataRequest;
 
