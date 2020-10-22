@@ -16,8 +16,8 @@ class BuyerRequest extends BaseRequest
     private ?string $gender = null;
 
     private ?ContactRequest $contact_request = null;
-    private ShippingAddressRequest $shipping_address_request;
-    private BillingAddressRequest $billing_address_request;
+    private ?ShippingAddressRequest $shipping_address_request = null;
+    private ?BillingAddressRequest $billing_address_request = null;
 
     private ?string $ip_address = null;
 
@@ -70,14 +70,14 @@ class BuyerRequest extends BaseRequest
         return $this;
     }
 
-    public function setShippingAddressRequest(ShippingAddressRequest $shippingAddressRequest): self
+    public function setShippingAddressRequest(?ShippingAddressRequest $shippingAddressRequest): self
     {
         $this->shipping_address_request = $shippingAddressRequest;
 
         return $this;
     }
 
-    public function setBillingAddressRequest(BillingAddressRequest $billingAddressRequest): self
+    public function setBillingAddressRequest(?BillingAddressRequest $billingAddressRequest): self
     {
         $this->billing_address_request = $billingAddressRequest;
 

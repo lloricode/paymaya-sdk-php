@@ -2,6 +2,10 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
+## 0.0.3 - 2020-10-22
+
+- Set null another some buyer attributes
+
 ## 0.0.2 - 2020-10-22
 
 - Set meta data as nullable
