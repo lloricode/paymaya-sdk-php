@@ -18,6 +18,7 @@ composer require lloricode/paymaya-sdk-php
 ## Usage
 
 ### Checkout
+https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
 ``` php
 
 # import
