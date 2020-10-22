@@ -15,9 +15,11 @@ class BuyerRequest extends BaseRequest
     private ?Carbon $customer_since = null;
     private ?string $gender = null;
 
-    private ContactRequest $contact_request;
+    private ?ContactRequest $contact_request = null;
     private ShippingAddressRequest $shipping_address_request;
     private BillingAddressRequest $billing_address_request;
+
+    private ?string $ip_address = null;
 
     public function setFirstName(?string $firstName): self
     {
@@ -47,9 +49,9 @@ class BuyerRequest extends BaseRequest
         return $this;
     }
 
-    public function setCustomerSince(?Carbon $customersince): self
+    public function setCustomerSince(?Carbon $customerSince): self
     {
-        $this->customer_since = $customersince;
+        $this->customer_since = $customerSince;
 
         return $this;
     }
@@ -61,7 +63,7 @@ class BuyerRequest extends BaseRequest
         return $this;
     }
 
-    public function setContactRequest(ContactRequest $contactRequest): self
+    public function setContactRequest(?ContactRequest $contactRequest): self
     {
         $this->contact_request = $contactRequest;
 
@@ -82,6 +84,13 @@ class BuyerRequest extends BaseRequest
         return $this;
     }
 
+    public function setIpAddress(?string $ipAddress): self
+    {
+        $this->ip_address = $ipAddress;
+
+        return $this;
+    }
+
     /**
      * @inheritDoc
      */
@@ -90,7 +99,7 @@ class BuyerRequest extends BaseRequest
         $birthDate = $this->birth_date;
         $customerSince = $this->customer_since;
 
-        if (! is_null($birthDate)) {
+        if (!is_null($birthDate)) {
             $birthDate = $birthDate->format('Y-m-d');
         }
 
@@ -108,6 +117,7 @@ class BuyerRequest extends BaseRequest
             'contact' => $this->contact_request,
             'shippingAddress' => $this->shipping_address_request,
             'billingAddress' => $this->billing_address_request,
+            'ipAddress' => $this->ip_address,
         ];
     }
 }

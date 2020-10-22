@@ -23,8 +23,9 @@ class CheckoutTest extends TestCase
      */
     public function check_via_sandbox()
     {
+        $checkoutResponse = null;
         try {
-            CheckoutClient::new(self::generateClient())->post(self::buildCheckout());
+            $checkoutResponse = CheckoutClient::new(self::generateClient())->post(self::buildCheckout());
         } catch (ErrorException $e) {
             $this->fail('ErrorException');
         } catch (ClientException $e) {
@@ -32,5 +33,8 @@ class CheckoutTest extends TestCase
         } catch (GuzzleException $e) {
             $this->fail('GuzzleException');
         }
+
+        $this->assertUUID($checkoutResponse->getId());
+        $this->assertTrue(filter_var($checkoutResponse->getUrl(), FILTER_VALIDATE_URL) !== false);
     }
 }

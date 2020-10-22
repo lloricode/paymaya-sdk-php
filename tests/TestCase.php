@@ -117,7 +117,15 @@ abstract class TestCase extends BaseTestCase
                     ->setFailure('https://www.merchantsite.com/failure')
                     ->setCancel('https://www.merchantsite.com/cancel')
             )->setRequestReferenceNumber('1551191039')
-            ->setMetaDataRequest(MetaDataRequest::new());
+            ->setMetaDataRequest(
+                MetaDataRequest::new()
+                    ->setSMI('smi')
+                    ->setSMN('smn')
+                    ->setMCI('mci')
+                    ->setMPC('mpc')
+                    ->setMCO('mco')
+                    ->setMST('mst')
+            );
     }
 
     /**
@@ -127,6 +135,7 @@ abstract class TestCase extends BaseTestCase
     protected static function jsonCheckoutDataFromDocs(): string
     {
         return '{
+    "id": null,
   "totalAmount": {
     "currency": "PHP",
     "value": 100.0,
@@ -170,7 +179,8 @@ abstract class TestCase extends BaseTestCase
       "state": "Metro Manila",
       "zipCode": "1552",
       "countryCode": "PH"
-    }
+    },
+    "ipAddress": null
   },
   "items": [
     {
@@ -206,7 +216,26 @@ abstract class TestCase extends BaseTestCase
     "cancel": "https://www.merchantsite.com/cancel"
   },
   "requestReferenceNumber": "1551191039",
-  "metadata": {}
+  "metadata": {
+        "smi": "smi",
+        "smn": "smn",
+        "mci": "mci",
+        "mpc": "mpc",
+        "mco": "mco",
+        "mst": "mst"
+    },
+    "status": null,
+    "paymentStatus": null
 }';
+    }
+
+    /**
+     * https://stackoverflow.com/a/19989922
+     * @param $value
+     */
+    protected function assertUUID($value)
+    {
+        $UUIDv4 = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
+        $this->assertEquals(1, preg_match($UUIDv4, $value), 'Not a valid uuid.');
     }
 }

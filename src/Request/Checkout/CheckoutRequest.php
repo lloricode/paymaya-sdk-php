@@ -11,15 +11,18 @@ use Lloricode\Paymaya\Request\Checkout\Buyer\BuyerRequest;
  */
 class CheckoutRequest extends BaseRequest
 {
+    private ?string $id = null;
     private TotalAmountRequest $total_amount_request;
-    private BuyerRequest $buyer_request;
+    private ?BuyerRequest $buyer_request = null;
 
     /**
      * @var \Lloricode\Paymaya\Request\Checkout\ItemRequest[]
      */
     private array $items = [];
-    private RedirectUrlRequest $redirect_url_request;
-    private ?string $request_reference_number = null;
+    private ?RedirectUrlRequest $redirect_url_request = null;
+    private ?string $status = null;
+    private ?string $payment_status = null;
+    private string $request_reference_number;
     private MetaDataRequest $meta_data_request;
 
     public function setTotalAmountRequest(TotalAmountRequest $totalAmountRequest): self
@@ -29,7 +32,7 @@ class CheckoutRequest extends BaseRequest
         return $this;
     }
 
-    public function setBuyerRequest(BuyerRequest $buyerRequest): self
+    public function setBuyerRequest(?BuyerRequest $buyerRequest): self
     {
         $this->buyer_request = $buyerRequest;
 
@@ -43,14 +46,14 @@ class CheckoutRequest extends BaseRequest
         return $this;
     }
 
-    public function setRedirectUrlRequest(RedirectUrlRequest $redirectUrlRequest): self
+    public function setRedirectUrlRequest(?RedirectUrlRequest $redirectUrlRequest): self
     {
         $this->redirect_url_request = $redirectUrlRequest;
 
         return $this;
     }
 
-    public function setRequestReferenceNumber(?string $requestReferenceNumber): self
+    public function setRequestReferenceNumber(string $requestReferenceNumber): self
     {
         $this->request_reference_number = $requestReferenceNumber;
 
@@ -70,12 +73,15 @@ class CheckoutRequest extends BaseRequest
     public function jsonSerialize()
     {
         return [
+            'id' => $this->id,
             'totalAmount' => $this->total_amount_request,
             'buyer' => $this->buyer_request,
             'items' => $this->items,
             'redirectUrl' => $this->redirect_url_request,
             'requestReferenceNumber' => $this->request_reference_number,
             'metadata' => $this->meta_data_request,
+            'status' => $this->status,
+            'paymentStatus' => $this->payment_status,
         ];
     }
 }

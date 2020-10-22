@@ -5,7 +5,7 @@ namespace Lloricode\Paymaya\Client\Checkout;
 use Lloricode\Paymaya\Client\BaseClient;
 use Lloricode\Paymaya\Client\UriVersion;
 use Lloricode\Paymaya\Request\Checkout\CheckoutRequest;
-use Psr\Http\Message\ResponseInterface;
+use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 
 class CheckoutClient extends BaseClient
 {
@@ -23,12 +23,15 @@ class CheckoutClient extends BaseClient
      * @param  \Lloricode\Paymaya\Request\Checkout\CheckoutRequest  $checkoutRequest
      * @param  int  $uriVersion
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Lloricode\Paymaya\Response\Checkout\CheckoutResponse
      * @throws \ErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function post(CheckoutRequest $checkoutRequest, int $uriVersion = 1): ResponseInterface
+    public function post(CheckoutRequest $checkoutRequest, int $uriVersion = 1): CheckoutResponse
     {
-        return $this->postClient(['json' => $checkoutRequest], $uriVersion);
+        $response = $this->postClient(['json' => $checkoutRequest], $uriVersion);
+
+        $body = json_decode((string)$response->getBody(), true);
+        return new CheckoutResponse($body['checkoutId'], $body['redirectUrl']);
     }
 }
