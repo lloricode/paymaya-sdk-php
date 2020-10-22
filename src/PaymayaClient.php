@@ -62,7 +62,7 @@ final class PaymayaClient
             [
                 'base_uri' => $this->base_url,
                 'headers' => [
-                    'Authorization' => trim('Basic '.base64_encode($this->secret_key)),
+                    'Authorization' => trim('Basic '.base64_encode($this->public_key)),
                 ],
             ]
         );
@@ -83,7 +83,7 @@ final class PaymayaClient
             [
                 'base_uri' => $this->base_url,
                 'headers' => [
-                    'Authorization' => trim('Basic '.base64_encode($this->public_key)),
+                    'Authorization' => trim('Basic '.base64_encode($this->secret_key)),
                 ],
             ]
         );
