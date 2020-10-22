@@ -28,7 +28,7 @@ class CheckoutTest extends TestCase
         } catch (ErrorException $e) {
             $this->fail('ErrorException');
         } catch (ClientException $e) {
-            $this->fail('ClientException:'.$e->getResponse()->getBody());
+            $this->fail('ClientException: '.$e->getMessage().$e->getResponse()->getBody());
         } catch (GuzzleException $e) {
             $this->fail('GuzzleException');
         }

@@ -9,11 +9,11 @@ use Psr\Http\Message\ResponseInterface;
 abstract class BaseClient
 {
     public int $uri_version = 1;
-    protected PaymayaClient $client;
+    protected PaymayaClient $paymayaClient;
 
-    private function __construct(PaymayaClient $client)
+    private function __construct(PaymayaClient $paymayaClient)
     {
-        $this->client = $client;
+        $this->paymayaClient = $paymayaClient;
     }
 
     public static function new(PaymayaClient $client)
@@ -31,7 +31,7 @@ abstract class BaseClient
      */
     protected function postClient(array $options = [], int $uriVersion = 1): ResponseInterface
     {
-        return $this->client->postClient($this->uri($uriVersion), $options);
+        return $this->paymayaClient->postClient($this->uri($uriVersion), $options);
     }
 
     /**

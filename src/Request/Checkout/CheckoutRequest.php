@@ -7,6 +7,7 @@ use Lloricode\Paymaya\Request\Checkout\Buyer\BuyerRequest;
 
 /**
  * https://hackmd.io/@paymaya-pg/Checkout
+ * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
  */
 class CheckoutRequest extends BaseRequest
 {
