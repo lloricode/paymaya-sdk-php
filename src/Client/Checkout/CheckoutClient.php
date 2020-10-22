@@ -13,7 +13,7 @@ class CheckoutClient extends BaseClient
     protected function uris(): array
     {
         return [
-            new UriVersion('/checkout/v1/checkouts'),
+            new UriVersion('checkout/v1/checkouts'),
         ];
     }
 }

@@ -31,7 +31,7 @@
     <php>
         <!--        https://developers.paymaya.com/blog/entry/api-test-merchants-and-test-cards -->
         <!--        Sandbox Party 1 -->
-        <env name="PAYMAYA_SECRET_KEY" value="sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl"/>
-        <env name="PAYMAYA_PUBLIC_KEY" value="pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah"/>
+        <env name="PAYMAYA_SANDBOX_SECRET_KEY" value="sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl"/>
+        <env name="PAYMAYA_SANDBOX_PUBLIC_KEY" value="pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah"/>
     </php>
 </phpunit>

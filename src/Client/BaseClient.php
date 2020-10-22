@@ -11,9 +11,14 @@ abstract class BaseClient
     public int $uri_version = 1;
     protected Client $client;
 
-    public function __construct(Client $client)
+    private function __construct(Client $client)
     {
         $this->client = $client;
+    }
+
+    public static function new(Client $client)
+    {
+        return new static($client);
     }
 
     /**

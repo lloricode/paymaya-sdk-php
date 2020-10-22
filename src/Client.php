@@ -20,7 +20,16 @@ final class Client
     private string $environment;
     private string $base_url;
 
-    public function __construct($secretKey, $publicKey, $environment = self::BASE_URL_SANDBOX)
+    /**
+     * Client constructor.
+     *
+     * @param  string  $secretKey
+     * @param  string  $publicKey
+     * @param  string  $environment
+     *
+     * @throws \ErrorException
+     */
+    public function __construct(string $secretKey, string $publicKey, $environment = self::ENVIRONMENT_SANDBOX)
     {
         switch ($environment) {
             case self::ENVIRONMENT_PRODUCTION:
@@ -52,7 +61,9 @@ final class Client
         $client = new GuzzleClient(
             [
                 'base_uri' => $this->base_url,
-                'auth' => [$this->secret_key, ''],
+                'headers' => [
+                    'Authorization' => trim('Basic '.base64_encode($this->secret_key)),
+                ],
             ]
         );
 
@@ -71,7 +82,9 @@ final class Client
         $client = new GuzzleClient(
             [
                 'base_uri' => $this->base_url,
-                'auth' => [$this->public_key, ''],
+                'headers' => [
+                    'Authorization' => trim('Basic '.base64_encode($this->public_key)),
+                ],
             ]
         );
 
