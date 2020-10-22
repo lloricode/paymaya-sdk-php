@@ -37,7 +37,7 @@ use Lloricode\Paymaya\Request\Checkout\RedirectUrlRequest;
 use Lloricode\Paymaya\Request\Checkout\TotalAmountRequest;
 
 # sample you can copy then test it
-CheckoutRequest::new()
+$checkout = CheckoutRequest::new()
     ->setTotalAmountRequest(
         TotalAmountRequest::new()
             ->setValue(100)
