@@ -3,7 +3,7 @@
 namespace Lloricode\Paymaya\Tests;
 
 use Carbon\Carbon;
-use Lloricode\Paymaya\Client as PaymayaClient;
+use Lloricode\Paymaya\PaymayaClient;
 use Lloricode\Paymaya\Request\Checkout\Amount\AmountDetailRequest;
 use Lloricode\Paymaya\Request\Checkout\Amount\AmountRequest;
 use Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddressRequest;
@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     /**
-     * @return \Lloricode\Paymaya\Client
+     * @return \Lloricode\Paymaya\PaymayaClient
      * @throws \ErrorException
      */
     protected static function generateClient(): PaymayaClient

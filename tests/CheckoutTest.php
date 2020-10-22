@@ -5,7 +5,7 @@ namespace Lloricode\Paymaya\Tests;
 use ErrorException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
-use Lloricode\Paymaya\Client;
+use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
 
 class CheckoutTest extends TestCase
 {
@@ -24,7 +24,7 @@ class CheckoutTest extends TestCase
     public function c()
     {
         try {
-            Client\Checkout\CheckoutClient::new(self::generateClient())->postClient(['json' => self::buildCheckout()]);
+            CheckoutClient::new(self::generateClient())->post(self::buildCheckout());
         } catch (ErrorException $e) {
             $this->fail('ErrorException');
         } catch (ClientException $e) {

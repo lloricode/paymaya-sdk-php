@@ -6,7 +6,7 @@ use ErrorException;
 use GuzzleHttp\Client as GuzzleClient;
 use Psr\Http\Message\ResponseInterface;
 
-final class Client
+final class PaymayaClient
 {
     public const BASE_URL_PRODUCTION = 'https://pg.paymaya.com';
     public const BASE_URL_SANDBOX = 'https://pg-sandbox.paymaya.com';

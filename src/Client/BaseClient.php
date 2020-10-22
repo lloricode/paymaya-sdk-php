@@ -3,20 +3,20 @@
 namespace Lloricode\Paymaya\Client;
 
 use ErrorException;
-use Lloricode\Paymaya\Client;
+use Lloricode\Paymaya\PaymayaClient;
 use Psr\Http\Message\ResponseInterface;
 
 abstract class BaseClient
 {
     public int $uri_version = 1;
-    protected Client $client;
+    protected PaymayaClient $client;
 
-    private function __construct(Client $client)
+    private function __construct(PaymayaClient $client)
     {
         $this->client = $client;
     }
 
-    public static function new(Client $client)
+    public static function new(PaymayaClient $client)
     {
         return new static($client);
     }
@@ -29,7 +29,7 @@ abstract class BaseClient
      * @throws \ErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function postClient(array $options = [], int $uriVersion = 1): ResponseInterface
+    protected function postClient(array $options = [], int $uriVersion = 1): ResponseInterface
     {
         return $this->client->postClient($this->uri($uriVersion), $options);
     }
