@@ -10,16 +10,6 @@ use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 class CheckoutClient extends BaseClient
 {
     /**
-     * @inheritDoc
-     */
-    protected function uris(): array
-    {
-        return [
-            new UriVersion('checkout/v1/checkouts'),
-        ];
-    }
-
-    /**
      * @param  \Lloricode\Paymaya\Request\Checkout\CheckoutRequest  $checkoutRequest
      * @param  int  $uriVersion
      *
@@ -33,5 +23,15 @@ class CheckoutClient extends BaseClient
 
         $body = json_decode((string)$response->getBody(), true);
         return new CheckoutResponse($body['checkoutId'], $body['redirectUrl']);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function uris(): array
+    {
+        return [
+            new UriVersion('checkout/v1/checkouts'),
+        ];
     }
 }
