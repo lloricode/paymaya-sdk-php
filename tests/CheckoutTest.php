@@ -24,6 +24,7 @@ class CheckoutTest extends TestCase
     public function check_via_sandbox()
     {
         $checkoutResponse = null;
+
         try {
             $checkoutResponse = CheckoutClient::new(self::generateClient())->post(self::buildCheckout());
         } catch (ErrorException $e) {
