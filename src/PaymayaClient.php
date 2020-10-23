@@ -29,7 +29,7 @@ final class PaymayaClient
      *
      * @throws \ErrorException
      */
-    public function __construct(string $secretKey, string $publicKey, $environment = self::ENVIRONMENT_SANDBOX)
+    public function __construct(string $secretKey, string $publicKey, string $environment = self::ENVIRONMENT_SANDBOX)
     {
         switch ($environment) {
             case self::ENVIRONMENT_PRODUCTION:
