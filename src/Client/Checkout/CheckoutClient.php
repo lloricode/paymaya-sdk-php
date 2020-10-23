@@ -22,6 +22,7 @@ class CheckoutClient extends BaseClient
         $response = $this->postClient(['json' => $checkoutRequest], $uriVersion);
 
         $body = json_decode((string)$response->getBody(), true);
+
         return new CheckoutResponse($body['checkoutId'], $body['redirectUrl']);
     }
 
