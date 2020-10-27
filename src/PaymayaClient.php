@@ -50,13 +50,13 @@ final class PaymayaClient
     }
 
     /**
-     * @param $uri
+     * @param  string  $uri
      * @param  array  $options
      *
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function postClient($uri, array $options = []): ResponseInterface
+    public function postClient(string $uri, array $options = []): ResponseInterface
     {
         $client = new GuzzleClient(
             [

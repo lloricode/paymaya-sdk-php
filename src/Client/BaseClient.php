@@ -16,7 +16,7 @@ abstract class BaseClient
         $this->paymayaClient = $paymayaClient;
     }
 
-    public static function new(PaymayaClient $client)
+    public static function new(PaymayaClient $client): self
     {
         return new static($client);
     }
