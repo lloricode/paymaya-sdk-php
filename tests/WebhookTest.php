@@ -20,30 +20,30 @@ class WebhookTest extends TestCase
         $this->assertCount(
             0,
             WebhookClient::new(self::generatePaymayaClient())
-                ->get()
+                ->retrieve()
         );
 
         WebhookClient::new(self::generatePaymayaClient())
-            ->post(
+            ->register(
                 WebhookRequest::new()
                     ->setName(WebhookRequest::SUCCESS)
                     ->setCallbackUrl('https://web.test/test/success')
             );
         WebhookClient::new(self::generatePaymayaClient())
-            ->post(
+            ->register(
                 WebhookRequest::new()
                     ->setName(WebhookRequest::FAILURE)
                     ->setCallbackUrl('https://web.test/test/failure')
             );
         WebhookClient::new(self::generatePaymayaClient())
-            ->post(
+            ->register(
                 WebhookRequest::new()
                     ->setName(WebhookRequest::DROPOUT)
                     ->setCallbackUrl('https://web.test/test/drop')
             );
 
         $webhookResponses = WebhookClient::new(self::generatePaymayaClient())
-            ->get();
+            ->retrieve();
 
         $this->assertCount(3, $webhookResponses);
 
@@ -56,7 +56,7 @@ class WebhookTest extends TestCase
         $this->assertEquals(
             'https://web.test/test/update-success',
             WebhookClient::new(self::generatePaymayaClient())
-                ->get()[WebhookRequest::SUCCESS]->getCallbackUrl()
+                ->retrieve()[WebhookRequest::SUCCESS]->getCallbackUrl()
         );
 
 
@@ -67,7 +67,7 @@ class WebhookTest extends TestCase
         $this->assertCount(
             0,
             WebhookClient::new(self::generatePaymayaClient())
-                ->get()
+                ->retrieve()
         );
     }
 }

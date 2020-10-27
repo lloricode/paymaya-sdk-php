@@ -159,26 +159,26 @@ $paymayaClient = new PaymayaClient(
 
 // create
 WebhookClient::new($paymayaClient)
-    ->post(
+    ->register(
         WebhookRequest::new()
             ->setName(WebhookRequest::SUCCESS)
             ->setCallbackUrl('https://web.test/test/success')
     );
 WebhookClient::new($paymayaClient)
-    ->post(
+    ->register(
         WebhookRequest::new()
             ->setName(WebhookRequest::FAILURE)
             ->setCallbackUrl('https://web.test/test/failure')
     );
 WebhookClient::new($paymayaClient)
-    ->post(
+    ->register(
         WebhookRequest::new()
             ->setName(WebhookRequest::DROPOUT)
             ->setCallbackUrl('https://web.test/test/drop')
     );
 
 $webhookResponses = WebhookClient::new($paymayaClient)
-    ->get();
+    ->retrieve();
 
 // update
 WebhookClient::new($paymayaClient)

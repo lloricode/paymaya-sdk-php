@@ -20,7 +20,7 @@ class CheckoutClient extends BaseClient
      * @return \Lloricode\Paymaya\Response\Checkout\CheckoutResponse
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function post(CheckoutRequest $checkoutRequest, int $uriVersion = 1): CheckoutResponse
+    public function execute(CheckoutRequest $checkoutRequest, int $uriVersion = 1): CheckoutResponse
     {
         $response = $this->publicPost(['json' => $checkoutRequest], $uriVersion);
 

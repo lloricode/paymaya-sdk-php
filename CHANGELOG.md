@@ -2,9 +2,10 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
-## 0.0.5 - Unreleased
+## 0.1.0 - Unreleased
 
 - Add more attribute in webhooks
+- Rename some methods in clients
 
 ## 0.0.4 - 2020-10-27
 

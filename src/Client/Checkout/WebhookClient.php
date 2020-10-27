@@ -16,7 +16,7 @@ class WebhookClient extends BaseClient
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function post(WebhookRequest $webhookRequest, int $uriVersion = 1): void
+    public function register(WebhookRequest $webhookRequest, int $uriVersion = 1): void
     {
         $this->secretPost(['json' => $webhookRequest], $uriVersion);
     }
@@ -27,7 +27,7 @@ class WebhookClient extends BaseClient
      * @return \Lloricode\Paymaya\Response\Checkout\WebhookResponse[]
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function get(int $uriVersion = 1): array
+    public function retrieve(int $uriVersion = 1): array
     {
         try {
             $content = $this->secretGet([], $uriVersion)
@@ -79,7 +79,7 @@ class WebhookClient extends BaseClient
      */
     public function deleteAll(): void
     {
-        foreach ($this->get() as $webhookResponse) {
+        foreach ($this->retrieve() as $webhookResponse) {
             $this->delete(WebhookRequest::new()->setResponse($webhookResponse));
         }
     }
