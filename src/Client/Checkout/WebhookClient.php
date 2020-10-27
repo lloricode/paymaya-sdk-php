@@ -33,7 +33,7 @@ class WebhookClient extends BaseClient
                 ->getBody()
                 ->getContents();
         } catch (GuzzleException $e) {
-            if ($e->getCode()) {
+            if ($e->getCode() == '404') {
                 return [];
             }
 
