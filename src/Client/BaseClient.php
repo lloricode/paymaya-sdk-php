@@ -2,13 +2,11 @@
 
 namespace Lloricode\Paymaya\Client;
 
-use ErrorException;
 use Lloricode\Paymaya\PaymayaClient;
 use Psr\Http\Message\ResponseInterface;
 
 abstract class BaseClient
 {
-    public int $uri_version = 1;
     protected PaymayaClient $paymayaClient;
 
     private function __construct(PaymayaClient $paymayaClient)
@@ -26,7 +24,6 @@ abstract class BaseClient
      * @param  int  $uriVersion
      *
      * @return \Psr\Http\Message\ResponseInterface
-     * @throws \ErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function postClient(array $options = [], int $uriVersion = 1): ResponseInterface
@@ -34,29 +31,5 @@ abstract class BaseClient
         return $this->paymayaClient->postClient($this->uri($uriVersion), $options);
     }
 
-    /**
-     * @return \Lloricode\Paymaya\Client\UriVersion[]
-     */
-    abstract protected function uris(): array;
-
-    /**
-     * @param  int|null  $uriVersion
-     *
-     * @return string
-     * @throws \ErrorException
-     */
-    private function uri(int $uriVersion = null): string
-    {
-        if (is_null($uriVersion)) {
-            $uriVersion = $this->uri_version;
-        }
-
-        foreach ($this->uris() as $uri) {
-            if ($uri->version == $uriVersion) {
-                return $uri->uri;
-            }
-        }
-
-        throw new ErrorException();
-    }
+    abstract protected function uri(int $uriVersion): string;
 }
