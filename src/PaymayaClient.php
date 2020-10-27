@@ -4,7 +4,6 @@ namespace Lloricode\Paymaya;
 
 use ErrorException;
 use GuzzleHttp\Client as GuzzleClient;
-use Psr\Http\Message\ResponseInterface;
 
 final class PaymayaClient
 {
@@ -49,45 +48,31 @@ final class PaymayaClient
         $this->public_key = $publicKey;
     }
 
-    /**
-     * @param  string  $uri
-     * @param  array  $options
-     *
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function postClient(string $uri, array $options = []): ResponseInterface
+    private function client(array $header): GuzzleClient
     {
-        $client = new GuzzleClient(
+        return new GuzzleClient(
             [
                 'base_uri' => $this->base_url,
-                'headers' => [
-                    'Authorization' => trim('Basic '.base64_encode($this->public_key)),
-                ],
+                'headers' => $header,
             ]
         );
-
-        return $client->post($uri, $options);
     }
 
-    /**
-     * @param $uri
-     * @param  array  $options
-     *
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function getClient($uri, array $options = []): ResponseInterface
+    public function publicClient(): GuzzleClient
     {
-        $client = new GuzzleClient(
+        return $this->client(
             [
-                'base_uri' => $this->base_url,
-                'headers' => [
-                    'Authorization' => trim('Basic '.base64_encode($this->secret_key)),
-                ],
+                'Authorization' => trim('Basic '.base64_encode($this->public_key)),
             ]
         );
+    }
 
-        return $client->get($uri, $options);
+    public function secretClient()
+    {
+        return $this->client(
+            [
+                'Authorization' => trim('Basic '.base64_encode($this->secret_key)),
+            ]
+        );
     }
 }

@@ -23,7 +23,7 @@ class CheckoutClient extends BaseClient
      */
     public function post(CheckoutRequest $checkoutRequest, int $uriVersion = 1): CheckoutResponse
     {
-        $response = $this->postClient(['json' => $checkoutRequest], $uriVersion);
+        $response = $this->publicPost(['json' => $checkoutRequest], $uriVersion);
 
         $body = json_decode((string)$response->getBody(), true);
 

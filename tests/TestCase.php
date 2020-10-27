@@ -23,7 +23,7 @@ abstract class TestCase extends BaseTestCase
      * @return \Lloricode\Paymaya\PaymayaClient
      * @throws \ErrorException
      */
-    protected static function generateClient(): PaymayaClient
+    protected static function generatePaymayaClient(): PaymayaClient
     {
         return new PaymayaClient(
             getenv('PAYMAYA_SANDBOX_SECRET_KEY'),

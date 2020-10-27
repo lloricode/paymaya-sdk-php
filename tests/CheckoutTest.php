@@ -26,7 +26,7 @@ class CheckoutTest extends TestCase
         $checkoutResponse = null;
 
         try {
-            $checkoutResponse = CheckoutClient::new(self::generateClient())->post(self::buildCheckout());
+            $checkoutResponse = CheckoutClient::new(self::generatePaymayaClient())->post(self::buildCheckout());
         } catch (ErrorException $e) {
             $this->fail('ErrorException');
         } catch (ClientException $e) {
