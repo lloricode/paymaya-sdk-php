@@ -9,6 +9,8 @@ abstract class BaseClient
 {
     protected PaymayaClient $paymayaClient;
 
+    abstract protected function uri(int $uriVersion): string;
+
     private function __construct(PaymayaClient $paymayaClient)
     {
         $this->paymayaClient = $paymayaClient;
@@ -30,6 +32,4 @@ abstract class BaseClient
     {
         return $this->paymayaClient->postClient($this->uri($uriVersion), $options);
     }
-
-    abstract protected function uri(int $uriVersion): string;
 }
