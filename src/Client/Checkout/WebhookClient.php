@@ -62,13 +62,13 @@ class WebhookClient extends BaseClient
     }
 
     /**
-     * @param  string  $id
+     * @param  \Lloricode\Paymaya\Request\Checkout\WebhookRequest  $webhookRequest
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function delete(string $id): void
+    public function delete(WebhookRequest $webhookRequest): void
     {
-        $this->secretDelete($id);
+        $this->secretDelete($webhookRequest->getId());
     }
 
     /**
@@ -77,7 +77,7 @@ class WebhookClient extends BaseClient
     public function deleteAll(): void
     {
         foreach ($this->get() as $webhookResponse) {
-            $this->delete($webhookResponse->getId());
+            $this->delete($webhookResponse);
         }
     }
 
