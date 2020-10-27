@@ -49,7 +49,8 @@ class WebhookTest extends TestCase
 
         WebhookClient::new(self::generatePaymayaClient())
             ->update(
-                $webhookResponses[WebhookRequest::SUCCESS]->setCallbackUrl('https://web.test/test/update-success')
+                WebhookRequest::new()->setResponse($webhookResponses[WebhookRequest::SUCCESS])
+                    ->setCallbackUrl('https://web.test/test/update-success')
             );
 
         $this->assertEquals(

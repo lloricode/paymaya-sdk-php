@@ -3,6 +3,7 @@
 namespace Lloricode\Paymaya\Request\Checkout;
 
 use Lloricode\Paymaya\Request\BaseRequest;
+use Lloricode\Paymaya\Response\Checkout\WebhookResponse;
 
 /**
  * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview#webhooks
@@ -16,6 +17,15 @@ class WebhookRequest extends BaseRequest
     private ?string $id = null;
     private string $name;
     private string $callback_url;
+
+    public function setResponse(WebhookResponse $webhookResponse): self
+    {
+        $this->id = $webhookResponse->getId();
+        $this->name = $webhookResponse->getName();
+        $this->callback_url = $webhookResponse->getCallbackUrl();
+
+        return $this;
+    }
 
     public function setName(string $name): self
     {

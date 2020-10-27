@@ -55,21 +55,21 @@ class WebhookClient extends BaseClient
     }
 
     /**
-     * @param  \Lloricode\Paymaya\Response\Checkout\WebhookResponse  $webhookRequest
+     * @param  \Lloricode\Paymaya\Request\Checkout\WebhookRequest  $webhookRequest
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function update(WebhookResponse $webhookRequest): void
+    public function update(WebhookRequest $webhookRequest): void
     {
         $this->secretPut($webhookRequest->getId(), ['json' => $webhookRequest]);
     }
 
     /**
-     * @param  \Lloricode\Paymaya\Response\Checkout\WebhookResponse  $webhookRequest
+     * @param  \Lloricode\Paymaya\Request\Checkout\WebhookRequest  $webhookRequest
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function delete(WebhookResponse $webhookRequest): void
+    public function delete(WebhookRequest $webhookRequest): void
     {
         $this->secretDelete($webhookRequest->getId());
     }
@@ -80,7 +80,7 @@ class WebhookClient extends BaseClient
     public function deleteAll(): void
     {
         foreach ($this->get() as $webhookResponse) {
-            $this->delete($webhookResponse);
+            $this->delete(WebhookRequest::new()->setResponse($webhookResponse));
         }
     }
 

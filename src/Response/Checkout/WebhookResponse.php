@@ -79,7 +79,6 @@ class WebhookResponse extends BaseResponse implements JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'id' => $this->id,
             'name' => $this->name,
             'callbackUrl' => $this->callback_url,
         ];
