@@ -94,6 +94,4 @@ abstract class BaseClient
     {
         return $this->paymayaClient->secretClient()->delete($this->uri($uriVersion)."/$appendUrl", $options);
     }
-
-
 }

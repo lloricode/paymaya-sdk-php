@@ -9,7 +9,6 @@ use Lloricode\Paymaya\Response\Checkout\WebhookResponse;
 
 class WebhookClient extends BaseClient
 {
-
     /**
      * @param  \Lloricode\Paymaya\Request\Checkout\WebhookRequest  $webhookRequest
      * @param  int  $uriVersion
@@ -37,6 +36,7 @@ class WebhookClient extends BaseClient
             if ($e->getCode()) {
                 return [];
             }
+
             throw $e;
         }
 

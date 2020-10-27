@@ -6,5 +6,4 @@ use Lloricode\Paymaya\Request\Checkout\WebhookRequest;
 
 class WebhookResponse extends WebhookRequest
 {
-
 }

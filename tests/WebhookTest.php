@@ -69,5 +69,4 @@ class WebhookTest extends TestCase
                 ->get()
         );
     }
-
 }
