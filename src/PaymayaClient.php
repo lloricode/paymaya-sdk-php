@@ -67,7 +67,7 @@ final class PaymayaClient
         );
     }
 
-    public function secretClient()
+    public function secretClient(): GuzzleClient
     {
         return $this->client(
             [
