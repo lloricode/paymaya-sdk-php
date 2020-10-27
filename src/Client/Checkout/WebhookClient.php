@@ -52,21 +52,21 @@ class WebhookClient extends BaseClient
     }
 
     /**
-     * @param  \Lloricode\Paymaya\Request\Checkout\WebhookRequest  $webhookRequest
+     * @param  \Lloricode\Paymaya\Response\Checkout\WebhookResponse  $webhookRequest
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function update(WebhookRequest $webhookRequest): void
+    public function update(WebhookResponse $webhookRequest): void
     {
         $this->secretPut($webhookRequest->getId(), ['json' => $webhookRequest]);
     }
 
     /**
-     * @param  \Lloricode\Paymaya\Request\Checkout\WebhookRequest  $webhookRequest
+     * @param  \Lloricode\Paymaya\Response\Checkout\WebhookResponse  $webhookRequest
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function delete(WebhookRequest $webhookRequest): void
+    public function delete(WebhookResponse $webhookRequest): void
     {
         $this->secretDelete($webhookRequest->getId());
     }

@@ -2,7 +2,7 @@
 
 namespace Lloricode\Paymaya\Response\Checkout;
 
-class CheckoutResponse
+class CheckoutResponse extends BaseResponse
 {
     private string $id;
     private string $url;
