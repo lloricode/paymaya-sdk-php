@@ -4,8 +4,12 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/lloricode/paymaya-sdk-php/Tests?label=tests)](https://github.com/lloricode/paymaya-sdk-php/actions?query=workflow%3Arun-tests+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/lloricode/paymaya-sdk-php.svg?style=flat-square)](https://packagist.org/packages/lloricode/paymaya-sdk-php)
 
-
 Paymaya SDK for PHP >= 7.4
+
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Checkout](#checkout)
+    - [Webhooks Checkout](#checkout-webhook)
 
 ## Installation
 
