@@ -2,6 +2,7 @@
 
 namespace Lloricode\Paymaya\Client\Checkout;
 
+use Carbon\Carbon;
 use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\Client\BaseClient;
 use Lloricode\Paymaya\Request\Checkout\WebhookRequest;
@@ -45,7 +46,9 @@ class WebhookClient extends BaseClient
             $array[$value['name']] = WebhookResponse::new()
                 ->setId($value['id'])
                 ->setName($value['name'])
-                ->setCallbackUrl($value['callbackUrl']);
+                ->setCallbackUrl($value['callbackUrl'])
+                ->setCreatedAt(Carbon::parse($value['createdAt']))
+                ->setUpdatedAt(Carbon::parse($value['updatedAt']));
         }
 
         return $array;

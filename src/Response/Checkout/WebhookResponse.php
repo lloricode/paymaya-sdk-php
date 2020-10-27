@@ -2,6 +2,7 @@
 
 namespace Lloricode\Paymaya\Response\Checkout;
 
+use Carbon\Carbon;
 use JsonSerializable;
 
 class WebhookResponse extends BaseResponse implements JsonSerializable
@@ -9,6 +10,13 @@ class WebhookResponse extends BaseResponse implements JsonSerializable
     private ?string $id = null;
     private string $name;
     private string $callback_url;
+    private Carbon $created_at;
+    private Carbon $updated_at;
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
     public function setName(string $name): self
     {
@@ -37,6 +45,30 @@ class WebhookResponse extends BaseResponse implements JsonSerializable
     public function setCallbackUrl(string $callbackUrl): self
     {
         $this->callback_url = $callbackUrl;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): Carbon
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(Carbon $createdAt): self
+    {
+        $this->created_at = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): Carbon
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(Carbon $updatedAt): self
+    {
+        $this->updated_at = $updatedAt;
 
         return $this;
     }

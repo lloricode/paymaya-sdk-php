@@ -2,6 +2,10 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
+## 0.0.5 - Unreleased
+
+- Add more attribute in webhooks
+
 ## 0.0.4 - 2020-10-27
 
 - Add webhook (create, get, update, delete, deleteAll)
