@@ -8,7 +8,6 @@ use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 
 class CheckoutClient extends BaseClient
 {
-
     protected function uri(int $uriVersion): string
     {
         return "checkout/v$uriVersion/checkouts";
