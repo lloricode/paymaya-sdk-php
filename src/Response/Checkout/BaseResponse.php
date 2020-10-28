@@ -7,6 +7,7 @@ abstract class BaseResponse
     final public function __construct()
     {
     }
+
     /**
      * @return static
      */
