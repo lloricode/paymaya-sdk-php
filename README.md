@@ -161,6 +161,8 @@ $paymayaClient = new PaymayaClient(
     PaymayaClient::ENVIRONMENT_SANDBOX
 );
 
+WebhookClient::new($paymayaClient)->deleteAll();
+
 // create
 WebhookClient::new($paymayaClient)
     ->register(
@@ -187,13 +189,14 @@ $webhookResponses = WebhookClient::new($paymayaClient)
 // update
 WebhookClient::new($paymayaClient)
     ->update(
-        $webhookResponses[WebhookRequest::SUCCESS]->setCallbackUrl('https://web.test/test/update-success')
+        WebhookRequest::new()->setResponse($webhookResponses[WebhookRequest::SUCCESS])
+            ->setCallbackUrl('https://web.test/test/update-success')
     );
 
 // single delete
 WebhookClient::new($paymayaClient)
     ->delete(
-        $webhookResponses[WebhookRequest::DROPOUT]
+        WebhookRequest::new()->setResponse($webhookResponses[WebhookRequest::DROPOUT])
     );
 
 // delete all
