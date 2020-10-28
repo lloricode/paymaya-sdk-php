@@ -142,7 +142,7 @@ $checkoutResponse = CheckoutClient::new(
         'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah', // public
         PaymayaClient::ENVIRONMENT_SANDBOX
     )
-)->post($checkout);
+)->execute($checkout);
 
 echo 'id: '.$checkoutResponse->getId()."\n";
 echo 'url: '.$checkoutResponse->getUrl()."\n";
