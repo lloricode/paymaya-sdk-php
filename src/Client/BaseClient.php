@@ -11,7 +11,7 @@ abstract class BaseClient
 
     abstract protected function uri(int $uriVersion): string;
 
-    private function __construct(PaymayaClient $paymayaClient)
+    final private function __construct(PaymayaClient $paymayaClient)
     {
         $this->paymayaClient = $paymayaClient;
     }

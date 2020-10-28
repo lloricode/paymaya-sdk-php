@@ -61,7 +61,7 @@ class WebhookClient extends BaseClient
      */
     public function update(WebhookRequest $webhookRequest): void
     {
-        $this->secretPut($webhookRequest->getId(), ['json' => $webhookRequest]);
+        $this->secretPut($webhookRequest->getId() ?: '', ['json' => $webhookRequest]);
     }
 
     /**
@@ -71,7 +71,7 @@ class WebhookClient extends BaseClient
      */
     public function delete(WebhookRequest $webhookRequest): void
     {
-        $this->secretDelete($webhookRequest->getId());
+        $this->secretDelete($webhookRequest->getId() ?: '');
     }
 
     /**

@@ -7,12 +7,6 @@ class CheckoutResponse extends BaseResponse
     private string $id;
     private string $url;
 
-    public function __construct(string $id, string $url)
-    {
-        $this->id = $id;
-        $this->url = $url;
-    }
-
     public function getId(): string
     {
         return $this->id;
@@ -21,5 +15,19 @@ class CheckoutResponse extends BaseResponse
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setId(string $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
     }
 }

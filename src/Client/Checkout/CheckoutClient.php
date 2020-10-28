@@ -26,6 +26,8 @@ class CheckoutClient extends BaseClient
 
         $body = json_decode((string)$response->getBody(), true);
 
-        return new CheckoutResponse($body['checkoutId'], $body['redirectUrl']);
+        return CheckoutResponse::new()
+            ->setId($body['checkoutId'])
+            ->setUrl($body['redirectUrl']);
     }
 }
