@@ -53,6 +53,17 @@ class WebhookTest extends TestCase
                     ->setCallbackUrl('https://web.test/test/update-success')
             );
 
+        WebhookClient::new(self::generatePaymayaClient())
+            ->delete(
+                WebhookRequest::new()->setResponse($webhookResponses[WebhookRequest::DROPOUT])
+            );
+
+        $this->assertCount(
+            2,
+            WebhookClient::new(self::generatePaymayaClient())
+                ->retrieve()
+        );
+
         $this->assertEquals(
             'https://web.test/test/update-success',
             WebhookClient::new(self::generatePaymayaClient())
