@@ -9,6 +9,7 @@ abstract class BaseRequest implements JsonSerializable
     final public function __construct()
     {
     }
+
     /**
      * @return static
      */
