@@ -21,11 +21,11 @@ composer require lloricode/paymaya-sdk-php
 
 ## Usage
 
+You can copy the sample to test it.
+
 ### Checkout
 https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
 ``` php
-
-# import
 use Carbon\Carbon;
 use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
 use Lloricode\Paymaya\PaymayaClient;
@@ -41,7 +41,6 @@ use Lloricode\Paymaya\Request\Checkout\MetaDataRequest;
 use Lloricode\Paymaya\Request\Checkout\RedirectUrlRequest;
 use Lloricode\Paymaya\Request\Checkout\TotalAmountRequest;
 
-# sample you can copy then test it
 $checkout = CheckoutRequest::new()
     ->setTotalAmountRequest(
         TotalAmountRequest::new()
