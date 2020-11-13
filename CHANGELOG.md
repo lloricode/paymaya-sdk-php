@@ -2,6 +2,10 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
+## 0.1.1 - 2020-11-13
+
+- Add support in a composer.json file
+
 ## 0.1.0 - 2020-10-28
 
 - Add more attribute in webhooks

@@ -52,5 +52,9 @@
             "type": "github",
             "url": "https://github.com/lloricde"
         }
-    ]
+    ],
+    "support": {
+        "issues": "https://github.com/lloricode/paymaya-sdk-php/issues",
+        "source": "https://github.com/lloricode/paymaya-sdk-php"
+    }
 }
