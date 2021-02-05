@@ -9,7 +9,6 @@ use Lloricode\Paymaya\Response\Checkout\WebhookResponse;
 
 class WebhookTest extends TestCase
 {
-
     private static function sampleData(array $override = []): array
     {
         return $override + [

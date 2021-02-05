@@ -58,7 +58,7 @@ final class PaymayaClient
 
                 $this->handler_stack = $handlerStack;
 
-                if ( ! is_null($this->handler_stack)) {
+                if (! is_null($this->handler_stack)) {
                     $this->handler_stack->push(Middleware::history($historyContainer));
                 }
 
