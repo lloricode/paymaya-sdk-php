@@ -19,7 +19,6 @@ final class PaymayaClient
     private string $public_key;
     private string $secret_key;
 
-    private string $environment;
     private string $base_url;
 
     private ?HandlerStack $handler_stack = null;
@@ -30,18 +29,11 @@ final class PaymayaClient
      * @param  string  $secretKey
      * @param  string  $publicKey
      * @param  string  $environment
-     * @param  \GuzzleHttp\HandlerStack|null  $handlerStack
-     * @param  array  $historyContainer
      *
      * @throws \ErrorException
      */
-    public function __construct(
-        string $secretKey,
-        string $publicKey,
-        string $environment = self::ENVIRONMENT_SANDBOX,
-        HandlerStack $handlerStack = null,
-        array &$historyContainer = []
-    ) {
+    public function __construct(string $secretKey, string $publicKey, string $environment = self::ENVIRONMENT_SANDBOX)
+    {
         switch ($environment) {
             // @codeCoverageIgnoreStart
             case self::ENVIRONMENT_PRODUCTION:
@@ -56,18 +48,11 @@ final class PaymayaClient
             case self::ENVIRONMENT_TESTING:
                 $this->base_url = 'testing';
 
-                $this->handler_stack = $handlerStack;
-
-                if (! is_null($this->handler_stack)) {
-                    $this->handler_stack->push(Middleware::history($historyContainer));
-                }
-
                 break;
             default:
                 throw new ErrorException("Invalid environment `$environment`.");
         }
 
-        $this->environment = $environment;
         $this->secret_key = $secretKey;
         $this->public_key = $publicKey;
     }
@@ -99,5 +84,14 @@ final class PaymayaClient
                 'Authorization' => trim('Basic '.base64_encode($this->secret_key)),
             ]
         );
+    }
+
+    public function setHandlerStack(HandlerStack $handlerStack, array &$historyContainer = []): self
+    {
+        $handlerStack->push(Middleware::history($historyContainer));
+
+        $this->handler_stack = $handlerStack;
+
+        return $this;
     }
 }

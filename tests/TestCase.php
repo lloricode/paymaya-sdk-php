@@ -56,16 +56,16 @@ abstract class TestCase extends BaseTestCase
      * @param  array  $historyContainer
      *
      * @return \Lloricode\Paymaya\PaymayaClient
-     * @throws \ErrorException
      */
     protected static function generatePaymayaClient(
         MockHandler $mockHandler,
         array &$historyContainer = []
     ): PaymayaClient {
-        return new PaymayaClient(
+        return (new PaymayaClient(
             '',
             '',
-            PaymayaClient::ENVIRONMENT_TESTING,
+            PaymayaClient::ENVIRONMENT_TESTING
+        ))->setHandlerStack(
             HandlerStack::create($mockHandler),
             $historyContainer
         );
