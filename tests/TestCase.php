@@ -28,7 +28,6 @@ abstract class TestCase extends BaseTestCase
      * @param  array  $historyContainer
      *
      * @return \Lloricode\Paymaya\PaymayaClient
-     * @throws \ErrorException
      */
     protected static function mockApiClient(
         array $array,
