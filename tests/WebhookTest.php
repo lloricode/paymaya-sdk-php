@@ -22,7 +22,6 @@ class WebhookTest extends TestCase
 
     /**
      * @test
-     * @throws \ErrorException
      */
     public function retrieve()
     {
@@ -46,7 +45,6 @@ class WebhookTest extends TestCase
 
     /**
      * @test
-     * @throws \ErrorException
      */
     public function register()
     {
@@ -70,7 +68,6 @@ class WebhookTest extends TestCase
 
     /**
      * @test
-     * @throws \ErrorException
      */
     public function update()
     {
@@ -106,7 +103,6 @@ class WebhookTest extends TestCase
 
     /**
      * @test
-     * @throws \ErrorException
      */
     public function delete()
     {
