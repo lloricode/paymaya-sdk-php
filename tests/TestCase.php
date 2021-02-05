@@ -3,6 +3,9 @@
 namespace Lloricode\Paymaya\Tests;
 
 use Carbon\Carbon;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\PaymayaClient;
 use Lloricode\Paymaya\Request\Checkout\Amount\AmountDetailRequest;
 use Lloricode\Paymaya\Request\Checkout\Amount\AmountRequest;
@@ -20,14 +23,51 @@ use PHPUnit\Framework\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     /**
+     * @param  array  $array
+     * @param  int  $status
+     * @param  array  $historyContainer
+     *
      * @return \Lloricode\Paymaya\PaymayaClient
      * @throws \ErrorException
      */
-    protected static function generatePaymayaClient(): PaymayaClient
-    {
+    protected static function mockApiClient(
+        array $array,
+        int $status = 200,
+        array &$historyContainer = []
+    ): PaymayaClient {
+        return self::generatePaymayaClient(
+            new MockHandler(
+                [
+                    new Response(
+                        $status,
+                        [],
+                        json_encode(
+                            $array
+                        ),
+                    ),
+                ]
+            ),
+            $historyContainer
+        );
+    }
+
+    /**
+     * @param  \GuzzleHttp\Handler\MockHandler  $mockHandler
+     * @param  array  $historyContainer
+     *
+     * @return \Lloricode\Paymaya\PaymayaClient
+     * @throws \ErrorException
+     */
+    protected static function generatePaymayaClient(
+        MockHandler $mockHandler,
+        array &$historyContainer = []
+    ): PaymayaClient {
         return new PaymayaClient(
-            getenv('PAYMAYA_SANDBOX_SECRET_KEY'),
-            getenv('PAYMAYA_SANDBOX_PUBLIC_KEY')
+            '',
+            '',
+            PaymayaClient::ENVIRONMENT_TESTING,
+            HandlerStack::create($mockHandler),
+            $historyContainer
         );
     }
 

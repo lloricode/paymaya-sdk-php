@@ -2,7 +2,6 @@
 
 namespace Lloricode\Paymaya\Client\Checkout;
 
-use Carbon\Carbon;
 use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\Client\BaseClient;
 use Lloricode\Paymaya\Request\Checkout\WebhookRequest;
@@ -14,11 +13,16 @@ class WebhookClient extends BaseClient
      * @param  \Lloricode\Paymaya\Request\Checkout\WebhookRequest  $webhookRequest
      * @param  int  $uriVersion
      *
+     * @return \Lloricode\Paymaya\Response\Checkout\WebhookResponse
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function register(WebhookRequest $webhookRequest, int $uriVersion = 1): void
+    public function register(WebhookRequest $webhookRequest, int $uriVersion = 1): WebhookResponse
     {
-        $this->secretPost(['json' => $webhookRequest], $uriVersion);
+        $bodyContent = $this->secretPost(['json' => $webhookRequest], $uriVersion)
+            ->getBody()
+            ->getContents();
+
+        return WebhookResponse::new()->fromArray((array)json_decode($bodyContent));
     }
 
     /**
@@ -44,11 +48,7 @@ class WebhookClient extends BaseClient
         $array = [];
         foreach (json_decode($content, true) as $value) {
             $array[$value['name']] = WebhookResponse::new()
-                ->setId($value['id'])
-                ->setName($value['name'])
-                ->setCallbackUrl($value['callbackUrl'])
-                ->setCreatedAt(Carbon::parse($value['createdAt']))
-                ->setUpdatedAt(Carbon::parse($value['updatedAt']));
+                ->fromArray($value);
         }
 
         return $array;
@@ -57,11 +57,15 @@ class WebhookClient extends BaseClient
     /**
      * @param  \Lloricode\Paymaya\Request\Checkout\WebhookRequest  $webhookRequest
      *
+     * @return \Lloricode\Paymaya\Response\Checkout\WebhookResponse
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function update(WebhookRequest $webhookRequest): void
+    public function update(WebhookRequest $webhookRequest): WebhookResponse
     {
-        $this->secretPut($webhookRequest->getId() ?: '', ['json' => $webhookRequest]);
+        $bodyContent = $this->secretPut($webhookRequest->getId() ?: '', ['json' => $webhookRequest])->getBody()
+            ->getContents();
+
+        return WebhookResponse::new()->fromArray((array)json_decode($bodyContent));
     }
 
     /**
@@ -84,7 +88,7 @@ class WebhookClient extends BaseClient
         }
     }
 
-    protected function uri(int $uriVersion): string
+    public static function uri(int $uriVersion = 1): string
     {
         return "/checkout/v$uriVersion/webhooks";
     }

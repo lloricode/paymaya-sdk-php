@@ -9,7 +9,7 @@ abstract class BaseClient
 {
     private PaymayaClient $paymayaClient;
 
-    abstract protected function uri(int $uriVersion): string;
+    abstract public static function uri(int $uriVersion = 1): string;
 
     final private function __construct(PaymayaClient $paymayaClient)
     {
@@ -57,17 +57,18 @@ abstract class BaseClient
         return $this->paymayaClient->secretClient()->get($this->uri($uriVersion), $options);
     }
 
-    /**
-     * @param  array  $options
-     * @param  int  $uriVersion
-     *
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    protected function publicGet(array $options = [], int $uriVersion = 1): ResponseInterface
-    {
-        return $this->paymayaClient->publicClient()->get($this->uri($uriVersion), $options);
-    }
+    // uncomment when needed
+//    /**
+//     * @param  array  $options
+//     * @param  int  $uriVersion
+//     *
+//     * @return \Psr\Http\Message\ResponseInterface
+//     * @throws \GuzzleHttp\Exception\GuzzleException
+//     */
+//    protected function publicGet(array $options = [], int $uriVersion = 1): ResponseInterface
+//    {
+//        return $this->paymayaClient->publicClient()->get($this->uri($uriVersion), $options);
+//    }
 
     /**
      * @param  string  $appendUrl

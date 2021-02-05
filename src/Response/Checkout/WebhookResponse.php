@@ -83,4 +83,15 @@ class WebhookResponse extends BaseResponse implements JsonSerializable
             'callbackUrl' => $this->callback_url,
         ];
     }
+
+    public function fromArray(array $array): self
+    {
+        $this->setId($array['id'])
+            ->setName($array['name'])
+            ->setCallbackUrl($array['callbackUrl'])
+            ->setCreatedAt(Carbon::parse($array['createdAt']))
+            ->setUpdatedAt(Carbon::parse($array['updatedAt']));
+
+        return $this;
+    }
 }

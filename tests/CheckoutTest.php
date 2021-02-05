@@ -5,6 +5,8 @@ namespace Lloricode\Paymaya\Tests;
 use ErrorException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
 
 class CheckoutTest extends TestCase
@@ -23,10 +25,27 @@ class CheckoutTest extends TestCase
      */
     public function check_via_sandbox()
     {
+        $mock = new MockHandler(
+            [
+                new Response(
+                    200,
+                    [],
+                    json_encode(
+                        [
+                            'checkoutId' => '2d8416df-db69-4cbc-a694-2f51d81b85c0',
+                            'redirectUrl' => 'http://test',
+                        ]
+                    ),
+                ),
+            ]
+        );
+
+
         $checkoutResponse = null;
 
         try {
-            $checkoutResponse = CheckoutClient::new(self::generatePaymayaClient())->execute(self::buildCheckout());
+            $checkoutResponse = CheckoutClient::new(self::generatePaymayaClient($mock))
+                ->execute(self::buildCheckout());
         } catch (ErrorException $e) {
             $this->fail('ErrorException');
         } catch (ClientException $e) {
