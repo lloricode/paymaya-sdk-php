@@ -76,6 +76,7 @@ abstract class TestCase extends BaseTestCase
             ->setTotalAmountRequest(
                 TotalAmountRequest::new()
                     ->setValue(100)
+                    ->setCurrency('PHP')
                     ->setAmountRequest(
                         AmountDetailRequest::new()
                             ->setSubtotal(100)

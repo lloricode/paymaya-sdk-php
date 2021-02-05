@@ -3,6 +3,7 @@
 namespace Lloricode\Paymaya\Tests;
 
 use ErrorException;
+use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\Client\Checkout\WebhookClient;
 use Lloricode\Paymaya\PaymayaClient;
 
@@ -41,5 +42,21 @@ class ExceptionTest extends TestCase
         $response = $history[0]['response'];
 
         $this->assertEquals(404, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     */
+    public function throw_exception()
+    {
+        $this->expectException(GuzzleException::class);
+        WebhookClient::new(
+            self::mockApiClient(
+                [
+                ],
+                400,
+            )
+        )
+            ->retrieve();
     }
 }
