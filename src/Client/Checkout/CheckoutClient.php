@@ -15,18 +15,17 @@ class CheckoutClient extends BaseClient
 
     /**
      * @param  \Lloricode\Paymaya\Request\Checkout\CheckoutRequest  $checkoutRequest
-     * @param  int  $uriVersion
      *
      * @return \Lloricode\Paymaya\Response\Checkout\CheckoutResponse
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function execute(CheckoutRequest $checkoutRequest, int $uriVersion = 1): CheckoutResponse
+    public function execute(CheckoutRequest $checkoutRequest): CheckoutResponse
     {
-        $response = $this->publicPost(['json' => $checkoutRequest], $uriVersion);
+        $response = $this->publicPost(['json' => $checkoutRequest]);
 
         $body = json_decode((string)$response->getBody(), true);
 
-        return CheckoutResponse::new()
+        return (new CheckoutResponse())
             ->setId($body['checkoutId'])
             ->setUrl($body['redirectUrl']);
     }

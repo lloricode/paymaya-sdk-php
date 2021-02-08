@@ -8,12 +8,19 @@ use Psr\Http\Message\ResponseInterface;
 abstract class BaseClient
 {
     private PaymayaClient $paymayaClient;
+    private int $version = 1;
 
     abstract public static function uri(int $uriVersion = 1): string;
 
     public function __construct(PaymayaClient $paymayaClient)
     {
         $this->paymayaClient = $paymayaClient;
+    }
+
+    public function version(int $version): self
+    {
+        $this->version = $version;
+        return $this;
     }
 
     /**
@@ -29,76 +36,71 @@ abstract class BaseClient
 
     /**
      * @param  array  $options
-     * @param  int  $uriVersion
      *
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function secretPost(array $options = [], int $uriVersion = 1): ResponseInterface
+    protected function secretPost(array $options = []): ResponseInterface
     {
-        return $this->paymayaClient->secretClient()->post($this->uri($uriVersion), $options);
+        return $this->paymayaClient->secretClient()->post($this->uri($this->version), $options);
     }
 
     /**
      * @param  array  $options
-     * @param  int  $uriVersion
      *
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function publicPost(array $options = [], int $uriVersion = 1): ResponseInterface
+    protected function publicPost(array $options = []): ResponseInterface
     {
-        return $this->paymayaClient->publicClient()->post($this->uri($uriVersion), $options);
+        return $this->paymayaClient->publicClient()->post($this->uri($this->version), $options);
     }
 
     /**
+     * @param  string  $appendUrl
      * @param  array  $options
-     * @param  int  $uriVersion
      *
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function secretGet(array $options = [], int $uriVersion = 1): ResponseInterface
+    protected function secretGet(string $appendUrl = '', array $options = []): ResponseInterface
     {
-        return $this->paymayaClient->secretClient()->get($this->uri($uriVersion), $options);
+        return $this->paymayaClient->secretClient()->get($this->uri($this->version)."/$appendUrl", $options);
     }
 
     // uncomment when needed
 //    /**
 //     * @param  array  $options
-//     * @param  int  $uriVersion
 //     *
 //     * @return \Psr\Http\Message\ResponseInterface
 //     * @throws \GuzzleHttp\Exception\GuzzleException
 //     */
-//    protected function publicGet(array $options = [], int $uriVersion = 1): ResponseInterface
+//    protected function publicGet(array $options = []): ResponseInterface
 //    {
-//        return $this->paymayaClient->publicClient()->get($this->uri($uriVersion), $options);
+//        return $this->paymayaClient->publicClient()->get($this->uri($this->version), $options);
 //    }
 
     /**
      * @param  string  $appendUrl
      * @param  array  $options
-     * @param  int  $uriVersion
      *
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function secretPut(string $appendUrl = '', array $options = [], int $uriVersion = 1): ResponseInterface
+    protected function secretPut(string $appendUrl = '', array $options = []): ResponseInterface
     {
-        return $this->paymayaClient->secretClient()->put($this->uri($uriVersion)."/$appendUrl", $options);
+        return $this->paymayaClient->secretClient()->put($this->uri($this->version)."/$appendUrl", $options);
     }
 
     /**
      * @param  string  $appendUrl
      * @param  array  $options
-     * @param  int  $uriVersion
      *
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function secretDelete(string $appendUrl = '', array $options = [], int $uriVersion = 1): ResponseInterface
+    protected function secretDelete(string $appendUrl = '', array $options = []): ResponseInterface
     {
-        return $this->paymayaClient->secretClient()->delete($this->uri($uriVersion)."/$appendUrl", $options);
+        return $this->paymayaClient->secretClient()->delete($this->uri($this->version)."/$appendUrl", $options);
     }
 }

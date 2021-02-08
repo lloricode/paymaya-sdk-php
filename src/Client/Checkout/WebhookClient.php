@@ -11,30 +11,27 @@ class WebhookClient extends BaseClient
 {
     /**
      * @param  \Lloricode\Paymaya\Request\Checkout\WebhookRequest  $webhookRequest
-     * @param  int  $uriVersion
      *
      * @return \Lloricode\Paymaya\Response\Checkout\WebhookResponse
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function register(WebhookRequest $webhookRequest, int $uriVersion = 1): WebhookResponse
+    public function register(WebhookRequest $webhookRequest): WebhookResponse
     {
-        $bodyContent = $this->secretPost(['json' => $webhookRequest], $uriVersion)
+        $bodyContent = $this->secretPost(['json' => $webhookRequest])
             ->getBody()
             ->getContents();
 
-        return WebhookResponse::new()->fromArray((array)json_decode($bodyContent));
+        return (new WebhookResponse())->fromArray((array)json_decode($bodyContent));
     }
 
     /**
-     * @param  int  $uriVersion
-     *
-     * @return \Lloricode\Paymaya\Response\Checkout\WebhookResponse[]
+     * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function retrieve(int $uriVersion = 1): array
+    public function retrieve(): array
     {
         try {
-            $content = $this->secretGet([], $uriVersion)
+            $content = $this->secretGet()
                 ->getBody()
                 ->getContents();
         } catch (GuzzleException $e) {
@@ -47,7 +44,7 @@ class WebhookClient extends BaseClient
 
         $array = [];
         foreach (json_decode($content, true) as $value) {
-            $array[$value['name']] = WebhookResponse::new()
+            $array[$value['name']] = (new WebhookResponse())
                 ->fromArray($value);
         }
 
