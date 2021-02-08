@@ -25,6 +25,8 @@ class CheckoutTest extends TestCase
      */
     public function check_via_sandbox()
     {
+        $id = 'test-generated-id';
+        $url = 'http://test';
         $mock = new MockHandler(
             [
                 new Response(
@@ -32,7 +34,7 @@ class CheckoutTest extends TestCase
                     [],
                     json_encode(
                         [
-                            'checkoutId' => '2d8416df-db69-4cbc-a694-2f51d81b85c0',
+                            'checkoutId' => $id,
                             'redirectUrl' => 'http://test',
                         ]
                     ),
@@ -54,7 +56,7 @@ class CheckoutTest extends TestCase
             $this->fail('GuzzleException');
         }
 
-        $this->assertUUID($checkoutResponse->getId());
-        $this->assertTrue(filter_var($checkoutResponse->getUrl(), FILTER_VALIDATE_URL) !== false);
+        $this->assertEquals($id, $checkoutResponse->getId());
+        $this->assertEquals($url, $checkoutResponse->getUrl());
     }
 }
