@@ -7,7 +7,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 
-final class PaymayaClient
+class PaymayaClient
 {
     public const BASE_URL_PRODUCTION = 'https://pg.paymaya.com';
     public const BASE_URL_SANDBOX = 'https://pg-sandbox.paymaya.com';
