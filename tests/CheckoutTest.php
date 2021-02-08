@@ -27,6 +27,7 @@ class CheckoutTest extends TestCase
     {
         $id = 'test-generated-id';
         $url = 'http://test';
+
         $mock = new MockHandler(
             [
                 new Response(
@@ -35,7 +36,7 @@ class CheckoutTest extends TestCase
                     json_encode(
                         [
                             'checkoutId' => $id,
-                            'redirectUrl' => 'http://test',
+                            'redirectUrl' => $url,
                         ]
                     ),
                 ),
