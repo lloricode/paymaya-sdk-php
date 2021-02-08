@@ -11,7 +11,7 @@ abstract class BaseClient
 
     abstract public static function uri(int $uriVersion = 1): string;
 
-    final private function __construct(PaymayaClient $paymayaClient)
+    public function __construct(PaymayaClient $paymayaClient)
     {
         $this->paymayaClient = $paymayaClient;
     }
