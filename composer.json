@@ -3,7 +3,9 @@
     "description": "Paymaya SDK for PHP",
     "keywords": [
         "lloricode",
-        "paymaya-sdk-php"
+        "paymaya",
+        "sdk",
+        "php"
     ],
     "homepage": "https://github.com/lloricode/paymaya-sdk-php",
     "license": "MIT",
