@@ -23,6 +23,7 @@ class WebhookTest extends TestCase
     }
 
     /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @test
      */
     public function retrieve()
@@ -30,8 +31,8 @@ class WebhookTest extends TestCase
         $sampleData = self::sampleData();
 
         $history = [];
-        /** @var \Lloricode\Paymaya\Response\Checkout\WebhookResponse[] $webhookResponses */
-        $webhookResponses = WebhookClient::new(
+
+        $webhookResponses = (new WebhookClient(
             self::mockApiClient(
                 [
                     $sampleData,
@@ -39,7 +40,7 @@ class WebhookTest extends TestCase
                 200,
                 $history
             )
-        )
+        ))
             ->retrieve();
 
 
@@ -61,14 +62,14 @@ class WebhookTest extends TestCase
     }
 
     /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @test
      */
     public function register()
     {
         $data = self::sampleData();
 
-        /** @var WebhookResponse $webhookResponse */
-        $webhookResponse = WebhookClient::new(self::mockApiClient($data))
+        $webhookResponse = (new WebhookClient(self::mockApiClient($data)))
             ->register(
                 WebhookRequest::new()
                     ->setName($data['name'])
@@ -84,6 +85,7 @@ class WebhookTest extends TestCase
     }
 
     /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @test
      */
     public function update()
@@ -99,9 +101,9 @@ class WebhookTest extends TestCase
         $history = [];
 
         /** @var WebhookResponse $webhookResponse */
-        $webhookResponse = WebhookClient::new(self::mockApiClient($data, 200, $history))
+        $webhookResponse = (new WebhookClient(self::mockApiClient($data, 200, $history)))
             ->update(
-                WebhookRequest::new()->setResponse($webhookResponse)
+                ( new WebhookRequest())->setResponse($webhookResponse)
                     ->setCallbackUrl($newUrl)
             );
 
@@ -119,6 +121,7 @@ class WebhookTest extends TestCase
     }
 
     /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @test
      */
     public function delete()
@@ -132,7 +135,7 @@ class WebhookTest extends TestCase
 
         $history = [];
 
-        WebhookClient::new(self::mockApiClient($data, 200, $history))
+        (new WebhookClient(self::mockApiClient($data, 200, $history)))
             ->delete(
                 WebhookRequest::new()->setResponse($webhookResponse)
             );
@@ -147,6 +150,7 @@ class WebhookTest extends TestCase
     }
 
     /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @test
      * @depends retrieve
      */
@@ -175,7 +179,7 @@ class WebhookTest extends TestCase
             $history
         );
 
-        WebhookClient::new($mock)
+        (new WebhookClient($mock))
             ->deleteAll();
 
         $this->assertCount(2, $history);

@@ -20,19 +20,20 @@ class ExceptionTest extends TestCase
     }
 
     /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @test
      */
     public function webhook_zero_data_retrieved()
     {
         $history = [];
-        $data = WebhookClient::new(
+        $data = (new WebhookClient(
             self::mockApiClient(
                 [
                 ],
                 404,
                 $history
             )
-        )
+        ))
             ->retrieve();
 
         $this->assertCount(0, $data);
@@ -50,13 +51,13 @@ class ExceptionTest extends TestCase
     public function throw_exception()
     {
         $this->expectException(GuzzleException::class);
-        WebhookClient::new(
+        (new WebhookClient(
             self::mockApiClient(
                 [
                 ],
                 400,
             )
-        )
+        ))
             ->retrieve();
     }
 }

@@ -27,6 +27,8 @@ You can copy the sample to test it.
 ### Checkout
 https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
 ``` php
+
+
 use Carbon\Carbon;
 use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
 use Lloricode\Paymaya\PaymayaClient;
@@ -42,17 +44,17 @@ use Lloricode\Paymaya\Request\Checkout\MetaDataRequest;
 use Lloricode\Paymaya\Request\Checkout\RedirectUrlRequest;
 use Lloricode\Paymaya\Request\Checkout\TotalAmountRequest;
 
-$checkout = CheckoutRequest::new()
+$checkout = (new CheckoutRequest())
     ->setTotalAmountRequest(
-        TotalAmountRequest::new()
+        (new TotalAmountRequest())
             ->setValue(100)
             ->setAmountRequest(
-                AmountDetailRequest::new()
+                (new AmountDetailRequest())
                     ->setSubtotal(100)
             )
     )
     ->setBuyerRequest(
-        BuyerRequest::new()
+        (new BuyerRequest())
             ->setFirstName('John')
             ->setMiddleName('Paul')
             ->setLastName('Doe')
@@ -60,12 +62,12 @@ $checkout = CheckoutRequest::new()
             ->setCustomerSince(Carbon::parse('1995-10-24'))
             ->setGender('M')
             ->setContactRequest(
-                ContactRequest::new()
+                (new ContactRequest())
                     ->setPhone('+639181008888')
                     ->setEmail('merchant@merchantsite.com')
             )
             ->setShippingAddressRequest(
-                ShippingAddressRequest::new()
+                (new ShippingAddressRequest())
                     ->setFirstName('John')
                     ->setMiddleName('Paul')
                     ->setLastName('Doe')
@@ -80,7 +82,7 @@ $checkout = CheckoutRequest::new()
                     ->setShippingType('ST')
             )
             ->setBillingAddressRequest(
-                BillingAddressRequest::new()
+                (new BillingAddressRequest())
                     ->setLine1('6F Launchpad')
                     ->setLine2('Reliance Street')
                     ->setCity('Mandaluyong City')
@@ -90,16 +92,16 @@ $checkout = CheckoutRequest::new()
             )
     )
     ->addItemRequest(
-        ItemRequest::new()
+        (new ItemRequest())
             ->setName('Canvas Slip Ons')
             ->setQuantity(1)
             ->setCode('CVG-096732')
             ->setDescription('Shoes')
             ->setAmountRequest(
-                AmountRequest::new()
+                (new AmountRequest())
                     ->setValue(100)
                     ->setAmountRequest(
-                        AmountDetailRequest::new()
+                        (new AmountDetailRequest())
                             ->setDiscount(0)
                             ->setServiceCharge(0)
                             ->setShippingFee(0)
@@ -108,10 +110,10 @@ $checkout = CheckoutRequest::new()
                     )
             )
             ->setTotalAmountRequest(
-                AmountRequest::new()
+                (new AmountRequest())
                     ->setValue(100)
                     ->setAmountRequest(
-                        AmountDetailRequest::new()
+                        (new AmountDetailRequest())
                             ->setDiscount(0)
                             ->setServiceCharge(0)
                             ->setShippingFee(0)
@@ -121,13 +123,13 @@ $checkout = CheckoutRequest::new()
             )
     )
     ->setRedirectUrlRequest(
-        RedirectUrlRequest::new()
+        (new RedirectUrlRequest())
             ->setSuccess('https://www.merchantsite.com/success')
             ->setFailure('https://www.merchantsite.com/failure')
             ->setCancel('https://www.merchantsite.com/cancel')
     )->setRequestReferenceNumber('1551191039')
     ->setMetaDataRequest(
-        MetaDataRequest::new()
+        (new MetaDataRequest())
             ->setSMI('smi')
             ->setSMN('smn')
             ->setMCI('mci')
@@ -136,16 +138,17 @@ $checkout = CheckoutRequest::new()
             ->setMST('mst')
     );
 
-$checkoutResponse = CheckoutClient::new(
+$checkoutResponse = (new CheckoutClient(
     new PaymayaClient(
         'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl', // secret
         'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah', // public
         PaymayaClient::ENVIRONMENT_SANDBOX
     )
-)->execute($checkout);
+))->execute($checkout);
 
 echo 'id: '.$checkoutResponse->getId()."\n";
 echo 'url: '.$checkoutResponse->getUrl()."\n";
+
 ```
 
 ### Checkout Webhook
@@ -161,46 +164,46 @@ $paymayaClient = new PaymayaClient(
     PaymayaClient::ENVIRONMENT_SANDBOX
 );
 
-WebhookClient::new($paymayaClient)->deleteAll();
+(new WebhookClient($paymayaClient))->deleteAll();
 
 // create
-WebhookClient::new($paymayaClient)
+(new WebhookClient($paymayaClient))
     ->register(
-        WebhookRequest::new()
+        (new WebhookRequest())
             ->setName(WebhookRequest::SUCCESS)
             ->setCallbackUrl('https://web.test/test/success')
     );
-WebhookClient::new($paymayaClient)
+(new WebhookClient($paymayaClient))
     ->register(
-        WebhookRequest::new()
+        (new WebhookRequest())
             ->setName(WebhookRequest::FAILURE)
             ->setCallbackUrl('https://web.test/test/failure')
     );
-WebhookClient::new($paymayaClient)
+(new WebhookClient($paymayaClient))
     ->register(
-        WebhookRequest::new()
+        (new WebhookRequest())
             ->setName(WebhookRequest::DROPOUT)
             ->setCallbackUrl('https://web.test/test/drop')
     );
 
-$webhookResponses = WebhookClient::new($paymayaClient)
+$webhookResponses = (new WebhookClient($paymayaClient))
     ->retrieve();
 
 // update
-WebhookClient::new($paymayaClient)
+(new WebhookClient($paymayaClient))
     ->update(
-        WebhookRequest::new()->setResponse($webhookResponses[WebhookRequest::SUCCESS])
+        (new WebhookRequest())->setResponse($webhookResponses[WebhookRequest::SUCCESS])
             ->setCallbackUrl('https://web.test/test/update-success')
     );
 
 // single delete
-WebhookClient::new($paymayaClient)
+(new WebhookClient($paymayaClient))
     ->delete(
-        WebhookRequest::new()->setResponse($webhookResponses[WebhookRequest::DROPOUT])
+        (new WebhookRequest())->setResponse($webhookResponses[WebhookRequest::DROPOUT])
     );
 
 // delete all
-WebhookClient::new($paymayaClient)
+(new WebhookClient($paymayaClient))
     ->deleteAll();
 ```
 

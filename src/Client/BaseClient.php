@@ -16,6 +16,12 @@ abstract class BaseClient
         $this->paymayaClient = $paymayaClient;
     }
 
+    /**
+     * @param  \Lloricode\Paymaya\PaymayaClient  $client
+     *
+     * @return static
+     * @deprecated please use constructor, this will remove in stable release
+     */
     public static function new(PaymayaClient $client): self
     {
         return new static($client);
