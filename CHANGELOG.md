@@ -2,6 +2,20 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
+## 0.2.2 - 2020-11-13
+
+- Set ::new() as deprecate
+- Set compatible for lloriode/laravel-paymaya-sdk
+
+## 0.2.1 - 2020-11-13
+
+- Increase code coverage
+
+## 0.2.0 - 2020-11-13
+
+- Use guzzle mock for testing
+- Add support PHP 8
+
 ## 0.1.1 - 2020-11-13
 
 - Add support in a composer.json file
