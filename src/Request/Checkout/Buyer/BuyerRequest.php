@@ -99,11 +99,11 @@ class BuyerRequest extends BaseRequest
         $birthday = $this->birthday;
         $customerSince = $this->customer_since;
 
-        if ( !is_null($birthday)) {
+        if (! is_null($birthday)) {
             $birthday = $birthday->format('Y-m-d');
         }
 
-        if ( !is_null($customerSince)) {
+        if (! is_null($customerSince)) {
             $customerSince = $customerSince->format('Y-m-d');
         }
 

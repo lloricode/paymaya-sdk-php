@@ -43,7 +43,7 @@ abstract class BaseRequest extends DataTransferObject implements JsonSerializabl
 
     public static function setCarbon(array &$array, string $key): void
     {
-        if ( !isset($array[$key]) || $array[$key] instanceof Carbon) {
+        if (! isset($array[$key]) || $array[$key] instanceof Carbon) {
             return;
         }
 

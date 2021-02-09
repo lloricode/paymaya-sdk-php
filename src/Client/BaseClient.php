@@ -20,6 +20,7 @@ abstract class BaseClient
     public function version(int $version): self
     {
         $this->version = $version;
+
         return $this;
     }
 

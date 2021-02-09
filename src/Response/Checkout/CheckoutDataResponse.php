@@ -6,5 +6,4 @@ use Lloricode\Paymaya\Request\Checkout\CheckoutRequest;
 
 class CheckoutDataResponse extends CheckoutRequest
 {
-
 }
