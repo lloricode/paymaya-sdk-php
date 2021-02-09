@@ -4,6 +4,7 @@ namespace Lloricode\Paymaya\Client\Checkout;
 
 use Lloricode\Paymaya\Client\BaseClient;
 use Lloricode\Paymaya\Request\Checkout\CheckoutRequest;
+use Lloricode\Paymaya\Response\Checkout\CheckoutDataResponse;
 use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 
 class CheckoutClient extends BaseClient
@@ -28,5 +29,90 @@ class CheckoutClient extends BaseClient
         return (new CheckoutResponse())
             ->setId($body['checkoutId'])
             ->setUrl($body['redirectUrl']);
+    }
+
+    /**
+     * @param  string  $id
+     *
+     * @return \Lloricode\Paymaya\Response\Checkout\CheckoutDataResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function retrieve(string $id): CheckoutDataResponse
+    {
+        $response = $this->secretGet($id);
+
+        $body = (array)json_decode((string)$response->getBody(), true);
+
+
+        $checkout = (new CheckoutDataResponse($body));
+//            ->setId($body['id'])
+//            ->setRequestReferenceNumber($body['requestReferenceNumber'])
+//            ->setReceiptNumber($body['receiptNumber'] ?? null)
+//            ->setCreatedAt(Carbon::parse($body['createdAt']))
+//            ->setUpdatedAt(Carbon::parse($body['updatedAt']))
+//            ->setExpressCheckout($body['expressCheckout'])
+//            ->setRefundedAmount($body['refundedAmount'])
+//            ->setCanPaypal($body['canPayPal'])
+//            ->setStatus($body['status'])
+//            ->setPaymentStatus($body['paymentStatus']);
+//
+//        // TODO: "paymentDetails": {},
+//
+////        $checkout->setBuyerRequest(
+////            (new BuyerRequest())
+////                ->setContactRequest((new ContactRequest())
+////                ->setPhone($body->))
+////        );
+//
+//
+//        foreach ($body['items'] ?? [] as $item) {
+//            $itemRequest = new ItemRequest();
+//
+//            $itemRequest->setName($item['name'])
+//                ->setQuantity($item['quantity'])
+//                ->setCode($item['code'] ?? null)
+//                ->setDescription($item['description']);
+//
+//            $itemRequest->setAmountRequest(
+//                (new AmountRequest())
+//                    ->setValue($item['amount']['value'])
+//                    ->setAmountRequest(
+//                        (new AmountDetailRequest())
+//                            ->setDiscount($item['amount']['details']['discount'])
+//                            ->setServiceCharge($item['amount']['details']['serviceCharge'])
+//                            ->setShippingFee($item['amount']['details']['shippingFee'])
+//                            ->setTax($item['amount']['details']['tax'])
+//                            ->setSubtotal($item['amount']['details']['subtotal'])
+//                    )
+//            );
+//
+//            $itemRequest->setTotalAmountRequest(
+//                (new AmountRequest())
+//                    ->setValue($item['totalAmount']['value'])
+//                    ->setAmountRequest(
+//                        (new AmountDetailRequest())
+//                            ->setDiscount($item['totalAmount']['details']['discount'])
+//                            ->setServiceCharge($item['totalAmount']['details']['serviceCharge'])
+//                            ->setShippingFee($item['totalAmount']['details']['shippingFee'])
+//                            ->setTax($item['totalAmount']['details']['tax'])
+//                            ->setSubtotal($item['totalAmount']['details']['subtotal'])
+//                    )
+//            );
+//
+//            $checkout->addItemRequest($itemRequest);
+//        }
+//
+//        $checkout->setMetaDataRequest(
+//            (new MetaDataRequest())
+//                ->setMCI($body['metadata']['smi'])
+//                ->setSMN($body['metadata']['smn'])
+//                ->setMCI($body['metadata']['mci'])
+//                ->setMPC($body['metadata']['mpc'])
+//                ->setMCO($body['metadata']['mco'])
+//                ->setMST($body['metadata']['mst'])
+//        );
+
+
+        return $checkout;
     }
 }

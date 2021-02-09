@@ -6,8 +6,8 @@ use Lloricode\Paymaya\Request\BaseRequest;
 
 class ContactRequest extends BaseRequest
 {
-    private ?string $phone = null;
-    private ?string $email = null;
+    public ?string $phone = null;
+    public ?string $email = null;
 
     /**
      * @inheritDoc

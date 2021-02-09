@@ -7,16 +7,26 @@ use Lloricode\Paymaya\Request\Checkout\Amount\AmountRequest;
 
 class ItemRequest extends BaseRequest
 {
-    private ?string $name = null;
-    private int $quantity = 1;
-    private ?string $code = null;
-    private ?string $description = null;
-    private AmountRequest $amount_request;
-    private AmountRequest $total_amount_request;
+    public ?string $name = null;
+    public int $quantity = 1;
+    public ?string $code = null;
+    public ?string $description = null;
+    public AmountRequest $amount;
+    public AmountRequest $totalAmount;
+
+    public function __construct(array $parameters = [])
+    {
+        self::setClassIfKeyNotExist($parameters, 'amount', AmountRequest::class);
+        self::setClassIfKeyNotExist($parameters, 'totalAmount', AmountRequest::class);
+        self::toInt($parameters, 'quantity');
+
+        parent::__construct($parameters);
+    }
 
     public function setName(?string $name): self
     {
         $this->name = $name;
+
 
         return $this;
     }
@@ -42,16 +52,16 @@ class ItemRequest extends BaseRequest
         return $this;
     }
 
-    public function setAmountRequest(AmountRequest $amountRequest): self
+    public function setAmount(AmountRequest $amountRequest): self
     {
-        $this->amount_request = $amountRequest;
+        $this->amount = $amountRequest;
 
         return $this;
     }
 
-    public function setTotalAmountRequest(AmountRequest $totalAmountRequest): self
+    public function setTotalAmount(AmountRequest $totalAmountRequest): self
     {
-        $this->total_amount_request = $totalAmountRequest;
+        $this->totalAmount = $totalAmountRequest;
 
         return $this;
     }
@@ -66,8 +76,8 @@ class ItemRequest extends BaseRequest
             'quantity' => $this->quantity,
             'code' => $this->code,
             'description' => $this->description,
-            'amount' => $this->amount_request,
-            'totalAmount' => $this->total_amount_request,
+            'amount' => $this->amount,
+            'totalAmount' => $this->totalAmount,
         ];
     }
 }

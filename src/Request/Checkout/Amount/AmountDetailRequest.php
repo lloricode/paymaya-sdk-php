@@ -6,11 +6,22 @@ use Lloricode\Paymaya\Request\BaseRequest;
 
 class AmountDetailRequest extends BaseRequest
 {
-    private float $discount = 0;
-    private float $service_charge = 0;
-    private float $shipping_fee = 0;
-    private float $tax = 0;
-    private float $subtotal = 0;
+    public float $discount = 0;
+    public float $serviceCharge = 0;
+    public float $shippingFee = 0;
+    public float $tax = 0;
+    public float $subtotal = 0;
+
+    public function __construct(array $parameters = [])
+    {
+        self::toFloat($parameters, 'discount');
+        self::toFloat($parameters, 'serviceCharge');
+        self::toFloat($parameters, 'shippingFee');
+        self::toFloat($parameters, 'tax');
+        self::toFloat($parameters, 'subtotal');
+
+        parent::__construct($parameters);
+    }
 
     public function setDiscount(float $discount): self
     {
@@ -21,14 +32,14 @@ class AmountDetailRequest extends BaseRequest
 
     public function setServiceCharge(float $serviceCharge): self
     {
-        $this->service_charge = $serviceCharge;
+        $this->serviceCharge = $serviceCharge;
 
         return $this;
     }
 
     public function setShippingFee(float $shippingFee): self
     {
-        $this->shipping_fee = $shippingFee;
+        $this->shippingFee = $shippingFee;
 
         return $this;
     }
@@ -54,8 +65,8 @@ class AmountDetailRequest extends BaseRequest
     {
         return [
             'discount' => $this->discount,
-            'serviceCharge' => $this->service_charge,
-            'shippingFee' => $this->shipping_fee,
+            'serviceCharge' => $this->serviceCharge,
+            'shippingFee' => $this->shippingFee,
             'tax' => $this->tax,
             'subtotal' => $this->subtotal,
         ];

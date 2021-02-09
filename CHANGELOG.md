@@ -2,9 +2,14 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
-## 0.2.1 - xx
+## 0.3.0 - xx
 
 - Add show checkout with id
+- Set all properties to public (to compatible also in spatie DTO)
+- Add spatie DTO (https://github.com/spatie/data-transfer-object)
+- Rename all properties depends on paymaya response
+- Remove all setter and getter (TODO)
+- Rename all classes depends on parmaya (TODO)
 
 ## 0.2.2 - 2020-02-08
 

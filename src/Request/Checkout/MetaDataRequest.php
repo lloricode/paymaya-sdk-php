@@ -6,12 +6,12 @@ use Lloricode\Paymaya\Request\BaseRequest;
 
 class MetaDataRequest extends BaseRequest
 {
-    private string $smi;
-    private string $smn;
-    private string $mci;
-    private string $mpc;
-    private string $mco;
-    private ?string $mst = null;
+    public ?string $smi = null;
+    public ?string $smn = null;
+    public ?string $mci = null;
+    public ?string $mpc = null;
+    public ?string $mco = null;
+    public ?string $mst = null;
 
     public function setSMI(string $smi): self
     {

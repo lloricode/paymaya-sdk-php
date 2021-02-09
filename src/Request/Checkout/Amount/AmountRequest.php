@@ -6,8 +6,16 @@ use Lloricode\Paymaya\Request\BaseRequest;
 
 class AmountRequest extends BaseRequest
 {
-    private float $value = 0.0;
-    private AmountDetailRequest $amount_request;
+    public float $value = 0.0;
+    public AmountDetailRequest $details;
+
+    public function __construct(array $parameters = [])
+    {
+        self::setClassIfKeyNotExist($parameters, 'details', AmountDetailRequest::class);
+        self::toFloat($parameters, 'value');
+
+        parent::__construct($parameters);
+    }
 
     public function setValue(float $value): self
     {
@@ -16,9 +24,9 @@ class AmountRequest extends BaseRequest
         return $this;
     }
 
-    public function setAmountRequest(AmountDetailRequest $amountRequest): self
+    public function setDetails(AmountDetailRequest $details): self
     {
-        $this->amount_request = $amountRequest;
+        $this->details = $details;
 
         return $this;
     }
@@ -30,7 +38,7 @@ class AmountRequest extends BaseRequest
     {
         return [
             'value' => $this->value,
-            'details' => $this->amount_request,
+            'details' => $this->details,
         ];
     }
 }

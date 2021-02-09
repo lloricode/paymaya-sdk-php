@@ -121,29 +121,29 @@ class TestHelper
     public static function buildCheckout(): CheckoutRequest
     {
         return CheckoutRequest::new()
-            ->setTotalAmountRequest(
+            ->setTotalAmount(
                 TotalAmountRequest::new()
                     ->setValue(100)
                     ->setCurrency('PHP')
-                    ->setAmountRequest(
+                    ->setDetails(
                         AmountDetailRequest::new()
                             ->setSubtotal(100)
                     )
             )
-            ->setBuyerRequest(
+            ->setBuyer(
                 BuyerRequest::new()
                     ->setFirstName('John')
                     ->setMiddleName('Paul')
                     ->setLastName('Doe')
-                    ->setBirthDate(Carbon::parse('1995-10-24'))
+                    ->setBirthday(Carbon::parse('1995-10-24'))
                     ->setCustomerSince(Carbon::parse('1995-10-24'))
                     ->setGender('M')
-                    ->setContactRequest(
+                    ->setContact(
                         ContactRequest::new()
                             ->setPhone('+639181008888')
                             ->setEmail('merchant@merchantsite.com')
                     )
-                    ->setShippingAddressRequest(
+                    ->setShippingAddress(
                         ShippingAddressRequest::new()
                             ->setFirstName('John')
                             ->setMiddleName('Paul')
@@ -158,7 +158,7 @@ class TestHelper
                             ->setCountryCode('PH')
                             ->setShippingType('ST')
                     )
-                    ->setBillingAddressRequest(
+                    ->setBillingAddress(
                         BillingAddressRequest::new()
                             ->setLine1('6F Launchpad')
                             ->setLine2('Reliance Street')
@@ -174,10 +174,10 @@ class TestHelper
                     ->setQuantity(1)
                     ->setCode('CVG-096732')
                     ->setDescription('Shoes')
-                    ->setAmountRequest(
+                    ->setAmount(
                         AmountRequest::new()
                             ->setValue(100)
-                            ->setAmountRequest(
+                            ->setDetails(
                                 AmountDetailRequest::new()
                                     ->setDiscount(0)
                                     ->setServiceCharge(0)
@@ -186,10 +186,10 @@ class TestHelper
                                     ->setSubtotal(100)
                             )
                     )
-                    ->setTotalAmountRequest(
+                    ->setTotalAmount(
                         AmountRequest::new()
                             ->setValue(100)
-                            ->setAmountRequest(
+                            ->setDetails(
                                 AmountDetailRequest::new()
                                     ->setDiscount(0)
                                     ->setServiceCharge(0)
@@ -199,13 +199,13 @@ class TestHelper
                             )
                     )
             )
-            ->setRedirectUrlRequest(
+            ->setRedirectUrl(
                 RedirectUrlRequest::new()
                     ->setSuccess('https://www.merchantsite.com/success')
                     ->setFailure('https://www.merchantsite.com/failure')
                     ->setCancel('https://www.merchantsite.com/cancel')
             )->setRequestReferenceNumber('1551191039')
-            ->setMetaDataRequest(
+            ->setMetadata(
                 MetaDataRequest::new()
                     ->setSMI('smi')
                     ->setSMN('smn')

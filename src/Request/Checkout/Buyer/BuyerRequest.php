@@ -7,44 +7,44 @@ use Lloricode\Paymaya\Request\BaseRequest;
 
 class BuyerRequest extends BaseRequest
 {
-    private ?string $first_name = null;
-    private ?string $middle_name = null;
-    private ?string $last_name = null;
+    public ?string $firstName = null;
+    public ?string $middleName = null;
+    public ?string $lastName = null;
 
-    private ?Carbon $birth_date = null;
-    private ?Carbon $customer_since = null;
-    private ?string $gender = null;
+    public ?Carbon $birthday = null;
+    public ?Carbon $customer_since = null;
+    public ?string $gender = null;
 
-    private ?ContactRequest $contact_request = null;
-    private ?ShippingAddressRequest $shipping_address_request = null;
-    private ?BillingAddressRequest $billing_address_request = null;
+    public ?ContactRequest $contact = null;
+    public ?ShippingAddressRequest $shippingAddress = null;
+    public ?BillingAddressRequest $billingAddress = null;
 
-    private ?string $ip_address = null;
+    private ?string $ipAddress = null;
 
     public function setFirstName(?string $firstName): self
     {
-        $this->first_name = $firstName;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function setMiddleName(?string $firstMiddleName): self
     {
-        $this->middle_name = $firstMiddleName;
+        $this->middleName = $firstMiddleName;
 
         return $this;
     }
 
     public function setLastName(?string $lastName): self
     {
-        $this->last_name = $lastName;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function setBirthDate(?Carbon $birthDate): self
+    public function setBirthday(?Carbon $birthDate): self
     {
-        $this->birth_date = $birthDate;
+        $this->birthday = $birthDate;
 
         return $this;
     }
@@ -63,30 +63,30 @@ class BuyerRequest extends BaseRequest
         return $this;
     }
 
-    public function setContactRequest(?ContactRequest $contactRequest): self
+    public function setContact(?ContactRequest $contactRequest): self
     {
-        $this->contact_request = $contactRequest;
+        $this->contact = $contactRequest;
 
         return $this;
     }
 
-    public function setShippingAddressRequest(?ShippingAddressRequest $shippingAddressRequest): self
+    public function setShippingAddress(?ShippingAddressRequest $shippingAddressRequest): self
     {
-        $this->shipping_address_request = $shippingAddressRequest;
+        $this->shippingAddress = $shippingAddressRequest;
 
         return $this;
     }
 
-    public function setBillingAddressRequest(?BillingAddressRequest $billingAddressRequest): self
+    public function setBillingAddress(?BillingAddressRequest $billingAddressRequest): self
     {
-        $this->billing_address_request = $billingAddressRequest;
+        $this->billingAddress = $billingAddressRequest;
 
         return $this;
     }
 
     public function setIpAddress(?string $ipAddress): self
     {
-        $this->ip_address = $ipAddress;
+        $this->ipAddress = $ipAddress;
 
         return $this;
     }
@@ -96,28 +96,28 @@ class BuyerRequest extends BaseRequest
      */
     public function jsonSerialize()
     {
-        $birthDate = $this->birth_date;
+        $birthday = $this->birthday;
         $customerSince = $this->customer_since;
 
-        if (! is_null($birthDate)) {
-            $birthDate = $birthDate->format('Y-m-d');
+        if ( !is_null($birthday)) {
+            $birthday = $birthday->format('Y-m-d');
         }
 
-        if (! is_null($customerSince)) {
+        if ( !is_null($customerSince)) {
             $customerSince = $customerSince->format('Y-m-d');
         }
 
         return [
-            'firstName' => $this->first_name,
-            'middleName' => $this->middle_name,
-            'lastName' => $this->last_name,
-            'birthday' => $birthDate,
+            'firstName' => $this->firstName,
+            'middleName' => $this->middleName,
+            'lastName' => $this->lastName,
+            'birthday' => $birthday,
             'customerSince' => $customerSince,
             'sex' => $this->gender,
-            'contact' => $this->contact_request,
-            'shippingAddress' => $this->shipping_address_request,
-            'billingAddress' => $this->billing_address_request,
-            'ipAddress' => $this->ip_address,
+            'contact' => $this->contact,
+            'shippingAddress' => $this->shippingAddress,
+            'billingAddress' => $this->billingAddress,
+            'ipAddress' => $this->ipAddress,
         ];
     }
 }

@@ -6,12 +6,12 @@ use Lloricode\Paymaya\Request\BaseRequest;
 
 class BillingAddressRequest extends BaseRequest
 {
-    private ?string $line1 = null;
-    private ?string $line2 = null;
-    private ?string $city = null;
-    private ?string $state = null;
-    private ?string $zip_code = null;
-    private ?string $country_code = null;
+    public ?string $line1 = null;
+    public ?string $line2 = null;
+    public ?string $city = null;
+    public ?string $state = null;
+    public ?string $zipCode = null;
+    public ?string $countryCode = null;
 
     public function setLine1(?string $line1): self
     {
@@ -43,14 +43,14 @@ class BillingAddressRequest extends BaseRequest
 
     public function setZipCode(?string $zipCode): self
     {
-        $this->zip_code = $zipCode;
+        $this->zipCode = $zipCode;
 
         return $this;
     }
 
     public function setCountryCode(?string $countryCode): self
     {
-        $this->country_code = $countryCode;
+        $this->countryCode = $countryCode;
 
         return $this;
     }
@@ -65,8 +65,8 @@ class BillingAddressRequest extends BaseRequest
             'line2' => $this->line2,
             'city' => $this->city,
             'state' => $this->state,
-            'zipCode' => $this->zip_code,
-            'countryCode' => $this->country_code,
+            'zipCode' => $this->zipCode,
+            'countryCode' => $this->countryCode,
         ];
     }
 }

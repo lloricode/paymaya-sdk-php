@@ -6,7 +6,15 @@ use Lloricode\Paymaya\Request\Checkout\Amount\AmountRequest;
 
 class TotalAmountRequest extends AmountRequest
 {
-    private string $currency = 'PHP';
+    public string $currency = 'PHP';
+    public float $amount = 0;
+
+    public function __construct(array $parameters = [])
+    {
+        self::toFloat($parameters, 'amount');
+
+        parent::__construct($parameters);
+    }
 
     public function setCurrency(string $currency): self
     {

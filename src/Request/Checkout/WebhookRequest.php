@@ -14,15 +14,15 @@ class WebhookRequest extends BaseRequest
     public const FAILURE = 'CHECKOUT_FAILURE';
     public const DROPOUT = 'CHECKOUT_DROPOUT';
 
-    private ?string $id = null;
-    private string $name;
-    private string $callback_url;
+    public ?string $id = null;
+    public ?string $name = null;
+    public ?string $callbackUrl = null;
 
     public function setResponse(WebhookResponse $webhookResponse): self
     {
         $this->id = $webhookResponse->getId();
         $this->name = $webhookResponse->getName();
-        $this->callback_url = $webhookResponse->getCallbackUrl();
+        $this->callbackUrl = $webhookResponse->getCallbackUrl();
 
         return $this;
     }
@@ -46,14 +46,14 @@ class WebhookRequest extends BaseRequest
         return $this;
     }
 
-    public function getCallbackUrl(): string
+    public function getCallbackUrl(): ?string
     {
-        return $this->callback_url;
+        return $this->callbackUrl;
     }
 
     public function setCallbackUrl(string $callbackUrl): self
     {
-        $this->callback_url = $callbackUrl;
+        $this->callbackUrl = $callbackUrl;
 
         return $this;
     }
@@ -66,7 +66,7 @@ class WebhookRequest extends BaseRequest
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'callbackUrl' => $this->callback_url,
+            'callbackUrl' => $this->callbackUrl,
         ];
     }
 }

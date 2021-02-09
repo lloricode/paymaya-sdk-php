@@ -6,9 +6,9 @@ use Lloricode\Paymaya\Request\BaseRequest;
 
 class RedirectUrlRequest extends BaseRequest
 {
-    private ?string $success = null;
-    private ?string $failure = null;
-    private ?string $cancel = null;
+    public ?string $success = null;
+    public ?string $failure = null;
+    public ?string $cancel = null;
 
     public function setSuccess(?string $success): self
     {

@@ -6,36 +6,36 @@ use Lloricode\Paymaya\Request\BaseRequest;
 
 class ShippingAddressRequest extends BaseRequest
 {
-    private ?string $first_name = null;
-    private ?string $middle_name = null;
-    private ?string $last_name = null;
-    private ?string $phone = null;
-    private ?string $email = null;
-    private ?string $line1 = null;
-    private ?string $line2 = null;
-    private ?string $city = null;
-    private ?string $state = null;
-    private ?string $zip_code = null;
-    private ?string $country_code = null;
-    private ?string $shipping_type = null; // ST - for standard, SD - for same day
+    public ?string $firstName = null;
+    public ?string $middleName = null;
+    public ?string $lastName = null;
+    public ?string $phone = null;
+    public ?string $email = null;
+    public ?string $line1 = null;
+    public ?string $line2 = null;
+    public ?string $city = null;
+    public ?string $state = null;
+    public ?string $zipCode = null;
+    public ?string $countryCode = null;
+    public ?string $shippingType = null; // ST - for standard, SD - for same day
 
     public function setFirstName(?string $firstName): self
     {
-        $this->first_name = $firstName;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function setMiddleName(?string $middleName): self
     {
-        $this->middle_name = $middleName;
+        $this->middleName = $middleName;
 
         return $this;
     }
 
     public function setLastName(?string $lastName): self
     {
-        $this->last_name = $lastName;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -84,21 +84,21 @@ class ShippingAddressRequest extends BaseRequest
 
     public function setZipCode(?string $zipCode): self
     {
-        $this->zip_code = $zipCode;
+        $this->zipCode = $zipCode;
 
         return $this;
     }
 
     public function setCountryCode(?string $countryCode): self
     {
-        $this->country_code = $countryCode;
+        $this->countryCode = $countryCode;
 
         return $this;
     }
 
     public function setShippingType(?string $shippingType): self
     {
-        $this->shipping_type = $shippingType;
+        $this->shippingType = $shippingType;
 
         return $this;
     }
@@ -109,18 +109,18 @@ class ShippingAddressRequest extends BaseRequest
     public function jsonSerialize()
     {
         return [
-            'firstName' => $this->first_name,
-            'middleName' => $this->middle_name,
-            'lastName' => $this->last_name,
+            'firstName' => $this->firstName,
+            'middleName' => $this->middleName,
+            'lastName' => $this->lastName,
             'phone' => $this->phone,
             'email' => $this->email,
             'line1' => $this->line1,
             'line2' => $this->line2,
             'city' => $this->city,
             'state' => $this->state,
-            'zipCode' => $this->zip_code,
-            'countryCode' => $this->country_code,
-            'shippingType' => $this->shipping_type,
+            'zipCode' => $this->zipCode,
+            'countryCode' => $this->countryCode,
+            'shippingType' => $this->shippingType,
         ];
     }
 }
