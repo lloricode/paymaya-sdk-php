@@ -5,7 +5,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/lloricode/paymaya-sdk-php.svg?style=flat-square)](https://packagist.org/packages/lloricode/paymaya-sdk-php)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=V8PYXUNG6QP44)
 
-Paymaya SDK for PHP 7.4 and 8.0 It uses https://github.com/spatie/data-transfer-object
+Paymaya SDK for PHP 7.4 and 8.0, It uses https://github.com/spatie/data-transfer-object
 
 - [Installation](#installation)
 - [Usage](#usage)
