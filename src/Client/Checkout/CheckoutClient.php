@@ -58,11 +58,11 @@ class CheckoutClient extends BaseClient
 //
 //        // TODO: "paymentDetails": {},
 //
-////        $checkout->setBuyerRequest(
-////            (new BuyerRequest())
-////                ->setContactRequest((new ContactRequest())
-////                ->setPhone($body->))
-////        );
+        ////        $checkout->setBuyerRequest(
+        ////            (new BuyerRequest())
+        ////                ->setContactRequest((new ContactRequest())
+        ////                ->setPhone($body->))
+        ////        );
 //
 //
 //        foreach ($body['items'] ?? [] as $item) {
