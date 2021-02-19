@@ -4,7 +4,6 @@ namespace Lloricode\Paymaya\Client\Checkout;
 
 use Lloricode\Paymaya\Client\BaseClient;
 use Lloricode\Paymaya\Request\Checkout\Checkout;
-use Lloricode\Paymaya\Response\Checkout\CheckoutDataResponse;
 use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 
 class CheckoutClient extends BaseClient
