@@ -6,7 +6,6 @@ use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\Client\BaseClient;
 use Lloricode\Paymaya\Request\Checkout\Webhook;
 
-
 class WebhookClient extends BaseClient
 {
     /**
