@@ -7,7 +7,6 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\Client\Checkout\WebhookClient;
 use Lloricode\Paymaya\Request\Checkout\Webhook;
-use Lloricode\Paymaya\Response\Checkout\WebhookResponse;
 
 class WebhookTest extends TestCase
 {
