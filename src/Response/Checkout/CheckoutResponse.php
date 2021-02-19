@@ -4,29 +4,29 @@ namespace Lloricode\Paymaya\Response\Checkout;
 
 class CheckoutResponse extends BaseResponse
 {
-    private string $id;
-    private string $url;
+    public string $checkoutId;
+    public string $redirectUrl;
 
-    public function getId(): string
+    public function getCheckoutId(): string
     {
-        return $this->id;
+        return $this->checkoutId;
     }
 
-    public function getUrl(): string
+    public function getRedirectUrl(): string
     {
-        return $this->url;
+        return $this->redirectUrl;
     }
 
-    public function setId(string $id): self
+    public function setCheckoutId(string $checkoutId): self
     {
-        $this->id = $id;
+        $this->checkoutId = $checkoutId;
 
         return $this;
     }
 
-    public function setUrl(string $url): self
+    public function setRedirectUrl(string $redirectUrl): self
     {
-        $this->url = $url;
+        $this->redirectUrl = $redirectUrl;
 
         return $this;
     }

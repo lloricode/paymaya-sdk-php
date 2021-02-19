@@ -3,17 +3,17 @@
 namespace Lloricode\Paymaya\Test;
 
 use Carbon\Carbon;
-use Lloricode\Paymaya\Request\Checkout\Amount\AmountDetailRequest;
-use Lloricode\Paymaya\Request\Checkout\Amount\AmountRequest;
-use Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddressRequest;
-use Lloricode\Paymaya\Request\Checkout\Buyer\BuyerRequest;
-use Lloricode\Paymaya\Request\Checkout\Buyer\ContactRequest;
-use Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddressRequest;
-use Lloricode\Paymaya\Request\Checkout\CheckoutRequest;
-use Lloricode\Paymaya\Request\Checkout\ItemRequest;
-use Lloricode\Paymaya\Request\Checkout\MetaDataRequest;
-use Lloricode\Paymaya\Request\Checkout\RedirectUrlRequest;
-use Lloricode\Paymaya\Request\Checkout\TotalAmountRequest;
+use Lloricode\Paymaya\Request\Checkout\Amount\Amount;
+use Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail;
+use Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress;
+use Lloricode\Paymaya\Request\Checkout\Buyer\Buyer;
+use Lloricode\Paymaya\Request\Checkout\Buyer\Contact;
+use Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress;
+use Lloricode\Paymaya\Request\Checkout\Checkout;
+use Lloricode\Paymaya\Request\Checkout\Item;
+use Lloricode\Paymaya\Request\Checkout\MetaData;
+use Lloricode\Paymaya\Request\Checkout\RedirectUrl;
+use Lloricode\Paymaya\Request\Checkout\TotalAmount;
 
 class TestHelper
 {
@@ -118,20 +118,20 @@ class TestHelper
 }';
     }
 
-    public static function buildCheckout(): CheckoutRequest
+    public static function buildCheckout(): Checkout
     {
-        return CheckoutRequest::new()
+        return (new Checkout())
             ->setTotalAmount(
-                TotalAmountRequest::new()
-                    ->setValue(100)
+                (new TotalAmount())
                     ->setCurrency('PHP')
+                    ->setValue(100)
                     ->setDetails(
-                        AmountDetailRequest::new()
+                        (new AmountDetail())
                             ->setSubtotal(100)
                     )
             )
             ->setBuyer(
-                BuyerRequest::new()
+                (new Buyer())
                     ->setFirstName('John')
                     ->setMiddleName('Paul')
                     ->setLastName('Doe')
@@ -139,12 +139,12 @@ class TestHelper
                     ->setCustomerSince(Carbon::parse('1995-10-24'))
                     ->setGender('M')
                     ->setContact(
-                        ContactRequest::new()
+                        (new Contact())
                             ->setPhone('+639181008888')
                             ->setEmail('merchant@merchantsite.com')
                     )
                     ->setShippingAddress(
-                        ShippingAddressRequest::new()
+                        (new ShippingAddress())
                             ->setFirstName('John')
                             ->setMiddleName('Paul')
                             ->setLastName('Doe')
@@ -159,7 +159,7 @@ class TestHelper
                             ->setShippingType('ST')
                     )
                     ->setBillingAddress(
-                        BillingAddressRequest::new()
+                        (new BillingAddress())
                             ->setLine1('6F Launchpad')
                             ->setLine2('Reliance Street')
                             ->setCity('Mandaluyong City')
@@ -169,16 +169,16 @@ class TestHelper
                     )
             )
             ->addItemRequest(
-                ItemRequest::new()
+                (new Item())
                     ->setName('Canvas Slip Ons')
                     ->setQuantity(1)
                     ->setCode('CVG-096732')
                     ->setDescription('Shoes')
                     ->setAmount(
-                        AmountRequest::new()
+                        (new Amount())
                             ->setValue(100)
                             ->setDetails(
-                                AmountDetailRequest::new()
+                                (new AmountDetail())
                                     ->setDiscount(0)
                                     ->setServiceCharge(0)
                                     ->setShippingFee(0)
@@ -187,10 +187,10 @@ class TestHelper
                             )
                     )
                     ->setTotalAmount(
-                        AmountRequest::new()
+                        (new Amount())
                             ->setValue(100)
                             ->setDetails(
-                                AmountDetailRequest::new()
+                                (new AmountDetail())
                                     ->setDiscount(0)
                                     ->setServiceCharge(0)
                                     ->setShippingFee(0)
@@ -200,13 +200,13 @@ class TestHelper
                     )
             )
             ->setRedirectUrl(
-                RedirectUrlRequest::new()
+                (new RedirectUrl())
                     ->setSuccess('https://www.merchantsite.com/success')
                     ->setFailure('https://www.merchantsite.com/failure')
                     ->setCancel('https://www.merchantsite.com/cancel')
             )->setRequestReferenceNumber('1551191039')
             ->setMetadata(
-                MetaDataRequest::new()
+                (new MetaData())
                     ->setSMI('smi')
                     ->setSMN('smn')
                     ->setMCI('mci')

@@ -2,9 +2,9 @@
 
 namespace Lloricode\Paymaya\Request\Checkout;
 
-use Lloricode\Paymaya\Request\BaseRequest;
+use Lloricode\Paymaya\Request\Base;
 
-class MetaDataRequest extends BaseRequest
+class MetaData extends Base
 {
     public ?string $smi = null;
     public ?string $smn = null;

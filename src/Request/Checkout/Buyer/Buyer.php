@@ -3,9 +3,9 @@
 namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 
 use Carbon\Carbon;
-use Lloricode\Paymaya\Request\BaseRequest;
+use Lloricode\Paymaya\Request\Base;
 
-class BuyerRequest extends BaseRequest
+class Buyer extends Base
 {
     public ?string $firstName = null;
     public ?string $middleName = null;
@@ -15,9 +15,9 @@ class BuyerRequest extends BaseRequest
     public ?Carbon $customer_since = null;
     public ?string $gender = null;
 
-    public ?ContactRequest $contact = null;
-    public ?ShippingAddressRequest $shippingAddress = null;
-    public ?BillingAddressRequest $billingAddress = null;
+    public ?Contact $contact = null;
+    public ?ShippingAddress $shippingAddress = null;
+    public ?BillingAddress $billingAddress = null;
 
     private ?string $ipAddress = null;
 
@@ -63,21 +63,21 @@ class BuyerRequest extends BaseRequest
         return $this;
     }
 
-    public function setContact(?ContactRequest $contactRequest): self
+    public function setContact(?Contact $contactRequest): self
     {
         $this->contact = $contactRequest;
 
         return $this;
     }
 
-    public function setShippingAddress(?ShippingAddressRequest $shippingAddressRequest): self
+    public function setShippingAddress(?ShippingAddress $shippingAddressRequest): self
     {
         $this->shippingAddress = $shippingAddressRequest;
 
         return $this;
     }
 
-    public function setBillingAddress(?BillingAddressRequest $billingAddressRequest): self
+    public function setBillingAddress(?BillingAddress $billingAddressRequest): self
     {
         $this->billingAddress = $billingAddressRequest;
 

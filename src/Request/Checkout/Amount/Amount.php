@@ -2,16 +2,16 @@
 
 namespace Lloricode\Paymaya\Request\Checkout\Amount;
 
-use Lloricode\Paymaya\Request\BaseRequest;
+use Lloricode\Paymaya\Request\Base;
 
-class AmountRequest extends BaseRequest
+class Amount extends Base
 {
     public float $value = 0.0;
-    public AmountDetailRequest $details;
+    public AmountDetail $details;
 
     public function __construct(array $parameters = [])
     {
-        self::setClassIfKeyNotExist($parameters, 'details', AmountDetailRequest::class);
+        self::setClassIfKeyNotExist($parameters, 'details', AmountDetail::class);
         self::toFloat($parameters, 'value');
 
         parent::__construct($parameters);
@@ -24,7 +24,7 @@ class AmountRequest extends BaseRequest
         return $this;
     }
 
-    public function setDetails(AmountDetailRequest $details): self
+    public function setDetails(AmountDetail $details): self
     {
         $this->details = $details;
 

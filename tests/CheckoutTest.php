@@ -8,7 +8,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
-use Lloricode\Paymaya\Response\Checkout\CheckoutDataResponse;
+use Lloricode\Paymaya\Request\Checkout\Checkout;
 
 class CheckoutTest extends TestCase
 {
@@ -55,8 +55,8 @@ class CheckoutTest extends TestCase
             $this->fail('GuzzleException');
         }
 
-        $this->assertEquals($id, $checkoutResponse->getId());
-        $this->assertEquals($url, $checkoutResponse->getUrl());
+        $this->assertEquals($id, $checkoutResponse->getCheckoutId());
+        $this->assertEquals($url, $checkoutResponse->getRedirectUrl());
     }
 
     /**
@@ -192,6 +192,6 @@ class CheckoutTest extends TestCase
         $checkoutResponse = (new CheckoutClient(self::generatePaymayaClient($mock)))
             ->retrieve('');
 
-        $this->assertInstanceOf(CheckoutDataResponse::class, $checkoutResponse);
+        $this->assertInstanceOf(Checkout::class, $checkoutResponse);
     }
 }

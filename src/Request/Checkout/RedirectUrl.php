@@ -2,9 +2,9 @@
 
 namespace Lloricode\Paymaya\Request\Checkout;
 
-use Lloricode\Paymaya\Request\BaseRequest;
+use Lloricode\Paymaya\Request\Base;
 
-class RedirectUrlRequest extends BaseRequest
+class RedirectUrl extends Base
 {
     public ?string $success = null;
     public ?string $failure = null;

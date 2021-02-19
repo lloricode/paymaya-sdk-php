@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\Client\Checkout\WebhookClient;
-use Lloricode\Paymaya\Request\Checkout\WebhookRequest;
+use Lloricode\Paymaya\Request\Checkout\Webhook;
 use Lloricode\Paymaya\Response\Checkout\WebhookResponse;
 
 class WebhookTest extends TestCase
@@ -14,7 +14,7 @@ class WebhookTest extends TestCase
     private static function sampleData(array $override = []): array
     {
         return $override + [
-                'name' => WebhookRequest::SUCCESS,
+                'name' => Webhook::SUCCESS,
                 'id' => 'test-generated-id',
                 'callbackUrl' => 'https://web.test/test/success',
                 'createdAt' => '2020-01-05T02:30:57.000Z',
@@ -71,7 +71,7 @@ class WebhookTest extends TestCase
 
         $webhookResponse = (new WebhookClient(self::mockApiClient($data)))
             ->register(
-                WebhookRequest::new()
+                (new Webhook())
                     ->setName($data['name'])
                     ->setCallbackUrl($data['callbackUrl'])
             );
@@ -93,17 +93,17 @@ class WebhookTest extends TestCase
         $newUrl = 'https://web.test/test/success-test-new-update';
         $data = self::sampleData(['callbackUrl' => $newUrl]);
 
-        $webhookResponse = WebhookResponse::new();
+        $webhookResponse = (new Webhook());
         $webhookResponse->setId($data['id']);
         $webhookResponse->setName($data['name']);
         $webhookResponse->setCallbackUrl('https://old-url');
 
         $history = [];
 
-        /** @var WebhookResponse $webhookResponse */
+        /** @var Webhook $webhookResponse */
         $webhookResponse = (new WebhookClient(self::mockApiClient($data, 200, $history)))
             ->update(
-                ( new WebhookRequest())->setResponse($webhookResponse)
+                $webhookResponse
                     ->setCallbackUrl($newUrl)
             );
 
@@ -128,7 +128,7 @@ class WebhookTest extends TestCase
     {
         $data = self::sampleData();
 
-        $webhookResponse = WebhookResponse::new();
+        $webhookResponse = (new Webhook());
         $webhookResponse->setId($data['id']);
         $webhookResponse->setName($data['name']);
         $webhookResponse->setCallbackUrl($data['callbackUrl']);
@@ -137,7 +137,7 @@ class WebhookTest extends TestCase
 
         (new WebhookClient(self::mockApiClient($data, 200, $history)))
             ->delete(
-                WebhookRequest::new()->setResponse($webhookResponse)
+                $webhookResponse
             );
 
         $this->assertCount(1, $history);

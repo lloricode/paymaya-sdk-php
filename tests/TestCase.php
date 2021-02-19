@@ -6,7 +6,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\PaymayaClient;
-use Lloricode\Paymaya\Request\Checkout\CheckoutRequest;
+use Lloricode\Paymaya\Request\Checkout\Checkout;
 use Lloricode\Paymaya\Test\TestHelper;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
@@ -60,7 +60,7 @@ abstract class TestCase extends BaseTestCase
         );
     }
 
-    protected static function buildCheckout(): CheckoutRequest
+    protected static function buildCheckout(): Checkout
     {
         return TestHelper::buildCheckout();
     }

@@ -2,9 +2,9 @@
 
 namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 
-use Lloricode\Paymaya\Request\BaseRequest;
+use Lloricode\Paymaya\Request\Base;
 
-class BillingAddressRequest extends BaseRequest
+class BillingAddress extends Base
 {
     public ?string $line1 = null;
     public ?string $line2 = null;

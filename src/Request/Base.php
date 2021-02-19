@@ -6,17 +6,8 @@ use Carbon\Carbon;
 use JsonSerializable;
 use Spatie\DataTransferObject\DataTransferObject;
 
-abstract class BaseRequest extends DataTransferObject implements JsonSerializable
+abstract class Base extends DataTransferObject implements JsonSerializable
 {
-    /**
-     * @return static
-     * @deprecated please use constructor, this will remove in stable release
-     */
-    public static function new(): self
-    {
-        return new static();
-    }
-
     protected static function toFloat(array &$array, string $key): void
     {
         $array[$key] = (float)($array[$key] ?? 0);

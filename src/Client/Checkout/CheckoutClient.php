@@ -3,7 +3,7 @@
 namespace Lloricode\Paymaya\Client\Checkout;
 
 use Lloricode\Paymaya\Client\BaseClient;
-use Lloricode\Paymaya\Request\Checkout\CheckoutRequest;
+use Lloricode\Paymaya\Request\Checkout\Checkout;
 use Lloricode\Paymaya\Response\Checkout\CheckoutDataResponse;
 use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 
@@ -15,36 +15,35 @@ class CheckoutClient extends BaseClient
     }
 
     /**
-     * @param  \Lloricode\Paymaya\Request\Checkout\CheckoutRequest  $checkoutRequest
+     * @param  \Lloricode\Paymaya\Request\Checkout\Checkout  $checkoutRequest
      *
      * @return \Lloricode\Paymaya\Response\Checkout\CheckoutResponse
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function execute(CheckoutRequest $checkoutRequest): CheckoutResponse
+    public function execute(Checkout $checkoutRequest): CheckoutResponse
     {
         $response = $this->publicPost(['json' => $checkoutRequest]);
 
         $body = json_decode((string)$response->getBody(), true);
 
-        return (new CheckoutResponse())
-            ->setId($body['checkoutId'])
-            ->setUrl($body['redirectUrl']);
+        return new CheckoutResponse($body);
     }
 
     /**
      * @param  string  $id
      *
-     * @return \Lloricode\Paymaya\Response\Checkout\CheckoutDataResponse
+     * @return \Lloricode\Paymaya\Request\Checkout\Checkout
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function retrieve(string $id): CheckoutDataResponse
+    public function retrieve(string $id): Checkout
     {
         $response = $this->secretGet($id);
 
         $body = (array)json_decode((string)$response->getBody(), true);
 
 
-        $checkout = (new CheckoutDataResponse($body));
+        return new Checkout($body);
+//        $checkout = (new Checkout($body));
 //            ->setId($body['id'])
 //            ->setRequestReferenceNumber($body['requestReferenceNumber'])
 //            ->setReceiptNumber($body['receiptNumber'] ?? null)

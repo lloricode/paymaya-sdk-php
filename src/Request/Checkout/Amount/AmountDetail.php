@@ -2,9 +2,9 @@
 
 namespace Lloricode\Paymaya\Request\Checkout\Amount;
 
-use Lloricode\Paymaya\Request\BaseRequest;
+use Lloricode\Paymaya\Request\Base;
 
-class AmountDetailRequest extends BaseRequest
+class AmountDetail extends Base
 {
     public float $discount = 0;
     public float $serviceCharge = 0;

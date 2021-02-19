@@ -2,9 +2,9 @@
 
 namespace Lloricode\Paymaya\Request\Checkout;
 
-use Lloricode\Paymaya\Request\BaseRequest;
+use Lloricode\Paymaya\Request\Base;
 
-class Merchant extends BaseRequest
+class Merchant extends Base
 {
     public string $currency = 'PHP';
     public string $email;

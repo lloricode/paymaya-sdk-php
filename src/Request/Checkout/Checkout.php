@@ -3,28 +3,28 @@
 namespace Lloricode\Paymaya\Request\Checkout;
 
 use Carbon\Carbon;
-use Lloricode\Paymaya\Request\BaseRequest;
-use Lloricode\Paymaya\Request\Checkout\Buyer\BuyerRequest;
+use Lloricode\Paymaya\Request\Base;
+use Lloricode\Paymaya\Request\Checkout\Buyer\Buyer;
 
 /**
  * https://hackmd.io/@paymaya-pg/Checkout
  * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
  */
-class CheckoutRequest extends BaseRequest
+class Checkout extends Base
 {
     public ?string $id = null;
-    public TotalAmountRequest $totalAmount;
-    public ?BuyerRequest $buyer = null;
+    public TotalAmount $totalAmount;
+    public ?Buyer $buyer = null;
 
     /**
-     * @var \Lloricode\Paymaya\Request\Checkout\ItemRequest[]
+     * @var \Lloricode\Paymaya\Request\Checkout\Item[]
      */
     public array $items = [];
-    public ?RedirectUrlRequest $redirectUrl = null;
+    public ?RedirectUrl $redirectUrl = null;
     public ?string $status = null;
     public ?string $paymentStatus = null;
     public ?string $requestReferenceNumber = null;
-    public ?MetaDataRequest $metadata = null;
+    public ?MetaData $metadata = null;
 
     // responses
     // https://hackmd.io/@paymaya-pg/Checkout#Get-Checkout---GET-httpspg-sandboxpaymayacomcheckoutv1checkoutscheckoutId
@@ -46,7 +46,7 @@ class CheckoutRequest extends BaseRequest
 
     public function __construct(array $parameters = [])
     {
-        self::setClassIfKeyNotExist($parameters, 'totalAmount', TotalAmountRequest::class);
+        self::setClassIfKeyNotExist($parameters, 'totalAmount', TotalAmount::class);
         self::setCarbon($parameters, 'createdAt');
         self::setCarbon($parameters, 'updatedAt');
         self::setCarbon($parameters, 'expiredAt');
@@ -55,28 +55,28 @@ class CheckoutRequest extends BaseRequest
         parent::__construct($parameters);
     }
 
-    public function setTotalAmount(TotalAmountRequest $totalAmountRequest): self
+    public function setTotalAmount(TotalAmount $totalAmountRequest): self
     {
         $this->totalAmount = $totalAmountRequest;
 
         return $this;
     }
 
-    public function setBuyer(?BuyerRequest $buyerRequest): self
+    public function setBuyer(?Buyer $buyerRequest): self
     {
         $this->buyer = $buyerRequest;
 
         return $this;
     }
 
-    public function addItemRequest(ItemRequest $itemRequest): self
+    public function addItemRequest(Item $itemRequest): self
     {
         $this->items[] = $itemRequest;
 
         return $this;
     }
 
-    public function setRedirectUrl(?RedirectUrlRequest $redirectUrlRequest): self
+    public function setRedirectUrl(?RedirectUrl $redirectUrlRequest): self
     {
         $this->redirectUrl = $redirectUrlRequest;
 
@@ -90,7 +90,7 @@ class CheckoutRequest extends BaseRequest
         return $this;
     }
 
-    public function setMetadata(?MetaDataRequest $metaDataRequest): self
+    public function setMetadata(?MetaData $metaDataRequest): self
     {
         $this->metadata = $metaDataRequest;
 

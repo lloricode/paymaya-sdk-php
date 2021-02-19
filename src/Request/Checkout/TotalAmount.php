@@ -2,9 +2,9 @@
 
 namespace Lloricode\Paymaya\Request\Checkout;
 
-use Lloricode\Paymaya\Request\Checkout\Amount\AmountRequest;
+use Lloricode\Paymaya\Request\Checkout\Amount\Amount;
 
-class TotalAmountRequest extends AmountRequest
+class TotalAmount extends Amount
 {
     public string $currency = 'PHP';
     public float $amount = 0;

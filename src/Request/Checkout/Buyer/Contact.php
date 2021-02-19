@@ -2,9 +2,9 @@
 
 namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 
-use Lloricode\Paymaya\Request\BaseRequest;
+use Lloricode\Paymaya\Request\Base;
 
-class ContactRequest extends BaseRequest
+class Contact extends Base
 {
     public ?string $phone = null;
     public ?string $email = null;

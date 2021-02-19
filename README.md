@@ -156,7 +156,7 @@ echo 'url: '.$checkoutResponse->getUrl()."\n";
 ```php
 use Lloricode\Paymaya\Client\Checkout\WebhookClient;
 use Lloricode\Paymaya\PaymayaClient;
-use Lloricode\Paymaya\Request\Checkout\WebhookRequest;
+use Lloricode\Paymaya\Request\Checkout\Webhook;
 
 $paymayaClient = new PaymayaClient(
     'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl', // secret
@@ -169,20 +169,20 @@ $paymayaClient = new PaymayaClient(
 // create
 (new WebhookClient($paymayaClient))
     ->register(
-        (new WebhookRequest())
-            ->setName(WebhookRequest::SUCCESS)
+        (new Webhook())
+            ->setName(Webhook::SUCCESS)
             ->setCallbackUrl('https://web.test/test/success')
     );
 (new WebhookClient($paymayaClient))
     ->register(
-        (new WebhookRequest())
-            ->setName(WebhookRequest::FAILURE)
+        (new Webhook())
+            ->setName(Webhook::FAILURE)
             ->setCallbackUrl('https://web.test/test/failure')
     );
 (new WebhookClient($paymayaClient))
     ->register(
-        (new WebhookRequest())
-            ->setName(WebhookRequest::DROPOUT)
+        (new Webhook())
+            ->setName(Webhook::DROPOUT)
             ->setCallbackUrl('https://web.test/test/drop')
     );
 
@@ -192,14 +192,14 @@ $webhookResponses = (new WebhookClient($paymayaClient))
 // update
 (new WebhookClient($paymayaClient))
     ->update(
-        (new WebhookRequest())->setResponse($webhookResponses[WebhookRequest::SUCCESS])
+        (new Webhook())->setResponse($webhookResponses[Webhook::SUCCESS])
             ->setCallbackUrl('https://web.test/test/update-success')
     );
 
 // single delete
 (new WebhookClient($paymayaClient))
     ->delete(
-        (new WebhookRequest())->setResponse($webhookResponses[WebhookRequest::DROPOUT])
+        (new Webhook())->setResponse($webhookResponses[Webhook::DROPOUT])
     );
 
 // delete all
