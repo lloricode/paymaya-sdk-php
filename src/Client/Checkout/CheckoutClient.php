@@ -111,6 +111,6 @@ class CheckoutClient extends BaseClient
 //        );
 
 
-        return $checkout;
+//        return $checkout;
     }
 }
