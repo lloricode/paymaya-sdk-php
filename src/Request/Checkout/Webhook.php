@@ -23,11 +23,11 @@ class Webhook extends Base
 //    public function setResponse(Webhook $webhookResponse): self
 //    {
 //        return $webhookResponse;
-////        $this->id = $webhookResponse->getId();
-////        $this->name = $webhookResponse->getName();
-////        $this->callbackUrl = $webhookResponse->getCallbackUrl();
-////
-////        return $this;
+    ////        $this->id = $webhookResponse->getId();
+    ////        $this->name = $webhookResponse->getName();
+    ////        $this->callbackUrl = $webhookResponse->getCallbackUrl();
+    ////
+    ////        return $this;
 //    }
 
     public function getName(): ?string
