@@ -21,7 +21,6 @@ class BillingAddress extends Base
     public ?string $zipCode = null;
     public ?string $countryCode = null;
 
-
     /**
      * @inheritDoc
      */

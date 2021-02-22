@@ -23,5 +23,4 @@ class Contact extends Base
             'email' => $this->email,
         ];
     }
-
 }
