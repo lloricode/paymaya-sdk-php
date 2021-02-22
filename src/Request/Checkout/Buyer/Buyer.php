@@ -34,7 +34,7 @@ class Buyer extends Base
     public ?ShippingAddress $shippingAddress = null;
     public ?BillingAddress $billingAddress = null;
 
-    private ?string $ipAddress = null;
+    public ?string $ipAddress = null;
 
     /**
      * @inheritDoc
