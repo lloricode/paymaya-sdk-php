@@ -64,17 +64,6 @@ class Checkout extends Base
 
     public function __construct(array $parameters = [])
     {
-//        if (isset($parameters['paymentDetails'])) {
-//            $pd = [];
-//            foreach ($parameters['paymentDetails'] as $paymentDetail) {
-////                if (! is_array($paymentDetail)) {
-////                    var_dump($parameters);
-////                    die();
-////                }
-//                $pd = new PaymentDetailResponse($paymentDetail);
-//            }
-//            $parameters['paymentDetails'] = $pd;
-//        }
         self::setClassIfKeyNotExist($parameters, 'totalAmount', TotalAmount::class);
         self::setCarbon($parameters, 'createdAt');
         self::setCarbon($parameters, 'updatedAt');
