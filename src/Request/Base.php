@@ -42,7 +42,7 @@ abstract class Base extends DataTransferObject implements JsonSerializable
         }
 
         if (count($arguments) !== 1) {
-            throw new ErrorException(sprintf('Argument of %s::%s is 1 expected.', static::class, $name));
+            throw new ErrorException(sprintf('Argument of %s::%s() is 1 expected.', static::class, $name));
         }
 
         $this->{$properties[$name]} = $arguments[0];

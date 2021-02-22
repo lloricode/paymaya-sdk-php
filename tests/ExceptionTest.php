@@ -6,9 +6,48 @@ use ErrorException;
 use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\Client\Checkout\WebhookClient;
 use Lloricode\Paymaya\PaymayaClient;
+use Lloricode\Paymaya\Request\Checkout\Checkout;
 
 class ExceptionTest extends TestCase
 {
+    /**
+     * @test
+     */
+    public function set_items_invalid()
+    {
+        $this->expectException(\ErrorException::class);
+        $this->expectExceptionMessage('Lloricode\Paymaya\Request\Checkout\Checkout::setItems() not found.');
+
+        (new Checkout())
+            ->setItems([]);
+    }
+
+    /**
+     * @test
+     */
+    public function invalid_getter()
+    {
+        $this->expectException(\ErrorException::class);
+        $this->expectExceptionMessage('Lloricode\Paymaya\Request\Checkout\Checkout::setBlah() not found.');
+
+        (new Checkout())
+            ->setBlah('xxx');
+    }
+
+    /**
+     * @test
+     */
+    public function only_1_parameter()
+    {
+        $this->expectException(\ErrorException::class);
+        $this->expectExceptionMessage(
+            'Argument of Lloricode\Paymaya\Request\Checkout\Checkout::setId() is 1 expected.'
+        );
+
+        (new Checkout())
+            ->setId(1, 2);
+    }
+
     /**
      * @test
      */

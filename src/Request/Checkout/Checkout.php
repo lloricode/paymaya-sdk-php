@@ -3,6 +3,7 @@
 namespace Lloricode\Paymaya\Request\Checkout;
 
 use Carbon\Carbon;
+use ErrorException;
 use Lloricode\Paymaya\Request\Base;
 use Lloricode\Paymaya\Request\Checkout\Buyer\Buyer;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
@@ -73,11 +74,12 @@ class Checkout extends Base
         parent::__construct($parameters);
     }
 
-    public function addItem(Item $itemRequest): self
+    public function __call($name, $arguments): self
     {
-        $this->items[] = $itemRequest;
-
-        return $this;
+        if ('setItems' == $name) {
+            throw new ErrorException(sprintf('%s::%s() not found.', static::class, $name));
+        }
+        return parent::__call($name, $arguments);
     }
 
     /**
@@ -96,5 +98,12 @@ class Checkout extends Base
             'status' => $this->status,
             'paymentStatus' => $this->paymentStatus,
         ];
+    }
+
+    public function addItem(Item $itemRequest): self
+    {
+        $this->items[] = $itemRequest;
+
+        return $this;
     }
 }
