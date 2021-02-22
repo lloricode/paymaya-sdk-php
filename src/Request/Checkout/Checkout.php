@@ -67,10 +67,10 @@ class Checkout extends Base
 //        if (isset($parameters['paymentDetails'])) {
 //            $pd = [];
 //            foreach ($parameters['paymentDetails'] as $paymentDetail) {
-////                if (! is_array($paymentDetail)) {
-////                    var_dump($parameters);
-////                    die();
-////                }
+        ////                if (! is_array($paymentDetail)) {
+        ////                    var_dump($parameters);
+        ////                    die();
+        ////                }
 //                $pd = new PaymentDetailResponse($paymentDetail);
 //            }
 //            $parameters['paymentDetails'] = $pd;
