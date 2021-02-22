@@ -17,7 +17,7 @@ use Lloricode\Paymaya\Request\Checkout\Buyer\Buyer;
  * @method \Lloricode\Paymaya\Request\Checkout\Checkout setStatus(string $status)
  * @method \Lloricode\Paymaya\Request\Checkout\Checkout setPaymentStatus(string $paymentStatus)
  * @method \Lloricode\Paymaya\Request\Checkout\Checkout setRequestReferenceNumber(string $requestReferenceNumber)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setMetaData(MetaData $metadata)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setMetadata(MetaData $metadata)
  * @method \Lloricode\Paymaya\Request\Checkout\Checkout setReceiptNumber(string $receiptNumber)
  * @method \Lloricode\Paymaya\Request\Checkout\Checkout setCreatedAt(Carbon $createdAt)
  * @method \Lloricode\Paymaya\Request\Checkout\Checkout setUpdatedAt(Carbon $updatedAt)
