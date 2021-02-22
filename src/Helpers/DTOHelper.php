@@ -6,7 +6,6 @@ use Carbon\Carbon;
 
 trait DTOHelper
 {
-
     public static function setCarbon(array &$array, string $key): void
     {
         if (! isset($array[$key]) || $array[$key] instanceof Carbon) {
@@ -39,5 +38,4 @@ trait DTOHelper
 
         $array[$key] = is_string($class) ? new $class() : $class;
     }
-
 }
