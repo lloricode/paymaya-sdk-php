@@ -28,46 +28,45 @@ You can copy the sample to test it.
 https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
 ``` php
 
-
 use Carbon\Carbon;
 use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
 use Lloricode\Paymaya\PaymayaClient;
-use Lloricode\Paymaya\Request\Checkout\Amount\AmountDetailRequest;
-use Lloricode\Paymaya\Request\Checkout\Amount\AmountRequest;
-use Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddressRequest;
-use Lloricode\Paymaya\Request\Checkout\Buyer\BuyerRequest;
-use Lloricode\Paymaya\Request\Checkout\Buyer\ContactRequest;
-use Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddressRequest;
-use Lloricode\Paymaya\Request\Checkout\CheckoutRequest;
-use Lloricode\Paymaya\Request\Checkout\ItemRequest;
-use Lloricode\Paymaya\Request\Checkout\MetaDataRequest;
-use Lloricode\Paymaya\Request\Checkout\RedirectUrlRequest;
-use Lloricode\Paymaya\Request\Checkout\TotalAmountRequest;
+use Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail;
+use Lloricode\Paymaya\Request\Checkout\Amount\Amount;
+use Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress;
+use Lloricode\Paymaya\Request\Checkout\Buyer\Buyer;
+use Lloricode\Paymaya\Request\Checkout\Buyer\Contact;
+use Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress;
+use Lloricode\Paymaya\Request\Checkout\Checkout;
+use Lloricode\Paymaya\Request\Checkout\Item;
+use Lloricode\Paymaya\Request\Checkout\MetaData;
+use Lloricode\Paymaya\Request\Checkout\RedirectUrl;
+use Lloricode\Paymaya\Request\Checkout\TotalAmount;
 
-$checkout = (new CheckoutRequest())
-    ->setTotalAmountRequest(
-        (new TotalAmountRequest())
+$checkout = (new Checkout())
+    ->setTotalAmount(
+        (new TotalAmount())
             ->setValue(100)
-            ->setAmountRequest(
-                (new AmountDetailRequest())
+            ->setDetails(
+                (new AmountDetail())
                     ->setSubtotal(100)
             )
     )
-    ->setBuyerRequest(
-        (new BuyerRequest())
+    ->setBuyer(
+        (new Buyer())
             ->setFirstName('John')
             ->setMiddleName('Paul')
             ->setLastName('Doe')
-            ->setBirthDate(Carbon::parse('1995-10-24'))
+            ->setBirthday(Carbon::parse('1995-10-24'))
             ->setCustomerSince(Carbon::parse('1995-10-24'))
             ->setGender('M')
-            ->setContactRequest(
-                (new ContactRequest())
+            ->setContact(
+                (new Contact())
                     ->setPhone('+639181008888')
                     ->setEmail('merchant@merchantsite.com')
             )
-            ->setShippingAddressRequest(
-                (new ShippingAddressRequest())
+            ->setShippingAddress(
+                (new ShippingAddress())
                     ->setFirstName('John')
                     ->setMiddleName('Paul')
                     ->setLastName('Doe')
@@ -81,8 +80,8 @@ $checkout = (new CheckoutRequest())
                     ->setCountryCode('PH')
                     ->setShippingType('ST')
             )
-            ->setBillingAddressRequest(
-                (new BillingAddressRequest())
+            ->setBillingAddress(
+                (new BillingAddress())
                     ->setLine1('6F Launchpad')
                     ->setLine2('Reliance Street')
                     ->setCity('Mandaluyong City')
@@ -91,17 +90,17 @@ $checkout = (new CheckoutRequest())
                     ->setCountryCode('PH')
             )
     )
-    ->addItemRequest(
-        (new ItemRequest())
+    ->addItem(
+        (new Item())
             ->setName('Canvas Slip Ons')
             ->setQuantity(1)
             ->setCode('CVG-096732')
             ->setDescription('Shoes')
-            ->setAmountRequest(
-                (new AmountRequest())
+            ->setAmount(
+                (new Amount())
                     ->setValue(100)
-                    ->setAmountRequest(
-                        (new AmountDetailRequest())
+                    ->setDetails(
+                        (new AmountDetail())
                             ->setDiscount(0)
                             ->setServiceCharge(0)
                             ->setShippingFee(0)
@@ -109,11 +108,11 @@ $checkout = (new CheckoutRequest())
                             ->setSubtotal(100)
                     )
             )
-            ->setTotalAmountRequest(
-                (new AmountRequest())
+            ->setTotalAmount(
+                (new Amount())
                     ->setValue(100)
-                    ->setAmountRequest(
-                        (new AmountDetailRequest())
+                    ->setDetails(
+                        (new AmountDetail())
                             ->setDiscount(0)
                             ->setServiceCharge(0)
                             ->setShippingFee(0)
@@ -122,14 +121,14 @@ $checkout = (new CheckoutRequest())
                     )
             )
     )
-    ->setRedirectUrlRequest(
-        (new RedirectUrlRequest())
+    ->setRedirectUrl(
+        (new RedirectUrl())
             ->setSuccess('https://www.merchantsite.com/success')
             ->setFailure('https://www.merchantsite.com/failure')
             ->setCancel('https://www.merchantsite.com/cancel')
     )->setRequestReferenceNumber('1551191039')
-    ->setMetaDataRequest(
-        (new MetaDataRequest())
+    ->setMetadata(
+        (new MetaData())
             ->setSMI('smi')
             ->setSMN('smn')
             ->setMCI('mci')
@@ -192,14 +191,14 @@ $webhookResponses = (new WebhookClient($paymayaClient))
 // update
 (new WebhookClient($paymayaClient))
     ->update(
-        (new Webhook())->setResponse($webhookResponses[Webhook::SUCCESS])
+        $webhookResponses[Webhook::SUCCESS]
             ->setCallbackUrl('https://web.test/test/update-success')
     );
 
 // single delete
 (new WebhookClient($paymayaClient))
     ->delete(
-        (new Webhook())->setResponse($webhookResponses[Webhook::DROPOUT])
+        $webhookResponses[Webhook::DROPOUT]
     );
 
 // delete all
