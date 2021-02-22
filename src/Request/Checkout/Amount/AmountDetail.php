@@ -4,6 +4,13 @@ namespace Lloricode\Paymaya\Request\Checkout\Amount;
 
 use Lloricode\Paymaya\Request\Base;
 
+/**
+ * @method \Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail setDiscount(float $discount)
+ * @method \Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail setServiceCharge(float $serviceCharge)
+ * @method \Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail setShippingFee(float $shippingFee)
+ * @method \Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail setTax(float $tax)
+ * @method \Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail setSubtotal(float $subtotal)
+ */
 class AmountDetail extends Base
 {
     public float $discount = 0;
@@ -21,41 +28,6 @@ class AmountDetail extends Base
         self::toFloat($parameters, 'subtotal');
 
         parent::__construct($parameters);
-    }
-
-    public function setDiscount(float $discount): self
-    {
-        $this->discount = $discount;
-
-        return $this;
-    }
-
-    public function setServiceCharge(float $serviceCharge): self
-    {
-        $this->serviceCharge = $serviceCharge;
-
-        return $this;
-    }
-
-    public function setShippingFee(float $shippingFee): self
-    {
-        $this->shippingFee = $shippingFee;
-
-        return $this;
-    }
-
-    public function setTax(float $tax): self
-    {
-        $this->tax = $tax;
-
-        return $this;
-    }
-
-    public function setSubtotal(float $subtotal): self
-    {
-        $this->subtotal = $subtotal;
-
-        return $this;
     }
 
     /**

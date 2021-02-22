@@ -26,7 +26,6 @@ class TestHelper
         return '{
     "id": null,
   "totalAmount": {
-    "currency": "PHP",
     "value": 100.0,
     "details": {
       "discount": 0.0,
@@ -34,7 +33,8 @@ class TestHelper
       "shippingFee": 0.0,
       "tax": 0.0,
       "subtotal": 100.0
-    }
+    },
+    "currency": "PHP"
   },
   "buyer": {
     "firstName": "John",
@@ -168,7 +168,7 @@ class TestHelper
                             ->setCountryCode('PH')
                     )
             )
-            ->addItemRequest(
+            ->addItem(
                 (new Item())
                     ->setName('Canvas Slip Ons')
                     ->setQuantity(1)
@@ -204,7 +204,8 @@ class TestHelper
                     ->setSuccess('https://www.merchantsite.com/success')
                     ->setFailure('https://www.merchantsite.com/failure')
                     ->setCancel('https://www.merchantsite.com/cancel')
-            )->setRequestReferenceNumber('1551191039')
+            )
+            ->setRequestReferenceNumber('1551191039')
             ->setMetadata(
                 (new MetaData())
                     ->setSMI('smi')

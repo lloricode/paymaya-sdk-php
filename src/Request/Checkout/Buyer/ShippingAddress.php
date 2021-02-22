@@ -4,6 +4,20 @@ namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 
 use Lloricode\Paymaya\Request\Base;
 
+/**
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setFirstName(string $firstName)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setMiddleName(string $middleName)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setLastName(string $lastName)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setPhone(string $phone)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setEmail(string $email)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setLine1(string $line1)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setLine2(string $line2)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setCity(string $city)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setState(string $state)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setZipCode(string $zipCode)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setCountryCode(string $countryCode)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setShippingType(string $shippingType)
+ */
 class ShippingAddress extends Base
 {
     public ?string $firstName = null;
@@ -18,90 +32,6 @@ class ShippingAddress extends Base
     public ?string $zipCode = null;
     public ?string $countryCode = null;
     public ?string $shippingType = null; // ST - for standard, SD - for same day
-
-    public function setFirstName(?string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function setMiddleName(?string $middleName): self
-    {
-        $this->middleName = $middleName;
-
-        return $this;
-    }
-
-    public function setLastName(?string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function setPhone(?string $phone): self
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    public function setEmail(?string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function setLine1(?string $line1): self
-    {
-        $this->line1 = $line1;
-
-        return $this;
-    }
-
-    public function setLine2(?string $line2): self
-    {
-        $this->line2 = $line2;
-
-        return $this;
-    }
-
-    public function setCity(?string $city): self
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    public function setState(?string $state): self
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
-    public function setZipCode(?string $zipCode): self
-    {
-        $this->zipCode = $zipCode;
-
-        return $this;
-    }
-
-    public function setCountryCode(?string $countryCode): self
-    {
-        $this->countryCode = $countryCode;
-
-        return $this;
-    }
-
-    public function setShippingType(?string $shippingType): self
-    {
-        $this->shippingType = $shippingType;
-
-        return $this;
-    }
 
     /**
      * @inheritDoc

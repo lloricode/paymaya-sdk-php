@@ -7,16 +7,6 @@ class CheckoutResponse extends BaseResponse
     public string $checkoutId;
     public string $redirectUrl;
 
-    public function getCheckoutId(): string
-    {
-        return $this->checkoutId;
-    }
-
-    public function getRedirectUrl(): string
-    {
-        return $this->redirectUrl;
-    }
-
     public function setCheckoutId(string $checkoutId): self
     {
         $this->checkoutId = $checkoutId;

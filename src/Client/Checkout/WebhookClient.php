@@ -24,7 +24,7 @@ class WebhookClient extends BaseClient
     }
 
     /**
-     * @return array
+     * @return Webhook[]
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function retrieve(): array
@@ -58,7 +58,7 @@ class WebhookClient extends BaseClient
      */
     public function update(Webhook $webhookRequest): Webhook
     {
-        $bodyContent = $this->secretPut($webhookRequest->getId() ?: '', ['json' => $webhookRequest])->getBody()
+        $bodyContent = $this->secretPut($webhookRequest->id ?: '', ['json' => $webhookRequest])->getBody()
             ->getContents();
 
         return (new Webhook())->fromArray((array)json_decode($bodyContent));
@@ -71,7 +71,7 @@ class WebhookClient extends BaseClient
      */
     public function delete(Webhook $webhookRequest): void
     {
-        $this->secretDelete($webhookRequest->getId() ?: '');
+        $this->secretDelete($webhookRequest->id ?: '');
     }
 
     /**

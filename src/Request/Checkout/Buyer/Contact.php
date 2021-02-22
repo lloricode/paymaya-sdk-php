@@ -4,6 +4,10 @@ namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 
 use Lloricode\Paymaya\Request\Base;
 
+/**
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Contact setPhone(string $string)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Contact setEmail(string $email)
+ */
 class Contact extends Base
 {
     public ?string $phone = null;
@@ -20,17 +24,4 @@ class Contact extends Base
         ];
     }
 
-    public function setPhone(?string $phone): self
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    public function setEmail(?string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
 }

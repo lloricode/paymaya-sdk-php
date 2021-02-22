@@ -4,6 +4,14 @@ namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 
 use Lloricode\Paymaya\Request\Base;
 
+/**
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setLine1(string $line1)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setLine2(string $line2)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setCity(string $city)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setState(string $state)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setZipCode(string $zipCode)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setCountryCode(string $countryCode)
+ */
 class BillingAddress extends Base
 {
     public ?string $line1 = null;
@@ -13,47 +21,6 @@ class BillingAddress extends Base
     public ?string $zipCode = null;
     public ?string $countryCode = null;
 
-    public function setLine1(?string $line1): self
-    {
-        $this->line1 = $line1;
-
-        return $this;
-    }
-
-    public function setLine2(?string $line2): self
-    {
-        $this->line2 = $line2;
-
-        return $this;
-    }
-
-    public function setCity(?string $city): self
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    public function setState(?string $state): self
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
-    public function setZipCode(?string $zipCode): self
-    {
-        $this->zipCode = $zipCode;
-
-        return $this;
-    }
-
-    public function setCountryCode(?string $countryCode): self
-    {
-        $this->countryCode = $countryCode;
-
-        return $this;
-    }
 
     /**
      * @inheritDoc

@@ -146,8 +146,8 @@ $checkoutResponse = (new CheckoutClient(
     )
 ))->execute($checkout);
 
-echo 'id: '.$checkoutResponse->getId()."\n";
-echo 'url: '.$checkoutResponse->getUrl()."\n";
+echo 'id: '.$checkoutResponse->checkoutId."\n";
+echo 'url: '.$checkoutResponse->redirectUrl."\n";
 
 ```
 

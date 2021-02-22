@@ -47,11 +47,11 @@ class WebhookTest extends TestCase
         $this->assertCount(1, $history);
 
         $webhookResponses = array_values($webhookResponses);
-        $this->assertEquals($sampleData['id'], $webhookResponses[0]->getId());
-        $this->assertEquals($sampleData['name'], $webhookResponses[0]->getName());
-        $this->assertEquals($sampleData['callbackUrl'], $webhookResponses[0]->getCallbackUrl());
-        $this->assertEquals(Carbon::parse($sampleData['createdAt']), $webhookResponses[0]->getCreatedAt());
-        $this->assertEquals(Carbon::parse($sampleData['updatedAt']), $webhookResponses[0]->getUpdatedAt());
+        $this->assertEquals($sampleData['id'], $webhookResponses[0]->id);
+        $this->assertEquals($sampleData['name'], $webhookResponses[0]->name);
+        $this->assertEquals($sampleData['callbackUrl'], $webhookResponses[0]->callbackUrl);
+        $this->assertEquals(Carbon::parse($sampleData['createdAt']), $webhookResponses[0]->createdAt);
+        $this->assertEquals(Carbon::parse($sampleData['updatedAt']), $webhookResponses[0]->updatedAt);
 
 
         /** @var \GuzzleHttp\Psr7\Response $response */
@@ -75,12 +75,12 @@ class WebhookTest extends TestCase
                     ->setCallbackUrl($data['callbackUrl'])
             );
 
-        $this->assertEquals($data['id'], $webhookResponse->getId());
-        $this->assertEquals($data['name'], $webhookResponse->getName());
-        $this->assertEquals($data['callbackUrl'], $webhookResponse->getCallbackUrl());
+        $this->assertEquals($data['id'], $webhookResponse->id);
+        $this->assertEquals($data['name'], $webhookResponse->name);
+        $this->assertEquals($data['callbackUrl'], $webhookResponse->callbackUrl);
 
-        $this->assertEquals(Carbon::parse($data['createdAt']), $webhookResponse->getCreatedAt());
-        $this->assertEquals(Carbon::parse($data['updatedAt']), $webhookResponse->getUpdatedAt());
+        $this->assertEquals(Carbon::parse($data['createdAt']), $webhookResponse->createdAt);
+        $this->assertEquals(Carbon::parse($data['updatedAt']), $webhookResponse->updatedAt);
     }
 
     /**
@@ -116,7 +116,7 @@ class WebhookTest extends TestCase
         $contentBody = $response->getBody()->getContents();
         $this->assertNotEquals(json_encode($data), $contentBody);
 
-        $this->assertEquals($newUrl, $webhookResponse->getCallbackUrl());
+        $this->assertEquals($newUrl, $webhookResponse->callbackUrl);
     }
 
     /**

@@ -4,32 +4,16 @@ namespace Lloricode\Paymaya\Request\Checkout;
 
 use Lloricode\Paymaya\Request\Base;
 
+/**
+ * @method \Lloricode\Paymaya\Request\Checkout\RedirectUrl setSuccess(string $success)
+ * @method \Lloricode\Paymaya\Request\Checkout\RedirectUrl setFailure(string $failure)
+ * @method \Lloricode\Paymaya\Request\Checkout\RedirectUrl setCancel(string $cancel)
+ */
 class RedirectUrl extends Base
 {
     public ?string $success = null;
     public ?string $failure = null;
     public ?string $cancel = null;
-
-    public function setSuccess(?string $success): self
-    {
-        $this->success = $success;
-
-        return $this;
-    }
-
-    public function setFailure(?string $failure): self
-    {
-        $this->failure = $failure;
-
-        return $this;
-    }
-
-    public function setCancel(?string $cancel): self
-    {
-        $this->cancel = $cancel;
-
-        return $this;
-    }
 
     /**
      * @inheritDoc

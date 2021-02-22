@@ -5,6 +5,14 @@ namespace Lloricode\Paymaya\Request\Checkout;
 use Lloricode\Paymaya\Request\Base;
 use Lloricode\Paymaya\Request\Checkout\Amount\Amount;
 
+/**
+ * @method \Lloricode\Paymaya\Request\Checkout\Item setName(string $name)
+ * @method \Lloricode\Paymaya\Request\Checkout\Item setQuantity(int $quantity)
+ * @method \Lloricode\Paymaya\Request\Checkout\Item setCode(string $code)
+ * @method \Lloricode\Paymaya\Request\Checkout\Item setDescription(string $description)
+ * @method \Lloricode\Paymaya\Request\Checkout\Item setAmount(Amount $amount)
+ * @method \Lloricode\Paymaya\Request\Checkout\Item setTotalAmount(Amount $totalAmount)
+ */
 class Item extends Base
 {
     public ?string $name = null;
@@ -21,49 +29,6 @@ class Item extends Base
         self::toInt($parameters, 'quantity');
 
         parent::__construct($parameters);
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-
-        return $this;
-    }
-
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    public function setCode(?string $code): self
-    {
-        $this->code = $code;
-
-        return $this;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function setAmount(Amount $amountRequest): self
-    {
-        $this->amount = $amountRequest;
-
-        return $this;
-    }
-
-    public function setTotalAmount(Amount $totalAmountRequest): self
-    {
-        $this->totalAmount = $totalAmountRequest;
-
-        return $this;
     }
 
     /**

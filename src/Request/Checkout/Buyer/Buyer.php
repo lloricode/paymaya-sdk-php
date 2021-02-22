@@ -5,6 +5,21 @@ namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 use Carbon\Carbon;
 use Lloricode\Paymaya\Request\Base;
 
+/**
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setFirstName(string $firstName)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setMiddleName(string $middleName)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setLastName(string $lastName)
+ *
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setBirthday(Carbon $birthday)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setCustomerSince(Carbon $customerSince)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setGender(string $gender)
+ *
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setContact(Contact $contact)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setShippingAddress(ShippingAddress $shippingAddress)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setBillingAddress(BillingAddress $billingAddress)
+ *
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setIpAddress(string $ipAddress)
+ */
 class Buyer extends Base
 {
     public ?string $firstName = null;
@@ -12,7 +27,7 @@ class Buyer extends Base
     public ?string $lastName = null;
 
     public ?Carbon $birthday = null;
-    public ?Carbon $customer_since = null;
+    public ?Carbon $customerSince = null;
     public ?string $gender = null;
 
     public ?Contact $contact = null;
@@ -21,83 +36,13 @@ class Buyer extends Base
 
     private ?string $ipAddress = null;
 
-    public function setFirstName(?string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function setMiddleName(?string $firstMiddleName): self
-    {
-        $this->middleName = $firstMiddleName;
-
-        return $this;
-    }
-
-    public function setLastName(?string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function setBirthday(?Carbon $birthDate): self
-    {
-        $this->birthday = $birthDate;
-
-        return $this;
-    }
-
-    public function setCustomerSince(?Carbon $customerSince): self
-    {
-        $this->customer_since = $customerSince;
-
-        return $this;
-    }
-
-    public function setGender(?string $gender): self
-    {
-        $this->gender = $gender;
-
-        return $this;
-    }
-
-    public function setContact(?Contact $contactRequest): self
-    {
-        $this->contact = $contactRequest;
-
-        return $this;
-    }
-
-    public function setShippingAddress(?ShippingAddress $shippingAddressRequest): self
-    {
-        $this->shippingAddress = $shippingAddressRequest;
-
-        return $this;
-    }
-
-    public function setBillingAddress(?BillingAddress $billingAddressRequest): self
-    {
-        $this->billingAddress = $billingAddressRequest;
-
-        return $this;
-    }
-
-    public function setIpAddress(?string $ipAddress): self
-    {
-        $this->ipAddress = $ipAddress;
-
-        return $this;
-    }
-
     /**
      * @inheritDoc
      */
     public function jsonSerialize()
     {
         $birthday = $this->birthday;
-        $customerSince = $this->customer_since;
+        $customerSince = $this->customerSince;
 
         if (! is_null($birthday)) {
             $birthday = $birthday->format('Y-m-d');

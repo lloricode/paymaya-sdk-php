@@ -9,6 +9,26 @@ use Lloricode\Paymaya\Request\Checkout\Buyer\Buyer;
 /**
  * https://hackmd.io/@paymaya-pg/Checkout
  * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
+ *
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setId(string $id)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setTotalAmount(TotalAmount $totalAmount)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setBuyer(Buyer $buyer)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setRedirectUrl(RedirectUrl $redirectUrl)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setStatus(string $status)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setPaymentStatus(string $paymentStatus)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setRequestReferenceNumber(string $requestReferenceNumber)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setMetaData(MetaData $metadata)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setReceiptNumber(string $receiptNumber)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setCreatedAt(Carbon $createdAt)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setUpdatedAt(Carbon $updatedAt)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setExpiredAt(Carbon $expiredAt)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setExpressCheckout(bool $expressCheckout)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setRefundedAmount(float $refundedAmount)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setCanPayPal(bool $canPayPal)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setPaymentScheme(string $paymentScheme)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setMerchant(Merchant $merchant)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setPaymentDetails($paymentDetails)
+ * @method \Lloricode\Paymaya\Request\Checkout\Checkout setTransactionReferenceNumber(string $transactionReferenceNumber)
  */
 class Checkout extends Base
 {
@@ -55,44 +75,9 @@ class Checkout extends Base
         parent::__construct($parameters);
     }
 
-    public function setTotalAmount(TotalAmount $totalAmountRequest): self
-    {
-        $this->totalAmount = $totalAmountRequest;
-
-        return $this;
-    }
-
-    public function setBuyer(?Buyer $buyerRequest): self
-    {
-        $this->buyer = $buyerRequest;
-
-        return $this;
-    }
-
-    public function addItemRequest(Item $itemRequest): self
+    public function addItem(Item $itemRequest): self
     {
         $this->items[] = $itemRequest;
-
-        return $this;
-    }
-
-    public function setRedirectUrl(?RedirectUrl $redirectUrlRequest): self
-    {
-        $this->redirectUrl = $redirectUrlRequest;
-
-        return $this;
-    }
-
-    public function setRequestReferenceNumber(string $requestReferenceNumber): self
-    {
-        $this->requestReferenceNumber = $requestReferenceNumber;
-
-        return $this;
-    }
-
-    public function setMetadata(?MetaData $metaDataRequest): self
-    {
-        $this->metadata = $metaDataRequest;
 
         return $this;
     }
@@ -113,123 +98,5 @@ class Checkout extends Base
             'status' => $this->status,
             'paymentStatus' => $this->paymentStatus,
         ];
-    }
-
-    public function setId(?string $id): self
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    public function setReceiptNumber(?string $receiptNumber): self
-    {
-        $this->receiptNumber = $receiptNumber;
-
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getReceiptNumber(): ?string
-    {
-        return $this->receiptNumber;
-    }
-
-    public function getCreatedAt(): ?Carbon
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(?Carbon $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?Carbon
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?Carbon $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getExpressCheckout(): ?bool
-    {
-        return $this->expressCheckout;
-    }
-
-    public function setExpressCheckout(?bool $expressCheckout): self
-    {
-        $this->expressCheckout = $expressCheckout;
-
-        return $this;
-    }
-
-    public function getRefundedAmount()
-    {
-        return $this->refundedAmount;
-    }
-
-    public function setRefundedAmount($refundedAmount): self
-    {
-        $this->refundedAmount = $refundedAmount;
-
-        return $this;
-    }
-
-    public function getCanPayPal(): ?bool
-    {
-        return $this->canPayPal;
-    }
-
-    public function setCanPayPal(?bool $canPayPal): self
-    {
-        $this->canPayPal = $canPayPal;
-
-        return $this;
-    }
-
-    public function getExpiredAt(): ?Carbon
-    {
-        return $this->expiredAt;
-    }
-
-    public function setExpiredAt(?Carbon $expiredAt): self
-    {
-        $this->expiredAt = $expiredAt;
-
-        return $this;
-    }
-
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(?string $status): self
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    public function getPaymentStatus(): ?string
-    {
-        return $this->paymentStatus;
-    }
-
-    public function setPaymentStatus(?string $paymentStatus): self
-    {
-        $this->paymentStatus = $paymentStatus;
-
-        return $this;
     }
 }

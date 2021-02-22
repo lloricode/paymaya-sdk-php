@@ -55,8 +55,8 @@ class CheckoutTest extends TestCase
             $this->fail('GuzzleException');
         }
 
-        $this->assertEquals($id, $checkoutResponse->getCheckoutId());
-        $this->assertEquals($url, $checkoutResponse->getRedirectUrl());
+        $this->assertEquals($id, $checkoutResponse->checkoutId);
+        $this->assertEquals($url, $checkoutResponse->redirectUrl);
     }
 
     /**

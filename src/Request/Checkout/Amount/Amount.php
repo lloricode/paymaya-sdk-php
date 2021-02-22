@@ -4,6 +4,10 @@ namespace Lloricode\Paymaya\Request\Checkout\Amount;
 
 use Lloricode\Paymaya\Request\Base;
 
+/**
+ * @method \Lloricode\Paymaya\Request\Checkout\Amount\Amount setValue(float $value)
+ * @method \Lloricode\Paymaya\Request\Checkout\Amount\Amount setDetails(AmountDetail $details)
+ */
 class Amount extends Base
 {
     public float $value = 0.0;
@@ -15,20 +19,6 @@ class Amount extends Base
         self::toFloat($parameters, 'value');
 
         parent::__construct($parameters);
-    }
-
-    public function setValue(float $value): self
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    public function setDetails(AmountDetail $details): self
-    {
-        $this->details = $details;
-
-        return $this;
     }
 
     /**
