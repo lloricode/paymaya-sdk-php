@@ -5,6 +5,7 @@ namespace Lloricode\Paymaya\Request\Checkout;
 use Carbon\Carbon;
 use Lloricode\Paymaya\Request\Base;
 use Lloricode\Paymaya\Request\Checkout\Buyer\Buyer;
+use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
 
 /**
  * https://hackmd.io/@paymaya-pg/Checkout
@@ -57,15 +58,23 @@ class Checkout extends Base
     public ?bool $canPayPal = null;
     public ?string $paymentScheme = null;
     public ?Merchant $merchant = null;
-    /**
-     * @todo add typehint
-     * @var null
-     */
-    public $paymentDetails = null;
+
+    public ?PaymentDetail $paymentDetails = null;
     public ?string $transactionReferenceNumber;
 
     public function __construct(array $parameters = [])
     {
+//        if (isset($parameters['paymentDetails'])) {
+//            $pd = [];
+//            foreach ($parameters['paymentDetails'] as $paymentDetail) {
+////                if (! is_array($paymentDetail)) {
+////                    var_dump($parameters);
+////                    die();
+////                }
+//                $pd = new PaymentDetailResponse($paymentDetail);
+//            }
+//            $parameters['paymentDetails'] = $pd;
+//        }
         self::setClassIfKeyNotExist($parameters, 'totalAmount', TotalAmount::class);
         self::setCarbon($parameters, 'createdAt');
         self::setCarbon($parameters, 'updatedAt');

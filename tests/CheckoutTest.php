@@ -9,6 +9,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
 use Lloricode\Paymaya\Request\Checkout\Checkout;
+use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
 
 class CheckoutTest extends TestCase
 {
@@ -66,84 +67,115 @@ class CheckoutTest extends TestCase
     public function show_with_id_success()
     {
 //        $this->markTestSkipped();
-
-        $mock = new MockHandler(
-            [
-                new Response(
-                    200,
-                    [],
-                    '{
-    "id": "0762bc86-c2f0-4269-ad18-d6c38871a40c",
+        $responseData = '{
+    "id": "4ef96167-b8f2-4400-912e-5bd2f4289cfb",
     "items": [
         {
-            "name": "Canvas Slip Ons",
-            "quantity": "1",
-            "code": "CVG-096732",
-            "description": "Shoes",
+            "name": "Wings (8pcs)",
+            "quantity": "2",
+            "code": "wings-8pcs",
+            "description": "no description",
             "amount": {
-                "value": 100,
+                "value": 365,
                 "details": {
                     "discount": "0",
                     "serviceCharge": "0",
                     "shippingFee": "0",
                     "tax": "0",
-                    "subtotal": "100"
+                    "subtotal": "730"
                 }
             },
             "totalAmount": {
-                "value": 100,
+                "value": 730,
                 "details": {
                     "discount": "0",
                     "serviceCharge": "0",
                     "shippingFee": "0",
                     "tax": "0",
-                    "subtotal": "100"
+                    "subtotal": "730"
+                }
+            }
+        },
+        {
+            "name": "Garlic Gold",
+            "quantity": "4",
+            "description": "Wings (8pcs) (variants)",
+            "amount": {
+                "value": 0,
+                "details": {
+                    "discount": "0",
+                    "serviceCharge": "0",
+                    "shippingFee": "0",
+                    "tax": "0",
+                    "subtotal": "0"
+                }
+            },
+            "totalAmount": {
+                "value": 0,
+                "details": {
+                    "discount": "0",
+                    "serviceCharge": "0",
+                    "shippingFee": "0",
+                    "tax": "0",
+                    "subtotal": "0"
                 }
             }
         }
     ],
-    "metadata": {
-        "smi": "smi",
-        "smn": "smn",
-        "mci": "mci",
-        "mpc": "mpc",
-        "mco": "mco",
-        "mst": "mst"
-    },
-    "requestReferenceNumber": "1551191039",
-    "receiptNumber": null,
-    "createdAt": "2021-02-08T06:44:12.000Z",
-    "updatedAt": "2021-02-08T06:44:12.000Z",
-    "paymentScheme": null,
+    "metadata": null,
+    "requestReferenceNumber": "TEST4BRANC_W2102220001",
+    "receiptNumber": "3b2b7ec1a3c0",
+    "createdAt": "2021-02-22T02:28:13.000Z",
+    "updatedAt": "2021-02-22T02:28:54.000Z",
+    "paymentScheme": "visa",
     "expressCheckout": true,
     "refundedAmount": "0",
     "canPayPal": false,
-    "expiredAt": "2021-02-08T07:44:12.000Z",
-    "status": "CREATED",
-    "paymentStatus": "PENDING_TOKEN",
-    "paymentDetails": {},
+    "expiredAt": "2021-02-22T03:28:13.000Z",
+    "status": "COMPLETED",
+    "paymentStatus": "PAYMENT_SUCCESS",
+    "paymentDetails": {
+        "responses": {
+            "efs": {
+                "paymentTransactionReferenceNo": "854ae496-1725-403b-a2c4-3b2b7ec1a3c0",
+                "status": "SUCCESS",
+                "receipt": {
+                    "transactionId": "c33c40b6-1d69-4d7e-95f9-55b2fcab7b34",
+                    "receiptNo": "3b2b7ec1a3c0",
+                    "approval_code": "00001234",
+                    "approvalCode": "00001234"
+                },
+                "payer": {
+                    "fundingInstrument": {
+                        "card": {
+                            "cardNumber": "412345******1522",
+                            "expiryMonth": "12",
+                            "expiryYear": "2025"
+                        }
+                    }
+                },
+                "amount": {
+                    "total": {
+                        "currency": "PHP",
+                        "value": 730
+                    }
+                },
+                "created_at": "2021-02-22T02:29:09.361Z"
+            }
+        },
+        "paymentAt": "2021-02-22T02:28:56.000Z",
+        "3ds": true
+    },
     "buyer": {
         "contact": {
-            "phone": "+639181008888",
-            "email": "merchant@merchantsite.com"
+            "phone": "+639123456789",
+            "email": "system@wing-zone.com"
         },
-        "firstName": "John",
-        "lastName": "Doe",
-        "middleName": "Paul",
-        "billingAddress": {
-            "line1": "6F Launchpad",
-            "line2": "Reliance Street",
-            "city": "Mandaluyong City",
-            "state": "Metro Manila",
-            "zipCode": "1552",
-            "countryCode": "PH"
-        },
+        "firstName": "Administrator",
+        "lastName": "System",
+        "billingAddress": [],
         "shippingAddress": {
-            "line1": "6F Launchpad",
-            "line2": "Reliance Street",
-            "city": "Mandaluyong City",
-            "state": "Metro Manila",
-            "zipCode": "1552",
+            "line1": "1234",
             "countryCode": "PH"
         }
     },
@@ -151,7 +183,7 @@ class CheckoutTest extends TestCase
         "currency": "PHP",
         "email": "paymentgatewayteam@paymaya.com",
         "locale": "en",
-        "homepageUrl": "http://www.paymaya.com",
+        "homepageUrl": "http:\/\/www.paymaya.com",
         "isEmailToMerchantEnabled": false,
         "isEmailToBuyerEnabled": true,
         "isPaymentFacilitator": false,
@@ -168,30 +200,49 @@ class CheckoutTest extends TestCase
         "name": "PayMaya Developers Portal"
     },
     "totalAmount": {
-        "amount": "100",
+        "amount": "730",
         "currency": "PHP",
         "details": {
             "discount": "0",
             "serviceCharge": "0",
             "shippingFee": "0",
             "tax": "0",
-            "subtotal": "100"
+            "subtotal": "730"
         }
     },
     "redirectUrl": {
-        "success": "https://www.merchantsite.com/success",
-        "failure": "https://www.merchantsite.com/failure",
-        "cancel": "https://www.merchantsite.com/cancel"
+        "success": "https:\/\/staging-api1",
+        "failure": "https:\/\/staging-api2",
+        "cancel": "https:\/\/staging-api3"
     },
-    "transactionReferenceNumber": null
-}',
+    "transactionReferenceNumber": "xxx"
+}';
+        $mock = new MockHandler(
+            [
+                new Response(
+                    200,
+                    [],
+                    $responseData,
                 ),
             ]
         );
 
         $checkoutResponse = (new CheckoutClient(self::generatePaymayaClient($mock)))
-            ->retrieve('');
+            ->retrieve('4ef96167-b8f2-4400-912e-5bd2f4289cfb');
 
         $this->assertInstanceOf(Checkout::class, $checkoutResponse);
+
+        $this->assertEquals('4ef96167-b8f2-4400-912e-5bd2f4289cfb', $checkoutResponse->id);
+        $this->assertInstanceOf(PaymentDetail::class, $checkoutResponse->paymentDetails);
+
+//        $sortAndEncode = function(string $json): string {
+//            $array = (array) json_decode($json, true);
+//            array_multisort($array);
+//            return json_encode($array,JSON_PRETTY_PRINT);
+//        };
+//
+//        $this->assertSame($sortAndEncode($responseData), $sortAndEncode(json_encode($checkoutResponse->toArray())));
+
+//        $this->assertContains((array) json_decode($responseData, true),$checkoutResponse->toArray());
     }
 }

@@ -38,8 +38,7 @@ class CheckoutClient extends BaseClient
     {
         $response = $this->secretGet($id);
 
-        $body = (array)json_decode((string)$response->getBody(), true);
-
+        $body = json_decode($response->getBody()->getContents(), true);
 
         return new Checkout($body);
 //        $checkout = (new Checkout($body));
