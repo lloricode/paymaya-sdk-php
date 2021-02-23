@@ -10,7 +10,6 @@ All notable changes to `paymaya-sdk-php` will be documented in this file
 - Rename all properties depends on paymaya response
 - Remove all getter
 - Rename all classes depends on parmaya
-- Use spatie/data-transfer-object
 - Remove all ::new() functions (fix for psalm)
 
 ## 0.2.2 - 2021-02-08
