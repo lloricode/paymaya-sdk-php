@@ -2,25 +2,27 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
-## 0.3.0 - xx
+## 0.3.0 - 2021-02-23
 
 - Add show checkout with id
 - Set all properties to public (to compatible also in spatie DTO)
 - Add spatie DTO (https://github.com/spatie/data-transfer-object)
 - Rename all properties depends on paymaya response
-- Remove all setter and getter (TODO)
-- Rename all classes depends on parmaya (TODO)
+- Remove all getter
+- Rename all classes depends on parmaya
+- Use spatie/data-transfer-object
+- Remove all ::new() functions (fix for psalm)
 
-## 0.2.2 - 2020-02-08
+## 0.2.2 - 2021-02-08
 
 - Set ::new() as deprecate
 - Set compatible for lloriode/laravel-paymaya-sdk
 
-## 0.2.1 - 2020-02-05
+## 0.2.1 - 2021-02-05
 
 - Increase code coverage
 
-## 0.2.0 - 2020-02-05
+## 0.2.0 - 2021-02-05
 
 - Use guzzle mock for testing
 - Add support PHP 8
