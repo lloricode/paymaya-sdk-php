@@ -16,9 +16,13 @@ use Lloricode\Paymaya\Request\Base;
  */
 class Webhook extends Base
 {
-    public const SUCCESS = 'CHECKOUT_SUCCESS';
-    public const FAILURE = 'CHECKOUT_FAILURE';
-    public const DROPOUT = 'CHECKOUT_DROPOUT';
+    public const CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS';
+    public const CHECKOUT_FAILURE = 'CHECKOUT_FAILURE';
+    public const CHECKOUT_DROPOUT = 'CHECKOUT_DROPOUT';
+
+    public const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
+    public const PAYMENT_EXPIRED = 'PAYMENT_EXPIRED';
+    public const PAYMENT_FAILED = 'PAYMENT_FAILED';
 
     public ?string $id = null;
     public ?string $name = null;

@@ -169,19 +169,19 @@ $paymayaClient = new PaymayaClient(
 (new WebhookClient($paymayaClient))
     ->register(
         (new Webhook())
-            ->setName(Webhook::SUCCESS)
+            ->setName(Webhook::CHECKOUT_SUCCESS)
             ->setCallbackUrl('https://web.test/test/success')
     );
 (new WebhookClient($paymayaClient))
     ->register(
         (new Webhook())
-            ->setName(Webhook::FAILURE)
+            ->setName(Webhook::CHECKOUT_FAILURE)
             ->setCallbackUrl('https://web.test/test/failure')
     );
 (new WebhookClient($paymayaClient))
     ->register(
         (new Webhook())
-            ->setName(Webhook::DROPOUT)
+            ->setName(Webhook::CHECKOUT_DROPOUT)
             ->setCallbackUrl('https://web.test/test/drop')
     );
 
@@ -191,14 +191,14 @@ $webhookResponses = (new WebhookClient($paymayaClient))
 // update
 (new WebhookClient($paymayaClient))
     ->update(
-        $webhookResponses[Webhook::SUCCESS]
+        $webhookResponses[Webhook::CHECKOUT_SUCCESS]
             ->setCallbackUrl('https://web.test/test/update-success')
     );
 
 // single delete
 (new WebhookClient($paymayaClient))
     ->delete(
-        $webhookResponses[Webhook::DROPOUT]
+        $webhookResponses[Webhook::CHECKOUT_DROPOUT]
     );
 
 // delete all
