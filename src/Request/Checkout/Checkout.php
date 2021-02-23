@@ -79,6 +79,7 @@ class Checkout extends Base
         if ('setItems' == $name) {
             throw new ErrorException(sprintf('%s::%s() not found.', static::class, $name));
         }
+
         return parent::__call($name, $arguments);
     }
 
