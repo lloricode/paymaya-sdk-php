@@ -4,7 +4,7 @@ namespace Lloricode\Paymaya\Tests;
 
 use ErrorException;
 use GuzzleHttp\Exception\GuzzleException;
-use Lloricode\Paymaya\Client\Checkout\WebhookClient;
+use Lloricode\Paymaya\Client\WebhookClient;
 use Lloricode\Paymaya\PaymayaClient;
 use Lloricode\Paymaya\Request\Checkout\Checkout;
 

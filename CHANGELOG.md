@@ -5,6 +5,7 @@ All notable changes to `paymaya-sdk-php` will be documented in this file
 ## 0.4.0 - 2021-02-26
 
 - Move webhook class
+- Add checkout customization
 
 ## 0.3.0 - 2021-02-23
 

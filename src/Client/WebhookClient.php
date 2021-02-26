@@ -1,9 +1,8 @@
 <?php
 
-namespace Lloricode\Paymaya\Client\Checkout;
+namespace Lloricode\Paymaya\Client;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Lloricode\Paymaya\Client\BaseClient;
 use Lloricode\Paymaya\Request\Webhook\Webhook;
 
 class WebhookClient extends BaseClient
