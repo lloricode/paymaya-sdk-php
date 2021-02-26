@@ -152,6 +152,52 @@ echo 'url: '.$checkoutResponse->redirectUrl."\n";
 
 ```
 
+### Customization
+
+#### register
+
+```php
+use Lloricode\Paymaya\Client\Checkout\CustomizationClient;
+use Lloricode\Paymaya\Request\Checkout\Customization\Customization;
+use Lloricode\Paymaya\PaymayaClient;
+
+$customization = (new CustomizationClient(
+        new PaymayaClient(
+            'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl', // secret
+            'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah', // public
+            PaymayaClient::ENVIRONMENT_SANDBOX
+        )
+    ))
+    ->register(
+        (new Customization())
+            ->setLogoUrl('https://image-logo.png')
+            ->setIconUrl('https://image-icon.png')
+            ->setAppleTouchIconUrl('https://image-apple.png')
+            ->setCustomTitle('Test Title Mock')
+            ->setColorScheme('#e01c44')
+    );
+                
+echo $customization->customTitle; //check all properties in class
+```
+#### retrieve
+
+```php
+use Lloricode\Paymaya\Client\Checkout\CustomizationClient;
+use Lloricode\Paymaya\Request\Checkout\Customization\Customization;
+use Lloricode\Paymaya\PaymayaClient;
+
+$customization = (new CustomizationClient(
+         new PaymayaClient(
+            'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl', // secret
+            'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah', // public
+            PaymayaClient::ENVIRONMENT_SANDBOX
+        )
+    ))
+        ->retrieve();
+            
+echo $customization->customTitle; //check all properties in class
+```
+
 ### Webhook
 
 #### Checkout Webhook
