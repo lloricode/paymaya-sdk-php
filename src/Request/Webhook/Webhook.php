@@ -1,6 +1,6 @@
 <?php
 
-namespace Lloricode\Paymaya\Request\Checkout;
+namespace Lloricode\Paymaya\Request\Webhook;
 
 use Carbon\Carbon;
 use Lloricode\Paymaya\Request\Base;
@@ -8,11 +8,11 @@ use Lloricode\Paymaya\Request\Base;
 /**
  * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview#webhooks
  *
- * @method \Lloricode\Paymaya\Request\Checkout\Webhook setId(string $id)
- * @method \Lloricode\Paymaya\Request\Checkout\Webhook setName(string $name)
- * @method \Lloricode\Paymaya\Request\Checkout\Webhook setCallbackUrl(string $callbackUrl)
- * @method \Lloricode\Paymaya\Request\Checkout\Webhook setCreatedAt(Carbon $createdAt)
- * @method \Lloricode\Paymaya\Request\Checkout\Webhook setUpdatedAt(Carbon $updatedAt)
+ * @method \Lloricode\Paymaya\Request\Webhook\Webhook setId(string $id)
+ * @method \Lloricode\Paymaya\Request\Webhook\Webhook setName(string $name)
+ * @method \Lloricode\Paymaya\Request\Webhook\Webhook setCallbackUrl(string $callbackUrl)
+ * @method \Lloricode\Paymaya\Request\Webhook\Webhook setCreatedAt(Carbon $createdAt)
+ * @method \Lloricode\Paymaya\Request\Webhook\Webhook setUpdatedAt(Carbon $updatedAt)
  */
 class Webhook extends Base
 {

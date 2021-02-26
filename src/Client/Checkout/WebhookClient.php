@@ -4,14 +4,14 @@ namespace Lloricode\Paymaya\Client\Checkout;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\Client\BaseClient;
-use Lloricode\Paymaya\Request\Checkout\Webhook;
+use Lloricode\Paymaya\Request\Webhook\Webhook;
 
 class WebhookClient extends BaseClient
 {
     /**
-     * @param  \Lloricode\Paymaya\Request\Checkout\Webhook  $webhookRequest
+     * @param  \Lloricode\Paymaya\Request\Webhook\Webhook  $webhookRequest
      *
-     * @return \Lloricode\Paymaya\Request\Checkout\Webhook
+     * @return \Lloricode\Paymaya\Request\Webhook\Webhook
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function register(Webhook $webhookRequest): Webhook
@@ -51,9 +51,9 @@ class WebhookClient extends BaseClient
     }
 
     /**
-     * @param  \Lloricode\Paymaya\Request\Checkout\Webhook  $webhookRequest
+     * @param  \Lloricode\Paymaya\Request\Webhook\Webhook  $webhookRequest
      *
-     * @return \Lloricode\Paymaya\Request\Checkout\Webhook
+     * @return \Lloricode\Paymaya\Request\Webhook\Webhook
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function update(Webhook $webhookRequest): Webhook
@@ -65,7 +65,7 @@ class WebhookClient extends BaseClient
     }
 
     /**
-     * @param  \Lloricode\Paymaya\Request\Checkout\Webhook  $webhookRequest
+     * @param  \Lloricode\Paymaya\Request\Webhook\Webhook  $webhookRequest
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */

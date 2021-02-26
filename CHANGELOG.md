@@ -2,6 +2,10 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
+## 0.4.0 - 2021-02-26
+
+- Move webhook class
+
 ## 0.3.0 - 2021-02-23
 
 - Add show checkout with id
