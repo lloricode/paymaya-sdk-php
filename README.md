@@ -10,7 +10,9 @@ Paymaya SDK for PHP 7.4 and 8.0, It uses https://github.com/spatie/data-transfer
 - [Installation](#installation)
 - [Usage](#usage)
     - [Checkout](#checkout)
-    - [Webhooks Checkout](#checkout-webhook)
+    - [Customization](#customization)
+    - [Webhooks](#webhook)
+       - [Checkout](#checkout-webhook)
 
 ## Installation
 
@@ -150,7 +152,9 @@ echo 'url: '.$checkoutResponse->redirectUrl."\n";
 
 ```
 
-### Checkout Webhook
+### Webhook
+
+#### Checkout Webhook
 
 ```php
 use Lloricode\Paymaya\Client\Checkout\WebhookClient;
