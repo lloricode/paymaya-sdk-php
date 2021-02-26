@@ -19,11 +19,11 @@ class WebhookClient extends BaseClient
             ->getBody()
             ->getContents();
 
-        return (new Webhook())->fromArray((array)json_decode($bodyContent));
+        return new Webhook((array)json_decode($bodyContent));
     }
 
     /**
-     * @return Webhook[]
+     * @return \Lloricode\Paymaya\Request\Webhook\Webhook[]
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function retrieve(): array
@@ -42,11 +42,11 @@ class WebhookClient extends BaseClient
 
         $array = [];
         foreach (json_decode($content, true) as $value) {
-            $array[$value['name']] = (new Webhook())
-                ->fromArray($value);
+            $array[$value['name']] = new Webhook($value);
         }
 
         return $array;
+//        return Webhook::arrayOf(json_decode($content, true));
     }
 
     /**
@@ -60,7 +60,7 @@ class WebhookClient extends BaseClient
         $bodyContent = $this->secretPut($webhookRequest->id ?: '', ['json' => $webhookRequest])->getBody()
             ->getContents();
 
-        return (new Webhook())->fromArray((array)json_decode($bodyContent));
+        return new Webhook((array)json_decode($bodyContent));
     }
 
     /**

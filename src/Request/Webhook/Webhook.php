@@ -30,6 +30,14 @@ class Webhook extends Base
     public ?Carbon $createdAt = null;
     public ?Carbon $updatedAt = null;
 
+    public function __construct(array $parameters = [])
+    {
+        self::setCarbon($parameters, 'createdAt');
+        self::setCarbon($parameters, 'updatedAt');
+
+        parent::__construct($parameters);
+    }
+
     /**
      * @inheritDoc
      */
@@ -40,16 +48,5 @@ class Webhook extends Base
             'name' => $this->name,
             'callbackUrl' => $this->callbackUrl,
         ];
-    }
-
-    public function fromArray(array $array): self
-    {
-        $this->setId($array['id'])
-            ->setName($array['name'])
-            ->setCallbackUrl($array['callbackUrl'])
-            ->setCreatedAt(Carbon::parse($array['createdAt']))
-            ->setUpdatedAt(Carbon::parse($array['updatedAt']));
-
-        return $this;
     }
 }
