@@ -2,6 +2,7 @@
 
 namespace Lloricode\Paymaya\Client\Checkout;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\Client\BaseClient;
 use Lloricode\Paymaya\Request\Checkout\Customization\Customization;
 
@@ -33,9 +34,17 @@ class CustomizationClient extends BaseClient
      */
     public function retrieve(): Customization
     {
-        $content = $this->secretGet()
-            ->getBody()
-            ->getContents();
+        try {
+            $content = $this->secretGet()
+                ->getBody()
+                ->getContents();
+        } catch (GuzzleException $e) {
+            if ($e->getCode() == '404') {
+                return new Customization();
+            }
+
+            throw $e;
+        }
 
 
         return new Customization((array)json_decode($content, true));

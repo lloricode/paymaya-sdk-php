@@ -32,6 +32,11 @@ class Customization extends Base
             'appleTouchIconUrl' => $this->appleTouchIconUrl,
             'customTitle' => $this->customTitle,
             'colorScheme' => $this->colorScheme,
+
+            'redirectTimer' => $this->redirectTimer,
+            'hideReceiptInput' => $this->hideReceiptInput,
+            'skipResultPage' => $this->skipResultPage,
+            'showMerchantName' => $this->showMerchantName,
         ];
     }
 }

@@ -2,6 +2,10 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
+## 0.4.1 - 2021-03-01
+
+- Handle 404 when customization is empty
+
 ## 0.4.0 - 2021-02-26
 
 - Move webhook class
@@ -14,7 +18,7 @@ All notable changes to `paymaya-sdk-php` will be documented in this file
 - Add spatie DTO (https://github.com/spatie/data-transfer-object)
 - Rename all properties depends on paymaya response
 - Remove all getter
-- Rename all classes depends on parmaya
+- Rename all classes depends on paymaya
 - Remove all ::new() functions (fix for psalm)
 
 ## 0.2.2 - 2021-02-08

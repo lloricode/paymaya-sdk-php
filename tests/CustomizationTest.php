@@ -97,4 +97,27 @@ class CustomizationTest extends TestCase
             json_encode($response->toArray(), JSON_PRETTY_PRINT)
         );
     }
+
+    /**
+     * @test
+     */
+    public function retrieve_no_data()
+    {
+        $mock = new MockHandler(
+            [
+                new Response(
+                    404,
+                ),
+            ]
+        );
+
+        $response = (new CustomizationClient(self::generatePaymayaClient($mock)))
+            ->retrieve();
+
+
+        $this->assertSame(
+            json_encode(json_decode(json_encode(new Customization())), JSON_PRETTY_PRINT),
+            json_encode($response->toArray(), JSON_PRETTY_PRINT)
+        );
+    }
 }
