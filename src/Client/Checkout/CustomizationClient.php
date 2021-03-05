@@ -6,6 +6,10 @@ use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\Client\BaseClient;
 use Lloricode\Paymaya\Request\Checkout\Customization\Customization;
 
+/**
+ * https://hackmd.io/@paymaya-pg/Checkout#Customization-API
+ *
+ */
 class CustomizationClient extends BaseClient
 {
     public static function uri(int $uriVersion = 1): string
@@ -48,5 +52,13 @@ class CustomizationClient extends BaseClient
 
 
         return new Customization((array)json_decode($content, true));
+    }
+
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function delete(): void
+    {
+        $this->secretDelete();
     }
 }

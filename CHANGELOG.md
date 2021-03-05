@@ -2,6 +2,11 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
+## 0.4.2 - 2021-03-05
+
+- Add delete customization
+- Set null all customization properties if there is no return by paymaya api
+
 ## 0.4.1 - 2021-03-01
 
 - Handle 404 when customization is empty

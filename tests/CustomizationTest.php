@@ -120,4 +120,29 @@ class CustomizationTest extends TestCase
             json_encode($response->toArray(), JSON_PRETTY_PRINT)
         );
     }
+
+    /**
+     * @test
+     */
+    public function delete_data()
+    {
+        $mock = new MockHandler(
+            [
+                new Response(
+                    204,
+                ),
+            ]
+        );
+
+        $history = [];
+
+        (new CustomizationClient(self::generatePaymayaClient($mock, $history)))
+            ->delete();
+
+        /** @var \GuzzleHttp\Psr7\Response $response */
+        $response = $history[0]['response'];
+
+        $this->assertCount(1, $history);
+        $this->assertEquals(204, $response->getStatusCode());
+    }
 }

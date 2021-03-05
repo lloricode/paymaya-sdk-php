@@ -9,7 +9,7 @@ use Lloricode\Paymaya\Request\Checkout\Buyer\Buyer;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
 
 /**
- * https://hackmd.io/@paymaya-pg/Checkout
+ * https://hackmd.io/@paymaya-pg/Checkout#Body
  * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
  *
  * @method \Lloricode\Paymaya\Request\Checkout\Checkout setId(string $id)

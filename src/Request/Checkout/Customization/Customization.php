@@ -5,6 +5,8 @@ namespace Lloricode\Paymaya\Request\Checkout\Customization;
 use Lloricode\Paymaya\Request\Base;
 
 /**
+ * https://hackmd.io/@paymaya-pg/Checkout#Customizations
+ *
  * @method \Lloricode\Paymaya\Request\Checkout\Customization\Customization setLogoUrl(string $logoUrl)
  * @method \Lloricode\Paymaya\Request\Checkout\Customization\Customization setIconUrl(string $iconUrl)
  * @method \Lloricode\Paymaya\Request\Checkout\Customization\Customization setAppleTouchIconUrl(string $appleTouchIconUrl)
@@ -19,10 +21,10 @@ class Customization extends Base
     public ?string $customTitle = '';
     public ?string $colorScheme = '';
 
-    public int $redirectTimer = 1;
-    public bool $hideReceiptInput = true;
-    public bool $skipResultPage = true;
-    public bool $showMerchantName = true;
+    public ?int $redirectTimer = null;
+    public ?bool $hideReceiptInput = null;
+    public ?bool $skipResultPage = null;
+    public ?bool $showMerchantName = null;
 
     public function jsonSerialize()
     {
