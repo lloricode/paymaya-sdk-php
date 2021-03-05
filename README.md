@@ -198,6 +198,24 @@ $customization = (new CustomizationClient(
 echo $customization->customTitle; //check all properties in class
 ```
 
+#### delete
+
+```php
+use Lloricode\Paymaya\Client\Checkout\CustomizationClient;
+use Lloricode\Paymaya\Request\Checkout\Customization\Customization;
+use Lloricode\Paymaya\PaymayaClient;
+
+(new CustomizationClient(
+         new PaymayaClient(
+            'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl', // secret
+            'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah', // public
+            PaymayaClient::ENVIRONMENT_SANDBOX
+        )
+    ))
+        ->delete();
+           
+```
+
 ### Webhook
 
 #### Checkout Webhook
