@@ -1,3 +1,5 @@
+![Paymaya SDK](https://user-images.githubusercontent.com/8251344/110747513-76c1d400-8279-11eb-9c3f-ff935931bb6c.png)
+
 # Paymaya SDK for PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/lloricode/paymaya-sdk-php.svg?style=flat-square)](https://packagist.org/packages/lloricode/paymaya-sdk-php)
