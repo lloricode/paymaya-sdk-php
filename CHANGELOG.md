@@ -2,6 +2,10 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
+## 0.4.3 - 2021-03-22
+
+- Add default headers
+
 ## 0.4.2 - 2021-03-05
 
 - Add delete customization

@@ -62,25 +62,25 @@ class PaymayaClient
         return new GuzzleClient(
             [
                 'base_uri' => $this->base_url,
-                'headers' => $header,
+                'headers' => $header + ['Accept' => 'application/json', 'Content-Type' => 'application/json'],
                 'handler' => $this->handler_stack,
             ]
         );
     }
 
-    public function publicClient(): GuzzleClient
+    public function publicClient(array $header = []): GuzzleClient
     {
         return $this->client(
-            [
+            $header + [
                 'Authorization' => trim('Basic '.base64_encode($this->public_key)),
             ]
         );
     }
 
-    public function secretClient(): GuzzleClient
+    public function secretClient(array $header = []): GuzzleClient
     {
         return $this->client(
-            [
+            $header + [
                 'Authorization' => trim('Basic '.base64_encode($this->secret_key)),
             ]
         );
