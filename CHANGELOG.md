@@ -2,6 +2,11 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
+## 0.4.X - 2021-XX-XX
+
+- Add return raw from Paymaya API
+- Add send json raw to Paymaya API
+
 ## 0.4.3 - 2021-03-22
 
 - Add default headers
