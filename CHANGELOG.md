@@ -7,6 +7,10 @@ All notable changes to `paymaya-sdk-php` will be documented in this file
 - Add return raw from Paymaya API
 - Add send json raw to Paymaya API
 
+## 0.4.4 - 2021-04-06
+
+- Optimise Guzzle Client parameter with handler
+
 ## 0.4.3 - 2021-03-22
 
 - Add default headers

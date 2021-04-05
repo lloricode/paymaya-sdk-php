@@ -59,13 +59,16 @@ class PaymayaClient
 
     private function client(array $header): GuzzleClient
     {
-        return new GuzzleClient(
-            [
-                'base_uri' => $this->base_url,
-                'headers' => $header + ['Accept' => 'application/json', 'Content-Type' => 'application/json'],
-                'handler' => $this->handler_stack,
-            ]
-        );
+        $parameters = [
+            'base_uri' => $this->base_url,
+            'headers' => $header + ['Accept' => 'application/json', 'Content-Type' => 'application/json'],
+        ];
+
+        if ($this->handler_stack != null) {
+            $parameters['handler'] = $this->handler_stack;
+        }
+
+        return new GuzzleClient($parameters);
     }
 
     public function publicClient(array $header = []): GuzzleClient
