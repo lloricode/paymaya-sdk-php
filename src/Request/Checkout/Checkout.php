@@ -12,25 +12,25 @@ use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
  * https://hackmd.io/@paymaya-pg/Checkout#Body
  * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
  *
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setId(string $id)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setTotalAmount(TotalAmount $totalAmount)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setBuyer(Buyer $buyer)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setRedirectUrl(RedirectUrl $redirectUrl)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setStatus(string $status)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setPaymentStatus(string $paymentStatus)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setRequestReferenceNumber(string $requestReferenceNumber)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setMetadata(MetaData $metadata)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setReceiptNumber(string $receiptNumber)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setCreatedAt(Carbon $createdAt)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setUpdatedAt(Carbon $updatedAt)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setExpiredAt(Carbon $expiredAt)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setExpressCheckout(bool $expressCheckout)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setRefundedAmount(float $refundedAmount)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setCanPayPal(bool $canPayPal)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setPaymentScheme(string $paymentScheme)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setMerchant(Merchant $merchant)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setPaymentDetails($paymentDetails)
- * @method \Lloricode\Paymaya\Request\Checkout\Checkout setTransactionReferenceNumber(string $transactionReferenceNumber)
+ * @method Checkout setId(string $id)
+ * @method Checkout setTotalAmount(TotalAmount $totalAmount)
+ * @method Checkout setBuyer(Buyer $buyer)
+ * @method Checkout setRedirectUrl(RedirectUrl $redirectUrl)
+ * @method Checkout setStatus(string $status)
+ * @method Checkout setPaymentStatus(string $paymentStatus)
+ * @method Checkout setRequestReferenceNumber(string $requestReferenceNumber)
+ * @method Checkout setMetadata(MetaData $metadata)
+ * @method Checkout setReceiptNumber(string $receiptNumber)
+ * @method Checkout setCreatedAt(Carbon $createdAt)
+ * @method Checkout setUpdatedAt(Carbon $updatedAt)
+ * @method Checkout setExpiredAt(Carbon $expiredAt)
+ * @method Checkout setExpressCheckout(bool $expressCheckout)
+ * @method Checkout setRefundedAmount(float $refundedAmount)
+ * @method Checkout setCanPayPal(bool $canPayPal)
+ * @method Checkout setPaymentScheme(string $paymentScheme)
+ * @method Checkout setMerchant(Merchant $merchant)
+ * @method Checkout setPaymentDetails($paymentDetails)
+ * @method Checkout setTransactionReferenceNumber(string $transactionReferenceNumber)
  */
 class Checkout extends Base
 {
@@ -63,6 +63,9 @@ class Checkout extends Base
     public ?PaymentDetail $paymentDetails = null;
     public ?string $transactionReferenceNumber;
 
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
     public function __construct(array $parameters = [])
     {
         self::setClassIfKeyNotExist($parameters, 'totalAmount', TotalAmount::class);

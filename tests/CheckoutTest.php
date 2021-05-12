@@ -10,6 +10,7 @@ use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
 use Lloricode\Paymaya\Request\Checkout\Checkout;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class CheckoutTest extends TestCase
 {
@@ -28,7 +29,7 @@ class CheckoutTest extends TestCase
     public function check_via_sandbox()
     {
         $id = 'test-generated-id';
-        $url = 'http://test';
+        $url = 'https://test';
 
         $mock = new MockHandler(
             [
@@ -45,6 +46,7 @@ class CheckoutTest extends TestCase
             ]
         );
 
+        $checkoutResponse = null;
         try {
             $checkoutResponse = (new CheckoutClient(self::generatePaymayaClient($mock)))
                 ->execute(self::buildCheckout());
@@ -54,6 +56,7 @@ class CheckoutTest extends TestCase
             $this->fail('ClientException: '.$e->getMessage().$e->getResponse()->getBody());
         } catch (GuzzleException $e) {
             $this->fail('GuzzleException');
+        } catch (UnknownProperties $e) {
         }
 
         $this->assertEquals($id, $checkoutResponse->checkoutId);
@@ -62,6 +65,7 @@ class CheckoutTest extends TestCase
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      * @test
      */
     public function show_with_id_success()

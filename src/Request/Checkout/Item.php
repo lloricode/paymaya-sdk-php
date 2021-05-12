@@ -6,12 +6,12 @@ use Lloricode\Paymaya\Request\Base;
 use Lloricode\Paymaya\Request\Checkout\Amount\Amount;
 
 /**
- * @method \Lloricode\Paymaya\Request\Checkout\Item setName(string $name)
- * @method \Lloricode\Paymaya\Request\Checkout\Item setQuantity(int $quantity)
- * @method \Lloricode\Paymaya\Request\Checkout\Item setCode(string $code)
- * @method \Lloricode\Paymaya\Request\Checkout\Item setDescription(string $description)
- * @method \Lloricode\Paymaya\Request\Checkout\Item setAmount(Amount $amount)
- * @method \Lloricode\Paymaya\Request\Checkout\Item setTotalAmount(Amount $totalAmount)
+ * @method Item setName(string $name)
+ * @method Item setQuantity(int $quantity)
+ * @method Item setCode(string $code)
+ * @method Item setDescription(string $description)
+ * @method Item setAmount(Amount $amount)
+ * @method Item setTotalAmount(Amount $totalAmount)
  */
 class Item extends Base
 {
@@ -22,6 +22,9 @@ class Item extends Base
     public Amount $amount;
     public Amount $totalAmount;
 
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
     public function __construct(array $parameters = [])
     {
         self::setClassIfKeyNotExist($parameters, 'amount', Amount::class);

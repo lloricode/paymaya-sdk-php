@@ -26,6 +26,9 @@ class Merchant extends Base
     public bool $expressCheckout;
     public string $name;
 
+    /**
+     * @inheritDoc
+     */
     public function jsonSerialize()
     {
         return [
