@@ -47,6 +47,7 @@ class CheckoutTest extends TestCase
         );
 
         $checkoutResponse = null;
+
         try {
             $checkoutResponse = (new CheckoutClient(self::generatePaymayaClient($mock)))
                 ->execute(self::buildCheckout());
