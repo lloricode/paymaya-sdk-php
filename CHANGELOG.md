@@ -2,10 +2,16 @@
 
 All notable changes to `paymaya-sdk-php` will be documented in this file
 
-## 0.4.X - 2021-XX-XX
+## 0.5.X - 2021-XX-XX
 
 - Add return raw from Paymaya API
 - Add send json raw to Paymaya API
+
+## 0.5.0-alpha - 2021-05-17
+
+- Drop support php 7
+- Drop support spatie/data-transfer-object v2
+- Add support spatie/data-transfer-object v3
 
 ## 0.4.4 - 2021-04-06
 
