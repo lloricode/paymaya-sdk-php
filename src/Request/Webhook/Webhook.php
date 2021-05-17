@@ -8,11 +8,11 @@ use Lloricode\Paymaya\Request\Base;
 /**
  * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview#webhooks
  *
- * @method \Lloricode\Paymaya\Request\Webhook\Webhook setId(string $id)
- * @method \Lloricode\Paymaya\Request\Webhook\Webhook setName(string $name)
- * @method \Lloricode\Paymaya\Request\Webhook\Webhook setCallbackUrl(string $callbackUrl)
- * @method \Lloricode\Paymaya\Request\Webhook\Webhook setCreatedAt(Carbon $createdAt)
- * @method \Lloricode\Paymaya\Request\Webhook\Webhook setUpdatedAt(Carbon $updatedAt)
+ * @method Webhook setId(string $id)
+ * @method Webhook setName(string $name)
+ * @method Webhook setCallbackUrl(string $callbackUrl)
+ * @method Webhook setCreatedAt(Carbon $createdAt)
+ * @method Webhook setUpdatedAt(Carbon $updatedAt)
  */
 class Webhook extends Base
 {
@@ -30,6 +30,9 @@ class Webhook extends Base
     public ?Carbon $createdAt = null;
     public ?Carbon $updatedAt = null;
 
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
     public function __construct(array $parameters = [])
     {
         self::setCarbon($parameters, 'createdAt');

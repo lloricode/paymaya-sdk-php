@@ -5,12 +5,12 @@ namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 use Lloricode\Paymaya\Request\Base;
 
 /**
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setLine1(string $line1)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setLine2(string $line2)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setCity(string $city)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setState(string $state)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setZipCode(string $zipCode)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress setCountryCode(string $countryCode)
+ * @method BillingAddress setLine1(string $line1)
+ * @method BillingAddress setLine2(string $line2)
+ * @method BillingAddress setCity(string $city)
+ * @method BillingAddress setState(string $state)
+ * @method BillingAddress setZipCode(string $zipCode)
+ * @method BillingAddress setCountryCode(string $countryCode)
  */
 class BillingAddress extends Base
 {

@@ -7,11 +7,11 @@ use Lloricode\Paymaya\Request\Base;
 /**
  * https://hackmd.io/@paymaya-pg/Checkout#Customizations
  *
- * @method \Lloricode\Paymaya\Request\Checkout\Customization\Customization setLogoUrl(string $logoUrl)
- * @method \Lloricode\Paymaya\Request\Checkout\Customization\Customization setIconUrl(string $iconUrl)
- * @method \Lloricode\Paymaya\Request\Checkout\Customization\Customization setAppleTouchIconUrl(string $appleTouchIconUrl)
- * @method \Lloricode\Paymaya\Request\Checkout\Customization\Customization setCustomTitle(string $customTitle)
- * @method \Lloricode\Paymaya\Request\Checkout\Customization\Customization setColorScheme(string $colorScheme)
+ * @method Customization setLogoUrl(string $logoUrl)
+ * @method Customization setIconUrl(string $iconUrl)
+ * @method Customization setAppleTouchIconUrl(string $appleTouchIconUrl)
+ * @method Customization setCustomTitle(string $customTitle)
+ * @method Customization setColorScheme(string $colorScheme)
  */
 class Customization extends Base
 {
@@ -26,6 +26,9 @@ class Customization extends Base
     public ?bool $skipResultPage = null;
     public ?bool $showMerchantName = null;
 
+    /**
+     * @inheritDoc
+     */
     public function jsonSerialize()
     {
         return [

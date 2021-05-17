@@ -5,18 +5,18 @@ namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 use Lloricode\Paymaya\Request\Base;
 
 /**
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setFirstName(string $firstName)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setMiddleName(string $middleName)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setLastName(string $lastName)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setPhone(string $phone)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setEmail(string $email)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setLine1(string $line1)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setLine2(string $line2)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setCity(string $city)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setState(string $state)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setZipCode(string $zipCode)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setCountryCode(string $countryCode)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress setShippingType(string $shippingType)
+ * @method ShippingAddress setFirstName(string $firstName)
+ * @method ShippingAddress setMiddleName(string $middleName)
+ * @method ShippingAddress setLastName(string $lastName)
+ * @method ShippingAddress setPhone(string $phone)
+ * @method ShippingAddress setEmail(string $email)
+ * @method ShippingAddress setLine1(string $line1)
+ * @method ShippingAddress setLine2(string $line2)
+ * @method ShippingAddress setCity(string $city)
+ * @method ShippingAddress setState(string $state)
+ * @method ShippingAddress setZipCode(string $zipCode)
+ * @method ShippingAddress setCountryCode(string $countryCode)
+ * @method ShippingAddress setShippingType(string $shippingType)
  */
 class ShippingAddress extends Base
 {

@@ -5,11 +5,11 @@ namespace Lloricode\Paymaya\Request\Checkout\Amount;
 use Lloricode\Paymaya\Request\Base;
 
 /**
- * @method \Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail setDiscount(float $discount)
- * @method \Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail setServiceCharge(float $serviceCharge)
- * @method \Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail setShippingFee(float $shippingFee)
- * @method \Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail setTax(float $tax)
- * @method \Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail setSubtotal(float $subtotal)
+ * @method AmountDetail setDiscount(float $discount)
+ * @method AmountDetail setServiceCharge(float $serviceCharge)
+ * @method AmountDetail setShippingFee(float $shippingFee)
+ * @method AmountDetail setTax(float $tax)
+ * @method AmountDetail setSubtotal(float $subtotal)
  */
 class AmountDetail extends Base
 {
@@ -19,6 +19,9 @@ class AmountDetail extends Base
     public float $tax = 0;
     public float $subtotal = 0;
 
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
     public function __construct(array $parameters = [])
     {
         self::toFloat($parameters, 'discount');

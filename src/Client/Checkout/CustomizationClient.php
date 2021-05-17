@@ -21,7 +21,7 @@ class CustomizationClient extends BaseClient
      * @param  \Lloricode\Paymaya\Request\Checkout\Customization\Customization  $customization
      *
      * @return \Lloricode\Paymaya\Request\Checkout\Customization\Customization
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function register(Customization $customization): Customization
     {
@@ -34,7 +34,7 @@ class CustomizationClient extends BaseClient
 
     /**
      * @return \Lloricode\Paymaya\Request\Checkout\Customization\Customization
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function retrieve(): Customization
     {

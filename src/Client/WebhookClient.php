@@ -11,7 +11,7 @@ class WebhookClient extends BaseClient
      * @param  \Lloricode\Paymaya\Request\Webhook\Webhook  $webhookRequest
      *
      * @return \Lloricode\Paymaya\Request\Webhook\Webhook
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function register(Webhook $webhookRequest): Webhook
     {
@@ -24,7 +24,7 @@ class WebhookClient extends BaseClient
 
     /**
      * @return \Lloricode\Paymaya\Request\Webhook\Webhook[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function retrieve(): array
     {
@@ -53,7 +53,7 @@ class WebhookClient extends BaseClient
      * @param  \Lloricode\Paymaya\Request\Webhook\Webhook  $webhookRequest
      *
      * @return \Lloricode\Paymaya\Request\Webhook\Webhook
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function update(Webhook $webhookRequest): Webhook
     {
@@ -74,7 +74,7 @@ class WebhookClient extends BaseClient
     }
 
     /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function deleteAll(): void
     {

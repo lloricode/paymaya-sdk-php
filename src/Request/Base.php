@@ -4,11 +4,14 @@ namespace Lloricode\Paymaya\Request;
 
 use ErrorException;
 use JsonSerializable;
+use Lloricode\Paymaya\DTOCaster;
 use Lloricode\Paymaya\Helpers\DTOHelper;
 use ReflectionClass;
 use ReflectionProperty;
+use Spatie\DataTransferObject\Attributes\CastWith;
 use Spatie\DataTransferObject\DataTransferObject;
 
+#[CastWith(DTOCaster::class)]
 abstract class Base extends DataTransferObject implements JsonSerializable
 {
     use DTOHelper;

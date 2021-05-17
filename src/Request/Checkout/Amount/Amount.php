@@ -5,14 +5,17 @@ namespace Lloricode\Paymaya\Request\Checkout\Amount;
 use Lloricode\Paymaya\Request\Base;
 
 /**
- * @method \Lloricode\Paymaya\Request\Checkout\Amount\Amount setValue(float $value)
- * @method \Lloricode\Paymaya\Request\Checkout\Amount\Amount setDetails(AmountDetail $details)
+ * @method Amount setValue(float $value)
+ * @method Amount setDetails(AmountDetail $details)
  */
 class Amount extends Base
 {
     public float $value = 0.0;
     public AmountDetail $details;
 
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
     public function __construct(array $parameters = [])
     {
         self::setClassIfKeyNotExist($parameters, 'details', AmountDetail::class);

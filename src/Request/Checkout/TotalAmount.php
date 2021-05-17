@@ -6,10 +6,10 @@ use Lloricode\Paymaya\Request\Base;
 use Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail;
 
 /**
- * @method \Lloricode\Paymaya\Request\Checkout\TotalAmount setValue(float $value)
- * @method \Lloricode\Paymaya\Request\Checkout\TotalAmount setDetails(AmountDetail $details)
- * @method \Lloricode\Paymaya\Request\Checkout\TotalAmount setCurrency(string $string)
- * @method \Lloricode\Paymaya\Request\Checkout\TotalAmount setAmount(float $amount)
+ * @method TotalAmount setValue(float $value)
+ * @method TotalAmount setDetails(AmountDetail $details)
+ * @method TotalAmount setCurrency(string $string)
+ * @method TotalAmount setAmount(float $amount)
  */
 class TotalAmount extends Base
 {
@@ -18,6 +18,9 @@ class TotalAmount extends Base
     public float $value = 0.0;
     public AmountDetail $details;
 
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
     public function __construct(array $parameters = [])
     {
         self::setClassIfKeyNotExist($parameters, 'details', AmountDetail::class);

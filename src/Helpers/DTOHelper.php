@@ -28,9 +28,9 @@ trait DTOHelper
     /**
      * @param  array  $array
      * @param  string  $key
-     * @param  string|object  $class
+     * @param  object|string  $class
      */
-    protected static function setClassIfKeyNotExist(array &$array, string $key, $class): void
+    protected static function setClassIfKeyNotExist(array &$array, string $key, object|string $class): void
     {
         if (isset($array[$key])) {
             return;
