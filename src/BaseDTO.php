@@ -1,12 +1,17 @@
 <?php
 
-namespace Lloricode\Paymaya\Helpers;
+namespace Lloricode\Paymaya;
 
 use Carbon\Carbon;
+use Spatie\DataTransferObject\Attributes\CastWith;
+use Spatie\DataTransferObject\Attributes\Strict;
+use Spatie\DataTransferObject\DataTransferObject;
 
-trait DTOHelper
+#[Strict]
+#[CastWith(DTOCaster::class)]
+abstract class BaseDTO extends DataTransferObject
 {
-    public static function setCarbon(array &$array, string $key): void
+    protected static function setCarbon(array &$array, string $key): void
     {
         if (! isset($array[$key]) || $array[$key] instanceof Carbon) {
             return;
@@ -38,4 +43,5 @@ trait DTOHelper
 
         $array[$key] = is_string($class) ? new $class() : $class;
     }
+
 }

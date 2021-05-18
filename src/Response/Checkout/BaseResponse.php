@@ -2,13 +2,8 @@
 
 namespace Lloricode\Paymaya\Response\Checkout;
 
-use Lloricode\Paymaya\DTOCaster;
-use Lloricode\Paymaya\Helpers\DTOHelper;
-use Spatie\DataTransferObject\Attributes\CastWith;
-use Spatie\DataTransferObject\DataTransferObject;
+use Lloricode\Paymaya\BaseDTO;
 
-#[CastWith(DTOCaster::class)]
-abstract class BaseResponse extends DataTransferObject
+abstract class BaseResponse extends BaseDTO
 {
-    use DTOHelper;
 }
