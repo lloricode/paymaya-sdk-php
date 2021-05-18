@@ -9,8 +9,10 @@ use Lloricode\Paymaya\Helpers\DTOHelper;
 use ReflectionClass;
 use ReflectionProperty;
 use Spatie\DataTransferObject\Attributes\CastWith;
+use Spatie\DataTransferObject\Attributes\Strict;
 use Spatie\DataTransferObject\DataTransferObject;
 
+#[Strict]
 #[CastWith(DTOCaster::class)]
 abstract class Base extends DataTransferObject implements JsonSerializable
 {
