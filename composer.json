@@ -22,7 +22,7 @@
         "ext-json": "*",
         "guzzlehttp/guzzle": "^6.5.5|^7.2",
         "nesbot/carbon": "^2.41",
-        "spatie/data-transfer-object": "^3.1.1"
+        "spatie/data-transfer-object": "^3.6"
     },
     "require-dev": {
         "composer-runtime-api": "^2.0",
