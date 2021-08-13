@@ -26,6 +26,7 @@
     },
     "require-dev": {
         "mockery/mockery": "^1.4",
+        "phly/keep-a-changelog": "^2.11",
         "phpunit/phpunit": "^9.4",
         "vimeo/psalm": "^4.0.1"
     },
