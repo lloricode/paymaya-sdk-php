@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Changed
 
+- Update Readme, remove php 7.4.
+
 - Reformat CHANGELOG file.
 
 ### Deprecated
