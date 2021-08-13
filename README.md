@@ -1,4 +1,4 @@
-![Paymaya SDK](https://user-images.githubusercontent.com/8251344/110747513-76c1d400-8279-11eb-9c3f-ff935931bb6c.png)
+![Paymaya SDK](https://banners.beyondco.de/Paymaya%20SDK%20PHP.png?theme=light&packageManager=composer+require&packageName=lloricode%2Fpaymaya-sdk-php&pattern=architect&style=style_2&description=Paymaya+SDK+for+PHP&md=1&showWatermark=1&fontSize=100px&images=https%3A%2F%2Fwww.php.net%2Fimages%2Flogos%2Fnew-php-logo.svg)
 
 # Paymaya SDK for PHP
 
@@ -7,7 +7,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/lloricode/paymaya-sdk-php.svg?style=flat-square)](https://packagist.org/packages/lloricode/paymaya-sdk-php)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=V8PYXUNG6QP44)
 
-Paymaya SDK for PHP 8.0, It uses https://github.com/spatie/data-transfer-object
+Paymaya SDK for PHP, It uses https://github.com/spatie/data-transfer-object
 
 - [Installation](#installation)
 - [Usage](#usage)
