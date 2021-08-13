@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## Unreleased - TBD
+## 0.5.0-alpha3 - 2021-08-13
 
 ### Added
 
