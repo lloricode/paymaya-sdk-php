@@ -25,6 +25,7 @@
         "spatie/data-transfer-object": "^3.1.1"
     },
     "require-dev": {
+        "composer-runtime-api": "^2.0",
         "mockery/mockery": "^1.4",
         "phly/keep-a-changelog": "^2.11",
         "phpunit/phpunit": "^9.4",
