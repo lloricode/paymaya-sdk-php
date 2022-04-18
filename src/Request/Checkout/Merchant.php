@@ -29,7 +29,7 @@ class Merchant extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
 

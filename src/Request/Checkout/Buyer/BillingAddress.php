@@ -24,7 +24,7 @@ class BillingAddress extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
             'line1' => $this->line1,

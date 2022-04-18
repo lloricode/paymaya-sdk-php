@@ -36,7 +36,7 @@ class AmountDetail extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
             'discount' => $this->discount,

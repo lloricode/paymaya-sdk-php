@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## Unreleased - TBD
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Add return type for jsonSerialize().
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.5.0-alpha3 - 2021-08-13
 
 ### Added

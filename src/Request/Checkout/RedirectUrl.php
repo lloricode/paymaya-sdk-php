@@ -18,7 +18,7 @@ class RedirectUrl extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
             'success' => $this->success,
