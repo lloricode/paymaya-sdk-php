@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Request\Checkout;
 
 use Carbon\Carbon;
@@ -40,9 +42,7 @@ class Checkout extends Base
     public TotalAmount $totalAmount;
     public ?Buyer $buyer = null;
 
-    /**
-     * @var \Lloricode\Paymaya\Request\Checkout\Item[]
-     */
+    /** @var \Lloricode\Paymaya\Request\Checkout\Item[] */
     public array $items = [];
     public ?RedirectUrl $redirectUrl = null;
     public ?string $status = null;
@@ -68,9 +68,7 @@ class Checkout extends Base
     public ?PaymentDetail $paymentDetails = null;
     public ?string $transactionReferenceNumber;
 
-    /**
-     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
-     */
+    /** @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties */
     public function __construct(...$args)
     {
         self::setClassIfKeyNotExist($args, 'totalAmount', TotalAmount::class);
@@ -87,9 +85,7 @@ class Checkout extends Base
         return parent::__call($name, $arguments);
     }
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public function jsonSerialize(): array
     {
         return [

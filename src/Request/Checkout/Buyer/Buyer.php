@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 
 use Carbon\Carbon;
@@ -36,19 +38,17 @@ class Buyer extends Base
 
     public ?string $ipAddress = null;
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public function jsonSerialize(): array
     {
         $birthday = $this->birthday;
         $customerSince = $this->customerSince;
 
-        if (! is_null($birthday)) {
+        if ( ! is_null($birthday)) {
             $birthday = $birthday->format('Y-m-d');
         }
 
-        if (! is_null($customerSince)) {
+        if ( ! is_null($customerSince)) {
             $customerSince = $customerSince->format('Y-m-d');
         }
 

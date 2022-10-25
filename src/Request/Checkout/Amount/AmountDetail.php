@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Request\Checkout\Amount;
 
 use Lloricode\Paymaya\Request\Base;
@@ -19,9 +21,7 @@ class AmountDetail extends Base
     public float $tax = 0;
     public float $subtotal = 0;
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public function jsonSerialize(): array
     {
         return [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Client;
 
 use GuzzleHttp\Exception\GuzzleException;
@@ -19,7 +21,7 @@ class WebhookClient extends BaseClient
             ->getBody()
             ->getContents();
 
-        return new Webhook((array)json_decode($bodyContent));
+        return new Webhook((array) json_decode($bodyContent));
     }
 
     /**
@@ -60,7 +62,7 @@ class WebhookClient extends BaseClient
         $bodyContent = $this->secretPut($webhookRequest->id ?: '', ['json' => $webhookRequest])->getBody()
             ->getContents();
 
-        return new Webhook((array)json_decode($bodyContent));
+        return new Webhook((array) json_decode($bodyContent));
     }
 
     /**
@@ -73,9 +75,7 @@ class WebhookClient extends BaseClient
         $this->secretDelete($webhookRequest->id ?: '');
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties */
     public function deleteAll(): void
     {
         foreach ($this->retrieve() as $webhookResponse) {

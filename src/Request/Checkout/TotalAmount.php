@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Request\Checkout;
 
 use Lloricode\Paymaya\Request\Base;
@@ -18,9 +20,7 @@ class TotalAmount extends Base
     public float $value = 0.0;
     public AmountDetail $details;
 
-    /**
-     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
-     */
+    /** @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties */
     public function __construct(...$args)
     {
         self::setClassIfKeyNotExist($args, 'details', AmountDetail::class);
@@ -28,9 +28,7 @@ class TotalAmount extends Base
         parent::__construct(...$args);
     }
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public function jsonSerialize(): array
     {
         return [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 
 use Lloricode\Paymaya\Request\Base;
@@ -21,9 +23,7 @@ class BillingAddress extends Base
     public ?string $zipCode = null;
     public ?string $countryCode = null;
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public function jsonSerialize(): array
     {
         return [

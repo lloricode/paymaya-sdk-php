@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya;
 
 use ErrorException;
@@ -30,7 +32,7 @@ class PaymayaClient
      * @param  string  $publicKey
      * @param  string  $environment
      *
-     * @throws \ErrorException
+     * @throws ErrorException
      */
     public function __construct(string $secretKey, string $publicKey, string $environment = self::ENVIRONMENT_SANDBOX)
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Handler\MockHandler;
@@ -8,12 +10,12 @@ use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
 use Lloricode\Paymaya\Request\Checkout\Checkout;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
 
-use function PHPUnit\Framework\assertEquals;
-
-use function PHPUnit\Framework\assertInstanceOf;
-use function PHPUnit\Framework\assertSame;
-
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
+
+use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertInstanceOf;
+
+use function PHPUnit\Framework\assertSame;
 
 test('json check exact from docs', function () {
     assertSame(

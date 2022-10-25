@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Client\Checkout;
 
 use GuzzleHttp\Exception\GuzzleException;
@@ -29,7 +31,7 @@ class CustomizationClient extends BaseClient
             ->getBody()
             ->getContents();
 
-        return new Customization((array)json_decode($bodyContent));
+        return new Customization((array) json_decode($bodyContent));
     }
 
     /**
@@ -50,13 +52,10 @@ class CustomizationClient extends BaseClient
             throw $e;
         }
 
-
-        return new Customization((array)json_decode($content, true));
+        return new Customization((array) json_decode($content, true));
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException */
     public function delete(): void
     {
         $this->secretDelete();

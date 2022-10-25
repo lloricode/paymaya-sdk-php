@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Request\Checkout;
 
 use Lloricode\Paymaya\Request\Base;
@@ -15,9 +17,7 @@ class RedirectUrl extends Base
     public ?string $failure = null;
     public ?string $cancel = null;
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public function jsonSerialize(): array
     {
         return [

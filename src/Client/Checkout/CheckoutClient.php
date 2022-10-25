@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Client\Checkout;
 
 use Lloricode\Paymaya\Client\BaseClient;
@@ -23,7 +25,7 @@ class CheckoutClient extends BaseClient
     {
         $response = $this->publicPost(['json' => $checkoutRequest]);
 
-        $body = json_decode((string)$response->getBody(), true);
+        $body = json_decode((string) $response->getBody(), true);
 
         return new CheckoutResponse($body);
     }
@@ -108,7 +110,6 @@ class CheckoutClient extends BaseClient
 //                ->setMCO($body['metadata']['mco'])
 //                ->setMST($body['metadata']['mst'])
 //        );
-
 
 //        return $checkout;
     }

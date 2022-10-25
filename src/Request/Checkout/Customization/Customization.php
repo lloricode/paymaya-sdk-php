@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Request\Checkout\Customization;
 
 use Lloricode\Paymaya\Request\Base;
@@ -26,9 +28,7 @@ class Customization extends Base
     public ?bool $skipResultPage = null;
     public ?bool $showMerchantName = null;
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public function jsonSerialize(): array
     {
         return [

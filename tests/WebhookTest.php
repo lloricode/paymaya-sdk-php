@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Carbon\Carbon;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
@@ -13,12 +15,12 @@ use function PHPUnit\Framework\assertNotEquals;
 function sampleData(array $override = []): array
 {
     return $override + [
-            'name' => Webhook::CHECKOUT_SUCCESS,
-            'id' => 'test-generated-id',
-            'callbackUrl' => 'https://web.test/test/success',
-            'createdAt' => '2020-01-05T02:30:57.000Z',
-            'updatedAt' => '2021-02-05T02:30:57.000Z',
-        ];
+        'name' => Webhook::CHECKOUT_SUCCESS,
+        'id' => 'test-generated-id',
+        'callbackUrl' => 'https://web.test/test/success',
+        'createdAt' => '2020-01-05T02:30:57.000Z',
+        'updatedAt' => '2021-02-05T02:30:57.000Z',
+    ];
 }
 
 test('retrieve', function () {
@@ -37,7 +39,6 @@ test('retrieve', function () {
     ))
         ->retrieve();
 
-
     assertCount(1, $webhookResponses);
     assertCount(1, $history);
 
@@ -47,7 +48,6 @@ test('retrieve', function () {
     assertEquals($sampleData['callbackUrl'], $webhookResponses[0]->callbackUrl);
     assertEquals(Carbon::parse($sampleData['createdAt']), $webhookResponses[0]->createdAt);
     assertEquals(Carbon::parse($sampleData['updatedAt']), $webhookResponses[0]->updatedAt);
-
 
     /** @var \GuzzleHttp\Psr7\Response $response */
     $response = $history[0]['response'];
@@ -127,7 +127,6 @@ it('delete', function () {
     assertEquals(200, $response->getStatusCode());
     assertEquals(json_encode($data), $response->getBody()->getContents());
 });
-
 
 it('delete all', function () {
     $data = [sampleData()];

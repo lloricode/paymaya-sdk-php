@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Request\Webhook;
 
 use Carbon\Carbon;
@@ -34,9 +36,7 @@ class Webhook extends Base
     #[CastWith(CarbonCaster::class)]
     public ?Carbon $updatedAt = null;
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public function jsonSerialize(): array
     {
         return [

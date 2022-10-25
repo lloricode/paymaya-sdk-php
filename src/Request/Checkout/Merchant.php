@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Request\Checkout;
 
 use Lloricode\Paymaya\Request\Base;
@@ -16,9 +18,7 @@ class Merchant extends Base
     public bool $isPaymentFacilitator;
     public bool $isPageCustomized;
 
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     public array $supportedSchemes;
     public bool $canPayPal;
     public ?string $payPalEmail = null;
@@ -26,9 +26,7 @@ class Merchant extends Base
     public bool $expressCheckout;
     public string $name;
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public function jsonSerialize(): array
     {
         return [

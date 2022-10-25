@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\Client\WebhookClient;
 use Lloricode\Paymaya\PaymayaClient;
@@ -53,7 +55,6 @@ test('webhook zero data retrieved', function () {
         ->retrieve();
 
     assertCount(0, $data);
-
 
     /** @var \GuzzleHttp\Psr7\Response $response */
     $response = $history[0]['response'];

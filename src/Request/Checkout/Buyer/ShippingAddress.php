@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 
 use Lloricode\Paymaya\Request\Base;
@@ -33,9 +35,7 @@ class ShippingAddress extends Base
     public ?string $countryCode = null;
     public ?string $shippingType = null; // ST - for standard, SD - for same day
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public function jsonSerialize(): array
     {
         return [

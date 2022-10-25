@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Response\Checkout;
 
 class CheckoutResponse extends BaseResponse

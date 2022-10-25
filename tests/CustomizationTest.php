@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Handler\MockHandler;
@@ -82,7 +84,6 @@ it('retrieve', function () {
     $response = (new CustomizationClient(generatePaymayaClient($mock)))
         ->retrieve();
 
-
     assertSame(
         json_encode(json_decode($data), JSON_PRETTY_PRINT),
         json_encode($response->toArray(), JSON_PRETTY_PRINT)
@@ -100,7 +101,6 @@ it('retrieve no data', function () {
 
     $response = (new CustomizationClient(generatePaymayaClient($mock)))
         ->retrieve();
-
 
     assertSame(
         json_encode(json_decode(json_encode(new Customization())), JSON_PRETTY_PRINT),

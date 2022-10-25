@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Paymaya\Request;
 
 use ErrorException;
@@ -15,7 +17,7 @@ abstract class Base extends BaseDTO implements JsonSerializable
      * @param $arguments
      *
      * @return $this
-     * @throws \ErrorException
+     * @throws ErrorException
      */
     public function __call($name, $arguments): self
     {
@@ -34,7 +36,7 @@ abstract class Base extends BaseDTO implements JsonSerializable
             $properties['set'.ucfirst($field)] = $field;
         }
 
-        if (! array_key_exists($name, $properties)) {
+        if ( ! array_key_exists($name, $properties)) {
             throw new ErrorException(sprintf('%s::%s() not found.', static::class, $name));
         }
 
