@@ -10,17 +10,16 @@ use function PHPUnit\Framework\assertCount;
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertNotEquals;
 
-
 function sampleData(array $override = []): array
-    {
-        return $override + [
-                'name' => Webhook::CHECKOUT_SUCCESS,
-                'id' => 'test-generated-id',
-                'callbackUrl' => 'https://web.test/test/success',
-                'createdAt' => '2020-01-05T02:30:57.000Z',
-                'updatedAt' => '2021-02-05T02:30:57.000Z',
-            ];
-    }
+{
+    return $override + [
+            'name' => Webhook::CHECKOUT_SUCCESS,
+            'id' => 'test-generated-id',
+            'callbackUrl' => 'https://web.test/test/success',
+            'createdAt' => '2020-01-05T02:30:57.000Z',
+            'updatedAt' => '2021-02-05T02:30:57.000Z',
+        ];
+}
 
 test('retrieve', function () {
     $sampleData = sampleData();

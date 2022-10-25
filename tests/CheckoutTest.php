@@ -7,11 +7,13 @@ use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
 use Lloricode\Paymaya\Request\Checkout\Checkout;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
-use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 use function PHPUnit\Framework\assertEquals;
+
 use function PHPUnit\Framework\assertInstanceOf;
 use function PHPUnit\Framework\assertSame;
+
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 test('json check exact from docs', function () {
     assertSame(
@@ -58,7 +60,6 @@ it('check via sandbox', function () {
 });
 
 it('show with id success', function () {
-
     $responseData = '{
     "id": "4ef96167-b8f2-4400-912e-5bd2f4289cfb",
     "items": [
@@ -237,4 +238,3 @@ it('show with id success', function () {
 
 //        $this->assertContains((array) json_decode($responseData, true),$checkoutResponse->toArray());
 });
-
