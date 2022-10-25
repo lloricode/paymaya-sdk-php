@@ -71,11 +71,11 @@ class Checkout extends Base
     /**
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
-    public function __construct(array $parameters = [])
+    public function __construct(...$args)
     {
-        self::setClassIfKeyNotExist($parameters, 'totalAmount', TotalAmount::class);
+        self::setClassIfKeyNotExist($args, 'totalAmount', TotalAmount::class);
 
-        parent::__construct($parameters);
+        parent::__construct(...$args);
     }
 
     public function __call($name, $arguments): self

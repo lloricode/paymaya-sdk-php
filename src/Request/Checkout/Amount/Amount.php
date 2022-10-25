@@ -16,11 +16,11 @@ class Amount extends Base
     /**
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
-    public function __construct(array $parameters = [])
+    public function __construct(...$args)
     {
-        self::setClassIfKeyNotExist($parameters, 'details', AmountDetail::class);
+        self::setClassIfKeyNotExist($args, 'details', AmountDetail::class);
 
-        parent::__construct($parameters);
+        parent::__construct(...$args);
     }
 
     /**

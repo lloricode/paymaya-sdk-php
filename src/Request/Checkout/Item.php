@@ -25,12 +25,12 @@ class Item extends Base
     /**
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
-    public function __construct(array $parameters = [])
+    public function __construct(...$args)
     {
-        self::setClassIfKeyNotExist($parameters, 'amount', Amount::class);
-        self::setClassIfKeyNotExist($parameters, 'totalAmount', Amount::class);
+        self::setClassIfKeyNotExist($args, 'amount', Amount::class);
+        self::setClassIfKeyNotExist($args, 'totalAmount', Amount::class);
 
-        parent::__construct($parameters);
+        parent::__construct(...$args);
     }
 
     /**
