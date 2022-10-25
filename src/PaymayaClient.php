@@ -36,24 +36,12 @@ class PaymayaClient
      */
     public function __construct(string $secretKey, string $publicKey, string $environment = self::ENVIRONMENT_SANDBOX)
     {
-        switch ($environment) {
-            // @codeCoverageIgnoreStart
-            case self::ENVIRONMENT_PRODUCTION:
-                $this->base_url = self::BASE_URL_PRODUCTION;
-
-                break;
-            case self::ENVIRONMENT_SANDBOX:
-                $this->base_url = self::BASE_URL_SANDBOX;
-
-                break;
-                // @codeCoverageIgnoreEnd
-            case self::ENVIRONMENT_TESTING:
-                $this->base_url = 'testing';
-
-                break;
-            default:
-                throw new ErrorException("Invalid environment `$environment`.");
-        }
+        $this->base_url = match ($environment) {
+            self::ENVIRONMENT_PRODUCTION => self::BASE_URL_PRODUCTION,
+            self::ENVIRONMENT_SANDBOX => self::BASE_URL_SANDBOX,
+            self::ENVIRONMENT_TESTING => 'testing',
+            default => throw new ErrorException("Invalid environment `$environment`."),
+        };
 
         $this->secret_key = $secretKey;
         $this->public_key = $publicKey;
