@@ -25,9 +25,7 @@ class PaymayaClient
 
     private ?HandlerStack $handler_stack = null;
 
-    /**
-     * @throws ErrorException
-     */
+    /** @throws ErrorException */
     public function __construct(string $secretKey, string $publicKey, string $environment = self::ENVIRONMENT_SANDBOX)
     {
         $this->base_url = match ($environment) {
