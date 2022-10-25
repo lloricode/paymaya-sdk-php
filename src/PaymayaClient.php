@@ -44,7 +44,7 @@ class PaymayaClient
                 $this->base_url = self::BASE_URL_SANDBOX;
 
                 break;
-            // @codeCoverageIgnoreEnd
+                // @codeCoverageIgnoreEnd
             case self::ENVIRONMENT_TESTING:
                 $this->base_url = 'testing';
 

@@ -43,5 +43,4 @@ abstract class BaseDTO extends DataTransferObject
 
         $array[$key] = is_string($class) ? new $class() : $class;
     }
-
 }
