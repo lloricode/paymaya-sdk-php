@@ -26,12 +26,6 @@ class PaymayaClient
     private ?HandlerStack $handler_stack = null;
 
     /**
-     * PaymayaClient constructor.
-     *
-     * @param  string  $secretKey
-     * @param  string  $publicKey
-     * @param  string  $environment
-     *
      * @throws ErrorException
      */
     public function __construct(string $secretKey, string $publicKey, string $environment = self::ENVIRONMENT_SANDBOX)
