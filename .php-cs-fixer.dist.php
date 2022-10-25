@@ -12,7 +12,9 @@ $finder = Symfony\Component\Finder\Finder::create()
 return (new PhpCsFixer\Config())
     ->setRules([
         '@PSR12' => true,
-    ]+json_decode(<<<JSON
+    ]+
+        // https://gist.github.com/lloricode/175ceefd1b3b65d29250fa68d5faad86
+        json_decode(<<<JSON
 {
         "align_multiline_comment": true,
         "array_indentation": true,
