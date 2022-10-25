@@ -2,8 +2,6 @@
 
 namespace Lloricode\Paymaya;
 
-use Carbon\Carbon;
-use Spatie\DataTransferObject\Attributes\CastWith;
 use Spatie\DataTransferObject\Attributes\Strict;
 use Spatie\DataTransferObject\DataTransferObject;
 

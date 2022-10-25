@@ -8,5 +8,4 @@ class Total extends BaseResponse
 {
     public string $currency;
     public float $value;
-
 }

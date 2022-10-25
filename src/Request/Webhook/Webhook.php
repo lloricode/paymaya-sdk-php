@@ -34,7 +34,6 @@ class Webhook extends Base
     #[CastWith(CarbonCaster::class)]
     public ?Carbon $updatedAt = null;
 
-
     /**
      * @inheritDoc
      */
