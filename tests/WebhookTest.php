@@ -169,4 +169,5 @@ it('delete all', function () {
 
     assertEquals(204, $response1->getStatusCode());
 //        assertEquals('', $response1->getBody()->getContents());
-})->depends('retrieve');
+});
+    //->depends('retrieve');
