@@ -27,8 +27,8 @@
     "require-dev": {
         "composer-runtime-api": "^2.0",
         "mockery/mockery": "^1.4",
+        "pestphp/pest": "^1.22",
         "phly/keep-a-changelog": "^2.11",
-        "phpunit/phpunit": "^9.4",
         "vimeo/psalm": "^4.0.1"
     },
     "autoload": {
@@ -46,7 +46,10 @@
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

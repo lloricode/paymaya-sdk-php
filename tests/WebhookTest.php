@@ -1,16 +1,17 @@
 <?php
 
-namespace Lloricode\Paymaya\Tests;
-
 use Carbon\Carbon;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\Client\WebhookClient;
 use Lloricode\Paymaya\Request\Webhook\Webhook;
 
-class WebhookTest extends TestCase
-{
-    private static function sampleData(array $override = []): array
+use function PHPUnit\Framework\assertCount;
+use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertNotEquals;
+
+
+function sampleData(array $override = []): array
     {
         return $override + [
                 'name' => Webhook::CHECKOUT_SUCCESS,
@@ -21,178 +22,152 @@ class WebhookTest extends TestCase
             ];
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @test
-     */
-    public function retrieve()
-    {
-        $sampleData = self::sampleData();
+it('retrieve', function () {
+    $sampleData = sampleData();
 
-        $history = [];
+    $history = [];
 
-        $webhookResponses = (new WebhookClient(
-            self::mockApiClient(
-                [
-                    $sampleData,
-                ],
-                200,
-                $history
-            )
-        ))
-            ->retrieve();
-
-
-        $this->assertCount(1, $webhookResponses);
-        $this->assertCount(1, $history);
-
-        $webhookResponses = array_values($webhookResponses);
-        $this->assertEquals($sampleData['id'], $webhookResponses[0]->id);
-        $this->assertEquals($sampleData['name'], $webhookResponses[0]->name);
-        $this->assertEquals($sampleData['callbackUrl'], $webhookResponses[0]->callbackUrl);
-        $this->assertEquals(Carbon::parse($sampleData['createdAt']), $webhookResponses[0]->createdAt);
-        $this->assertEquals(Carbon::parse($sampleData['updatedAt']), $webhookResponses[0]->updatedAt);
-
-
-        /** @var \GuzzleHttp\Psr7\Response $response */
-        $response = $history[0]['response'];
-
-        $this->assertEquals(200, $response->getStatusCode());
-    }
-
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @test
-     */
-    public function register()
-    {
-        $data = self::sampleData();
-
-        $webhookResponse = (new WebhookClient(self::mockApiClient($data)))
-            ->register(
-                (new Webhook())
-                    ->setName($data['name'])
-                    ->setCallbackUrl($data['callbackUrl'])
-            );
-
-        $this->assertEquals($data['id'], $webhookResponse->id);
-        $this->assertEquals($data['name'], $webhookResponse->name);
-        $this->assertEquals($data['callbackUrl'], $webhookResponse->callbackUrl);
-
-        $this->assertEquals(Carbon::parse($data['createdAt']), $webhookResponse->createdAt);
-        $this->assertEquals(Carbon::parse($data['updatedAt']), $webhookResponse->updatedAt);
-    }
-
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @test
-     */
-    public function update()
-    {
-        $newUrl = 'https://web.test/test/success-test-new-update';
-        $data = self::sampleData(['callbackUrl' => $newUrl]);
-
-        $webhookResponse = (new Webhook());
-        $webhookResponse->setId($data['id']);
-        $webhookResponse->setName($data['name']);
-        $webhookResponse->setCallbackUrl('https://old-url');
-
-        $history = [];
-
-        /** @var Webhook $webhookResponse */
-        $webhookResponse = (new WebhookClient(self::mockApiClient($data, 200, $history)))
-            ->update(
-                $webhookResponse
-                    ->setCallbackUrl($newUrl)
-            );
-
-        $this->assertCount(1, $history);
-
-        /** @var \GuzzleHttp\Psr7\Response $response */
-        $response = $history[0]['response'];
-
-        $this->assertEquals(200, $response->getStatusCode());
-
-        $contentBody = $response->getBody()->getContents();
-        $this->assertNotEquals(json_encode($data), $contentBody);
-
-        $this->assertEquals($newUrl, $webhookResponse->callbackUrl);
-    }
-
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @test
-     */
-    public function delete()
-    {
-        $data = self::sampleData();
-
-        $webhookResponse = (new Webhook());
-        $webhookResponse->setId($data['id']);
-        $webhookResponse->setName($data['name']);
-        $webhookResponse->setCallbackUrl($data['callbackUrl']);
-
-        $history = [];
-
-        (new WebhookClient(self::mockApiClient($data, 200, $history)))
-            ->delete(
-                $webhookResponse
-            );
-
-        $this->assertCount(1, $history);
-
-        /** @var \GuzzleHttp\Psr7\Response $response */
-        $response = $history[0]['response'];
-
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals(json_encode($data), $response->getBody()->getContents());
-    }
-
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @test
-     * @depends retrieve
-     */
-    public function delete_all()
-    {
-        $data = [self::sampleData()];
-
-        $history = [];
-        $mock = self::generatePaymayaClient(
-            new MockHandler(
-                [
-                    new Response( // retrieve only
-                        200,
-                        [],
-                        json_encode(
-                            $data
-                        ),
-                    ),
-                    new Response( // delete
-                        204, // not actual, just a test since uses DELETE
-                        [],
-                        '',
-                    ),
-                ]
-            ),
+    $webhookResponses = (new WebhookClient(
+        mockApiClient(
+            [
+                $sampleData,
+            ],
+            200,
             $history
+        )
+    ))
+        ->retrieve();
+
+
+    assertCount(1, $webhookResponses);
+    assertCount(1, $history);
+
+    $webhookResponses = array_values($webhookResponses);
+    assertEquals($sampleData['id'], $webhookResponses[0]->id);
+    assertEquals($sampleData['name'], $webhookResponses[0]->name);
+    assertEquals($sampleData['callbackUrl'], $webhookResponses[0]->callbackUrl);
+    assertEquals(Carbon::parse($sampleData['createdAt']), $webhookResponses[0]->createdAt);
+    assertEquals(Carbon::parse($sampleData['updatedAt']), $webhookResponses[0]->updatedAt);
+
+
+    /** @var \GuzzleHttp\Psr7\Response $response */
+    $response = $history[0]['response'];
+
+    assertEquals(200, $response->getStatusCode());
+});
+
+it('register', function () {
+    $data = sampleData();
+
+    $webhookResponse = (new WebhookClient(mockApiClient($data)))
+        ->register(
+            (new Webhook())
+                ->setName($data['name'])
+                ->setCallbackUrl($data['callbackUrl'])
         );
 
-        (new WebhookClient($mock))
-            ->deleteAll();
+    assertEquals($data['id'], $webhookResponse->id);
+    assertEquals($data['name'], $webhookResponse->name);
+    assertEquals($data['callbackUrl'], $webhookResponse->callbackUrl);
 
-        $this->assertCount(2, $history);
+    assertEquals(Carbon::parse($data['createdAt']), $webhookResponse->createdAt);
+    assertEquals(Carbon::parse($data['updatedAt']), $webhookResponse->updatedAt);
+});
 
-        /** @var \GuzzleHttp\Psr7\Response $response */
-        $response0 = $history[0]['response'];
+it('update', function () {
+    $newUrl = 'https://web.test/test/success-test-new-update';
+    $data = sampleData(['callbackUrl' => $newUrl]);
 
-        $this->assertEquals(200, $response0->getStatusCode());
-//        $this->assertEquals(json_encode($data), $response0->getBody()->getContents());
+    $webhookResponse = (new Webhook());
+    $webhookResponse->setId($data['id']);
+    $webhookResponse->setName($data['name']);
+    $webhookResponse->setCallbackUrl('https://old-url');
 
-        /** @var \GuzzleHttp\Psr7\Response $response */
-        $response1 = $history[1]['response'];
+    $history = [];
 
-        $this->assertEquals(204, $response1->getStatusCode());
-//        $this->assertEquals('', $response1->getBody()->getContents());
-    }
-}
+    /** @var Webhook $webhookResponse */
+    $webhookResponse = (new WebhookClient(mockApiClient($data, 200, $history)))
+        ->update(
+            $webhookResponse
+                ->setCallbackUrl($newUrl)
+        );
+
+    assertCount(1, $history);
+
+    /** @var \GuzzleHttp\Psr7\Response $response */
+    $response = $history[0]['response'];
+
+    assertEquals(200, $response->getStatusCode());
+
+    $contentBody = $response->getBody()->getContents();
+    assertNotEquals(json_encode($data), $contentBody);
+
+    assertEquals($newUrl, $webhookResponse->callbackUrl);
+});
+
+it('delete', function () {
+    $data = sampleData();
+
+    $webhookResponse = (new Webhook());
+    $webhookResponse->setId($data['id']);
+    $webhookResponse->setName($data['name']);
+    $webhookResponse->setCallbackUrl($data['callbackUrl']);
+
+    $history = [];
+
+    (new WebhookClient(mockApiClient($data, 200, $history)))
+        ->delete(
+            $webhookResponse
+        );
+
+    assertCount(1, $history);
+
+    /** @var \GuzzleHttp\Psr7\Response $response */
+    $response = $history[0]['response'];
+
+    assertEquals(200, $response->getStatusCode());
+    assertEquals(json_encode($data), $response->getBody()->getContents());
+});
+
+
+it('delete all', function () {
+    $data = [sampleData()];
+
+    $history = [];
+    $mock = generatePaymayaClient(
+        new MockHandler(
+            [
+                new Response( // retrieve only
+                    200,
+                    [],
+                    json_encode(
+                        $data
+                    ),
+                ),
+                new Response( // delete
+                    204, // not actual, just a test since uses DELETE
+                    [],
+                    '',
+                ),
+            ]
+        ),
+        $history
+    );
+
+    (new WebhookClient($mock))
+        ->deleteAll();
+
+    assertCount(2, $history);
+
+    /** @var \GuzzleHttp\Psr7\Response $response */
+    $response0 = $history[0]['response'];
+
+    assertEquals(200, $response0->getStatusCode());
+//        assertEquals(json_encode($data), $response0->getBody()->getContents());
+
+    /** @var \GuzzleHttp\Psr7\Response $response */
+    $response1 = $history[1]['response'];
+
+    assertEquals(204, $response1->getStatusCode());
+//        assertEquals('', $response1->getBody()->getContents());
+})->depends('retrieve');

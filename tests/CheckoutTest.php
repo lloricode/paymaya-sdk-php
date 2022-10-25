@@ -1,8 +1,5 @@
 <?php
 
-namespace Lloricode\Paymaya\Tests;
-
-use ErrorException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Handler\MockHandler;
@@ -12,67 +9,57 @@ use Lloricode\Paymaya\Request\Checkout\Checkout;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
-class CheckoutTest extends TestCase
-{
-    /** @test */
-    public function json_check_exact_from_docs()
-    {
-        $this->assertSame(
-            json_encode(json_decode(self::jsonCheckoutDataFromDocs(), true), JSON_PRETTY_PRINT),
-            json_encode(self::buildCheckout(), JSON_PRETTY_PRINT)
-        );
-    }
+use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertInstanceOf;
+use function PHPUnit\Framework\assertSame;
 
-    /**
-     * @test
-     */
-    public function check_via_sandbox()
-    {
-        $id = 'test-generated-id';
-        $url = 'https://test';
+test('json check exact from docs', function () {
+    assertSame(
+        json_encode(json_decode(jsonCheckoutDataFromDocs(), true), JSON_PRETTY_PRINT),
+        json_encode(buildCheckout(), JSON_PRETTY_PRINT)
+    );
+});
 
-        $mock = new MockHandler(
-            [
-                new Response(
-                    200,
-                    [],
-                    json_encode(
-                        [
-                            'checkoutId' => $id,
-                            'redirectUrl' => $url,
-                        ]
-                    ),
+it('check via sandbox', function () {
+    $id = 'test-generated-id';
+    $url = 'https://test';
+
+    $mock = new MockHandler(
+        [
+            new Response(
+                200,
+                [],
+                json_encode(
+                    [
+                        'checkoutId' => $id,
+                        'redirectUrl' => $url,
+                    ]
                 ),
-            ]
-        );
+            ),
+        ]
+    );
 
-        $checkoutResponse = null;
+    $checkoutResponse = null;
 
-        try {
-            $checkoutResponse = (new CheckoutClient(self::generatePaymayaClient($mock)))
-                ->execute(self::buildCheckout());
-        } catch (ErrorException $e) {
-            $this->fail('ErrorException');
-        } catch (ClientException $e) {
-            $this->fail('ClientException: '.$e->getMessage().$e->getResponse()->getBody());
-        } catch (GuzzleException $e) {
-            $this->fail('GuzzleException');
-        } catch (UnknownProperties $e) {
-        }
-
-        $this->assertEquals($id, $checkoutResponse->checkoutId);
-        $this->assertEquals($url, $checkoutResponse->redirectUrl);
+    try {
+        $checkoutResponse = (new CheckoutClient(generatePaymayaClient($mock)))
+            ->execute(buildCheckout());
+    } catch (ErrorException $e) {
+        $this->fail('ErrorException');
+    } catch (ClientException $e) {
+        $this->fail('ClientException: ' . $e->getMessage() . $e->getResponse()->getBody());
+    } catch (GuzzleException $e) {
+        $this->fail('GuzzleException');
+    } catch (UnknownProperties $e) {
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
-     * @test
-     */
-    public function show_with_id_success()
-    {
-//        $this->markTestSkipped();
-        $responseData = '{
+    assertEquals($id, $checkoutResponse->checkoutId);
+    assertEquals($url, $checkoutResponse->redirectUrl);
+});
+
+it('show with id success', function () {
+
+    $responseData = '{
     "id": "4ef96167-b8f2-4400-912e-5bd2f4289cfb",
     "items": [
         {
@@ -222,23 +209,23 @@ class CheckoutTest extends TestCase
     },
     "transactionReferenceNumber": "xxx"
 }';
-        $mock = new MockHandler(
-            [
-                new Response(
-                    200,
-                    [],
-                    $responseData,
-                ),
-            ]
-        );
+    $mock = new MockHandler(
+        [
+            new Response(
+                200,
+                [],
+                $responseData,
+            ),
+        ]
+    );
 
-        $checkoutResponse = (new CheckoutClient(self::generatePaymayaClient($mock)))
-            ->retrieve('4ef96167-b8f2-4400-912e-5bd2f4289cfb');
+    $checkoutResponse = (new CheckoutClient(generatePaymayaClient($mock)))
+        ->retrieve('4ef96167-b8f2-4400-912e-5bd2f4289cfb');
 
-        $this->assertInstanceOf(Checkout::class, $checkoutResponse);
+    assertInstanceOf(Checkout::class, $checkoutResponse);
 
-        $this->assertEquals('4ef96167-b8f2-4400-912e-5bd2f4289cfb', $checkoutResponse->id);
-        $this->assertInstanceOf(PaymentDetail::class, $checkoutResponse->paymentDetails);
+    assertEquals('4ef96167-b8f2-4400-912e-5bd2f4289cfb', $checkoutResponse->id);
+    assertInstanceOf(PaymentDetail::class, $checkoutResponse->paymentDetails);
 
 //        $sortAndEncode = function(string $json): string {
 //            $array = (array) json_decode($json, true);
@@ -249,5 +236,5 @@ class CheckoutTest extends TestCase
 //        $this->assertSame($sortAndEncode($responseData), $sortAndEncode(json_encode($checkoutResponse->toArray())));
 
 //        $this->assertContains((array) json_decode($responseData, true),$checkoutResponse->toArray());
-    }
-}
+});
+
