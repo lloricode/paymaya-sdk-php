@@ -58,7 +58,7 @@ class MetaData extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'smi' => $this->smi,

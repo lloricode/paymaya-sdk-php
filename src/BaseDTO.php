@@ -8,28 +8,8 @@ use Spatie\DataTransferObject\Attributes\Strict;
 use Spatie\DataTransferObject\DataTransferObject;
 
 #[Strict]
-#[CastWith(DTOCaster::class)]
 abstract class BaseDTO extends DataTransferObject
 {
-    protected static function setCarbon(array &$array, string $key): void
-    {
-        if (! isset($array[$key]) || $array[$key] instanceof Carbon) {
-            return;
-        }
-
-        $array[$key] = Carbon::parse($array[$key]);
-    }
-
-    protected static function toFloat(array &$array, string $key): void
-    {
-        $array[$key] = (float)($array[$key] ?? 0);
-    }
-
-    protected static function toInt(array &$array, string $key): void
-    {
-        $array[$key] = (int)($array[$key] ?? 0);
-    }
-
     /**
      * @param  array  $array
      * @param  string  $key

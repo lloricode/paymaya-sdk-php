@@ -16,7 +16,7 @@ class Contact extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'phone' => $this->phone,

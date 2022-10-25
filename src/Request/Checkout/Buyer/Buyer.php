@@ -39,7 +39,7 @@ class Buyer extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         $birthday = $this->birthday;
         $customerSince = $this->customerSince;

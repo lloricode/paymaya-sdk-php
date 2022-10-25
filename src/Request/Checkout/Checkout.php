@@ -4,9 +4,11 @@ namespace Lloricode\Paymaya\Request\Checkout;
 
 use Carbon\Carbon;
 use ErrorException;
+use Lloricode\Paymaya\Casters\CarbonCaster;
 use Lloricode\Paymaya\Request\Base;
 use Lloricode\Paymaya\Request\Checkout\Buyer\Buyer;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
+use Spatie\DataTransferObject\Attributes\CastWith;
 
 /**
  * https://hackmd.io/@paymaya-pg/Checkout#Body
@@ -51,8 +53,11 @@ class Checkout extends Base
     // responses
     // https://hackmd.io/@paymaya-pg/Checkout#Get-Checkout---GET-httpspg-sandboxpaymayacomcheckoutv1checkoutscheckoutId
     public ?string $receiptNumber = null;
+    #[CastWith(CarbonCaster::class)]
     public ?Carbon $createdAt = null;
+    #[CastWith(CarbonCaster::class)]
     public ?Carbon $updatedAt = null;
+    #[CastWith(CarbonCaster::class)]
     public ?Carbon $expiredAt = null;
     public ?bool $expressCheckout = null;
     public float $refundedAmount = 0;
@@ -69,10 +74,6 @@ class Checkout extends Base
     public function __construct(array $parameters = [])
     {
         self::setClassIfKeyNotExist($parameters, 'totalAmount', TotalAmount::class);
-        self::setCarbon($parameters, 'createdAt');
-        self::setCarbon($parameters, 'updatedAt');
-        self::setCarbon($parameters, 'expiredAt');
-        self::toFloat($parameters, 'refundedAmount');
 
         parent::__construct($parameters);
     }
@@ -89,7 +90,7 @@ class Checkout extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

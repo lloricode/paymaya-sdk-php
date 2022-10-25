@@ -24,8 +24,6 @@ class TotalAmount extends Base
     public function __construct(array $parameters = [])
     {
         self::setClassIfKeyNotExist($parameters, 'details', AmountDetail::class);
-        self::toFloat($parameters, 'value');
-        self::toFloat($parameters, 'amount');
 
         parent::__construct($parameters);
     }
@@ -33,7 +31,7 @@ class TotalAmount extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'value' => $this->value,

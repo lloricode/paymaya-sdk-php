@@ -29,7 +29,7 @@ class Customization extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'logoUrl' => $this->logoUrl,

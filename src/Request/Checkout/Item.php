@@ -29,7 +29,6 @@ class Item extends Base
     {
         self::setClassIfKeyNotExist($parameters, 'amount', Amount::class);
         self::setClassIfKeyNotExist($parameters, 'totalAmount', Amount::class);
-        self::toInt($parameters, 'quantity');
 
         parent::__construct($parameters);
     }
@@ -37,7 +36,7 @@ class Item extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

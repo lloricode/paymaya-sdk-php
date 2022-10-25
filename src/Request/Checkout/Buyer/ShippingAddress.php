@@ -36,7 +36,7 @@ class ShippingAddress extends Base
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'firstName' => $this->firstName,

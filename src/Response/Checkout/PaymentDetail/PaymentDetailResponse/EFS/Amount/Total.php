@@ -9,10 +9,4 @@ class Total extends BaseResponse
     public string $currency;
     public float $value;
 
-    public function __construct(array $parameters = [])
-    {
-        self::toFloat($parameters, 'value');
-
-        parent::__construct($parameters);
-    }
 }

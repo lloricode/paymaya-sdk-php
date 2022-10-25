@@ -3,7 +3,9 @@
 namespace Lloricode\Paymaya\Request\Webhook;
 
 use Carbon\Carbon;
+use Lloricode\Paymaya\Casters\CarbonCaster;
 use Lloricode\Paymaya\Request\Base;
+use Spatie\DataTransferObject\Attributes\CastWith;
 
 /**
  * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview#webhooks
@@ -27,24 +29,16 @@ class Webhook extends Base
     public ?string $id = null;
     public ?string $name = null;
     public ?string $callbackUrl = null;
+    #[CastWith(CarbonCaster::class)]
     public ?Carbon $createdAt = null;
+    #[CastWith(CarbonCaster::class)]
     public ?Carbon $updatedAt = null;
 
-    /**
-     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
-     */
-    public function __construct(array $parameters = [])
-    {
-        self::setCarbon($parameters, 'createdAt');
-        self::setCarbon($parameters, 'updatedAt');
-
-        parent::__construct($parameters);
-    }
 
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

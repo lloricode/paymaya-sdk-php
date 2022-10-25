@@ -20,23 +20,9 @@ class AmountDetail extends Base
     public float $subtotal = 0;
 
     /**
-     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
-     */
-    public function __construct(array $parameters = [])
-    {
-        self::toFloat($parameters, 'discount');
-        self::toFloat($parameters, 'serviceCharge');
-        self::toFloat($parameters, 'shippingFee');
-        self::toFloat($parameters, 'tax');
-        self::toFloat($parameters, 'subtotal');
-
-        parent::__construct($parameters);
-    }
-
-    /**
      * @inheritDoc
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'discount' => $this->discount,
