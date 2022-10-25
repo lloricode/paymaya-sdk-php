@@ -22,7 +22,7 @@ function sampleData(array $override = []): array
             ];
     }
 
-it('retrieve', function () {
+test('retrieve', function () {
     $sampleData = sampleData();
 
     $history = [];
