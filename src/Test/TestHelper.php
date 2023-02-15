@@ -19,9 +19,7 @@ use Lloricode\Paymaya\Request\Checkout\TotalAmount;
 
 class TestHelper
 {
-    /**
-     * https://hackmd.io/@paymaya-pg/Checkout
-     */
+    /** https://hackmd.io/@paymaya-pg/Checkout */
     public static function jsonCheckoutDataFromDocs(): string
     {
         return '{

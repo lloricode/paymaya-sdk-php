@@ -19,9 +19,7 @@ class CustomizationClient extends BaseClient
         return "checkout/v$uriVersion/customizations";
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties */
     public function register(Customization $customization): Customization
     {
         $bodyContent = $this->secretPost(['json' => $customization])
@@ -31,9 +29,7 @@ class CustomizationClient extends BaseClient
         return new Customization((array) json_decode($bodyContent));
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties */
     public function retrieve(): Customization
     {
         try {

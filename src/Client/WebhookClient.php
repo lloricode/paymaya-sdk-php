@@ -9,9 +9,7 @@ use Lloricode\Paymaya\Request\Webhook\Webhook;
 
 class WebhookClient extends BaseClient
 {
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties */
     public function register(Webhook $webhookRequest): Webhook
     {
         $bodyContent = $this->secretPost(['json' => $webhookRequest])
@@ -48,9 +46,7 @@ class WebhookClient extends BaseClient
 //        return Webhook::arrayOf(json_decode($content, true));
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties */
     public function update(Webhook $webhookRequest): Webhook
     {
         $bodyContent = $this->secretPut($webhookRequest->id ?: '', ['json' => $webhookRequest])->getBody()
@@ -59,9 +55,7 @@ class WebhookClient extends BaseClient
         return new Webhook((array) json_decode($bodyContent));
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException */
     public function delete(Webhook $webhookRequest): void
     {
         $this->secretDelete($webhookRequest->id ?: '');

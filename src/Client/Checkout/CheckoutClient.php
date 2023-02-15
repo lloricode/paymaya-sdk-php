@@ -15,9 +15,7 @@ class CheckoutClient extends BaseClient
         return "checkout/v$uriVersion/checkouts";
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties */
     public function execute(Checkout $checkoutRequest): CheckoutResponse
     {
         $response = $this->publicPost(['json' => $checkoutRequest]);
@@ -27,9 +25,7 @@ class CheckoutClient extends BaseClient
         return new CheckoutResponse($body);
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties */
     public function retrieve(string $id): Checkout
     {
         $response = $this->secretGet($id);

@@ -24,26 +24,19 @@ abstract class BaseClient
         return $this;
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException */
     protected function secretPost(array $options = []): ResponseInterface
     {
         return $this->paymayaClient->secretClient()->post($this->uri($this->version), $options);
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException */
     protected function publicPost(array $options = []): ResponseInterface
     {
         return $this->paymayaClient->publicClient()->post($this->uri($this->version), $options);
     }
 
-    /**
-     *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException */
     protected function secretGet(string $appendUrl = '', array $options = []): ResponseInterface
     {
         return $this->paymayaClient->secretClient()->get($this->uri($this->version)."/$appendUrl", $options);
@@ -60,19 +53,13 @@ abstract class BaseClient
     //    {
     //        return $this->paymayaClient->publicClient()->get($this->uri($this->version), $options);
     //    }
-    /**
-     *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException */
     protected function secretPut(string $appendUrl = '', array $options = []): ResponseInterface
     {
         return $this->paymayaClient->secretClient()->put($this->uri($this->version)."/$appendUrl", $options);
     }
 
-    /**
-     *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
+    /** @throws \GuzzleHttp\Exception\GuzzleException */
     protected function secretDelete(string $appendUrl = '', array $options = []): ResponseInterface
     {
         return $this->paymayaClient->secretClient()->delete($this->uri($this->version)."/$appendUrl", $options);
