@@ -10,11 +10,6 @@ use Spatie\DataTransferObject\DataTransferObject;
 #[Strict]
 abstract class BaseDTO extends DataTransferObject
 {
-    /**
-     * @param  array  $array
-     * @param  string  $key
-     * @param  object|string  $class
-     */
     protected static function setClassIfKeyNotExist(array &$array, string $key, object|string $class): void
     {
         if (isset($array[$key])) {

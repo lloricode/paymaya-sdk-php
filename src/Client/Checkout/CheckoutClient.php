@@ -16,9 +16,6 @@ class CheckoutClient extends BaseClient
     }
 
     /**
-     * @param  \Lloricode\Paymaya\Request\Checkout\Checkout  $checkoutRequest
-     *
-     * @return \Lloricode\Paymaya\Response\Checkout\CheckoutResponse
      * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function execute(Checkout $checkoutRequest): CheckoutResponse
@@ -31,9 +28,6 @@ class CheckoutClient extends BaseClient
     }
 
     /**
-     * @param  string  $id
-     *
-     * @return \Lloricode\Paymaya\Request\Checkout\Checkout
      * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function retrieve(string $id): Checkout

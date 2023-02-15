@@ -11,13 +11,6 @@ use Lloricode\Paymaya\Test\TestHelper;
 
 use function PHPUnit\Framework\assertEquals;
 
-/**
- * @param  array  $array
- * @param  int  $status
- * @param  array  $historyContainer
- *
- * @return \Lloricode\Paymaya\PaymayaClient
- */
 function mockApiClient(
     array $array,
     int $status = 200,
@@ -39,12 +32,6 @@ function mockApiClient(
     );
 }
 
-/**
- * @param  \GuzzleHttp\Handler\MockHandler  $mockHandler
- * @param  array  $historyContainer
- *
- * @return \Lloricode\Paymaya\PaymayaClient
- */
 function generatePaymayaClient(
     MockHandler $mockHandler,
     array &$historyContainer = []
@@ -66,7 +53,6 @@ function buildCheckout(): Checkout
 
 /**
  * https://hackmd.io/@paymaya-pg/Checkout
- * @return string
  */
 function jsonCheckoutDataFromDocs(): string
 {

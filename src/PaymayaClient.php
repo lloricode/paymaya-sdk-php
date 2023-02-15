@@ -18,15 +18,12 @@ class PaymayaClient
     public const ENVIRONMENT_PRODUCTION = 'production';
     public const ENVIRONMENT_TESTING = 'testing';
 
-    private string $public_key;
-    private string $secret_key;
-
     private string $base_url;
 
     private ?HandlerStack $handler_stack = null;
 
     /** @throws ErrorException */
-    public function __construct(string $secretKey, string $publicKey, string $environment = self::ENVIRONMENT_SANDBOX)
+    public function __construct(private string $secret_key, private string $public_key, string $environment = self::ENVIRONMENT_SANDBOX)
     {
         $this->base_url = match ($environment) {
             self::ENVIRONMENT_PRODUCTION => self::BASE_URL_PRODUCTION,
@@ -34,9 +31,6 @@ class PaymayaClient
             self::ENVIRONMENT_TESTING => 'testing',
             default => throw new ErrorException("Invalid environment `$environment`."),
         };
-
-        $this->secret_key = $secretKey;
-        $this->public_key = $publicKey;
     }
 
     private function client(array $header): GuzzleClient

@@ -21,7 +21,6 @@ class TestHelper
 {
     /**
      * https://hackmd.io/@paymaya-pg/Checkout
-     * @return string
      */
     public static function jsonCheckoutDataFromDocs(): string
     {

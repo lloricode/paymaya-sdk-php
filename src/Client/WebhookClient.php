@@ -10,9 +10,6 @@ use Lloricode\Paymaya\Request\Webhook\Webhook;
 class WebhookClient extends BaseClient
 {
     /**
-     * @param  \Lloricode\Paymaya\Request\Webhook\Webhook  $webhookRequest
-     *
-     * @return \Lloricode\Paymaya\Request\Webhook\Webhook
      * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function register(Webhook $webhookRequest): Webhook
@@ -52,9 +49,6 @@ class WebhookClient extends BaseClient
     }
 
     /**
-     * @param  \Lloricode\Paymaya\Request\Webhook\Webhook  $webhookRequest
-     *
-     * @return \Lloricode\Paymaya\Request\Webhook\Webhook
      * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function update(Webhook $webhookRequest): Webhook
@@ -66,8 +60,6 @@ class WebhookClient extends BaseClient
     }
 
     /**
-     * @param  \Lloricode\Paymaya\Request\Webhook\Webhook  $webhookRequest
-     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function delete(Webhook $webhookRequest): void
