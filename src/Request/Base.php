@@ -12,9 +12,7 @@ use ReflectionProperty;
 
 abstract class Base extends BaseDTO implements JsonSerializable
 {
-    /**
-     * @throws ErrorException
-     */
+    /** @throws ErrorException */
     public function __call(string $name, mixed $arguments): static
     {
         $properties = [];
