@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 1.0.0 - 2023-02-15
+## v1.0.0 - 2023-02-15
 
 ### Added
 
@@ -26,7 +26,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.5.0-alpha4 - 2022-04-18
+## v0.5.0-alpha4 - 2022-04-18
 
 ### Added
 
@@ -48,7 +48,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.5.0-alpha3 - 2021-08-13
+## v0.5.0-alpha3 - 2021-08-13
 
 ### Added
 
@@ -78,7 +78,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.5.0-alpha2 - 2021-05-18
+## v0.5.0-alpha2 - 2021-05-18
 
 ### Added
 
@@ -100,7 +100,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.5.0-alpha1 - 2021-05-18
+## v0.5.0-alpha1 - 2021-05-18
 
 ### Added
 
@@ -122,7 +122,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.5.0-alpha - 2021-05-17
+## v0.5.0-alpha - 2021-05-17
 
 ### Added
 
@@ -146,7 +146,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.4.4 - 2021-04-06
+## v0.4.4 - 2021-04-06
 
 ### Added
 
@@ -168,7 +168,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.4.3 - 2021-03-22
+## v0.4.3 - 2021-03-22
 
 ### Added
 
@@ -190,7 +190,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.4.2 - 2021-03-05
+## v0.4.2 - 2021-03-05
 
 ### Added
 
@@ -212,7 +212,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.4.1 - 2021-03-01
+## v0.4.1 - 2021-03-01
 
 ### Added
 
@@ -234,7 +234,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.4.0 - 2021-02-26
+## v0.4.0 - 2021-02-26
 
 ### Added
 
@@ -256,7 +256,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.3.0 - 2021-02-23
+## v0.3.0 - 2021-02-23
 
 ### Added
 
@@ -286,7 +286,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.2.2 - 2021-02-08
+## v0.2.2 - 2021-02-08
 
 ### Added
 
@@ -310,7 +310,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.2.1 - 2021-02-05
+## v0.2.1 - 2021-02-05
 
 ### Added
 
@@ -332,7 +332,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.2.0 - 2021-02-05
+## v0.2.0 - 2021-02-05
 
 ### Added
 
@@ -354,7 +354,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.1.1 - 2020-11-13
+## v0.1.1 - 2020-11-13
 
 ### Added
 
@@ -376,7 +376,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.1.0 - 2020-10-28
+## v0.1.0 - 2020-10-28
 
 ### Added
 
@@ -398,7 +398,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.0.4 - 2020-10-27
+## v0.0.4 - 2020-10-27
 
 ### Added
 
@@ -420,7 +420,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.0.3 - 2020-10-22
+## v0.0.3 - 2020-10-22
 
 ### Added
 
@@ -442,7 +442,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.0.2 - 2020-10-22
+## v0.0.2 - 2020-10-22
 
 ### Added
 
@@ -464,7 +464,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 0.0.1 - 2020-10-22
+## v0.0.1 - 2020-10-22
 
 ### Added
 
