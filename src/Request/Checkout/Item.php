@@ -25,7 +25,7 @@ class Item extends Base
     public Amount $totalAmount;
 
     /** @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties */
-    public function __construct(...$args)
+    public function __construct(mixed ...$args)
     {
         self::setClassIfKeyNotExist($args, 'amount', Amount::class);
         self::setClassIfKeyNotExist($args, 'totalAmount', Amount::class);

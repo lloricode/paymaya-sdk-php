@@ -27,17 +27,6 @@ abstract class BaseClient
     }
 
     /**
-     * @param  \Lloricode\Paymaya\PaymayaClient  $client
-     *
-     * @return static
-     * @deprecated please use constructor, this will remove in stable release
-     */
-    public static function new(PaymayaClient $client): self
-    {
-        return new static($client);
-    }
-
-    /**
      * @param  array  $options
      *
      * @return \Psr\Http\Message\ResponseInterface

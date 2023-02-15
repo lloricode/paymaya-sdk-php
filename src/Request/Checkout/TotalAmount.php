@@ -21,7 +21,7 @@ class TotalAmount extends Base
     public AmountDetail $details;
 
     /** @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties */
-    public function __construct(...$args)
+    public function __construct(mixed ...$args)
     {
         self::setClassIfKeyNotExist($args, 'details', AmountDetail::class);
 

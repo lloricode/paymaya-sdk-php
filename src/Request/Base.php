@@ -13,13 +13,9 @@ use ReflectionProperty;
 abstract class Base extends BaseDTO implements JsonSerializable
 {
     /**
-     * @param $name
-     * @param $arguments
-     *
-     * @return $this
      * @throws ErrorException
      */
-    public function __call($name, $arguments): self
+    public function __call(string $name, mixed $arguments): static
     {
         $properties = [];
 

@@ -69,14 +69,14 @@ class Checkout extends Base
     public ?string $transactionReferenceNumber;
 
     /** @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties */
-    public function __construct(...$args)
+    public function __construct(mixed ...$args)
     {
         self::setClassIfKeyNotExist($args, 'totalAmount', TotalAmount::class);
 
         parent::__construct(...$args);
     }
 
-    public function __call($name, $arguments): self
+    public function __call(string $name, mixed $arguments): static
     {
         if ('setItems' == $name) {
             throw new ErrorException(sprintf('%s::%s() not found.', static::class, $name));
