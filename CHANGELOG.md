@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## v1.0.3 - 2023-02-16
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Add support `spatie/data-transfer-object`: ^3.8
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## v1.0.2 - 2023-02-16
 
 ### Added
