@@ -26,6 +26,7 @@
     },
     "require-dev": {
         "composer-runtime-api": "^2.0",
+        "laravel/pint": "^1.5",
         "mockery/mockery": "^1.4",
         "pestphp/pest": "^1.22",
         "phly/keep-a-changelog": "^2.11",
@@ -48,7 +49,8 @@
         "analyse": "vendor/bin/phpstan analyse",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
         "rector": "vendor/bin/rector process",
-        "rector-dry-run": "vendor/bin/rector process --dry-run"
+        "rector-dry-run": "vendor/bin/rector process --dry-run",
+        "format" : "vendor/bin/pint"
     },
     "config": {
         "sort-packages": true,
