@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## v2.0.0-alpha - 2023-02-XX
+## v2.0.0-alpha - 2023-02-17
 
 ### Added
 
