@@ -104,6 +104,7 @@ class Checkout extends Base
             $data['paymentDetails'],
         );
 
+        /** @phpstan-ignore-next-line  */
         $checkout = new static(...$data);
 
         unset($data);

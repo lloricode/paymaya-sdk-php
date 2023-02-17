@@ -9,7 +9,7 @@ use Lloricode\Paymaya\Request\Webhook\Webhook;
 
 class WebhookClient extends BaseClient
 {
-    /** @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties */
+    /** @throws \GuzzleHttp\Exception\GuzzleException*/
     public function register(Webhook $webhookRequest): Webhook
     {
         $bodyContent = $this->secretPost(['json' => $webhookRequest])
@@ -21,7 +21,7 @@ class WebhookClient extends BaseClient
 
     /**
      * @return \Lloricode\Paymaya\Request\Webhook\Webhook[]
-     * @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function retrieve(): array
     {
@@ -46,7 +46,7 @@ class WebhookClient extends BaseClient
 //        return Webhook::arrayOf(json_decode($content, true));
     }
 
-    /** @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties */
+    /** @throws \GuzzleHttp\Exception\GuzzleException*/
     public function update(Webhook $webhookRequest): Webhook
     {
         $bodyContent = $this->secretPut($webhookRequest->id ?: '', ['json' => $webhookRequest])->getBody()
@@ -61,7 +61,7 @@ class WebhookClient extends BaseClient
         $this->secretDelete($webhookRequest->id ?: '');
     }
 
-    /** @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties */
+    /** @throws \GuzzleHttp\Exception\GuzzleException*/
     public function deleteAll(): void
     {
         foreach ($this->retrieve() as $webhookResponse) {
