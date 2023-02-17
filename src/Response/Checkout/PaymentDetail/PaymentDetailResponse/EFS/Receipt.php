@@ -8,8 +8,11 @@ use Lloricode\Paymaya\Response\Checkout\BaseResponse;
 
 class Receipt extends BaseResponse
 {
-    public string $transactionId;
-    public string $receiptNo;
-    public string $approval_code;
-    public string $approvalCode;
+    public function __construct(
+        public string $transactionId,
+        public string $receiptNo,
+        public string $approval_code,
+        public string $approvalCode,
+    ) {
+    }
 }

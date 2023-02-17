@@ -12,15 +12,9 @@ use Lloricode\Paymaya\Request\Base;
  */
 class Contact extends Base
 {
-    public ?string $phone = null;
-    public ?string $email = null;
-
-    /** @inheritDoc */
-    public function jsonSerialize(): array
-    {
-        return [
-            'phone' => $this->phone,
-            'email' => $this->email,
-        ];
+    public function __construct(
+        public ?string $phone = null,
+        public ?string $email = null
+    ) {
     }
 }

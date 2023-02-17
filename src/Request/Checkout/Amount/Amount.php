@@ -12,23 +12,10 @@ use Lloricode\Paymaya\Request\Base;
  */
 class Amount extends Base
 {
-    public float $value = 0.0;
-    public AmountDetail $details;
-
-    /** @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties */
-    public function __construct(mixed ...$args)
-    {
-        self::setClassIfKeyNotExist($args, 'details', AmountDetail::class);
-
-        parent::__construct(...$args);
-    }
-
-    /** @inheritDoc */
-    public function jsonSerialize(): array
-    {
-        return [
-            'value' => $this->value,
-            'details' => $this->details,
-        ];
+    public function __construct(
+        public float $value = 0.0,
+        public ?AmountDetail $details = null
+    ) {
+        $this->details ??= new AmountDetail();
     }
 }

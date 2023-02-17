@@ -8,12 +8,15 @@ use Lloricode\Paymaya\Request\Base;
 
 class MetaData extends Base
 {
-    public ?string $smi = null;
-    public ?string $smn = null;
-    public ?string $mci = null;
-    public ?string $mpc = null;
-    public ?string $mco = null;
-    public ?string $mst = null;
+    public function __construct(
+        public ?string $smi = null,
+        public ?string $smn = null,
+        public ?string $mci = null,
+        public ?string $mpc = null,
+        public ?string $mco = null,
+        public ?string $mst = null,
+    ) {
+    }
 
     public function setSMI(string $smi): self
     {
@@ -55,18 +58,5 @@ class MetaData extends Base
         $this->mst = $mst;
 
         return $this;
-    }
-
-    /** @inheritDoc */
-    public function jsonSerialize(): array
-    {
-        return [
-            'smi' => $this->smi,
-            'smn' => $this->smn,
-            'mci' => $this->mci,
-            'mpc' => $this->mpc,
-            'mco' => $this->mco,
-            'mst' => $this->mst,
-        ];
     }
 }

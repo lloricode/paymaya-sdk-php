@@ -17,32 +17,15 @@ use Lloricode\Paymaya\Request\Checkout\Amount\Amount;
  */
 class Item extends Base
 {
-    public ?string $name = null;
-    public int $quantity = 1;
-    public ?string $code = null;
-    public ?string $description = null;
-    public Amount $amount;
-    public Amount $totalAmount;
-
-    /** @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties */
-    public function __construct(mixed ...$args)
-    {
-        self::setClassIfKeyNotExist($args, 'amount', Amount::class);
-        self::setClassIfKeyNotExist($args, 'totalAmount', Amount::class);
-
-        parent::__construct(...$args);
-    }
-
-    /** @inheritDoc */
-    public function jsonSerialize(): array
-    {
-        return [
-            'name' => $this->name,
-            'quantity' => $this->quantity,
-            'code' => $this->code,
-            'description' => $this->description,
-            'amount' => $this->amount,
-            'totalAmount' => $this->totalAmount,
-        ];
+    public function __construct(
+        public ?string $name = null,
+        public int $quantity = 1,
+        public ?string $code = null,
+        public ?string $description = null,
+        public ?Amount $amount = null,
+        public ?Amount $totalAmount = null,
+    ) {
+        $this->amount ??= new Amount();
+        $this->totalAmount ??= new Amount();
     }
 }

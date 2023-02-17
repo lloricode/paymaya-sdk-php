@@ -26,7 +26,7 @@ class CustomizationClient extends BaseClient
             ->getBody()
             ->getContents();
 
-        return new Customization((array) json_decode($bodyContent));
+        return new Customization(...((array) json_decode($bodyContent)));
     }
 
     /** @throws \GuzzleHttp\Exception\GuzzleException|\Spatie\DataTransferObject\Exceptions\UnknownProperties */
@@ -44,7 +44,7 @@ class CustomizationClient extends BaseClient
             throw $e;
         }
 
-        return new Customization((array) json_decode($content, true));
+        return new Customization(...((array) json_decode($content, true)));
     }
 
     /** @throws \GuzzleHttp\Exception\GuzzleException */

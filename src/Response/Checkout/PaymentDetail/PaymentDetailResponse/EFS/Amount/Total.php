@@ -8,6 +8,9 @@ use Lloricode\Paymaya\Response\Checkout\BaseResponse;
 
 class Total extends BaseResponse
 {
-    public string $currency;
-    public float $value;
+    public function __construct(
+        public string $currency,
+        public float $value,
+    ) {
+    }
 }

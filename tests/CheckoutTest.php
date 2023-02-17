@@ -7,6 +7,8 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
+use Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress;
+use Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress;
 use Lloricode\Paymaya\Request\Checkout\Checkout;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
 
@@ -15,12 +17,12 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertInstanceOf;
 
-use function PHPUnit\Framework\assertSame;
+use function PHPUnit\Framework\assertJsonStringEqualsJsonString;
 
 test('json check exact from docs', function () {
-    assertSame(
-        json_encode(json_decode(jsonCheckoutDataFromDocs(), true), JSON_PRETTY_PRINT),
-        json_encode(buildCheckout(), JSON_PRETTY_PRINT)
+    assertJsonStringEqualsJsonString(
+        jsonCheckoutDataFromDocs(),
+        json_encode(buildCheckout())
     );
 });
 
@@ -203,7 +205,8 @@ it('show with id success', function () {
             "shippingFee": "0",
             "tax": "0",
             "subtotal": "730"
-        }
+        },
+        "value": 0
     },
     "redirectUrl": {
         "success": "https:\/\/staging-api1",
@@ -230,13 +233,23 @@ it('show with id success', function () {
     assertEquals('4ef96167-b8f2-4400-912e-5bd2f4289cfb', $checkoutResponse->id);
     assertInstanceOf(PaymentDetail::class, $checkoutResponse->paymentDetails);
 
-//        $sortAndEncode = function(string $json): string {
-//            $array = (array) json_decode($json, true);
-//            array_multisort($array);
-//            return json_encode($array,JSON_PRETTY_PRINT);
-//        };
-//
-//        $this->assertSame($sortAndEncode($responseData), $sortAndEncode(json_encode($checkoutResponse->toArray())));
+    // -----
 
-//        $this->assertContains((array) json_decode($responseData, true),$checkoutResponse->toArray());
+    $expected = json_decode($responseData, true);
+
+    $expected['buyer']['billingAddress'] = new BillingAddress();
+    $expected['buyer']['shippingAddress'] = new ShippingAddress(line1: '1234', countryCode:'PH');
+    $expected['buyer']['birthday'] = null;
+    $expected['buyer']['customerSince'] = null;
+    $expected['buyer']['gender'] = null;
+    $expected['buyer']['ipAddress'] = null;
+    $expected['buyer']['middleName'] = null;
+
+    $expected['paymentDetails']['is3ds'] = $expected['paymentDetails']['3ds'];
+
+    unset($expected['paymentDetails']['3ds']);
+    assertJsonStringEqualsJsonString(
+        json_encode($expected),
+        json_encode($checkoutResponse)
+    );
 });

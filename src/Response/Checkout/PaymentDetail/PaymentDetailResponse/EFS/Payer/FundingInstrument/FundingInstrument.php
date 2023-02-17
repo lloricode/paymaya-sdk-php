@@ -8,5 +8,8 @@ use Lloricode\Paymaya\Response\Checkout\BaseResponse;
 
 class FundingInstrument extends BaseResponse
 {
-    public Card $card;
+    public function __construct(
+        public Card $card
+    ) {
+    }
 }

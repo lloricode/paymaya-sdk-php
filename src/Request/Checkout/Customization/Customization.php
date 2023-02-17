@@ -17,31 +17,16 @@ use Lloricode\Paymaya\Request\Base;
  */
 class Customization extends Base
 {
-    public ?string $logoUrl = '';
-    public ?string $iconUrl = '';
-    public ?string $appleTouchIconUrl = '';
-    public ?string $customTitle = '';
-    public ?string $colorScheme = '';
-
-    public ?int $redirectTimer = null;
-    public ?bool $hideReceiptInput = null;
-    public ?bool $skipResultPage = null;
-    public ?bool $showMerchantName = null;
-
-    /** @inheritDoc */
-    public function jsonSerialize(): array
-    {
-        return [
-            'logoUrl' => $this->logoUrl,
-            'iconUrl' => $this->iconUrl,
-            'appleTouchIconUrl' => $this->appleTouchIconUrl,
-            'customTitle' => $this->customTitle,
-            'colorScheme' => $this->colorScheme,
-
-            'redirectTimer' => $this->redirectTimer,
-            'hideReceiptInput' => $this->hideReceiptInput,
-            'skipResultPage' => $this->skipResultPage,
-            'showMerchantName' => $this->showMerchantName,
-        ];
+    public function __construct(
+        public ?string $logoUrl = '',
+        public ?string $iconUrl = '',
+        public ?string $appleTouchIconUrl = '',
+        public ?string $customTitle = '',
+        public ?string $colorScheme = '',
+        public ?int $redirectTimer = null,
+        public ?bool $hideReceiptInput = null,
+        public ?bool $skipResultPage = null,
+        public ?bool $showMerchantName = null,
+    ) {
     }
 }

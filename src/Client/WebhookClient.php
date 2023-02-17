@@ -16,7 +16,7 @@ class WebhookClient extends BaseClient
             ->getBody()
             ->getContents();
 
-        return new Webhook((array) json_decode($bodyContent));
+        return new Webhook(...((array) json_decode($bodyContent)));
     }
 
     /**
@@ -39,7 +39,7 @@ class WebhookClient extends BaseClient
 
         $array = [];
         foreach (json_decode($content, true) as $value) {
-            $array[$value['name']] = new Webhook($value);
+            $array[$value['name']] = new Webhook(...$value);
         }
 
         return $array;
@@ -52,7 +52,7 @@ class WebhookClient extends BaseClient
         $bodyContent = $this->secretPut($webhookRequest->id ?: '', ['json' => $webhookRequest])->getBody()
             ->getContents();
 
-        return new Webhook((array) json_decode($bodyContent));
+        return new Webhook(...((array) json_decode($bodyContent)));
     }
 
     /** @throws \GuzzleHttp\Exception\GuzzleException */

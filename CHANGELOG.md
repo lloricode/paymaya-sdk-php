@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## v2.0.0-alpha - 2023-02-XX
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Use PHP promotion constructor
+- Make date to be string
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Remove spatie/data-transfer-object
+
+### Fixed
+
+- Nothing.
+
 ## v1.0.3 - 2023-02-16
 
 ### Added

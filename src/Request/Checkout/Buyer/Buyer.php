@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 
-use Carbon\Carbon;
 use Lloricode\Paymaya\Request\Base;
 
 /**
@@ -12,8 +11,8 @@ use Lloricode\Paymaya\Request\Base;
  * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setMiddleName(string $middleName)
  * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setLastName(string $lastName)
  *
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setBirthday(Carbon $birthday)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setCustomerSince(Carbon $customerSince)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setBirthday(string $birthday)
+ * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setCustomerSince(string $customerSince)
  * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setGender(string $gender)
  *
  * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Buyer setContact(Contact $contact)
@@ -24,45 +23,17 @@ use Lloricode\Paymaya\Request\Base;
  */
 class Buyer extends Base
 {
-    public ?string $firstName = null;
-    public ?string $middleName = null;
-    public ?string $lastName = null;
-
-    public ?Carbon $birthday = null;
-    public ?Carbon $customerSince = null;
-    public ?string $gender = null;
-
-    public ?Contact $contact = null;
-    public ?ShippingAddress $shippingAddress = null;
-    public ?BillingAddress $billingAddress = null;
-
-    public ?string $ipAddress = null;
-
-    /** @inheritDoc */
-    public function jsonSerialize(): array
-    {
-        $birthday = $this->birthday;
-        $customerSince = $this->customerSince;
-
-        if ( ! is_null($birthday)) {
-            $birthday = $birthday->format('Y-m-d');
-        }
-
-        if ( ! is_null($customerSince)) {
-            $customerSince = $customerSince->format('Y-m-d');
-        }
-
-        return [
-            'firstName' => $this->firstName,
-            'middleName' => $this->middleName,
-            'lastName' => $this->lastName,
-            'birthday' => $birthday,
-            'customerSince' => $customerSince,
-            'sex' => $this->gender,
-            'contact' => $this->contact,
-            'shippingAddress' => $this->shippingAddress,
-            'billingAddress' => $this->billingAddress,
-            'ipAddress' => $this->ipAddress,
-        ];
+    public function __construct(
+        public ?string $firstName = null,
+        public ?string $middleName = null,
+        public ?string $lastName = null,
+        public ?string $birthday = null,
+        public ?string $customerSince = null,
+        public ?string $gender = null,
+        public ?Contact $contact = null,
+        public ?ShippingAddress $shippingAddress = null,
+        public ?BillingAddress $billingAddress = null,
+        public ?string $ipAddress = null
+    ) {
     }
 }

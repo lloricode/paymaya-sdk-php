@@ -16,23 +16,13 @@ use Lloricode\Paymaya\Request\Base;
  */
 class BillingAddress extends Base
 {
-    public ?string $line1 = null;
-    public ?string $line2 = null;
-    public ?string $city = null;
-    public ?string $state = null;
-    public ?string $zipCode = null;
-    public ?string $countryCode = null;
-
-    /** @inheritDoc */
-    public function jsonSerialize(): array
-    {
-        return [
-            'line1' => $this->line1,
-            'line2' => $this->line2,
-            'city' => $this->city,
-            'state' => $this->state,
-            'zipCode' => $this->zipCode,
-            'countryCode' => $this->countryCode,
-        ];
+    public function __construct(
+        public ?string $line1 = null,
+        public ?string $line2 = null,
+        public ?string $city = null,
+        public ?string $state = null,
+        public ?string $zipCode = null,
+        public ?string $countryCode = null
+    ) {
     }
 }

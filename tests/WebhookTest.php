@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Carbon\Carbon;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use Lloricode\Paymaya\Client\WebhookClient;
@@ -46,8 +45,8 @@ test('retrieve', function () {
     assertEquals($sampleData['id'], $webhookResponses[0]->id);
     assertEquals($sampleData['name'], $webhookResponses[0]->name);
     assertEquals($sampleData['callbackUrl'], $webhookResponses[0]->callbackUrl);
-    assertEquals(Carbon::parse($sampleData['createdAt']), $webhookResponses[0]->createdAt);
-    assertEquals(Carbon::parse($sampleData['updatedAt']), $webhookResponses[0]->updatedAt);
+    assertEquals($sampleData['createdAt'], $webhookResponses[0]->createdAt);
+    assertEquals($sampleData['updatedAt'], $webhookResponses[0]->updatedAt);
 
     /** @var \GuzzleHttp\Psr7\Response $response */
     $response = $history[0]['response'];
@@ -69,8 +68,8 @@ it('register', function () {
     assertEquals($data['name'], $webhookResponse->name);
     assertEquals($data['callbackUrl'], $webhookResponse->callbackUrl);
 
-    assertEquals(Carbon::parse($data['createdAt']), $webhookResponse->createdAt);
-    assertEquals(Carbon::parse($data['updatedAt']), $webhookResponse->updatedAt);
+    assertEquals($data['createdAt'], $webhookResponse->createdAt);
+    assertEquals($data['updatedAt'], $webhookResponse->updatedAt);
 });
 
 it('update', function () {

@@ -13,17 +13,10 @@ use Lloricode\Paymaya\Request\Base;
  */
 class RedirectUrl extends Base
 {
-    public ?string $success = null;
-    public ?string $failure = null;
-    public ?string $cancel = null;
-
-    /** @inheritDoc */
-    public function jsonSerialize(): array
-    {
-        return [
-            'success' => $this->success,
-            'failure' => $this->failure,
-            'cancel' => $this->cancel,
-        ];
+    public function __construct(
+        public ?string $success = null,
+        public ?string $failure = null,
+        public ?string $cancel = null,
+    ) {
     }
 }

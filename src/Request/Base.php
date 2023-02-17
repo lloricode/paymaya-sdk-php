@@ -6,16 +6,14 @@ namespace Lloricode\Paymaya\Request;
 
 use ErrorException;
 use JsonSerializable;
-use Lloricode\Paymaya\BaseDTO;
 use ReflectionClass;
 use ReflectionProperty;
 
-abstract class Base extends BaseDTO implements JsonSerializable
+abstract class Base //implements JsonSerializable
 {
-    /** @throws ErrorException */
     public function __call(string $name, mixed $arguments): static
     {
-        $properties = [];
+        $propertyNames = [];
 
         foreach (
             (new ReflectionClass(static::class))
@@ -27,10 +25,10 @@ abstract class Base extends BaseDTO implements JsonSerializable
 
             $field = $reflectionProperty->getName();
 
-            $properties['set'.ucfirst($field)] = $field;
+            $propertyNames['set'.ucfirst($field)] = $field;
         }
 
-        if ( ! array_key_exists($name, $properties)) {
+        if ( ! array_key_exists($name, $propertyNames)) {
             throw new ErrorException(sprintf('%s::%s() not found.', static::class, $name));
         }
 
@@ -38,8 +36,13 @@ abstract class Base extends BaseDTO implements JsonSerializable
             throw new ErrorException(sprintf('Argument of %s::%s() is 1 expected.', static::class, $name));
         }
 
-        $this->{$properties[$name]} = $arguments[0];
+        $this->{$propertyNames[$name]} = $arguments[0];
 
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return json_decode(json_encode($this), true);
     }
 }

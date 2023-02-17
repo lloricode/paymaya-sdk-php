@@ -7,29 +7,20 @@ namespace Lloricode\Paymaya\Request\Checkout\Amount;
 use Lloricode\Paymaya\Request\Base;
 
 /**
- * @method AmountDetail setDiscount(float $discount)
- * @method AmountDetail setServiceCharge(float $serviceCharge)
- * @method AmountDetail setShippingFee(float $shippingFee)
- * @method AmountDetail setTax(float $tax)
- * @method AmountDetail setSubtotal(float $subtotal)
+ * @method AmountDetail setDiscount(float|int|string $discount)
+ * @method AmountDetail setServiceCharge(float|int|string $serviceCharge)
+ * @method AmountDetail setShippingFee(float|int|string $shippingFee)
+ * @method AmountDetail setTax(float|int|string $tax)
+ * @method AmountDetail setSubtotal(float|int|string $subtotal)
  */
 class AmountDetail extends Base
 {
-    public float $discount = 0;
-    public float $serviceCharge = 0;
-    public float $shippingFee = 0;
-    public float $tax = 0;
-    public float $subtotal = 0;
-
-    /** @inheritDoc */
-    public function jsonSerialize(): array
-    {
-        return [
-            'discount' => $this->discount,
-            'serviceCharge' => $this->serviceCharge,
-            'shippingFee' => $this->shippingFee,
-            'tax' => $this->tax,
-            'subtotal' => $this->subtotal,
-        ];
+    public function __construct(
+        public float|int|string $discount = 0,
+        public float|int|string $serviceCharge = 0,
+        public float|int|string $shippingFee = 0,
+        public float|int|string $tax = 0,
+        public float|int|string $subtotal = 0,
+    ) {
     }
 }

@@ -9,5 +9,8 @@ use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailResponse\EFS\
 
 class Payer extends BaseResponse
 {
-    public FundingInstrument $fundingInstrument;
+    public function __construct(
+        public FundingInstrument $fundingInstrument
+    ) {
+    }
 }

@@ -8,7 +8,10 @@ use Lloricode\Paymaya\Response\Checkout\BaseResponse;
 
 class Card extends BaseResponse
 {
-    public string $cardNumber;
-    public string $expiryMonth;
-    public string $expiryYear;
+    public function __construct(
+        public string $cardNumber,
+        public string $expiryMonth,
+        public string $expiryYear,
+    ) {
+    }
 }
