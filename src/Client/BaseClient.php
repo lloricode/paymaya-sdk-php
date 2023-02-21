@@ -53,6 +53,7 @@ abstract class BaseClient
     //    {
     //        return $this->paymayaClient->publicClient()->get($this->uri($this->version), $options);
     //    }
+
     /** @throws \GuzzleHttp\Exception\GuzzleException */
     protected function secretPut(string $appendUrl = '', array $options = []): ResponseInterface
     {
