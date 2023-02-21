@@ -20,6 +20,8 @@ class PaymayaClient
 
     private string $base_url;
 
+    private int $timeout = 3;
+
     private ?HandlerStack $handler_stack = null;
 
     /** @throws ErrorException */
@@ -44,6 +46,7 @@ class PaymayaClient
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
             ],
+            'timeout' => $this->timeout,
         ];
 
         if ($this->handler_stack != null) {
@@ -71,11 +74,18 @@ class PaymayaClient
         );
     }
 
-    public function setHandlerStack(HandlerStack $handlerStack, array &$historyContainer = []): self
+    public function setHandlerStack(HandlerStack $handlerStack, array &$historyContainer = []): static
     {
         $handlerStack->push(Middleware::history($historyContainer));
 
         $this->handler_stack = $handlerStack;
+
+        return $this;
+    }
+
+    public function setTimeout(int $timeout): static
+    {
+        $this->timeout = $timeout;
 
         return $this;
     }
