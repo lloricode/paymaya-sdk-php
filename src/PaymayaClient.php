@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lloricode\Paymaya;
 
 use ErrorException;
-use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 
@@ -36,7 +36,7 @@ class PaymayaClient
         };
     }
 
-    private function client(array $header): GuzzleClient
+    private function client(array $header): Client
     {
         $config = [
             'base_uri' => $this->base_url,
@@ -50,10 +50,10 @@ class PaymayaClient
             $config['handler'] = $this->handler_stack;
         }
 
-        return new GuzzleClient($config);
+        return new Client($config);
     }
 
-    public function publicClient(array $header = []): GuzzleClient
+    public function publicClient(array $header = []): Client
     {
         return $this->client(
             $header + [
@@ -62,7 +62,7 @@ class PaymayaClient
         );
     }
 
-    public function secretClient(array $header = []): GuzzleClient
+    public function secretClient(array $header = []): Client
     {
         return $this->client(
             $header + [
