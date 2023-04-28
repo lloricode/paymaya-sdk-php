@@ -23,7 +23,7 @@
         "guzzlehttp/guzzle": "^7.5"
     },
     "require-dev": {
-        "composer-runtime-api": "^2.0",
+        "composer-runtime-api": "^2.2.2",
         "laravel/pint": "^1.5",
         "mockery/mockery": "^1.4",
         "pestphp/pest": "^1.22",
