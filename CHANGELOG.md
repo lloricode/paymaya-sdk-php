@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## v2.0.1 - 2025-02-21
+
+### What's Changed
+
+* Drop support PHP 8.0 and 8.1
+* Bump dependabot/fetch-metadata from 1.4.0 to 1.5.1 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/5
+* Bump aglipanci/laravel-pint-action from 2.2.0 to 2.3.0 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/6
+* Bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/7
+* Bump actions/checkout from 3 to 4 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/8
+* Bump aglipanci/laravel-pint-action from 2.3.0 to 2.3.1 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/11
+* Bump codecov/codecov-action from 3 to 4 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/12
+* Bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/10
+* Bump ramsey/composer-install from 2 to 3 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/13
+* Bump dependabot/fetch-metadata from 1.6.0 to 2.0.0 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/14
+* Bump aglipanci/laravel-pint-action from 2.3.1 to 2.4 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/15
+* Bump dependabot/fetch-metadata from 2.0.0 to 2.1.0 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/16
+* Bump dependabot/fetch-metadata from 2.1.0 to 2.2.0 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/17
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/19
+* Bump codecov/codecov-action from 4 to 5 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/18
+* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot in https://github.com/lloricode/paymaya-sdk-php/pull/20
+
+**Full Changelog**: https://github.com/lloricode/paymaya-sdk-php/compare/v2.0.0...v2.0.1
+
 ## v2.0.0 - 2023-04-28
 
 ### Added
@@ -118,8 +141,9 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Added
 
 - Add --ci on pest in GitHub action
-
+  
 - Install rector
+  
 
 ### Changed
 
@@ -164,18 +188,20 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Added
 
 - Add composer-runtime-api:^2.0 in require --dev, to enforce use composer v2 in development.
-
+  
 - Add phly/keep-a-changelog in require --dev.
+  
 
 ### Changed
 
 - Fix DTO Caster..
-
+  
 - Set minimum spatie/data-transfer-object:^3.6.
-
+  
 - Update Readme, remove php 7.4.
-
+  
 - Reformat CHANGELOG file.
+  
 
 ### Deprecated
 
@@ -250,8 +276,9 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Removed
 
 - Drop support php 7.
-
+  
 - Drop support spatie/data-transfer-object v2.
+  
 
 ### Fixed
 
@@ -372,16 +399,18 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Added
 
 - Add show checkout with id.
-
+  
 - Add spatie DTO (https://github.com/spatie/data-transfer-object).
+  
 
 ### Changed
 
 - Set all properties to public (to compatible also in spatie DTO).
-
+  
 - Rename all properties depends on paymaya response.
-
+  
 - Rename all classes depends on paymaya.
+  
 
 ### Deprecated
 
@@ -390,8 +419,9 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Removed
 
 - Remove all getter.
-
+  
 - Remove all ::new() functions (fix for psalm).
+  
 
 ### Fixed
 
@@ -406,8 +436,9 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Changed
 
 - Set ::new() as deprecate.
-
+  
 - Set compatible for lloriode/laravel-paymaya-sdk.
+  
 
 ### Deprecated
 
