@@ -48,7 +48,7 @@ it('check via sandbox', function () {
     try {
         $checkoutResponse = (new CheckoutClient(generatePaymayaClient($mock)))
             ->execute(buildCheckout());
-    } catch (ErrorException $e) {
+    } catch (ErrorException) {
         $this->fail('ErrorException');
     } catch (ClientException $e) {
         $this->fail('ClientException: '.$e->getMessage().$e->getResponse()->getBody());

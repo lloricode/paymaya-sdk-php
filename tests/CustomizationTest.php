@@ -45,7 +45,7 @@ it('register', function () {
                     ->setCustomTitle('Test Title Mock')
                     ->setColorScheme('#e01c44')
             );
-    } catch (ErrorException $e) {
+    } catch (ErrorException) {
         $this->fail('ErrorException');
     } catch (ClientException $e) {
         $this->fail('ClientException: '.$e->getMessage().$e->getResponse()->getBody());

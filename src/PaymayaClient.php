@@ -21,7 +21,7 @@ class PaymayaClient
 
     public const ENVIRONMENT_TESTING = 'testing';
 
-    private string $base_url;
+    private readonly string $base_url;
 
     private int $timeout = 3;
 
@@ -29,8 +29,8 @@ class PaymayaClient
 
     /** @throws ErrorException */
     public function __construct(
-        private string $secret_key,
-        private string $public_key,
+        private readonly string $secret_key,
+        private readonly string $public_key,
         string $environment = self::ENVIRONMENT_SANDBOX
     ) {
         $this->base_url = match ($environment) {
