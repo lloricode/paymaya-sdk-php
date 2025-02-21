@@ -61,7 +61,6 @@ function jsonCheckoutDataFromDocs(): string
 
 /**
  * https://stackoverflow.com/a/19989922
- * @param $value
  */
 function assertUUID($value): void
 {

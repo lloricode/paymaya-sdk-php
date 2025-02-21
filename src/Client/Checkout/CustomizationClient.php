@@ -10,7 +10,6 @@ use Lloricode\Paymaya\Request\Checkout\Customization\Customization;
 
 /**
  * https://hackmd.io/@paymaya-pg/Checkout#Customization-API
- *
  */
 class CustomizationClient extends BaseClient
 {
@@ -37,8 +36,8 @@ class CustomizationClient extends BaseClient
                 ->getBody()
                 ->getContents();
         } catch (GuzzleException $e) {
-            if ($e->getCode() == '404') {
-                return new Customization();
+            if ($e->getCode() === 404) {
+                return new Customization;
             }
 
             throw $e;

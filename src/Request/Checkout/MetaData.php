@@ -15,8 +15,7 @@ class MetaData extends Base
         public ?string $mpc = null,
         public ?string $mco = null,
         public ?string $mst = null,
-    ) {
-    }
+    ) {}
 
     public function setSMI(string $smi): self
     {

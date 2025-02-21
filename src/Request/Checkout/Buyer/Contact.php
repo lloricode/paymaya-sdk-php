@@ -15,6 +15,5 @@ class Contact extends Base
     public function __construct(
         public ?string $phone = null,
         public ?string $email = null
-    ) {
-    }
+    ) {}
 }

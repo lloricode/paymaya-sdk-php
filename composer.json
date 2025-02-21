@@ -26,15 +26,16 @@
         "composer-runtime-api": "^2.2.2",
         "laravel/pint": "^1.5",
         "mockery/mockery": "^1.4",
-        "pestphp/pest": "^1.22",
-        "pestphp/pest-plugin-parallel": "^1.2",
+        "pestphp/pest": "^3.7.4",
         "phly/keep-a-changelog": "^2.11",
         "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "rector/rector": "^0.16.0",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-deprecation-rules": "^2.0.1",
+        "phpstan/phpstan-phpunit": "^2.0.4",
+        "rector/rector": "^2.0.9",
         "spatie/ray": "^1.36",
-        "spatie/x-ray": "^1.1"
+        "spatie/x-ray": "^1.1",
+        "ticketswap/phpstan-error-formatter": "^1.1"
     },
     "autoload": {
         "psr-4": {
@@ -48,7 +49,8 @@
     },
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse",
-        "test-coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage --parallel",
+        "test": "vendor/bin/pest -p",
+        "test-coverage": "vendor/bin/pest --coverage",
         "refactor": "vendor/bin/rector process",
         "refactor-dry-run": "vendor/bin/rector process --dry-run",
         "format" : "vendor/bin/pint",

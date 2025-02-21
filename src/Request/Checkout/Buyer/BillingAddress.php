@@ -23,6 +23,5 @@ class BillingAddress extends Base
         public ?string $state = null,
         public ?string $zipCode = null,
         public ?string $countryCode = null
-    ) {
-    }
+    ) {}
 }

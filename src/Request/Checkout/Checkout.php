@@ -52,7 +52,7 @@ class Checkout extends Base
         public ?TotalAmount $totalAmount = null,
         public ?Buyer $buyer = null,
 
-    /** @var \Lloricode\Paymaya\Request\Checkout\Item[] */
+        /** @var \Lloricode\Paymaya\Request\Checkout\Item[] */
         public array $items = [],
         public ?RedirectUrl $redirectUrl = null,
         public ?string $status = null,
@@ -60,8 +60,8 @@ class Checkout extends Base
         public ?string $requestReferenceNumber = null,
         public ?MetaData $metadata = null,
 
-    // responses
-    // https://hackmd.io/@paymaya-pg/Checkout#Get-Checkout---GET-httpspg-sandboxpaymayacomcheckoutv1checkoutscheckoutId
+        // responses
+        // https://hackmd.io/@paymaya-pg/Checkout#Get-Checkout---GET-httpspg-sandboxpaymayacomcheckoutv1checkoutscheckoutId
         public ?string $receiptNumber = null,
         public ?string $createdAt = null,
         public ?string $updatedAt = null,
@@ -74,12 +74,12 @@ class Checkout extends Base
         public ?PaymentDetail $paymentDetails = null,
         public ?string $transactionReferenceNumber = null,
     ) {
-        $this->totalAmount ??= new TotalAmount();
+        $this->totalAmount ??= new TotalAmount;
     }
 
     public function __call(string $name, mixed $arguments): static
     {
-        if ('setItems' == $name) {
+        if ($name === 'setItems') {
             throw new ErrorException(sprintf('%s::%s() not found.', static::class, $name));
         }
 

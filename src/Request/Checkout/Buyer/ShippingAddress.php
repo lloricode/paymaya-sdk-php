@@ -35,6 +35,5 @@ class ShippingAddress extends Base
         public ?string $zipCode = null,
         public ?string $countryCode = null,
         public ?string $shippingType = null, // ST - for standard, SD - for same day
-    ) {
-    }
+    ) {}
 }

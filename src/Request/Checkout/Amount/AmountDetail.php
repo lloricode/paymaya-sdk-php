@@ -21,6 +21,5 @@ class AmountDetail extends Base
         public float|int|string $shippingFee = 0,
         public float|int|string $tax = 0,
         public float|int|string $subtotal = 0,
-    ) {
-    }
+    ) {}
 }

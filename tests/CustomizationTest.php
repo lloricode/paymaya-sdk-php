@@ -38,7 +38,7 @@ it('register', function () {
     try {
         $response = (new CustomizationClient(generatePaymayaClient($mock)))
             ->register(
-                (new Customization())
+                (new Customization)
                     ->setLogoUrl('https://image-logo.png')
                     ->setIconUrl('https://image-icon.png')
                     ->setAppleTouchIconUrl('https://image-apple.png')
@@ -48,7 +48,7 @@ it('register', function () {
     } catch (ErrorException $e) {
         $this->fail('ErrorException');
     } catch (ClientException $e) {
-        $this->fail('ClientException: ' . $e->getMessage() . $e->getResponse()->getBody());
+        $this->fail('ClientException: '.$e->getMessage().$e->getResponse()->getBody());
     } catch (GuzzleException) {
         $this->fail('GuzzleException');
     }
@@ -103,7 +103,7 @@ it('retrieve no data', function () {
         ->retrieve();
 
     assertSame(
-        json_encode(json_decode(json_encode(new Customization())), JSON_PRETTY_PRINT),
+        json_encode(json_decode(json_encode(new Customization)), JSON_PRETTY_PRINT),
         json_encode($response->toArray(), JSON_PRETTY_PRINT)
     );
 });

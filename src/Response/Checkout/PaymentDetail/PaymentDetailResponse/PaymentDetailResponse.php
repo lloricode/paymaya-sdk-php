@@ -9,7 +9,5 @@ use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailResponse\EFS\
 
 class PaymentDetailResponse extends BaseResponse
 {
-    public function __construct(public EFS $efs)
-    {
-    }
+    public function __construct(public EFS $efs) {}
 }

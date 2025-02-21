@@ -16,6 +16,6 @@ class Amount extends Base
         public float $value = 0.0,
         public ?AmountDetail $details = null
     ) {
-        $this->details ??= new AmountDetail();
+        $this->details ??= new AmountDetail;
     }
 }

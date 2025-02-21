@@ -11,12 +11,10 @@ use Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress;
 use Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress;
 use Lloricode\Paymaya\Request\Checkout\Checkout;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
-
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertInstanceOf;
-
 use function PHPUnit\Framework\assertJsonStringEqualsJsonString;
 
 test('json check exact from docs', function () {
@@ -53,7 +51,7 @@ it('check via sandbox', function () {
     } catch (ErrorException $e) {
         $this->fail('ErrorException');
     } catch (ClientException $e) {
-        $this->fail('ClientException: ' . $e->getMessage() . $e->getResponse()->getBody());
+        $this->fail('ClientException: '.$e->getMessage().$e->getResponse()->getBody());
     } catch (GuzzleException) {
         $this->fail('GuzzleException');
     } catch (UnknownProperties) {
@@ -237,8 +235,8 @@ it('show with id success', function () {
 
     $expected = json_decode($responseData, true);
 
-    $expected['buyer']['billingAddress'] = new BillingAddress();
-    $expected['buyer']['shippingAddress'] = new ShippingAddress(line1: '1234', countryCode:'PH');
+    $expected['buyer']['billingAddress'] = new BillingAddress;
+    $expected['buyer']['shippingAddress'] = new ShippingAddress(line1: '1234', countryCode: 'PH');
     $expected['buyer']['birthday'] = null;
     $expected['buyer']['customerSince'] = null;
     $expected['buyer']['gender'] = null;

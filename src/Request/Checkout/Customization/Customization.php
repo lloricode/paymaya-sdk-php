@@ -27,6 +27,5 @@ class Customization extends Base
         public ?bool $hideReceiptInput = null,
         public ?bool $skipResultPage = null,
         public ?bool $showMerchantName = null,
-    ) {
-    }
+    ) {}
 }

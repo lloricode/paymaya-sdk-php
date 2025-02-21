@@ -21,6 +21,7 @@ class WebhookClient extends BaseClient
 
     /**
      * @return \Lloricode\Paymaya\Request\Webhook\Webhook[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function retrieve(): array
@@ -30,7 +31,7 @@ class WebhookClient extends BaseClient
                 ->getBody()
                 ->getContents();
         } catch (GuzzleException $e) {
-            if ($e->getCode() == '404') {
+            if ($e->getCode() === 404) {
                 return [];
             }
 
@@ -43,7 +44,7 @@ class WebhookClient extends BaseClient
         }
 
         return $array;
-//        return Webhook::arrayOf(json_decode($content, true));
+        //        return Webhook::arrayOf(json_decode($content, true));
     }
 
     /** @throws \GuzzleHttp\Exception\GuzzleException*/

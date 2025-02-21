@@ -34,7 +34,7 @@ jobs:
         run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Execute tests
-        run: composer test-coverage -- --ci
+        run: composer test-coverage -- -p --ci
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5

@@ -15,9 +15,9 @@ class PaymentDetail extends BaseResponse
         /** actual from paymaya is `3ds` */
         public bool $is3ds,
     ) {
-//        if (isset($parameters['3ds'])) {
-//            $parameters['is3ds'] = $parameters['3ds'];
-//            unset($parameters['3ds']);
-//        }
+        //        if (isset($parameters['3ds'])) {
+        //            $parameters['is3ds'] = $parameters['3ds'];
+        //            unset($parameters['3ds']);
+        //        }
     }
 }

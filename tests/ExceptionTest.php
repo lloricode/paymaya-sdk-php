@@ -14,7 +14,7 @@ it('set items invalid', function () {
     $this->expectException(ErrorException::class);
     $this->expectExceptionMessage('Lloricode\Paymaya\Request\Checkout\Checkout::setItems() not found.');
 
-    (new Checkout())
+    (new Checkout)
         ->setItems([]);
 });
 
@@ -22,7 +22,7 @@ it('invalid getter', function () {
     $this->expectException(ErrorException::class);
     $this->expectExceptionMessage('Lloricode\Paymaya\Request\Checkout\Checkout::setBlah() not found.');
 
-    (new Checkout())
+    (new Checkout)
         ->setBlah('xxx');
 });
 
@@ -32,7 +32,7 @@ it('only 1 parameter', function () {
         'Argument of Lloricode\Paymaya\Request\Checkout\Checkout::setId() is 1 expected.'
     );
 
-    (new Checkout())
+    (new Checkout)
         ->setId(1, 2);
 });
 

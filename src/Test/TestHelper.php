@@ -130,18 +130,18 @@ class TestHelper
 
     public static function buildCheckout(): Checkout
     {
-        return (new Checkout())
+        return (new Checkout)
             ->setTotalAmount(
-                (new TotalAmount())
+                (new TotalAmount)
                     ->setCurrency('PHP')
                     ->setValue(100)
                     ->setDetails(
-                        (new AmountDetail())
+                        (new AmountDetail)
                             ->setSubtotal(100)
                     )
             )
             ->setBuyer(
-                (new Buyer())
+                (new Buyer)
                     ->setFirstName('John')
                     ->setMiddleName('Paul')
                     ->setLastName('Doe')
@@ -149,12 +149,12 @@ class TestHelper
                     ->setCustomerSince('1995-10-24')
                     ->setGender('M')
                     ->setContact(
-                        (new Contact())
+                        (new Contact)
                             ->setPhone('+639181008888')
                             ->setEmail('merchant@merchantsite.com')
                     )
                     ->setShippingAddress(
-                        (new ShippingAddress())
+                        (new ShippingAddress)
                             ->setFirstName('John')
                             ->setMiddleName('Paul')
                             ->setLastName('Doe')
@@ -169,7 +169,7 @@ class TestHelper
                             ->setShippingType('ST')
                     )
                     ->setBillingAddress(
-                        (new BillingAddress())
+                        (new BillingAddress)
                             ->setLine1('6F Launchpad')
                             ->setLine2('Reliance Street')
                             ->setCity('Mandaluyong City')
@@ -179,16 +179,16 @@ class TestHelper
                     )
             )
             ->addItem(
-                (new Item())
+                (new Item)
                     ->setName('Canvas Slip Ons')
                     ->setQuantity(1)
                     ->setCode('CVG-096732')
                     ->setDescription('Shoes')
                     ->setAmount(
-                        (new Amount())
+                        (new Amount)
                             ->setValue(100)
                             ->setDetails(
-                                (new AmountDetail())
+                                (new AmountDetail)
                                     ->setDiscount(0)
                                     ->setServiceCharge(0)
                                     ->setShippingFee(0)
@@ -197,10 +197,10 @@ class TestHelper
                             )
                     )
                     ->setTotalAmount(
-                        (new Amount())
+                        (new Amount)
                             ->setValue(100)
                             ->setDetails(
-                                (new AmountDetail())
+                                (new AmountDetail)
                                     ->setDiscount(0)
                                     ->setServiceCharge(0)
                                     ->setShippingFee(0)
@@ -210,14 +210,14 @@ class TestHelper
                     )
             )
             ->setRedirectUrl(
-                (new RedirectUrl())
+                (new RedirectUrl)
                     ->setSuccess('https://www.merchantsite.com/success')
                     ->setFailure('https://www.merchantsite.com/failure')
                     ->setCancel('https://www.merchantsite.com/cancel')
             )
             ->setRequestReferenceNumber('1551191039')
             ->setMetadata(
-                (new MetaData())
+                (new MetaData)
                     ->setSMI('smi')
                     ->setSMN('smn')
                     ->setMCI('mci')

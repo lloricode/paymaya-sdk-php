@@ -13,9 +13,7 @@ abstract class BaseClient
 
     abstract public static function uri(int $uriVersion = 1): string;
 
-    public function __construct(private PaymayaClient $paymayaClient)
-    {
-    }
+    public function __construct(private PaymayaClient $paymayaClient) {}
 
     public function version(int $version): self
     {

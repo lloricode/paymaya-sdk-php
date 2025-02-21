@@ -13,6 +13,5 @@ class Receipt extends BaseResponse
         public string $receiptNo,
         public string $approval_code,
         public string $approvalCode,
-    ) {
-    }
+    ) {}
 }

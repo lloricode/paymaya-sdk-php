@@ -11,6 +11,5 @@ class Total extends BaseResponse
     public function __construct(
         public string $currency,
         public float $value,
-    ) {
-    }
+    ) {}
 }

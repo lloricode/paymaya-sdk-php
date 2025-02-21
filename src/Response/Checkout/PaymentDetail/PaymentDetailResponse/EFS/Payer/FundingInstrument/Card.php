@@ -12,6 +12,5 @@ class Card extends BaseResponse
         public string $cardNumber,
         public string $expiryMonth,
         public string $expiryYear,
-    ) {
-    }
+    ) {}
 }

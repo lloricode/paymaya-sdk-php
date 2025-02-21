@@ -18,11 +18,15 @@ use Lloricode\Paymaya\Request\Base;
 class Webhook extends Base
 {
     public const CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS';
+
     public const CHECKOUT_FAILURE = 'CHECKOUT_FAILURE';
+
     public const CHECKOUT_DROPOUT = 'CHECKOUT_DROPOUT';
 
     public const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
+
     public const PAYMENT_EXPIRED = 'PAYMENT_EXPIRED';
+
     public const PAYMENT_FAILED = 'PAYMENT_FAILED';
 
     public function __construct(
@@ -31,6 +35,5 @@ class Webhook extends Base
         public ?string $callbackUrl = null,
         public ?string $createdAt = null,
         public ?string $updatedAt = null,
-    ) {
-    }
+    ) {}
 }

@@ -10,6 +10,5 @@ class FundingInstrument extends BaseResponse
 {
     public function __construct(
         public Card $card
-    ) {
-    }
+    ) {}
 }

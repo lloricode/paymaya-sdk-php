@@ -25,7 +25,7 @@ class Item extends Base
         public ?Amount $amount = null,
         public ?Amount $totalAmount = null,
     ) {
-        $this->amount ??= new Amount();
-        $this->totalAmount ??= new Amount();
+        $this->amount ??= new Amount;
+        $this->totalAmount ??= new Amount;
     }
 }

@@ -59,7 +59,7 @@ it('register', function () {
 
     $webhookResponse = (new WebhookClient(mockApiClient($data)))
         ->register(
-            (new Webhook())
+            (new Webhook)
                 ->setName($data['name'])
                 ->setCallbackUrl($data['callbackUrl'])
         );
@@ -76,7 +76,7 @@ it('update', function () {
     $newUrl = 'https://web.test/test/success-test-new-update';
     $data = sampleData(['callbackUrl' => $newUrl]);
 
-    $webhookResponse = (new Webhook());
+    $webhookResponse = (new Webhook);
     $webhookResponse->setId($data['id']);
     $webhookResponse->setName($data['name']);
     $webhookResponse->setCallbackUrl('https://old-url');
@@ -106,7 +106,7 @@ it('update', function () {
 it('delete', function () {
     $data = sampleData();
 
-    $webhookResponse = (new Webhook());
+    $webhookResponse = (new Webhook);
     $webhookResponse->setId($data['id']);
     $webhookResponse->setName($data['name']);
     $webhookResponse->setCallbackUrl($data['callbackUrl']);
@@ -160,12 +160,12 @@ it('delete all', function () {
     $response0 = $history[0]['response'];
 
     assertEquals(200, $response0->getStatusCode());
-//        assertEquals(json_encode($data), $response0->getBody()->getContents());
+    //        assertEquals(json_encode($data), $response0->getBody()->getContents());
 
     /** @var \GuzzleHttp\Psr7\Response $response */
     $response1 = $history[1]['response'];
 
     assertEquals(204, $response1->getStatusCode());
-//        assertEquals('', $response1->getBody()->getContents());
+    //        assertEquals('', $response1->getBody()->getContents());
 });
-//->depends('retrieve');
+// ->depends('retrieve');

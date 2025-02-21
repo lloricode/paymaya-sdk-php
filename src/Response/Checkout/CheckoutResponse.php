@@ -9,8 +9,7 @@ class CheckoutResponse extends BaseResponse
     public function __construct(
         public string $checkoutId,
         public string $redirectUrl,
-    ) {
-    }
+    ) {}
 
     public function setCheckoutId(string $checkoutId): self
     {

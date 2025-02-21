@@ -17,6 +17,5 @@ class RedirectUrl extends Base
         public ?string $success = null,
         public ?string $failure = null,
         public ?string $cancel = null,
-    ) {
-    }
+    ) {}
 }

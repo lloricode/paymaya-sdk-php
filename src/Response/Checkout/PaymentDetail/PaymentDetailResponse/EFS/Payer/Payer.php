@@ -11,6 +11,5 @@ class Payer extends BaseResponse
 {
     public function __construct(
         public FundingInstrument $fundingInstrument
-    ) {
-    }
+    ) {}
 }

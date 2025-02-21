@@ -17,6 +17,5 @@ class EFS extends BaseResponse
         public Payer $payer,
         public Amount $amount,
         public string $created_at,
-    ) {
-    }
+    ) {}
 }

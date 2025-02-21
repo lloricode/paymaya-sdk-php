@@ -25,6 +25,5 @@ class Merchant extends Base
         public ?string $payPalEmail = null,
         public ?string $payPalWebExperienceId = null,
         public string $currency = 'PHP',
-    ) {
-    }
+    ) {}
 }

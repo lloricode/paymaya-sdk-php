@@ -9,7 +9,7 @@ use JsonSerializable;
 use ReflectionClass;
 use ReflectionProperty;
 
-abstract class Base //implements JsonSerializable
+abstract class Base // implements JsonSerializable
 {
     public function __call(string $name, mixed $arguments): static
     {
@@ -28,7 +28,7 @@ abstract class Base //implements JsonSerializable
             $propertyNames['set'.ucfirst($field)] = $field;
         }
 
-        if ( ! array_key_exists($name, $propertyNames)) {
+        if (! array_key_exists($name, $propertyNames)) {
             throw new ErrorException(sprintf('%s::%s() not found.', static::class, $name));
         }
 

@@ -12,10 +12,13 @@ use GuzzleHttp\Middleware;
 class PaymayaClient
 {
     public const BASE_URL_PRODUCTION = 'https://pg.paymaya.com';
+
     public const BASE_URL_SANDBOX = 'https://pg-sandbox.paymaya.com';
 
     public const ENVIRONMENT_SANDBOX = 'sandbox';
+
     public const ENVIRONMENT_PRODUCTION = 'production';
+
     public const ENVIRONMENT_TESTING = 'testing';
 
     private string $base_url;
@@ -49,7 +52,7 @@ class PaymayaClient
             'timeout' => $this->timeout,
         ];
 
-        if ($this->handler_stack != null) {
+        if ($this->handler_stack !== null) {
             $config['handler'] = $this->handler_stack;
         }
 
@@ -76,6 +79,7 @@ class PaymayaClient
 
     public function setHandlerStack(HandlerStack $handlerStack, array &$historyContainer = []): static
     {
+        /** @phpstan-ignore parameterByRef.type */
         $handlerStack->push(Middleware::history($historyContainer));
 
         $this->handler_stack = $handlerStack;
