@@ -11,7 +11,6 @@ use Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress;
 use Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress;
 use Lloricode\Paymaya\Request\Checkout\Checkout;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
-use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertInstanceOf;
@@ -54,7 +53,6 @@ it('check via sandbox', function () {
         $this->fail('ClientException: '.$e->getMessage().$e->getResponse()->getBody());
     } catch (GuzzleException) {
         $this->fail('GuzzleException');
-    } catch (UnknownProperties) {
     }
 
     assertEquals($id, $checkoutResponse->checkoutId);
