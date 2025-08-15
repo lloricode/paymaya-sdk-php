@@ -4,17 +4,23 @@ declare(strict_types=1);
 
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Psr7\Response;
-use Lloricode\Paymaya\Client\Checkout\CheckoutClient;
-use Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress;
-use Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress;
-use Lloricode\Paymaya\Request\Checkout\Checkout;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BillingAddressDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\ShippingAddressDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
+use Lloricode\Paymaya\Request\Checkout\RetrieveCheckoutRequest;
+use Lloricode\Paymaya\Request\Checkout\SubmitCheckoutRequest;
+use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
+use Saloon\Http\Faking\MockClient;
+use Saloon\Http\Faking\MockResponse;
 
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertInstanceOf;
 use function PHPUnit\Framework\assertJsonStringEqualsJsonString;
+
+beforeEach(function () {
+    fakeCredencials();
+});
 
 test('json check exact from docs', function () {
     assertJsonStringEqualsJsonString(
@@ -24,29 +30,24 @@ test('json check exact from docs', function () {
 });
 
 it('check via sandbox', function () {
+
     $id = 'test-generated-id';
     $url = 'https://test';
 
-    $mock = new MockHandler(
-        [
-            new Response(
-                200,
-                [],
-                json_encode(
-                    [
-                        'checkoutId' => $id,
-                        'redirectUrl' => $url,
-                    ]
-                ),
-            ),
-        ]
-    );
+    MockClient::global([
+        SubmitCheckoutRequest::class => MockResponse::make(
+            body: [
+                'checkoutId' => $id,
+                'redirectUrl' => $url,
+            ],
+        ),
+    ]);
 
     $checkoutResponse = null;
 
     try {
-        $checkoutResponse = (new CheckoutClient(generatePaymayaClient($mock)))
-            ->execute(buildCheckout());
+        /** @var CheckoutResponse $checkoutResponse */
+        $checkoutResponse = (new SubmitCheckoutRequest(buildCheckout()))->send()->dto();
     } catch (ErrorException) {
         $this->fail('ErrorException');
     } catch (ClientException $e) {
@@ -211,20 +212,17 @@ it('show with id success', function () {
     },
     "transactionReferenceNumber": "xxx"
 }';
-    $mock = new MockHandler(
-        [
-            new Response(
-                200,
-                [],
-                $responseData,
-            ),
-        ]
-    );
 
-    $checkoutResponse = (new CheckoutClient(generatePaymayaClient($mock)))
-        ->retrieve('4ef96167-b8f2-4400-912e-5bd2f4289cfb');
+    MockClient::global([
+        RetrieveCheckoutRequest::class => MockResponse::make(
+            body: $responseData,
+        ),
+    ]);
 
-    assertInstanceOf(Checkout::class, $checkoutResponse);
+    /** @var CheckoutDto $checkoutResponse */
+    $checkoutResponse = (new RetrieveCheckoutRequest('4ef96167-b8f2-4400-912e-5bd2f4289cfb'))->send()->dto();
+
+    assertInstanceOf(CheckoutDto::class, $checkoutResponse);
 
     assertEquals('4ef96167-b8f2-4400-912e-5bd2f4289cfb', $checkoutResponse->id);
     assertInstanceOf(PaymentDetail::class, $checkoutResponse->paymentDetails);
@@ -233,8 +231,8 @@ it('show with id success', function () {
 
     $expected = json_decode($responseData, true);
 
-    $expected['buyer']['billingAddress'] = new BillingAddress;
-    $expected['buyer']['shippingAddress'] = new ShippingAddress(line1: '1234', countryCode: 'PH');
+    $expected['buyer']['billingAddress'] = new BillingAddressDto;
+    $expected['buyer']['shippingAddress'] = new ShippingAddressDto(line1: '1234', countryCode: 'PH');
     $expected['buyer']['birthday'] = null;
     $expected['buyer']['customerSince'] = null;
     $expected['buyer']['gender'] = null;

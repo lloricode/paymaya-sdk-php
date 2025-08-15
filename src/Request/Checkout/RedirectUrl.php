@@ -4,18 +4,9 @@ declare(strict_types=1);
 
 namespace Lloricode\Paymaya\Request\Checkout;
 
-use Lloricode\Paymaya\Request\Base;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\RedirectUrlDto;
 
 /**
- * @method \Lloricode\Paymaya\Request\Checkout\RedirectUrl setSuccess(string $success)
- * @method \Lloricode\Paymaya\Request\Checkout\RedirectUrl setFailure(string $failure)
- * @method \Lloricode\Paymaya\Request\Checkout\RedirectUrl setCancel(string $cancel)
+ * @deprecated use RedirectUrlDto instead.
  */
-class RedirectUrl extends Base
-{
-    public function __construct(
-        public ?string $success = null,
-        public ?string $failure = null,
-        public ?string $cancel = null,
-    ) {}
-}
+class RedirectUrl extends RedirectUrlDto {}
