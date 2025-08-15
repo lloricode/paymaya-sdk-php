@@ -11,15 +11,15 @@ use GuzzleHttp\Middleware;
 
 class PaymayaClient
 {
-    public const BASE_URL_PRODUCTION = 'https://pg.paymaya.com';
+    public const string BASE_URL_PRODUCTION = 'https://pg.paymaya.com';
 
-    public const BASE_URL_SANDBOX = 'https://pg-sandbox.paymaya.com';
+    public const string BASE_URL_SANDBOX = 'https://pg-sandbox.paymaya.com';
 
-    public const ENVIRONMENT_SANDBOX = 'sandbox';
+    public const string ENVIRONMENT_SANDBOX = 'sandbox';
 
-    public const ENVIRONMENT_PRODUCTION = 'production';
+    public const string ENVIRONMENT_PRODUCTION = 'production';
 
-    public const ENVIRONMENT_TESTING = 'testing';
+    public const string ENVIRONMENT_TESTING = 'testing';
 
     private readonly string $base_url;
 

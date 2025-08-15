@@ -17,17 +17,17 @@ use Lloricode\Paymaya\Request\Base;
  */
 class Webhook extends Base
 {
-    public const CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS';
+    public const string CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS';
 
-    public const CHECKOUT_FAILURE = 'CHECKOUT_FAILURE';
+    public const string CHECKOUT_FAILURE = 'CHECKOUT_FAILURE';
 
-    public const CHECKOUT_DROPOUT = 'CHECKOUT_DROPOUT';
+    public const string CHECKOUT_DROPOUT = 'CHECKOUT_DROPOUT';
 
-    public const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
+    public const string PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
 
-    public const PAYMENT_EXPIRED = 'PAYMENT_EXPIRED';
+    public const string PAYMENT_EXPIRED = 'PAYMENT_EXPIRED';
 
-    public const PAYMENT_FAILED = 'PAYMENT_FAILED';
+    public const string PAYMENT_FAILED = 'PAYMENT_FAILED';
 
     public function __construct(
         public ?string $id = null,

@@ -77,6 +77,7 @@ class Checkout extends Base
         $this->totalAmount ??= new TotalAmount;
     }
 
+    #[\Override]
     public function __call(string $name, mixed $arguments): static
     {
         if ($name === 'setItems') {

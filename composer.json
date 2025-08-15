@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.5.1"
     },
@@ -35,7 +35,8 @@
         "rector/rector": "^2.0.9",
         "spatie/ray": "^1.36",
         "spatie/x-ray": "^1.1",
-        "ticketswap/phpstan-error-formatter": "^1.1"
+        "ticketswap/phpstan-error-formatter": "^1.1",
+        "tomasvotruba/type-coverage": "^2.0"
     },
     "autoload": {
         "psr-4": {
