@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Lloricode\Paymaya\Request;
+namespace Lloricode\Paymaya\DataTransferObjects;
 
 use ErrorException;
 use JsonSerializable;
 use ReflectionClass;
 use ReflectionProperty;
 
-abstract class Base // implements JsonSerializable
+abstract class BaseDto // implements JsonSerializable
 {
     public function __call(string $name, mixed $arguments): static
     {

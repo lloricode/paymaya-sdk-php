@@ -10,10 +10,10 @@ use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailResponse\Paym
 class PaymentDetail extends BaseResponse
 {
     public function __construct(
-        public PaymentDetailResponse $responses,
-        public string $paymentAt,
         /** actual from paymaya is `3ds` */
         public bool $is3ds,
+        public ?PaymentDetailResponse $responses = null,
+        public ?string $paymentAt = null,
     ) {
         //        if (isset($parameters['3ds'])) {
         //            $parameters['is3ds'] = $parameters['3ds'];

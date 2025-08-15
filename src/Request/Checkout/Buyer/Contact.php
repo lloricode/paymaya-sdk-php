@@ -4,16 +4,9 @@ declare(strict_types=1);
 
 namespace Lloricode\Paymaya\Request\Checkout\Buyer;
 
-use Lloricode\Paymaya\Request\Base;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\ContactDto;
 
 /**
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Contact setPhone(string $string)
- * @method \Lloricode\Paymaya\Request\Checkout\Buyer\Contact setEmail(string $email)
+ * @deprecated use ContactDto instead.
  */
-class Contact extends Base
-{
-    public function __construct(
-        public ?string $phone = null,
-        public ?string $email = null
-    ) {}
-}
+class Contact extends ContactDto {}

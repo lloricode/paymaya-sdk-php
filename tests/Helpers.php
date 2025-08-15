@@ -2,51 +2,26 @@
 
 declare(strict_types=1);
 
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use Lloricode\Paymaya\PaymayaClient;
+use Lloricode\Paymaya\Constant;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
+use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\Request\Checkout\Checkout;
 use Lloricode\Paymaya\Test\TestHelper;
+use Saloon\Http\Faking\MockClient;
 
 use function PHPUnit\Framework\assertEquals;
 
-function mockApiClient(
-    array $array,
-    int $status = 200,
-    array &$historyContainer = []
-): PaymayaClient {
-    return generatePaymayaClient(
-        new MockHandler(
-            [
-                new Response(
-                    $status,
-                    [],
-                    json_encode(
-                        $array
-                    ),
-                ),
-            ]
-        ),
-        $historyContainer
-    );
+function fakeCredencials(): void
+{
+
+    Constant::$environment = Environment::testing;
+    Constant::$secretKey = 'sk-....';
+    Constant::$publicKey = 'pk-.....';
+
+    MockClient::destroyGlobal();
 }
 
-function generatePaymayaClient(
-    MockHandler $mockHandler,
-    array &$historyContainer = []
-): PaymayaClient {
-    return (new PaymayaClient(
-        '',
-        '',
-        PaymayaClient::ENVIRONMENT_TESTING
-    ))->setHandlerStack(
-        HandlerStack::create($mockHandler),
-        $historyContainer
-    );
-}
-
-function buildCheckout(): Checkout
+function buildCheckout(): CheckoutDto
 {
     return TestHelper::buildCheckout();
 }

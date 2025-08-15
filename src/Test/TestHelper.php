@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Lloricode\Paymaya\Test;
 
-use Lloricode\Paymaya\Request\Checkout\Amount\Amount;
-use Lloricode\Paymaya\Request\Checkout\Amount\AmountDetail;
-use Lloricode\Paymaya\Request\Checkout\Buyer\BillingAddress;
-use Lloricode\Paymaya\Request\Checkout\Buyer\Buyer;
-use Lloricode\Paymaya\Request\Checkout\Buyer\Contact;
-use Lloricode\Paymaya\Request\Checkout\Buyer\ShippingAddress;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDetailDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BillingAddressDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BuyerDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\ContactDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\ShippingAddressDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\ItemDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\MetaDataDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\RedirectUrlDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\TotalAmountDto;
 use Lloricode\Paymaya\Request\Checkout\Checkout;
-use Lloricode\Paymaya\Request\Checkout\Item;
-use Lloricode\Paymaya\Request\Checkout\MetaData;
-use Lloricode\Paymaya\Request\Checkout\RedirectUrl;
-use Lloricode\Paymaya\Request\Checkout\TotalAmount;
 
 class TestHelper
 {
@@ -128,20 +129,20 @@ class TestHelper
 }';
     }
 
-    public static function buildCheckout(): Checkout
+    public static function buildCheckout(): CheckoutDto
     {
-        return (new Checkout)
+        return (new CheckoutDto)
             ->setTotalAmount(
-                (new TotalAmount)
+                (new TotalAmountDto)
                     ->setCurrency('PHP')
                     ->setValue(100)
                     ->setDetails(
-                        (new AmountDetail)
+                        (new AmountDetailDto)
                             ->setSubtotal(100)
                     )
             )
             ->setBuyer(
-                (new Buyer)
+                (new BuyerDto)
                     ->setFirstName('John')
                     ->setMiddleName('Paul')
                     ->setLastName('Doe')
@@ -149,12 +150,12 @@ class TestHelper
                     ->setCustomerSince('1995-10-24')
                     ->setGender('M')
                     ->setContact(
-                        (new Contact)
+                        (new ContactDto)
                             ->setPhone('+639181008888')
                             ->setEmail('merchant@merchantsite.com')
                     )
                     ->setShippingAddress(
-                        (new ShippingAddress)
+                        (new ShippingAddressDto)
                             ->setFirstName('John')
                             ->setMiddleName('Paul')
                             ->setLastName('Doe')
@@ -169,7 +170,7 @@ class TestHelper
                             ->setShippingType('ST')
                     )
                     ->setBillingAddress(
-                        (new BillingAddress)
+                        (new BillingAddressDto)
                             ->setLine1('6F Launchpad')
                             ->setLine2('Reliance Street')
                             ->setCity('Mandaluyong City')
@@ -179,16 +180,16 @@ class TestHelper
                     )
             )
             ->addItem(
-                (new Item)
+                (new ItemDto)
                     ->setName('Canvas Slip Ons')
                     ->setQuantity(1)
                     ->setCode('CVG-096732')
                     ->setDescription('Shoes')
                     ->setAmount(
-                        (new Amount)
+                        (new AmountDto)
                             ->setValue(100)
                             ->setDetails(
-                                (new AmountDetail)
+                                (new AmountDetailDto)
                                     ->setDiscount(0)
                                     ->setServiceCharge(0)
                                     ->setShippingFee(0)
@@ -197,10 +198,10 @@ class TestHelper
                             )
                     )
                     ->setTotalAmount(
-                        (new Amount)
+                        (new AmountDto)
                             ->setValue(100)
                             ->setDetails(
-                                (new AmountDetail)
+                                (new AmountDetailDto)
                                     ->setDiscount(0)
                                     ->setServiceCharge(0)
                                     ->setShippingFee(0)
@@ -210,14 +211,14 @@ class TestHelper
                     )
             )
             ->setRedirectUrl(
-                (new RedirectUrl)
+                (new RedirectUrlDto)
                     ->setSuccess('https://www.merchantsite.com/success')
                     ->setFailure('https://www.merchantsite.com/failure')
                     ->setCancel('https://www.merchantsite.com/cancel')
             )
             ->setRequestReferenceNumber('1551191039')
             ->setMetadata(
-                (new MetaData)
+                (new MetaDataDto)
                     ->setSMI('smi')
                     ->setSMN('smn')
                     ->setMCI('mci')

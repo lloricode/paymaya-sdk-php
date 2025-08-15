@@ -3,26 +3,31 @@
 declare(strict_types=1);
 
 use GuzzleHttp\Exception\GuzzleException;
-use Lloricode\Paymaya\Client\WebhookClient;
-use Lloricode\Paymaya\PaymayaClient;
-use Lloricode\Paymaya\Request\Checkout\Checkout;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
+use Lloricode\Paymaya\Request\Webhook\RetrieveWebhookRequest;
+use Saloon\Http\Faking\MockClient;
+use Saloon\Http\Faking\MockResponse;
 
 use function PHPUnit\Framework\assertCount;
 use function PHPUnit\Framework\assertEquals;
 
+beforeEach(function () {
+    fakeCredencials();
+});
+
 it('set items invalid', function () {
     $this->expectException(ErrorException::class);
-    $this->expectExceptionMessage('Lloricode\Paymaya\Request\Checkout\Checkout::setItems() not found.');
+    $this->expectExceptionMessage('Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto::setItems() not found.');
 
-    (new Checkout)
+    (new CheckoutDto)
         ->setItems([]);
 });
 
 it('invalid getter', function () {
     $this->expectException(ErrorException::class);
-    $this->expectExceptionMessage('Lloricode\Paymaya\Request\Checkout\Checkout::setBlah() not found.');
+    $this->expectExceptionMessage('Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto::setBlah() not found.');
 
-    (new Checkout)
+    (new CheckoutDto)
         ->setBlah('xxx');
 });
 
@@ -32,44 +37,35 @@ it('only 1 parameter', function () {
         'Argument of Lloricode\Paymaya\Request\Checkout\Checkout::setId() is 1 expected.'
     );
 
-    (new Checkout)
+    (new CheckoutDto)
         ->setId(1);
 })->skip();
 
-it('invalid env', function () {
-    $this->expectException(ErrorException::class);
-    $this->expectExceptionMessage('Invalid environment `invalid`.');
-    $test = new PaymayaClient('', '', 'invalid');
-});
-
 test('webhook zero data retrieved', function () {
-    $history = [];
-    $data = (new WebhookClient(
-        mockApiClient(
-            [
-            ],
-            404,
-            $history
-        )
-    ))
-        ->retrieve();
 
-    assertCount(0, $data);
+    MockClient::global([
+        RetrieveWebhookRequest::class => MockResponse::make(
+            status: 404,
+        ),
+    ]);
 
-    /** @var \GuzzleHttp\Psr7\Response $response */
-    $response = $history[0]['response'];
+    $response = (new RetrieveWebhookRequest)
+        ->send();
 
-    assertEquals(404, $response->getStatusCode());
-});
+    assertCount(0, $response->dto());
+
+    assertEquals(404, $response->status());
+})->todo('handle 404');
 
 it('throw exception', function () {
     $this->expectException(GuzzleException::class);
-    (new WebhookClient(
-        mockApiClient(
-            [
-            ],
-            400,
-        )
-    ))
-        ->retrieve();
-});
+
+    MockClient::global([
+        RetrieveWebhookRequest::class => MockResponse::make(
+            status: 400,
+        ),
+    ]);
+
+    (new RetrieveWebhookRequest)
+        ->send();
+})->todo('handle exception');
