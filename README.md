@@ -159,12 +159,7 @@ echo "url: " . $checkoutResponse->redirectUrl . "\n";
 ### Customization
 
 ```php
-use Lloricode\Paymaya\Constant;
-use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
-use Lloricode\Paymaya\Enums\Environment;
-use Lloricode\Paymaya\Request\Customization\DeleteCustomizationRequest;
-use Lloricode\Paymaya\Request\Customization\RegisterCustomizationRequest;
-use Lloricode\Paymaya\Request\Customization\RetrieveCustomizationRequest;
+use Lloricode\Paymaya\Constant;use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;use Lloricode\Paymaya\Enums\Environment;use Lloricode\Paymaya\Requests\Customization\DeleteCustomizationRequest;use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
 
 Constant::$environment = Environment::sandbox;
 Constant::$secretKey = "sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl";
@@ -192,17 +187,9 @@ Constant::$publicKey = "pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah";
 
 ### Webhook
 
-
 ```php
 
-use Lloricode\Paymaya\Constant;
-use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
-use Lloricode\Paymaya\Enums\Environment;
-use Lloricode\Paymaya\Enums\Webhook;
-use Lloricode\Paymaya\Request\Webhook\DeleteWebhookRequest;
-use Lloricode\Paymaya\Request\Webhook\RegisterWebhookRequest;
-use Lloricode\Paymaya\Request\Webhook\RetrieveWebhookRequest;
-use Lloricode\Paymaya\Request\Webhook\UpdateWebhookRequest;
+use Lloricode\Paymaya\Constant;use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;use Lloricode\Paymaya\Enums\Environment;use Lloricode\Paymaya\Enums\Webhook;use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;use Lloricode\Paymaya\Requests\Webhook\RegisterWebhookRequest;use Lloricode\Paymaya\Requests\Webhook\RetrieveWebhookRequest;use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
 
 Constant::$environment = Environment::sandbox;
 Constant::$secretKey = "sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl";

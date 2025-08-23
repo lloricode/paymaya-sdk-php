@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lloricode\Paymaya\Request\Webhook;
+namespace Lloricode\Paymaya\Requests\Webhook;
 
 use Lloricode\Paymaya\PaymayaConnector;
 use Saloon\Enums\Method;

@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
-use Lloricode\Paymaya\Request\Webhook\DeleteWebhookRequest;
-use Lloricode\Paymaya\Request\Webhook\RegisterWebhookRequest;
-use Lloricode\Paymaya\Request\Webhook\RetrieveWebhookRequest;
-use Lloricode\Paymaya\Request\Webhook\UpdateWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\RegisterWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\RetrieveWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 

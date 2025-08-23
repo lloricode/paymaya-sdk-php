@@ -5,9 +5,9 @@ declare(strict_types=1);
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
-use Lloricode\Paymaya\Request\Customization\DeleteCustomizationRequest;
-use Lloricode\Paymaya\Request\Customization\RegisterCustomizationRequest;
-use Lloricode\Paymaya\Request\Customization\RetrieveCustomizationRequest;
+use Lloricode\Paymaya\Requests\Customization\DeleteCustomizationRequest;
+use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;
+use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 

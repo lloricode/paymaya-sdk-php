@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Lloricode\Paymaya\Request\Webhook;
+namespace Lloricode\Paymaya\Requests\Webhook;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
 use Lloricode\Paymaya\PaymayaConnector;
 use Saloon\Enums\Method;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lloricode\Paymaya\Request\Customization;
+namespace Lloricode\Paymaya\Requests\Customization;
 
 use Lloricode\Paymaya\PaymayaConnector;
 use Saloon\Enums\Method;

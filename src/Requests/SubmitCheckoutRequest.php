@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lloricode\Paymaya\Request\Checkout;
+namespace Lloricode\Paymaya\Requests;
 
 use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
 use Lloricode\Paymaya\PaymayaConnector;

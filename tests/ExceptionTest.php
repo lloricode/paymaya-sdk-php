@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
-use Lloricode\Paymaya\Request\Webhook\RetrieveWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\RetrieveWebhookRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 

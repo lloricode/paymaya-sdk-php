@@ -2,24 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Lloricode\Paymaya\Request\Checkout;
+namespace Lloricode\Paymaya\Requests\Customization;
 
-use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
 use Lloricode\Paymaya\PaymayaConnector;
 use Saloon\Enums\Method;
 use Saloon\Http\Connector;
 use Saloon\Http\Response;
 use Saloon\Http\SoloRequest;
 
-class RetrieveCheckoutRequest extends SoloRequest
+class RetrieveCustomizationRequest extends SoloRequest
 {
     protected Method $method = Method::GET;
 
-    public function __construct(private readonly string $id) {}
-
     public function resolveEndpoint(): string
     {
-        return 'checkout/v1/checkouts/'.$this->id;
+        return 'checkout/v1/customizations';
     }
 
     #[\Override]
@@ -28,8 +26,8 @@ class RetrieveCheckoutRequest extends SoloRequest
         return PaymayaConnector::makeWithSecretKey();
     }
 
-    public function createDtoFromResponse(Response $response): CheckoutDto
+    public function createDtoFromResponse(Response $response): CustomizationDto
     {
-        return CheckoutDto::fromArray($response->array());
+        return new CustomizationDto(...$response->array());
     }
 }

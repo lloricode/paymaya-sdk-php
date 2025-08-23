@@ -2,22 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Lloricode\Paymaya\Request\Customization;
+namespace Lloricode\Paymaya\Requests\Customization;
 
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
 use Lloricode\Paymaya\PaymayaConnector;
+use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Connector;
 use Saloon\Http\Response;
 use Saloon\Http\SoloRequest;
+use Saloon\Traits\Body\HasJsonBody;
 
-class RetrieveCustomizationRequest extends SoloRequest
+class RegisterCustomizationRequest extends SoloRequest implements HasBody
 {
-    protected Method $method = Method::GET;
+    use HasJsonBody;
+
+    protected Method $method = Method::POST;
+
+    public function __construct(private readonly CustomizationDto $customizationDto) {}
 
     public function resolveEndpoint(): string
     {
         return 'checkout/v1/customizations';
+    }
+
+    protected function defaultBody(): array
+    {
+        return $this->customizationDto->toArray();
     }
 
     #[\Override]
