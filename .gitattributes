@@ -14,5 +14,6 @@
 /CHANGELOG.md       export-ignore
 /rector.php         export-ignore
 /pint.json          export-ignore
-/.run         export-ignore
+/.run               export-ignore
+/phpstan.neon       export-ignore
 
