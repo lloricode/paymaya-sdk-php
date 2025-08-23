@@ -38,7 +38,7 @@ it('retrieve', function () {
 
     assertSame(
         json_encode(json_decode($data), JSON_PRETTY_PRINT),
-        json_encode($response->toArray(), JSON_PRETTY_PRINT)
+        json_encode((array) $response, JSON_PRETTY_PRINT)
     );
 });
 
@@ -55,7 +55,7 @@ it('retrieve no data', function () {
 
     assertSame(
         json_encode(json_decode(json_encode(new CustomizationDto)), JSON_PRETTY_PRINT),
-        json_encode($response->toArray(), JSON_PRETTY_PRINT)
+        json_encode((array) $response, JSON_PRETTY_PRINT)
     );
 })
     ->todo('handle 404');

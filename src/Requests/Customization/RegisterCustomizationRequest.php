@@ -28,7 +28,7 @@ class RegisterCustomizationRequest extends SoloRequest implements HasBody
 
     protected function defaultBody(): array
     {
-        return $this->customizationDto->toArray();
+        return (array) $this->customizationDto;
     }
 
     #[\Override]

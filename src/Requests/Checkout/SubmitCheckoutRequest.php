@@ -29,7 +29,7 @@ class SubmitCheckoutRequest extends SoloRequest implements HasBody
 
     protected function defaultBody(): array
     {
-        return $this->checkoutDto->toArray();
+        return (array) $this->checkoutDto;
     }
 
     #[\Override]

@@ -28,7 +28,7 @@ class RegisterWebhookRequest extends SoloRequest implements HasBody
 
     protected function defaultBody(): array
     {
-        return $this->webhookDto->toArray();
+        return (array) $this->webhookDto;
     }
 
     #[\Override]
