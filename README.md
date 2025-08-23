@@ -189,6 +189,8 @@ Constant::$publicKey = 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah';
 
 ### Webhook
 
+#### Checkout Webhook
+
 ```php
 
 use Lloricode\Paymaya\Constant;
