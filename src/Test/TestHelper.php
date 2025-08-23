@@ -15,7 +15,6 @@ use Lloricode\Paymaya\DataTransferObjects\Checkout\ItemDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\MetaDataDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\RedirectUrlDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\TotalAmountDto;
-use Lloricode\Paymaya\Request\Checkout\Checkout;
 
 class TestHelper
 {
