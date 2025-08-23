@@ -48,110 +48,108 @@ use Lloricode\Paymaya\DataTransferObjects\Checkout\MetaDataDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\RedirectUrlDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\TotalAmountDto;
 use Lloricode\Paymaya\Enums\Environment;
-use Lloricode\Paymaya\Request\Checkout\RetrieveCheckoutRequest;
-use Lloricode\Paymaya\Request\Checkout\SubmitCheckoutRequest;
+use Lloricode\Paymaya\Requests\RetrieveCheckoutRequest;
+use Lloricode\Paymaya\Requests\SubmitCheckoutRequest;
 
 Constant::$environment = Environment::sandbox;
-Constant::$secretKey = "sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl";
-Constant::$publicKey = "pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah";
+Constant::$secretKey = 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl';
+Constant::$publicKey = 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah';
 
-# retrieve
-// (new RetrieveCustomizationRequest())->send()->dto();
+$checkout = (new CheckoutDto)
+    ->setTotalAmount(
+        (new TotalAmountDto)
+            ->setValue(100)
+            ->setDetails((new AmountDetailDto)->setSubtotal(100))
+    )
+    ->setBuyer(
+        (new BuyerDto)
+            ->setFirstName('John')
+            ->setMiddleName('Paul')
+            ->setLastName('Doe')
+            ->setBirthday('1995-10-24')
+            ->setCustomerSince('1995-10-24')
+            ->setGender('M')
+            ->setContact(
+                (new ContactDto)
+                    ->setPhone('+639181008888')
+                    ->setEmail('merchant@merchantsite.com')
+            )
+            ->setShippingAddress(
+                (new ShippingAddressDto)
+                    ->setFirstName('John')
+                    ->setMiddleName('Paul')
+                    ->setLastName('Doe')
+                    ->setPhone('+639181008888')
+                    ->setEmail('merchant@merchantsite.com')
+                    ->setLine1('6F Launchpad')
+                    ->setLine2('Reliance Street')
+                    ->setCity('Mandaluyong City')
+                    ->setState('Metro Manila')
+                    ->setZipCode('1552')
+                    ->setCountryCode('PH')
+                    ->setShippingType('ST')
+            )
+            ->setBillingAddress(
+                (new BillingAddressDto)
+                    ->setLine1('6F Launchpad')
+                    ->setLine2('Reliance Street')
+                    ->setCity('Mandaluyong City')
+                    ->setState('Metro Manila')
+                    ->setZipCode('1552')
+                    ->setCountryCode('PH')
+            )
+    )
+    ->addItem(
+        (new ItemDto)
+            ->setName('Canvas Slip Ons')
+            ->setQuantity(1)
+            ->setCode('CVG-096732')
+            ->setDescription('Shoes')
+            ->setAmount(
+                (new AmountDto)->setValue(100)->setDetails(
+                    (new AmountDetailDto)
+                        ->setDiscount(0)
+                        ->setServiceCharge(0)
+                        ->setShippingFee(0)
+                        ->setTax(0)
+                        ->setSubtotal(100)
+                )
+            )
+            ->setTotalAmount(
+                (new AmountDto)->setValue(100)->setDetails(
+                    (new AmountDetailDto)
+                        ->setDiscount(0)
+                        ->setServiceCharge(0)
+                        ->setShippingFee(0)
+                        ->setTax(0)
+                        ->setSubtotal(100)
+                )
+            )
+    )
+    ->setRedirectUrl(
+        (new RedirectUrlDto)
+            ->setSuccess('https://www.merchantsite.com/success')
+            ->setFailure('https://www.merchantsite.com/failure')
+            ->setCancel('https://www.merchantsite.com/cancel')
+    )
+    ->setRequestReferenceNumber('1551191039')
+    ->setMetadata(
+        (new MetaDataDto)
+            ->setSMI('smi')
+            ->setSMN('smn')
+            ->setMCI('mci')
+            ->setMPC('mpc')
+            ->setMCO('mco')
+            ->setMST('mst')
+    );
 
-$checkout = (new CheckoutDto())
-  ->setTotalAmount(
-    (new TotalAmountDto())
-      ->setValue(100)
-      ->setDetails((new AmountDetailDto())->setSubtotal(100))
-  )
-  ->setBuyer(
-    (new BuyerDto())
-      ->setFirstName("John")
-      ->setMiddleName("Paul")
-      ->setLastName("Doe")
-      ->setBirthday("1995-10-24")
-      ->setCustomerSince("1995-10-24")
-      ->setGender("M")
-      ->setContact(
-        (new ContactDto())
-          ->setPhone("+639181008888")
-          ->setEmail("merchant@merchantsite.com")
-      )
-      ->setShippingAddress(
-        (new ShippingAddressDto())
-          ->setFirstName("John")
-          ->setMiddleName("Paul")
-          ->setLastName("Doe")
-          ->setPhone("+639181008888")
-          ->setEmail("merchant@merchantsite.com")
-          ->setLine1("6F Launchpad")
-          ->setLine2("Reliance Street")
-          ->setCity("Mandaluyong City")
-          ->setState("Metro Manila")
-          ->setZipCode("1552")
-          ->setCountryCode("PH")
-          ->setShippingType("ST")
-      )
-      ->setBillingAddress(
-        (new BillingAddressDto())
-          ->setLine1("6F Launchpad")
-          ->setLine2("Reliance Street")
-          ->setCity("Mandaluyong City")
-          ->setState("Metro Manila")
-          ->setZipCode("1552")
-          ->setCountryCode("PH")
-      )
-  )
-  ->addItem(
-    (new ItemDto())
-      ->setName("Canvas Slip Ons")
-      ->setQuantity(1)
-      ->setCode("CVG-096732")
-      ->setDescription("Shoes")
-      ->setAmount(
-        (new AmountDto())->setValue(100)->setDetails(
-          (new AmountDetailDto())
-            ->setDiscount(0)
-            ->setServiceCharge(0)
-            ->setShippingFee(0)
-            ->setTax(0)
-            ->setSubtotal(100)
-        )
-      )
-      ->setTotalAmount(
-        (new AmountDto())->setValue(100)->setDetails(
-          (new AmountDetailDto())
-            ->setDiscount(0)
-            ->setServiceCharge(0)
-            ->setShippingFee(0)
-            ->setTax(0)
-            ->setSubtotal(100)
-        )
-      )
-  )
-  ->setRedirectUrl(
-    (new RedirectUrlDto())
-      ->setSuccess("https://www.merchantsite.com/success")
-      ->setFailure("https://www.merchantsite.com/failure")
-      ->setCancel("https://www.merchantsite.com/cancel")
-  )
-  ->setRequestReferenceNumber("1551191039")
-  ->setMetadata(
-    (new MetaDataDto())
-      ->setSMI("smi")
-      ->setSMN("smn")
-      ->setMCI("mci")
-      ->setMPC("mpc")
-      ->setMCO("mco")
-      ->setMST("mst")
-  );
-
-# submit
+// submit
 $checkoutResponse = (new SubmitCheckoutRequest($checkout))->send()->dto();
 
-echo "id: " . $checkoutResponse->checkoutId . "\n";
-echo "url: " . $checkoutResponse->redirectUrl . "\n";
+echo 'id: '.$checkoutResponse->checkoutId."\n";
+echo 'url: '.$checkoutResponse->redirectUrl."\n";
 
+// retrieve
 (new RetrieveCheckoutRequest($checkoutResponse->checkoutId))->send()->dto();
 
 ```
@@ -159,29 +157,35 @@ echo "url: " . $checkoutResponse->redirectUrl . "\n";
 ### Customization
 
 ```php
-use Lloricode\Paymaya\Constant;use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;use Lloricode\Paymaya\Enums\Environment;use Lloricode\Paymaya\Requests\Customization\DeleteCustomizationRequest;use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
+
+use Lloricode\Paymaya\Constant;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
+use Lloricode\Paymaya\Enums\Environment;
+use Lloricode\Paymaya\Requests\Customization\DeleteCustomizationRequest;
+use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;
+use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
 
 Constant::$environment = Environment::sandbox;
-Constant::$secretKey = "sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl";
-Constant::$publicKey = "pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah";
+Constant::$secretKey = 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl';
+Constant::$publicKey = 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah';
 
-# retrieve
-(new RetrieveCustomizationRequest())->send()->dto();
-
-# register
+// register
 (new RegisterCustomizationRequest(
-  (new CustomizationDto())
-    ->setLogoUrl("https://image-logo.png")
-    ->setIconUrl("https://image-icon.png")
-    ->setAppleTouchIconUrl("https://image-apple.png")
-    ->setCustomTitle("Test Title Mock")
-    ->setColorScheme("#e01c44")
+    (new CustomizationDto)
+        ->setLogoUrl('https://image-logo.png')
+        ->setIconUrl('https://image-icon.png')
+        ->setAppleTouchIconUrl('https://image-apple.png')
+        ->setCustomTitle('Test Title Mock')
+        ->setColorScheme('#e01c44')
 ))
-  ->send()
-  ->dto();
+    ->send()
+    ->dto();
 
-# delete
-(new DeleteCustomizationRequest())->send();
+// retrieve
+(new RetrieveCustomizationRequest)->send()->dto();
+
+// delete
+(new DeleteCustomizationRequest)->send();
 
 ```
 
@@ -189,50 +193,55 @@ Constant::$publicKey = "pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah";
 
 ```php
 
-use Lloricode\Paymaya\Constant;use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;use Lloricode\Paymaya\Enums\Environment;use Lloricode\Paymaya\Enums\Webhook;use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;use Lloricode\Paymaya\Requests\Webhook\RegisterWebhookRequest;use Lloricode\Paymaya\Requests\Webhook\RetrieveWebhookRequest;use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
+use Lloricode\Paymaya\Constant;
+use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
+use Lloricode\Paymaya\Enums\Environment;
+use Lloricode\Paymaya\Enums\Webhook;
+use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\RegisterWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\RetrieveWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
 
 Constant::$environment = Environment::sandbox;
-Constant::$secretKey = "sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl";
-Constant::$publicKey = "pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah";
+Constant::$secretKey = 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl';
+Constant::$publicKey = 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah';
 
-# retrieve
-$webhooks = (new RetrieveWebhookRequest())->send()->dto();
+// retrieve
+/** @var array<string, WebhookDto> $webhooks */
+$webhooks = (new RetrieveWebhookRequest)->send()->dto();
 
-# register
+// delete all
+foreach ($webhooks as $webhook) {
+    (new DeleteWebhookRequest($webhook->id))->send();
+}
+
+// register
 (new RegisterWebhookRequest(
-    (new WebhookDto())
+    (new WebhookDto)
         ->setName(Webhook::CHECKOUT_SUCCESS)
-        ->setCallbackUrl("https://web.test/test/success")
-))->send();
-(new RegisterWebhookRequest(
-    (new WebhookDto())
-        ->setName(Webhook::CHECKOUT_FAILURE)
-        ->setCallbackUrl("https://web.test/test/failure")
-))->send();
-(new RegisterWebhookRequest(
-    (new WebhookDto())
-        ->setName(Webhook::CHECKOUT_DROPOUT)
-        ->setCallbackUrl("https://web.test/test/drop")
+        ->setCallbackUrl('https://web.test/test/success')
 ))->send();
 
-# update
+(new RegisterWebhookRequest(
+    (new WebhookDto)
+        ->setName(Webhook::CHECKOUT_FAILURE)
+        ->setCallbackUrl('https://web.test/test/failure')
+))->send();
+
+(new RegisterWebhookRequest(
+    (new WebhookDto)
+        ->setName(Webhook::CHECKOUT_DROPOUT)
+        ->setCallbackUrl('https://web.test/test/drop')
+))->send();
+
+// update
 $webhooks = (new UpdateWebhookRequest(
-    $webhooks[Webhook::CHECKOUT_SUCCESS->value]->setCallbackUrl(
-        "https://web.test/test/update-success"
+    $webhooks[Webhook::CHECKOUT_SUCCESS]->setCallbackUrl(
+        'https://web.test/test/update-success'
     )
 ))
     ->send()
     ->dto();
-
-# single delete
-(new DeleteWebhookRequest(
-    $webhooks[Webhook::CHECKOUT_DROPOUT->value]
-))->send();
-
-# delete all
-foreach ($webhooks as $webhook) {
-    (new DeleteWebhookRequest($webhook->id))->send();
-}
 
 ```
 
