@@ -2,14 +2,10 @@
 
 declare(strict_types=1);
 
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BillingAddressDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\ShippingAddressDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
 use Lloricode\Paymaya\Requests\Checkout\RetrieveCheckoutRequest;
-use Lloricode\Paymaya\Requests\Checkout\SubmitCheckoutRequest;
-use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
@@ -20,44 +16,6 @@ use function PHPUnit\Framework\assertJsonStringEqualsJsonString;
 
 beforeEach(function () {
     fakeCredentials();
-});
-
-test('json check exact from docs', function () {
-    assertJsonStringEqualsJsonString(
-        jsonCheckoutDataFromDocs(),
-        json_encode(buildCheckout())
-    );
-});
-
-it('check via sandbox', function () {
-
-    $id = 'test-generated-id';
-    $url = 'https://test';
-
-    MockClient::global([
-        SubmitCheckoutRequest::class => MockResponse::make(
-            body: [
-                'checkoutId' => $id,
-                'redirectUrl' => $url,
-            ],
-        ),
-    ]);
-
-    $checkoutResponse = null;
-
-    try {
-        /** @var CheckoutResponse $checkoutResponse */
-        $checkoutResponse = (new SubmitCheckoutRequest(buildCheckout()))->send()->dto();
-    } catch (ErrorException) {
-        $this->fail('ErrorException');
-    } catch (ClientException $e) {
-        $this->fail('ClientException: '.$e->getMessage().$e->getResponse()->getBody());
-    } catch (GuzzleException) {
-        $this->fail('GuzzleException');
-    }
-
-    assertEquals($id, $checkoutResponse->checkoutId);
-    assertEquals($url, $checkoutResponse->redirectUrl);
 });
 
 it('show with id success', function () {
