@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
 use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
@@ -15,11 +14,6 @@ beforeEach(function () {
 
 it('delete', function () {
     $data = sampleWebhookData();
-
-    $webhookResponse = (new WebhookDto);
-    $webhookResponse->setId($data['id']);
-    $webhookResponse->setName($data['name']);
-    $webhookResponse->setCallbackUrl($data['callbackUrl']);
 
     $mockClient = MockClient::global([
         DeleteWebhookRequest::class => MockResponse::make(

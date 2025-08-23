@@ -36,12 +36,13 @@ it('register', function () {
 
     try {
         $response = (new RegisterCustomizationRequest(
-            (new CustomizationDto)
-                ->setLogoUrl('https://image-logo.png')
-                ->setIconUrl('https://image-icon.png')
-                ->setAppleTouchIconUrl('https://image-apple.png')
-                ->setCustomTitle('Test Title Mock')
-                ->setColorScheme('#e01c44')
+            new CustomizationDto(
+                logoUrl: 'https://image-logo.png',
+                iconUrl: 'https://image-icon.png',
+                appleTouchIconUrl: 'https://image-apple.png',
+                customTitle: 'Test Title Mock',
+                colorScheme: '#e01c44',
+            )
         ))
             ->send()
             ->dto();

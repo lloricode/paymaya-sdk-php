@@ -24,9 +24,10 @@ it('register', function () {
 
     /** @var WebhookDto $webhookResponse */
     $webhookResponse = (new RegisterWebhookRequest(
-        (new WebhookDto)
-            ->setName($data['name'])
-            ->setCallbackUrl($data['callbackUrl'])
+        new WebhookDto(
+            name: $data['name'],
+            callbackUrl: $data['callbackUrl'],
+        )
     ))
         ->send()
         ->dto();

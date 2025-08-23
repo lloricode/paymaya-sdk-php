@@ -17,11 +17,6 @@ it('update', function () {
     $newUrl = 'https://web.test/test/success-test-new-update';
     $data = sampleWebhookData(['callbackUrl' => $newUrl]);
 
-    $webhookResponse = (new WebhookDto);
-    $webhookResponse->setId($data['id']);
-    $webhookResponse->setName($data['name']);
-    $webhookResponse->setCallbackUrl('https://old-url');
-
     $mockClient = MockClient::global([
         UpdateWebhookRequest::class => MockResponse::make(
             body: $data,
@@ -29,8 +24,11 @@ it('update', function () {
     ]);
 
     $response = (new UpdateWebhookRequest(
-        $webhookResponse
-            ->setCallbackUrl($newUrl)
+        new WebhookDto(
+            id: $data['id'],
+            name: $data['name'],
+            callbackUrl: $newUrl,
+        )
     ))
         ->send();
 

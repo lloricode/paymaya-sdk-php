@@ -56,119 +56,131 @@ readonly class CheckoutDto extends BaseDto
 
     public static function fromArray(array $data): static
     {
-        $clone = $data;
-        unset(
-            $data['metadata'],
-            $data['totalAmount'],
-            $data['buyer'],
-            $data['redirectUrl'],
-            $data['merchant'],
-            $data['paymentDetails'],
-        );
+        $metadata = isset($data['metadata'])
+            ? new MetaDataDto(...$data['metadata'])
+            : null;
 
-        /** @phpstan-ignore-next-line  */
-        $checkout = new static(...$data);
+        $totalAmount = null;
+        if (isset($data['totalAmount'])) {
+            $ta = $data['totalAmount'];
+            $details = null;
 
-        unset($data);
-
-        if (isset($clone['metadata'])) {
-            $checkout->setMetadata(new MetaDataDto(...$clone['metadata']));
-        }
-
-        if (isset($clone['totalAmount'])) {
-            $tmp = $clone['totalAmount'];
-
-            unset($tmp['details']);
-            $totalAmount = new TotalAmountDto(...$tmp);
-            unset($tmp);
-
-            if (isset($clone['totalAmount']['details'])) {
-                $totalAmount->setDetails(
-                    new AmountDetailDto(...$clone['totalAmount']['details'])
+            if (isset($ta['details'])) {
+                $details = new AmountDetailDto(...$ta['details']);
+                unset($ta['details']);
+            }
+            $totalAmount = new TotalAmountDto(...$ta);
+            if ($details !== null) {
+                $totalAmount = new TotalAmountDto(
+                    amount: $totalAmount->amount,
+                    value: $totalAmount->value,
+                    details: $details
                 );
             }
-
-            $checkout->setTotalAmount($totalAmount);
         }
-        if (isset($clone['buyer'])) {
-            $tmp = $clone['buyer'];
 
-            unset(
-                $tmp['contact'],
-                $tmp['shippingAddress'],
-                $tmp['billingAddress'],
-            );
-            $buyer = new BuyerDto(...$tmp);
-            unset($tmp);
+        $buyer = null;
+        if (isset($data['buyer'])) {
+            $bd = $data['buyer'];
+            $contact = isset($bd['contact']) ? new ContactDto(...$bd['contact']) : null;
+            $shipping = isset($bd['shippingAddress']) ? new ShippingAddressDto(...$bd['shippingAddress']) : null;
+            $billing = isset($bd['billingAddress']) ? new BillingAddressDto(...$bd['billingAddress']) : null;
 
-            if (isset($clone['buyer']['contact'])) {
-                $buyer->setContact(new ContactDto(...$clone['buyer']['contact']));
-            }
+            unset($bd['contact'], $bd['shippingAddress'], $bd['billingAddress']);
+            $buyer = new BuyerDto(...$bd);
 
-            if (isset($clone['buyer']['shippingAddress'])) {
-                $buyer->setShippingAddress(new ShippingAddressDto(...$clone['buyer']['shippingAddress']));
-            }
-
-            if (isset($clone['buyer']['billingAddress'])) {
-                $buyer->setBillingAddress(new BillingAddressDto(...$clone['buyer']['billingAddress']));
-            }
-
-            $checkout->setBuyer(
-                $buyer
+            $buyer = new BuyerDto(
+                firstName: $buyer->firstName ?? $data['firstName'] ?? null,
+                middleName: $buyer->middleName ?? $data['middleName'] ?? null,
+                lastName: $buyer->lastName ?? $data['lastName'] ?? null,
+                contact: $contact ?? $buyer->contact ?? null,
+                shippingAddress: $shipping ?? $buyer->shippingAddress ?? null,
+                billingAddress: $billing ?? $buyer->billingAddress ?? null
             );
         }
 
-        if (isset($clone['redirectUrl'])) {
-            $checkout->setRedirectUrl(
-                new RedirectUrlDto(...$clone['redirectUrl'])
-            );
-        }
+        $redirectUrl = isset($data['redirectUrl'])
+            ? new RedirectUrlDto(...$data['redirectUrl'])
+            : null;
 
-        if (isset($clone['merchant'])) {
-            $checkout->setMerchant(
-                new MerchantDto(...$clone['merchant'])
-            );
-        }
+        $merchant = isset($data['merchant'])
+            ? new MerchantDto(...$data['merchant'])
+            : null;
 
-        if (isset($clone['paymentDetails'])) {
-            $clone['paymentDetails']['is3ds'] = $clone['paymentDetails']['3ds'] ?? false;
-            unset($clone['paymentDetails']['3ds']);
+        $paymentDetails = null;
+        if (isset($data['paymentDetails'])) {
+            $pd = $data['paymentDetails'];
 
-            if ($clone['paymentDetails']['responses'] ?? false) {
-                if (isset($clone['paymentDetails']['responses']['efs'])) {
-                    if (isset($clone['paymentDetails']['responses']['efs']['receipt'])) {
-                        $clone['paymentDetails']['responses']['efs']['receipt'] = new Receipt(...$clone['paymentDetails']['responses']['efs']['receipt']);
+            $pd['is3ds'] = $pd['3ds'] ?? false;
+            unset($pd['3ds']);
+
+            if (! empty($pd['responses'])) {
+                $responses = $pd['responses'];
+
+                if (isset($responses['efs'])) {
+                    $efs = $responses['efs'];
+
+                    if (isset($efs['receipt'])) {
+                        $efs['receipt'] = new Receipt(...$efs['receipt']);
                     }
-                    if (isset($clone['paymentDetails']['responses']['efs']['payer'])) {
-                        if (isset($clone['paymentDetails']['responses']['efs']['payer']['fundingInstrument'])) {
-                            if (isset($clone['paymentDetails']['responses']['efs']['payer']['fundingInstrument']['card'])) {
-                                $clone['paymentDetails']['responses']['efs']['payer']['fundingInstrument']['card'] = new Card(...$clone['paymentDetails']['responses']['efs']['payer']['fundingInstrument']['card']);
+
+                    if (isset($efs['payer'])) {
+                        $payer = $efs['payer'];
+
+                        if (isset($payer['fundingInstrument'])) {
+                            $fi = $payer['fundingInstrument'];
+
+                            if (isset($fi['card'])) {
+                                $fi['card'] = new Card(...$fi['card']);
                             }
 
-                            $clone['paymentDetails']['responses']['efs']['payer']['fundingInstrument'] = new FundingInstrument(...$clone['paymentDetails']['responses']['efs']['payer']['fundingInstrument']);
+                            $payer['fundingInstrument'] = new FundingInstrument(...$fi);
                         }
 
-                        $clone['paymentDetails']['responses']['efs']['payer'] = new Payer(...$clone['paymentDetails']['responses']['efs']['payer']);
+                        $efs['payer'] = new Payer(...$payer);
                     }
-                    if (isset($clone['paymentDetails']['responses']['efs']['amount'])) {
-                        if (isset($clone['paymentDetails']['responses']['efs']['amount']['total'])) {
-                            $clone['paymentDetails']['responses']['efs']['amount']['total'] = new Total(...$clone['paymentDetails']['responses']['efs']['amount']['total']);
+
+                    if (isset($efs['amount'])) {
+                        $amt = $efs['amount'];
+
+                        if (isset($amt['total'])) {
+                            $amt['total'] = new Total(...$amt['total']);
                         }
 
-                        $clone['paymentDetails']['responses']['efs']['amount'] = new Amount(...$clone['paymentDetails']['responses']['efs']['amount']);
+                        $efs['amount'] = new Amount(...$amt);
                     }
 
-                    $clone['paymentDetails']['responses']['efs'] = new EFS(...$clone['paymentDetails']['responses']['efs']);
+                    $responses['efs'] = new EFS(...$efs);
                 }
 
-                $clone['paymentDetails']['responses'] = new PaymentDetailResponse(...$clone['paymentDetails']['responses']);
+                $pd['responses'] = new PaymentDetailResponse(...$responses);
             }
 
-            $checkout->setPaymentDetails(
-                new PaymentDetail(...$clone['paymentDetails'])
-            );
+            $paymentDetails = new PaymentDetail(...$pd);
         }
 
-        return $checkout;
+        /** @phpstan-ignore new.static */
+        return new static(
+            id: $data['id'] ?? null,
+            totalAmount: $totalAmount ?? new TotalAmountDto,
+            buyer: $buyer,
+            items: $data['items'] ?? [],
+            redirectUrl: $redirectUrl,
+            status: $data['status'] ?? null,
+            paymentStatus: $data['paymentStatus'] ?? null,
+            requestReferenceNumber: $data['requestReferenceNumber'] ?? null,
+            metadata: $metadata,
+            receiptNumber: $data['receiptNumber'] ?? null,
+            createdAt: $data['createdAt'] ?? null,
+            updatedAt: $data['updatedAt'] ?? null,
+            expiredAt: $data['expiredAt'] ?? null,
+            expressCheckout: $data['expressCheckout'] ?? null,
+            refundedAmount: $data['refundedAmount'] ?? 0,
+            canPayPal: $data['canPayPal'] ?? null,
+            paymentScheme: $data['paymentScheme'] ?? null,
+            merchant: $merchant,
+            paymentDetails: $paymentDetails,
+            transactionReferenceNumber: $data['transactionReferenceNumber'] ?? null,
+        );
     }
 }
