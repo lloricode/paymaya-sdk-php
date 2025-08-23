@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Lloricode\Paymaya\DataTransferObjects\Checkout;
 
-use ErrorException;
 use Lloricode\Paymaya\DataTransferObjects\BaseDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDetailDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BillingAddressDto;
@@ -24,32 +23,12 @@ use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailResponse\Paym
 /**
  * https://hackmd.io/@paymaya-pg/Checkout#Body
  * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
- *
- * @method self setId(string|int $id)
- * @method self setTotalAmount(TotalAmountDto $totalAmount)
- * @method self setBuyer(BuyerDto $buyer)
- * @method self setRedirectUrl(RedirectUrlDto $redirectUrl)
- * @method self setStatus(string $status)
- * @method self setPaymentStatus(string $paymentStatus)
- * @method self setRequestReferenceNumber(string $requestReferenceNumber)
- * @method self setMetadata(MetaDataDto $metadata)
- * @method self setReceiptNumber(string $receiptNumber)
- * @method self setCreatedAt(string $createdAt)
- * @method self setUpdatedAt(string $updatedAt)
- * @method self setExpiredAt(string $expiredAt)
- * @method self setExpressCheckout(bool $expressCheckout)
- * @method self setRefundedAmount(float|string|int $refundedAmount)
- * @method self setCanPayPal(bool $canPayPal)
- * @method self setPaymentScheme(string $paymentScheme)
- * @method self setMerchant(MerchantDto $merchant)
- * @method self setPaymentDetails(PaymentDetail $paymentDetails)
- * @method self setTransactionReferenceNumber(string $transactionReferenceNumber)
  */
-class CheckoutDto extends BaseDto
+readonly class CheckoutDto extends BaseDto
 {
     public function __construct(
         public string|int|null $id = null,
-        public ?TotalAmountDto $totalAmount = null,
+        public ?TotalAmountDto $totalAmount = new TotalAmountDto,
         public ?BuyerDto $buyer = null,
 
         /** @var \Lloricode\Paymaya\DataTransferObjects\Checkout\ItemDto[] */
@@ -73,26 +52,7 @@ class CheckoutDto extends BaseDto
         public ?MerchantDto $merchant = null,
         public ?PaymentDetail $paymentDetails = null,
         public ?string $transactionReferenceNumber = null,
-    ) {
-        $this->totalAmount ??= new TotalAmountDto;
-    }
-
-    #[\Override]
-    public function __call(string $name, mixed $arguments): static
-    {
-        if ($name === 'setItems') {
-            throw new ErrorException(sprintf('%s::%s() not found.', static::class, $name));
-        }
-
-        return parent::__call($name, $arguments);
-    }
-
-    public function addItem(ItemDto $itemRequest): self
-    {
-        $this->items[] = $itemRequest;
-
-        return $this;
-    }
+    ) {}
 
     public static function fromArray(array $data): static
     {

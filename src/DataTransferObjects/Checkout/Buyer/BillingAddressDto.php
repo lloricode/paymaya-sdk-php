@@ -6,15 +6,7 @@ namespace Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer;
 
 use Lloricode\Paymaya\DataTransferObjects\BaseDto;
 
-/**
- * @method self setLine1(string $line1)
- * @method self setLine2(string $line2)
- * @method self setCity(string $city)
- * @method self setState(string $state)
- * @method self setZipCode(string $zipCode)
- * @method self setCountryCode(string $countryCode)
- */
-class BillingAddressDto extends BaseDto
+readonly class BillingAddressDto extends BaseDto
 {
     public function __construct(
         public ?string $line1 = null,

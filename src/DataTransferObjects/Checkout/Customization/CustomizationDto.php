@@ -6,16 +6,7 @@ namespace Lloricode\Paymaya\DataTransferObjects\Checkout\Customization;
 
 use Lloricode\Paymaya\DataTransferObjects\BaseDto;
 
-/**
- * https://hackmd.io/@paymaya-pg/Checkout#Customizations
- *
- * @method self setLogoUrl(string $logoUrl)
- * @method self setIconUrl(string $iconUrl)
- * @method self setAppleTouchIconUrl(string $appleTouchIconUrl)
- * @method self setCustomTitle(string $customTitle)
- * @method self setColorScheme(string $colorScheme)
- */
-class CustomizationDto extends BaseDto
+readonly class CustomizationDto extends BaseDto
 {
     public function __construct(
         public ?string $logoUrl = '',

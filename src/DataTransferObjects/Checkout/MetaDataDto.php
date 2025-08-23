@@ -6,7 +6,7 @@ namespace Lloricode\Paymaya\DataTransferObjects\Checkout;
 
 use Lloricode\Paymaya\DataTransferObjects\BaseDto;
 
-class MetaDataDto extends BaseDto
+readonly class MetaDataDto extends BaseDto
 {
     public function __construct(
         public ?string $smi = null,
@@ -17,45 +17,4 @@ class MetaDataDto extends BaseDto
         public ?string $mst = null,
     ) {}
 
-    public function setSMI(string $smi): self
-    {
-        $this->smi = $smi;
-
-        return $this;
-    }
-
-    public function setSMN(string $smn): self
-    {
-        $this->smn = $smn;
-
-        return $this;
-    }
-
-    public function setMCI(string $mci): self
-    {
-        $this->mci = $mci;
-
-        return $this;
-    }
-
-    public function setMPC(string $mpc): self
-    {
-        $this->mpc = $mpc;
-
-        return $this;
-    }
-
-    public function setMCO(string $mco): self
-    {
-        $this->mco = $mco;
-
-        return $this;
-    }
-
-    public function setMST(string $mst): self
-    {
-        $this->mst = $mst;
-
-        return $this;
-    }
 }

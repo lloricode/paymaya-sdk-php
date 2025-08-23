@@ -15,7 +15,7 @@ use Lloricode\Paymaya\DataTransferObjects\BaseDto;
  * @method self setCreatedAt(string $createdAt)
  * @method self setUpdatedAt(string $updatedAt)
  */
-class WebhookDto extends BaseDto
+readonly class WebhookDto extends BaseDto
 {
     public function __construct(
         public ?string $id = null,

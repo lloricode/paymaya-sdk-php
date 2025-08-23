@@ -6,7 +6,7 @@ namespace Lloricode\Paymaya\DataTransferObjects\Checkout;
 
 use Lloricode\Paymaya\DataTransferObjects\BaseDto;
 
-class MerchantDto extends BaseDto
+readonly class MerchantDto extends BaseDto
 {
     public function __construct(
         public string $email,
