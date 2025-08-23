@@ -11,7 +11,7 @@ use Saloon\Http\Faking\MockClient;
 
 use function PHPUnit\Framework\assertEquals;
 
-function fakeCredencials(): void
+function fakeCredentials(): void
 {
 
     Constant::$environment = Environment::testing;

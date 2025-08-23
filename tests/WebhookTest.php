@@ -14,7 +14,7 @@ use function PHPUnit\Framework\assertCount;
 use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
-    fakeCredencials();
+    fakeCredentials();
 });
 function sampleData(array $override = []): array
 {

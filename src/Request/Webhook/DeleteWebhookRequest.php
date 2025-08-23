@@ -7,17 +7,13 @@ namespace Lloricode\Paymaya\Request\Webhook;
 use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
 use Lloricode\Paymaya\PaymayaConnector;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Connector;
 use Saloon\Http\Response;
 use Saloon\Http\SoloRequest;
-use Saloon\Traits\Body\HasJsonBody;
 
-class DeleteWebhookRequest extends SoloRequest implements HasBody
+class DeleteWebhookRequest extends SoloRequest
 {
-    use HasJsonBody;
-
     protected Method $method = Method::DELETE;
 
     public function __construct(private readonly string $webhookId) {}

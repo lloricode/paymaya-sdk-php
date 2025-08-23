@@ -6,17 +6,13 @@ namespace Lloricode\Paymaya\Request\Customization;
 
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
 use Lloricode\Paymaya\PaymayaConnector;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Connector;
 use Saloon\Http\Response;
 use Saloon\Http\SoloRequest;
-use Saloon\Traits\Body\HasJsonBody;
 
-class RetrieveCustomizationRequest extends SoloRequest implements HasBody
+class RetrieveCustomizationRequest extends SoloRequest
 {
-    use HasJsonBody;
-
     protected Method $method = Method::GET;
 
     public function resolveEndpoint(): string

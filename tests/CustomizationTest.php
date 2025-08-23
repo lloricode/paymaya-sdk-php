@@ -15,7 +15,7 @@ use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertSame;
 
 beforeEach(function () {
-    fakeCredencials();
+    fakeCredentials();
 });
 
 it('register', function () {

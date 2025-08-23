@@ -6,17 +6,13 @@ namespace Lloricode\Paymaya\Request\Checkout;
 
 use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
 use Lloricode\Paymaya\PaymayaConnector;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Connector;
 use Saloon\Http\Response;
 use Saloon\Http\SoloRequest;
-use Saloon\Traits\Body\HasJsonBody;
 
-class RetrieveCheckoutRequest extends SoloRequest implements HasBody
+class RetrieveCheckoutRequest extends SoloRequest
 {
-    use HasJsonBody;
-
     protected Method $method = Method::GET;
 
     public function __construct(private readonly string $id) {}

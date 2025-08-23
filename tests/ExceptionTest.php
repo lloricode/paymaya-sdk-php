@@ -12,7 +12,7 @@ use function PHPUnit\Framework\assertCount;
 use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
-    fakeCredencials();
+    fakeCredentials();
 });
 
 it('set items invalid', function () {

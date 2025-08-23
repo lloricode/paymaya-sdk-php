@@ -19,7 +19,7 @@ use function PHPUnit\Framework\assertInstanceOf;
 use function PHPUnit\Framework\assertJsonStringEqualsJsonString;
 
 beforeEach(function () {
-    fakeCredencials();
+    fakeCredentials();
 });
 
 test('json check exact from docs', function () {

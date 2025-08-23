@@ -5,16 +5,12 @@ declare(strict_types=1);
 namespace Lloricode\Paymaya\Request\Customization;
 
 use Lloricode\Paymaya\PaymayaConnector;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Connector;
 use Saloon\Http\SoloRequest;
-use Saloon\Traits\Body\HasJsonBody;
 
-class DeleteCustomizationRequest extends SoloRequest implements HasBody
+class DeleteCustomizationRequest extends SoloRequest
 {
-    use HasJsonBody;
-
     protected Method $method = Method::DELETE;
 
     public function resolveEndpoint(): string
