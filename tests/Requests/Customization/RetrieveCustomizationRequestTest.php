@@ -9,10 +9,6 @@ use Saloon\Http\Faking\MockResponse;
 
 use function PHPUnit\Framework\assertSame;
 
-beforeEach(function () {
-    fakeCredentials();
-});
-
 it('retrieve', function () {
     $data = '{
     "logoUrl": "https://image-logo.png",
@@ -32,8 +28,7 @@ it('retrieve', function () {
         ),
     ]);
 
-    $response = (new RetrieveCustomizationRequest)
-        ->send()
+    $response = paymayaConnectorSend(new RetrieveCustomizationRequest)
         ->dto();
 
     assertSame(
@@ -49,8 +44,7 @@ it('retrieve no data', function () {
         ),
     ]);
 
-    $response = (new RetrieveCustomizationRequest)
-        ->send()
+    $response = paymayaConnectorSend(new RetrieveCustomizationRequest)
         ->dto();
 
     assertSame(

@@ -14,10 +14,6 @@ use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertInstanceOf;
 use function PHPUnit\Framework\assertJsonStringEqualsJsonString;
 
-beforeEach(function () {
-    fakeCredentials();
-});
-
 it('show with id success', function () {
     $responseData = '{
     "id": "4ef96167-b8f2-4400-912e-5bd2f4289cfb",
@@ -178,7 +174,7 @@ it('show with id success', function () {
     ]);
 
     /** @var CheckoutDto $checkoutResponse */
-    $checkoutResponse = (new RetrieveCheckoutRequest('4ef96167-b8f2-4400-912e-5bd2f4289cfb'))->send()->dto();
+    $checkoutResponse = paymayaConnectorSend(new RetrieveCheckoutRequest('4ef96167-b8f2-4400-912e-5bd2f4289cfb'))->dto();
 
     assertInstanceOf(CheckoutDto::class, $checkoutResponse);
 

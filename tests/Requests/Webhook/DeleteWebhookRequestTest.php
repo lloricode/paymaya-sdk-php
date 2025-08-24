@@ -8,10 +8,6 @@ use Saloon\Http\Faking\MockResponse;
 
 use function PHPUnit\Framework\assertEquals;
 
-beforeEach(function () {
-    fakeCredentials();
-});
-
 it('delete', function () {
     $data = sampleWebhookData();
 
@@ -21,7 +17,7 @@ it('delete', function () {
         ),
     ]);
 
-    $response = (new DeleteWebhookRequest($data['id']))->send();
+    $response = paymayaConnectorSend(new DeleteWebhookRequest($data['id']));
 
     $mockClient->assertSentCount(1);
 

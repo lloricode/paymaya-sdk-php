@@ -35,7 +35,6 @@ You can copy the sample to test it.
 https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
 ``` php
 
-use Lloricode\Paymaya\Constant;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDetailDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BillingAddressDto;
@@ -48,12 +47,15 @@ use Lloricode\Paymaya\DataTransferObjects\Checkout\MetaDataDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\RedirectUrlDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\TotalAmountDto;
 use Lloricode\Paymaya\Enums\Environment;
+use Lloricode\Paymaya\PaymayaConnector;
 use Lloricode\Paymaya\Requests\Checkout\RetrieveCheckoutRequest;
 use Lloricode\Paymaya\Requests\Checkout\SubmitCheckoutRequest;
 
-Constant::$environment = Environment::sandbox;
-Constant::$secretKey = 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl';
-Constant::$publicKey = 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah';
+$api = new PaymayaConnector(
+    environment: Environment::sandbox,
+    secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
+    publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
+);
 
 $checkout = new CheckoutDto(
     totalAmount: new TotalAmountDto(
@@ -141,13 +143,13 @@ $checkout = new CheckoutDto(
 );
 
 // submit
-$checkoutResponse = (new SubmitCheckoutRequest($checkout))->send()->dto();
+$checkoutResponse = $api->send(new SubmitCheckoutRequest($checkout))->dto();
 
 echo 'id: '.$checkoutResponse->checkoutId."\n";
 echo 'url: '.$checkoutResponse->redirectUrl."\n";
 
 // retrieve
-(new RetrieveCheckoutRequest($checkoutResponse->checkoutId))->send()->dto();
+$api->send(new RetrieveCheckoutRequest($checkoutResponse->checkoutId))->dto();
 
 ```
 
@@ -155,19 +157,21 @@ echo 'url: '.$checkoutResponse->redirectUrl."\n";
 
 ```php
 
-use Lloricode\Paymaya\Constant;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
 use Lloricode\Paymaya\Enums\Environment;
+use Lloricode\Paymaya\PaymayaConnector;
 use Lloricode\Paymaya\Requests\Customization\DeleteCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
 
-Constant::$environment = Environment::sandbox;
-Constant::$secretKey = 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl';
-Constant::$publicKey = 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah';
+$api = new PaymayaConnector(
+    environment: Environment::sandbox,
+    secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
+    publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
+);
 
 // register (readonly DTO via constructor)
-(new RegisterCustomizationRequest(
+$api->send(new RegisterCustomizationRequest(
     new CustomizationDto(
         logoUrl: 'https://image-logo.png',
         iconUrl: 'https://image-icon.png',
@@ -176,14 +180,13 @@ Constant::$publicKey = 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah';
         colorScheme: '#e01c44',
     )
 ))
-    ->send()
     ->dto();
 
 // retrieve
-(new RetrieveCustomizationRequest)->send()->dto();
+$api->send(new RetrieveCustomizationRequest)->dto();
 
 // delete
-(new DeleteCustomizationRequest)->send();
+$api->send(new DeleteCustomizationRequest);
 
 ```
 
@@ -193,49 +196,51 @@ Constant::$publicKey = 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah';
 
 ```php
 
-use Lloricode\Paymaya\Constant;
 use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\Enums\Webhook;
+use Lloricode\Paymaya\PaymayaConnector;
 use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\RegisterWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\RetrieveWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
 
-Constant::$environment = Environment::sandbox;
-Constant::$secretKey = 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl';
-Constant::$publicKey = 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah';
+$api = new PaymayaConnector(
+    environment: Environment::sandbox,
+    secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
+    publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
+);
 
 // retrieve
 /** @var array<string, WebhookDto> $webhooks */
-$webhooks = (new RetrieveWebhookRequest)->send()->dto();
+$webhooks = $api->send(new RetrieveWebhookRequest)->dto();
 
 // delete all
 foreach ($webhooks as $webhook) {
-    (new DeleteWebhookRequest($webhook->id))->send();
+    $api->send(new DeleteWebhookRequest($webhook->id));
 }
 
 // register (readonly DTOs via constructors)
-(new RegisterWebhookRequest(
+$api->send(new RegisterWebhookRequest(
     new WebhookDto(
         name: Webhook::CHECKOUT_SUCCESS,
         callbackUrl: 'https://web.test/test/success'
     )
-))->send();
+));
 
-(new RegisterWebhookRequest(
+$api->send(new RegisterWebhookRequest(
     new WebhookDto(
         name: Webhook::CHECKOUT_FAILURE,
         callbackUrl: 'https://web.test/test/failure'
     )
-))->send();
+));
 
-(new RegisterWebhookRequest(
+$api->send(new RegisterWebhookRequest(
     new WebhookDto(
         name: Webhook::CHECKOUT_DROPOUT,
         callbackUrl: 'https://web.test/test/drop'
     )
-))->send();
+));
 
 // update (create a new readonly DTO with the existing id and new callback URL)
 $existing = $webhooks[Webhook::CHECKOUT_SUCCESS];
@@ -245,8 +250,7 @@ $updatedDto = new WebhookDto(
     callbackUrl: 'https://web.test/test/update-success'
 );
 
-$webhooks = (new UpdateWebhookRequest($updatedDto))
-    ->send()
+$webhooks = $api->send(new UpdateWebhookRequest($updatedDto))
     ->dto();
 
 ```

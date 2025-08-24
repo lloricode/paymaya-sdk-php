@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Lloricode\Paymaya\Requests\Webhook;
 
-use Lloricode\Paymaya\PaymayaConnector;
 use Saloon\Enums\Method;
-use Saloon\Http\Connector;
-use Saloon\Http\SoloRequest;
+use Saloon\Http\Request;
 
-class DeleteWebhookRequest extends SoloRequest
+class DeleteWebhookRequest extends Request
 {
     protected Method $method = Method::DELETE;
 
@@ -18,11 +16,5 @@ class DeleteWebhookRequest extends SoloRequest
     public function resolveEndpoint(): string
     {
         return 'checkout/v1/webhooks/'.$this->webhookId;
-    }
-
-    #[\Override]
-    protected function resolveConnector(): Connector
-    {
-        return PaymayaConnector::makeWithSecretKey();
     }
 }

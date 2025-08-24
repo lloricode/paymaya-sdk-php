@@ -5,15 +5,13 @@ declare(strict_types=1);
 namespace Lloricode\Paymaya\Requests\Webhook;
 
 use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
-use Lloricode\Paymaya\PaymayaConnector;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
-use Saloon\Http\Connector;
+use Saloon\Http\Request;
 use Saloon\Http\Response;
-use Saloon\Http\SoloRequest;
 use Saloon\Traits\Body\HasJsonBody;
 
-class UpdateWebhookRequest extends SoloRequest implements HasBody
+class UpdateWebhookRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -31,12 +29,6 @@ class UpdateWebhookRequest extends SoloRequest implements HasBody
     protected function defaultBody(): array
     {
         return (array) $this->webhookDto;
-    }
-
-    #[\Override]
-    protected function resolveConnector(): Connector
-    {
-        return PaymayaConnector::makeWithSecretKey();
     }
 
     public function createDtoFromResponse(Response $response): WebhookDto

@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace Lloricode\Paymaya\Requests\Checkout;
 
 use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
-use Lloricode\Paymaya\PaymayaConnector;
 use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
-use Saloon\Http\Connector;
+use Saloon\Http\Request;
 use Saloon\Http\Response;
-use Saloon\Http\SoloRequest;
 use Saloon\Traits\Body\HasJsonBody;
 
-class SubmitCheckoutRequest extends SoloRequest implements HasBody
+class SubmitCheckoutRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -30,12 +28,6 @@ class SubmitCheckoutRequest extends SoloRequest implements HasBody
     protected function defaultBody(): array
     {
         return (array) $this->checkoutDto;
-    }
-
-    #[\Override]
-    protected function resolveConnector(): Connector
-    {
-        return PaymayaConnector::makeWithPublicKey();
     }
 
     public function createDtoFromResponse(Response $response): CheckoutResponse

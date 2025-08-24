@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace Lloricode\Paymaya\Requests\Checkout;
 
 use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
-use Lloricode\Paymaya\PaymayaConnector;
 use Saloon\Enums\Method;
-use Saloon\Http\Connector;
+use Saloon\Http\Request;
 use Saloon\Http\Response;
-use Saloon\Http\SoloRequest;
 
-class RetrieveCheckoutRequest extends SoloRequest
+class RetrieveCheckoutRequest extends Request
 {
     protected Method $method = Method::GET;
 
@@ -20,12 +18,6 @@ class RetrieveCheckoutRequest extends SoloRequest
     public function resolveEndpoint(): string
     {
         return 'checkout/v1/checkouts/'.$this->id;
-    }
-
-    #[\Override]
-    protected function resolveConnector(): Connector
-    {
-        return PaymayaConnector::makeWithSecretKey();
     }
 
     public function createDtoFromResponse(Response $response): CheckoutDto

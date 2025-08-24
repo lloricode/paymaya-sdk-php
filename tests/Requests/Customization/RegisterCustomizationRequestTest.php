@@ -11,10 +11,6 @@ use Saloon\Http\Faking\MockResponse;
 
 use function PHPUnit\Framework\assertSame;
 
-beforeEach(function () {
-    fakeCredentials();
-});
-
 it('register', function () {
     $data = '{
     "logoUrl": "https://image-logo.png",
@@ -35,7 +31,7 @@ it('register', function () {
     ]);
 
     try {
-        $response = (new RegisterCustomizationRequest(
+        $response = paymayaConnectorSend(new RegisterCustomizationRequest(
             new CustomizationDto(
                 logoUrl: 'https://image-logo.png',
                 iconUrl: 'https://image-icon.png',
@@ -44,7 +40,6 @@ it('register', function () {
                 colorScheme: '#e01c44',
             )
         ))
-            ->send()
             ->dto();
     } catch (ErrorException) {
         $this->fail('ErrorException');

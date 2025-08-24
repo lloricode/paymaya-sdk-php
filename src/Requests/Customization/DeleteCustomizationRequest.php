@@ -4,23 +4,15 @@ declare(strict_types=1);
 
 namespace Lloricode\Paymaya\Requests\Customization;
 
-use Lloricode\Paymaya\PaymayaConnector;
 use Saloon\Enums\Method;
-use Saloon\Http\Connector;
-use Saloon\Http\SoloRequest;
+use Saloon\Http\Request;
 
-class DeleteCustomizationRequest extends SoloRequest
+class DeleteCustomizationRequest extends Request
 {
     protected Method $method = Method::DELETE;
 
     public function resolveEndpoint(): string
     {
         return 'checkout/v1/customizations';
-    }
-
-    #[\Override]
-    protected function resolveConnector(): Connector
-    {
-        return PaymayaConnector::makeWithSecretKey();
     }
 }

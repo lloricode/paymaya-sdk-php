@@ -8,10 +8,6 @@ use Saloon\Http\Faking\MockResponse;
 
 use function PHPUnit\Framework\assertEquals;
 
-beforeEach(function () {
-    fakeCredentials();
-});
-
 it('delete data', function () {
     $mockClient = MockClient::global([
         DeleteCustomizationRequest::class => MockResponse::make(
@@ -19,8 +15,7 @@ it('delete data', function () {
         ),
     ]);
 
-    $response = (new DeleteCustomizationRequest)
-        ->send();
+    $response = paymayaConnectorSend(new DeleteCustomizationRequest);
 
     $mockClient->assertSentCount(1);
     assertEquals(204, $response->status());

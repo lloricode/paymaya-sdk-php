@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-use Lloricode\Paymaya\Constant;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\Enums\Webhook;
-use Saloon\Http\Faking\MockClient;
+use Lloricode\Paymaya\PaymayaConnector;
+use Saloon\Http\Request;
+use Saloon\Http\Response;
 
-function fakeCredentials(): void
+function paymayaConnectorSend(Request $request): Response
 {
-    Constant::$environment = Environment::testing;
-    Constant::$secretKey = 'fake-secretKey';
-    Constant::$publicKey = 'fake-publicKey';
-
-    MockClient::destroyGlobal();
+    return (new PaymayaConnector(
+        environment: Environment::testing,
+        secretKey: 'fake-secretKey',
+        publicKey: 'fake-publicKey',
+    ))->send($request);
 }
 
 function sampleWebhookData(array $override = []): array

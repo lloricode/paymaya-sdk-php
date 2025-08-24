@@ -12,10 +12,6 @@ use Saloon\Http\Faking\MockResponse;
 
 use function PHPUnit\Framework\assertEquals;
 
-beforeEach(function () {
-    fakeCredentials();
-});
-
 it('check via sandbox', function () {
 
     $id = 'test-generated-id';
@@ -34,7 +30,7 @@ it('check via sandbox', function () {
 
     try {
         /** @var CheckoutResponse $checkoutResponse */
-        $checkoutResponse = (new SubmitCheckoutRequest(TestHelper::buildCheckout()))->send()->dto();
+        $checkoutResponse = paymayaConnectorSend(new SubmitCheckoutRequest(TestHelper::buildCheckout()))->dto();
     } catch (ErrorException) {
         $this->fail('ErrorException');
     } catch (ClientException $e) {

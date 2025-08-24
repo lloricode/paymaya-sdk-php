@@ -9,10 +9,6 @@ use Saloon\Http\Faking\MockResponse;
 
 use function PHPUnit\Framework\assertEquals;
 
-beforeEach(function () {
-    fakeCredentials();
-});
-
 it('register', function () {
     $data = sampleWebhookData();
 
@@ -23,13 +19,12 @@ it('register', function () {
     ]);
 
     /** @var WebhookDto $webhookResponse */
-    $webhookResponse = (new RegisterWebhookRequest(
+    $webhookResponse = paymayaConnectorSend(new RegisterWebhookRequest(
         new WebhookDto(
             name: $data['name'],
             callbackUrl: $data['callbackUrl'],
         )
     ))
-        ->send()
         ->dto();
 
     assertEquals($data['id'], $webhookResponse->id);

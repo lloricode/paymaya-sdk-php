@@ -11,10 +11,6 @@ use Saloon\Http\Faking\MockResponse;
 use function PHPUnit\Framework\assertCount;
 use function PHPUnit\Framework\assertEquals;
 
-beforeEach(function () {
-    fakeCredentials();
-});
-
 test('retrieve', function () {
     $sampleData = sampleWebhookData();
 
@@ -24,8 +20,7 @@ test('retrieve', function () {
         ),
     ]);
 
-    $response = (new RetrieveWebhookRequest)
-        ->send();
+    $response = paymayaConnectorSend(new RetrieveWebhookRequest);
 
     /** @var list<WebhookDto> $webhookResponses */
     $webhookResponses = $response->dto();
@@ -51,8 +46,7 @@ test('webhook zero data retrieved', function () {
         ),
     ]);
 
-    $response = (new RetrieveWebhookRequest)
-        ->send();
+    $response = paymayaConnectorSend(new RetrieveWebhookRequest);
 
     assertCount(0, $response->dto());
 
@@ -68,6 +62,5 @@ it('throw exception', function () {
         ),
     ]);
 
-    (new RetrieveWebhookRequest)
-        ->send();
+    paymayaConnectorSend(new RetrieveWebhookRequest);
 })->todo('handle exception');

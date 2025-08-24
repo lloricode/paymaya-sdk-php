@@ -5,25 +5,17 @@ declare(strict_types=1);
 namespace Lloricode\Paymaya\Requests\Webhook;
 
 use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
-use Lloricode\Paymaya\PaymayaConnector;
 use Saloon\Enums\Method;
-use Saloon\Http\Connector;
+use Saloon\Http\Request;
 use Saloon\Http\Response;
-use Saloon\Http\SoloRequest;
 
-class RetrieveWebhookRequest extends SoloRequest
+class RetrieveWebhookRequest extends Request
 {
     protected Method $method = Method::GET;
 
     public function resolveEndpoint(): string
     {
         return 'checkout/v1/webhooks';
-    }
-
-    #[\Override]
-    protected function resolveConnector(): Connector
-    {
-        return PaymayaConnector::makeWithSecretKey();
     }
 
     /**
