@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
-use Lloricode\Paymaya\Requests\Webhook\GetWebhookAllRequest;
+use Lloricode\Paymaya\Requests\Webhook\GetAllWebhookRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 
@@ -15,12 +15,12 @@ test('retrieve', function () {
     $sampleData = sampleWebhookData();
 
     $mockClient = MockClient::global([
-        GetWebhookAllRequest::class => MockResponse::make(
+        GetAllWebhookRequest::class => MockResponse::make(
             body: [$sampleData],
         ),
     ]);
 
-    $response = paymayaConnectorSend(new GetWebhookAllRequest);
+    $response = paymayaConnectorSend(new GetAllWebhookRequest);
 
     /** @var list<WebhookDto> $webhookResponses */
     $webhookResponses = $response->dto();
@@ -41,12 +41,12 @@ test('retrieve', function () {
 test('webhook zero data retrieved', function () {
 
     MockClient::global([
-        GetWebhookAllRequest::class => MockResponse::make(
+        GetAllWebhookRequest::class => MockResponse::make(
             status: 404,
         ),
     ]);
 
-    $response = paymayaConnectorSend(new GetWebhookAllRequest);
+    $response = paymayaConnectorSend(new GetAllWebhookRequest);
 
     assertCount(0, $response->dto());
 
@@ -57,10 +57,10 @@ it('throw exception', function () {
     $this->expectException(GuzzleException::class);
 
     MockClient::global([
-        GetWebhookAllRequest::class => MockResponse::make(
+        GetAllWebhookRequest::class => MockResponse::make(
             status: 400,
         ),
     ]);
 
-    paymayaConnectorSend(new GetWebhookAllRequest);
+    paymayaConnectorSend(new GetAllWebhookRequest);
 })->todo('handle exception');

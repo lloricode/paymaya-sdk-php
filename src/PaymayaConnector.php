@@ -8,12 +8,12 @@ use Exception;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\Requests\Checkout\CreateCheckoutRequest;
 use Lloricode\Paymaya\Requests\Checkout\GetCheckoutRequest;
-use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RemoveCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
+use Lloricode\Paymaya\Requests\Customization\SetCustomizationRequest;
 use Lloricode\Paymaya\Requests\Webhook\CreateWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
-use Lloricode\Paymaya\Requests\Webhook\GetWebhookAllRequest;
+use Lloricode\Paymaya\Requests\Webhook\GetAllWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
@@ -41,11 +41,11 @@ class PaymayaConnector extends Connector
         $token = match ($pendingRequest->getRequest()::class) {
             GetCheckoutRequest::class ,
             RemoveCustomizationRequest::class,
-            RegisterCustomizationRequest::class,
+            SetCustomizationRequest::class,
             RetrieveCustomizationRequest::class,
             DeleteWebhookRequest::class,
             CreateWebhookRequest::class,
-            GetWebhookAllRequest::class,
+            GetAllWebhookRequest::class,
             UpdateWebhookRequest::class => $this->secretKey,
             CreateCheckoutRequest::class => $this->publicKey,
             default => throw new Exception('Request ['.$pendingRequest->getRequest()::class.'] not found for getting token type.'),

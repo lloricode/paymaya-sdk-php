@@ -160,9 +160,9 @@ $api->send(new RetrieveCheckoutRequest($checkoutResponse->checkoutId))->dto();
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\PaymayaConnector;
-use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RemoveCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
+use Lloricode\Paymaya\Requests\Customization\SetCustomizationRequest;
 
 $api = new PaymayaConnector(
     environment: Environment::sandbox,
@@ -171,7 +171,7 @@ $api = new PaymayaConnector(
 );
 
 // register (readonly DTO via constructor)
-$api->send(new RegisterCustomizationRequest(
+$api->send(new SetCustomizationRequest(
     new CustomizationDto(
         logoUrl: 'https://image-logo.png',
         iconUrl: 'https://image-icon.png',
@@ -202,7 +202,7 @@ use Lloricode\Paymaya\Enums\Webhook;
 use Lloricode\Paymaya\PaymayaConnector;
 use Lloricode\Paymaya\Requests\Webhook\CreateWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
-use Lloricode\Paymaya\Requests\Webhook\GetWebhookAllRequest;
+use Lloricode\Paymaya\Requests\Webhook\GetAllWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
 
 $api = new PaymayaConnector(
@@ -213,7 +213,7 @@ $api = new PaymayaConnector(
 
 // retrieve
 /** @var array<string, WebhookDto> $webhooks */
-$webhooks = $api->send(new GetWebhookAllRequest)->dto();
+$webhooks = $api->send(new GetAllWebhookRequest)->dto();
 
 // delete all
 foreach ($webhooks as $webhook) {

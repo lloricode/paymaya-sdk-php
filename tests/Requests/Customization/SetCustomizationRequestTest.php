@@ -5,7 +5,7 @@ declare(strict_types=1);
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
-use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;
+use Lloricode\Paymaya\Requests\Customization\SetCustomizationRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 
@@ -25,13 +25,13 @@ it('register', function () {
 }';
 
     MockClient::global([
-        RegisterCustomizationRequest::class => MockResponse::make(
+        SetCustomizationRequest::class => MockResponse::make(
             body: $data,
         ),
     ]);
 
     try {
-        $response = paymayaConnectorSend(new RegisterCustomizationRequest(
+        $response = paymayaConnectorSend(new SetCustomizationRequest(
             new CustomizationDto(
                 logoUrl: 'https://image-logo.png',
                 iconUrl: 'https://image-icon.png',

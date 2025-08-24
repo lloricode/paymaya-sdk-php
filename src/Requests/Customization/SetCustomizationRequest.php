@@ -14,7 +14,7 @@ use Saloon\Traits\Body\HasJsonBody;
 /**
  * https://developers.maya.ph/reference/setv1customizations-1
  */
-class RegisterCustomizationRequest extends Request implements HasBody
+class SetCustomizationRequest extends Request implements HasBody
 {
     use HasJsonBody;
 

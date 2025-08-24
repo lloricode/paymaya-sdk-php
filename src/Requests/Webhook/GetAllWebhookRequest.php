@@ -12,7 +12,7 @@ use Saloon\Http\Response;
 /**
  * https://developers.maya.ph/reference/getv1webhooks-1
  */
-class GetWebhookAllRequest extends Request
+class GetAllWebhookRequest extends Request
 {
     protected Method $method = Method::GET;
 
