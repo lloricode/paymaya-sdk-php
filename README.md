@@ -48,8 +48,8 @@ use Lloricode\Paymaya\DataTransferObjects\Checkout\RedirectUrlDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\TotalAmountDto;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\PaymayaConnector;
-use Lloricode\Paymaya\Requests\Checkout\RetrieveCheckoutRequest;
 use Lloricode\Paymaya\Requests\Checkout\CreateCheckoutRequest;
+use Lloricode\Paymaya\Requests\Checkout\RetrieveCheckoutRequest;
 
 $api = new PaymayaConnector(
     environment: Environment::sandbox,
