@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Lloricode\Paymaya\Enums;
 
-enum Environment
+enum Environment: string
 {
-    case production;
-    case sandbox;
-    case testing;
+    case production = 'production';
+    case sandbox = 'sandbox';
+    case testing = 'testing';
 
     public function url(): string
     {
