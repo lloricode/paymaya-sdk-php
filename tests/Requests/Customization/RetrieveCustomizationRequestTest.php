@@ -16,10 +16,10 @@ it('retrieve', function () {
     "appleTouchIconUrl": "https://image-apple.png",
     "customTitle": "Test Title Mock",
     "colorScheme": "#e01c44",
-    "redirectTimer": 3,
     "hideReceiptInput": true,
     "skipResultPage": false,
-    "showMerchantName": true
+    "showMerchantName": true,
+    "redirectTimer": 3
 }';
 
     MockClient::global([
