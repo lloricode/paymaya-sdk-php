@@ -32,7 +32,7 @@ composer require lloricode/paymaya-sdk-php
 You can copy the sample to test it.
 
 ### Checkout
-https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview
+https://developers.maya.ph/reference/createv1checkout
 ``` php
 
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDetailDto;
