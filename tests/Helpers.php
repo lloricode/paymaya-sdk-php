@@ -10,8 +10,8 @@ use Saloon\Http\Faking\MockClient;
 function fakeCredentials(): void
 {
     Constant::$environment = Environment::testing;
-    Constant::$secretKey = 'sk-....';
-    Constant::$publicKey = 'pk-.....';
+    Constant::$secretKey = 'fake-secretKey';
+    Constant::$publicKey = 'fake-publicKey';
 
     MockClient::destroyGlobal();
 }
