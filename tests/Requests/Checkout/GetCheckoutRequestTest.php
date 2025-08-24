@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BillingAddressDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\ShippingAddressDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
-use Lloricode\Paymaya\Requests\Checkout\RetrieveCheckoutRequest;
+use Lloricode\Paymaya\Requests\Checkout\GetCheckoutRequest;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
@@ -168,13 +168,13 @@ it('show with id success', function () {
 }';
 
     MockClient::global([
-        RetrieveCheckoutRequest::class => MockResponse::make(
+        GetCheckoutRequest::class => MockResponse::make(
             body: $responseData,
         ),
     ]);
 
     /** @var CheckoutDto $checkoutResponse */
-    $checkoutResponse = paymayaConnectorSend(new RetrieveCheckoutRequest('4ef96167-b8f2-4400-912e-5bd2f4289cfb'))->dto();
+    $checkoutResponse = paymayaConnectorSend(new GetCheckoutRequest('4ef96167-b8f2-4400-912e-5bd2f4289cfb'))->dto();
 
     assertInstanceOf(CheckoutDto::class, $checkoutResponse);
 

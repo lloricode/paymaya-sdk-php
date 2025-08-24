@@ -7,7 +7,7 @@ namespace Lloricode\Paymaya;
 use Exception;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\Requests\Checkout\CreateCheckoutRequest;
-use Lloricode\Paymaya\Requests\Checkout\RetrieveCheckoutRequest;
+use Lloricode\Paymaya\Requests\Checkout\GetCheckoutRequest;
 use Lloricode\Paymaya\Requests\Customization\DeleteCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
@@ -39,7 +39,7 @@ class PaymayaConnector extends Connector
     public function boot(PendingRequest $pendingRequest): void
     {
         $token = match ($pendingRequest->getRequest()::class) {
-            RetrieveCheckoutRequest::class ,
+            GetCheckoutRequest::class ,
             DeleteCustomizationRequest::class,
             RegisterCustomizationRequest::class,
             RetrieveCustomizationRequest::class,
