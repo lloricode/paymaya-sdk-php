@@ -15,7 +15,7 @@ use Saloon\Traits\Body\HasJsonBody;
 /**
  * https://developers.maya.ph/reference/createv1checkout
  */
-class SubmitCheckoutRequest extends Request implements HasBody
+class CreateCheckoutRequest extends Request implements HasBody
 {
     use HasJsonBody;
 

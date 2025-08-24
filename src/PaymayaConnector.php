@@ -6,8 +6,8 @@ namespace Lloricode\Paymaya;
 
 use Exception;
 use Lloricode\Paymaya\Enums\Environment;
+use Lloricode\Paymaya\Requests\Checkout\CreateCheckoutRequest;
 use Lloricode\Paymaya\Requests\Checkout\RetrieveCheckoutRequest;
-use Lloricode\Paymaya\Requests\Checkout\SubmitCheckoutRequest;
 use Lloricode\Paymaya\Requests\Customization\DeleteCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
@@ -47,7 +47,7 @@ class PaymayaConnector extends Connector
             RegisterWebhookRequest::class,
             RetrieveWebhookRequest::class,
             UpdateWebhookRequest::class => $this->secretKey,
-            SubmitCheckoutRequest::class => $this->publicKey,
+            CreateCheckoutRequest::class => $this->publicKey,
             default => throw new Exception('Request ['.$pendingRequest->getRequest()::class.'] not found for getting token type.'),
         };
 

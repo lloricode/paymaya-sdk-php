@@ -49,7 +49,7 @@ use Lloricode\Paymaya\DataTransferObjects\Checkout\TotalAmountDto;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\PaymayaConnector;
 use Lloricode\Paymaya\Requests\Checkout\RetrieveCheckoutRequest;
-use Lloricode\Paymaya\Requests\Checkout\SubmitCheckoutRequest;
+use Lloricode\Paymaya\Requests\Checkout\CreateCheckoutRequest;
 
 $api = new PaymayaConnector(
     environment: Environment::sandbox,
@@ -143,7 +143,7 @@ $checkout = new CheckoutDto(
 );
 
 // submit
-$checkoutResponse = $api->send(new SubmitCheckoutRequest($checkout))->dto();
+$checkoutResponse = $api->send(new CreateCheckoutRequest($checkout))->dto();
 
 echo 'id: '.$checkoutResponse->checkoutId."\n";
 echo 'url: '.$checkoutResponse->redirectUrl."\n";
