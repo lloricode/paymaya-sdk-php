@@ -9,13 +9,16 @@ use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 
+/**
+ * https://developers.maya.ph/reference/getv1customizations-1
+ */
 class RetrieveCustomizationRequest extends Request
 {
     protected Method $method = Method::GET;
 
     public function resolveEndpoint(): string
     {
-        return 'checkout/v1/customizations';
+        return 'payments/v1/customizations';
     }
 
     public function createDtoFromResponse(Response $response): CustomizationDto

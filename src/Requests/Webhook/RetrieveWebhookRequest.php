@@ -9,6 +9,9 @@ use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 
+/**
+ * https://developers.maya.ph/reference/getv1webhooks-1
+ */
 class RetrieveWebhookRequest extends Request
 {
     protected Method $method = Method::GET;

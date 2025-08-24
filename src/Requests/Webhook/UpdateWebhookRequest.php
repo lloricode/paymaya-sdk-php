@@ -11,6 +11,9 @@ use Saloon\Http\Request;
 use Saloon\Http\Response;
 use Saloon\Traits\Body\HasJsonBody;
 
+/**
+ * https://developers.maya.ph/reference/updatev1webhook-1
+ */
 class UpdateWebhookRequest extends Request implements HasBody
 {
     use HasJsonBody;

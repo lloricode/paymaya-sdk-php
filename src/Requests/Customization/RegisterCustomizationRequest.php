@@ -11,6 +11,9 @@ use Saloon\Http\Request;
 use Saloon\Http\Response;
 use Saloon\Traits\Body\HasJsonBody;
 
+/**
+ * https://developers.maya.ph/reference/setv1customizations-1
+ */
 class RegisterCustomizationRequest extends Request implements HasBody
 {
     use HasJsonBody;
@@ -21,7 +24,7 @@ class RegisterCustomizationRequest extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return 'checkout/v1/customizations';
+        return 'payments/v1/customizations';
     }
 
     protected function defaultBody(): array
