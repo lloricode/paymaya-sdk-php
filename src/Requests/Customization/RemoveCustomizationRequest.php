@@ -10,7 +10,7 @@ use Saloon\Http\Request;
 /**
  * https://developers.maya.ph/reference/deletev1customizations-1
  */
-class DeleteCustomizationRequest extends Request
+class RemoveCustomizationRequest extends Request
 {
     protected Method $method = Method::DELETE;
 

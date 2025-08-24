@@ -8,8 +8,8 @@ use Exception;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\Requests\Checkout\CreateCheckoutRequest;
 use Lloricode\Paymaya\Requests\Checkout\GetCheckoutRequest;
-use Lloricode\Paymaya\Requests\Customization\DeleteCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;
+use Lloricode\Paymaya\Requests\Customization\RemoveCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
 use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\RegisterWebhookRequest;
@@ -40,7 +40,7 @@ class PaymayaConnector extends Connector
     {
         $token = match ($pendingRequest->getRequest()::class) {
             GetCheckoutRequest::class ,
-            DeleteCustomizationRequest::class,
+            RemoveCustomizationRequest::class,
             RegisterCustomizationRequest::class,
             RetrieveCustomizationRequest::class,
             DeleteWebhookRequest::class,
