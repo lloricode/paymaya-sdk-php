@@ -14,7 +14,7 @@ use Saloon\Traits\Body\HasJsonBody;
 /**
  * https://developers.maya.ph/reference/createv1webhook-1
  */
-class RegisterWebhookRequest extends Request implements HasBody
+class CreateWebhookRequest extends Request implements HasBody
 {
     use HasJsonBody;
 

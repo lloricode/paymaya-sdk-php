@@ -11,9 +11,9 @@ use Lloricode\Paymaya\Requests\Checkout\GetCheckoutRequest;
 use Lloricode\Paymaya\Requests\Customization\RegisterCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RemoveCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
+use Lloricode\Paymaya\Requests\Webhook\CreateWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
-use Lloricode\Paymaya\Requests\Webhook\RegisterWebhookRequest;
-use Lloricode\Paymaya\Requests\Webhook\RetrieveWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\GetWebhookAllRequest;
 use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
@@ -44,8 +44,8 @@ class PaymayaConnector extends Connector
             RegisterCustomizationRequest::class,
             RetrieveCustomizationRequest::class,
             DeleteWebhookRequest::class,
-            RegisterWebhookRequest::class,
-            RetrieveWebhookRequest::class,
+            CreateWebhookRequest::class,
+            GetWebhookAllRequest::class,
             UpdateWebhookRequest::class => $this->secretKey,
             CreateCheckoutRequest::class => $this->publicKey,
             default => throw new Exception('Request ['.$pendingRequest->getRequest()::class.'] not found for getting token type.'),

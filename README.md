@@ -201,8 +201,8 @@ use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\Enums\Webhook;
 use Lloricode\Paymaya\PaymayaConnector;
 use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
-use Lloricode\Paymaya\Requests\Webhook\RegisterWebhookRequest;
-use Lloricode\Paymaya\Requests\Webhook\RetrieveWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\CreateWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\GetWebhookAllRequest;
 use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
 
 $api = new PaymayaConnector(
@@ -213,7 +213,7 @@ $api = new PaymayaConnector(
 
 // retrieve
 /** @var array<string, WebhookDto> $webhooks */
-$webhooks = $api->send(new RetrieveWebhookRequest)->dto();
+$webhooks = $api->send(new GetWebhookAllRequest)->dto();
 
 // delete all
 foreach ($webhooks as $webhook) {
@@ -221,21 +221,21 @@ foreach ($webhooks as $webhook) {
 }
 
 // register (readonly DTOs via constructors)
-$api->send(new RegisterWebhookRequest(
+$api->send(new CreateWebhookRequest(
     new WebhookDto(
         name: Webhook::CHECKOUT_SUCCESS,
         callbackUrl: 'https://web.test/test/success'
     )
 ));
 
-$api->send(new RegisterWebhookRequest(
+$api->send(new CreateWebhookRequest(
     new WebhookDto(
         name: Webhook::CHECKOUT_FAILURE,
         callbackUrl: 'https://web.test/test/failure'
     )
 ));
 
-$api->send(new RegisterWebhookRequest(
+$api->send(new CreateWebhookRequest(
     new WebhookDto(
         name: Webhook::CHECKOUT_DROPOUT,
         callbackUrl: 'https://web.test/test/drop'

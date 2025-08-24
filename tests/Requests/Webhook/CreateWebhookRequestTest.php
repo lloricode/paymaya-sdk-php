@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
-use Lloricode\Paymaya\Requests\Webhook\RegisterWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\CreateWebhookRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 
@@ -13,13 +13,13 @@ it('register', function () {
     $data = sampleWebhookData();
 
     MockClient::global([
-        RegisterWebhookRequest::class => MockResponse::make(
+        CreateWebhookRequest::class => MockResponse::make(
             body: $data,
         ),
     ]);
 
     /** @var WebhookDto $webhookResponse */
-    $webhookResponse = paymayaConnectorSend(new RegisterWebhookRequest(
+    $webhookResponse = paymayaConnectorSend(new CreateWebhookRequest(
         new WebhookDto(
             name: $data['name'],
             callbackUrl: $data['callbackUrl'],
