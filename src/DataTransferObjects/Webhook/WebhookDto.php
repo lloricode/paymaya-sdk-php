@@ -9,11 +9,6 @@ use Lloricode\Paymaya\DataTransferObjects\BaseDto;
 /**
  * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview#webhooks
  *
- * @method self setId(string $id)
- * @method self setName(string $name)
- * @method self setCallbackUrl(string $callbackUrl)
- * @method self setCreatedAt(string $createdAt)
- * @method self setUpdatedAt(string $updatedAt)
  */
 readonly class WebhookDto extends BaseDto
 {
