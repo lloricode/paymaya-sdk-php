@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## v3.0.0 - 2025-08-25
+
+### v3.0.0 - Major Upgrade
+
+##### 🔍 Overview
+
+This release introduces **PHP 8.3 support**, a **modern HTTP client (Saloon PHP)**, and an improved folder structure for better maintainability and adoption of the latest PHP features.
+
+👉 [Upgrade Guide](https://github.com/lloricode/paymaya-sdk-php/blob/main/UPGRADING.md)
+
+
+---
+
+##### ✅ What's Changed
+
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in [#21](https://github.com/lloricode/paymaya-sdk-php/pull/21)
+* Bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in [#22](https://github.com/lloricode/paymaya-sdk-php/pull/22)
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in [#23](https://github.com/lloricode/paymaya-sdk-php/pull/23)
+* Bump actions/checkout from 4 to 5 by @dependabot[bot] in [#24](https://github.com/lloricode/paymaya-sdk-php/pull/24)
+* Bump actions/checkout from 4 to 5 by @dependabot[bot] in [#26](https://github.com/lloricode/paymaya-sdk-php/pull/26)
+* Integrate Saloon PHP by @lloricode in [#25](https://github.com/lloricode/paymaya-sdk-php/pull/25)
+
+
+---
+
+**Full Changelog**: [v2.0.1...v3.0.0](https://github.com/lloricode/paymaya-sdk-php/compare/v2.0.1...v3.0.0)
+
 ## v2.0.1 - 2025-02-21
 
 ### What's Changed
