@@ -56,10 +56,6 @@ readonly class CheckoutDto extends BaseDto
 
     public static function fromArray(array $data): static
     {
-        $metadata = isset($data['metadata'])
-            ? new MetaDataDto(...$data['metadata'])
-            : null;
-
         $totalAmount = null;
         if (isset($data['totalAmount'])) {
             $ta = $data['totalAmount'];
@@ -98,14 +94,6 @@ readonly class CheckoutDto extends BaseDto
                 billingAddress: $billing ?? $buyer->billingAddress ?? null
             );
         }
-
-        $redirectUrl = isset($data['redirectUrl'])
-            ? new RedirectUrlDto(...$data['redirectUrl'])
-            : null;
-
-        $merchant = isset($data['merchant'])
-            ? new MerchantDto(...$data['merchant'])
-            : null;
 
         $paymentDetails = null;
         if (isset($data['paymentDetails'])) {
@@ -165,11 +153,11 @@ readonly class CheckoutDto extends BaseDto
             totalAmount: $totalAmount ?? new TotalAmountDto,
             buyer: $buyer,
             items: $data['items'] ?? [],
-            redirectUrl: $redirectUrl,
+            redirectUrl: new RedirectUrlDto(...($data['redirectUrl'] ?? [])),
             status: $data['status'] ?? null,
             paymentStatus: $data['paymentStatus'] ?? null,
             requestReferenceNumber: $data['requestReferenceNumber'] ?? null,
-            metadata: $metadata,
+            metadata: new MetaDataDto(...($data['metadata'] ?? [])),
             receiptNumber: $data['receiptNumber'] ?? null,
             createdAt: $data['createdAt'] ?? null,
             updatedAt: $data['updatedAt'] ?? null,
@@ -178,7 +166,7 @@ readonly class CheckoutDto extends BaseDto
             refundedAmount: $data['refundedAmount'] ?? 0,
             canPayPal: $data['canPayPal'] ?? null,
             paymentScheme: $data['paymentScheme'] ?? null,
-            merchant: $merchant,
+            merchant: new MerchantDto(...($data['merchant'] ?? [])),
             paymentDetails: $paymentDetails,
             transactionReferenceNumber: $data['transactionReferenceNumber'] ?? null,
         );

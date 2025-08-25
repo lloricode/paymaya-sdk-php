@@ -164,7 +164,14 @@ it('show with id success', function () {
         "failure": "https:\/\/staging-api2",
         "cancel": "https:\/\/staging-api3"
     },
-    "transactionReferenceNumber": "xxx"
+    "transactionReferenceNumber": "xxx","metadata":{
+        "mci":"mci",
+        "mco":"mco",
+        "mpc":"mpc",
+        "mst":"mst",
+        "smi":"smi",
+        "smn":"smn"
+    }
 }';
 
     MockClient::global([
