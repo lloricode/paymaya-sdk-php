@@ -1,4 +1,4 @@
-# Upgrade Guide
+# Upgrading
 
 This document contains upgrade instructions for breaking changes in each major release.
 
@@ -85,7 +85,7 @@ echo 'url: '.$checkoutResponse->redirectUrl."\n";
 **Now (v3):**
 ```php
 $api = new PaymayaConnector(
-    environment: Environment::sandbox,
+    environment: Environment::Sandbox,
     secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
     publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
 );
