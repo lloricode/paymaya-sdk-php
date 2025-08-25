@@ -55,6 +55,23 @@ We have introduced **breaking changes** in v3, including:
 
 ---
 
+## Laravel Integration
+
+If you're using **Laravel**, we recommend installing the official Laravel package for a seamless experience:
+
+```bash
+composer require lloricode/laravel-paymaya-sdk
+```
+
+This package provides:
+- **Service Provider & Facade** for easy access
+- **Configuration file** for managing API keys and environment
+- **Laravel-specific helpers** for better developer experience
+
+📘 Learn more here: [Laravel PayMaya SDK](https://github.com/lloricode/laravel-paymaya-sdk)
+
+---
+
 ## Usage
 
 Below are common usage examples.  
