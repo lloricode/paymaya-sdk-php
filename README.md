@@ -1,35 +1,66 @@
 ![Paymaya SDK](https://banners.beyondco.de/Paymaya%20SDK%20PHP.png?theme=light&packageManager=composer+require&packageName=lloricode%2Fpaymaya-sdk-php&pattern=architect&style=style_2&description=Paymaya+SDK+for+PHP&md=1&showWatermark=1&fontSize=100px&images=https%3A%2F%2Fwww.php.net%2Fimages%2Flogos%2Fnew-php-logo.svg)
 
-# Paymaya SDK for PHP
+# PayMaya SDK for PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/lloricode/paymaya-sdk-php.svg?style=flat-square)](https://packagist.org/packages/lloricode/paymaya-sdk-php)
 [![Tests](https://img.shields.io/github/actions/workflow/status/lloricode/paymaya-sdk-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/lloricode/paymaya-sdk-php/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/lloricode/paymaya-sdk-php.svg?style=flat-square)](https://packagist.org/packages/lloricode/paymaya-sdk-php)
 [![codecov](https://codecov.io/gh/lloricode/paymaya-sdk-php/branch/main/graph/badge.svg?token=S1INCAHVSV)](https://app.codecov.io/gh/lloricode/paymaya-sdk-php/tree/main)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=V8PYXUNG6QP44)
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D71HJZD)
+---
 
-Paymaya SDK for PHP.
+A modern and type-safe **PayMaya SDK for PHP**, built with [Saloon](https://docs.saloon.dev/) on top of Guzzle.  
+Provides an elegant API for working with **Checkout**, **Customizations**, and **Webhooks**.
 
-- [Installation](#installation)
-- [Usage](#usage)
-    - [Checkout](#checkout)
-    - [Customization](#customization)
-    - [Webhooks](#webhook)
-       - [Checkout](#checkout-webhook)
+---
+
+## Support us
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D71HJZD)  
+If you find this package helpful, consider supporting its development via Ko-fi or [PayPal](https://www.paypal.com/donate?hosted_button_id=V8PYXUNG6QP44).
+
+---
+
+## Requirements
+
+- **PHP 8.3+**
+- Composer
+
+We always encourage using the **latest PHP versions** for better performance and security.  
+See [supported PHP versions](https://www.php.net/supported-versions.php) and [what's new](https://php.watch/versions).
+
+---
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via Composer:
 
 ```bash
 composer require lloricode/paymaya-sdk-php
 ```
 
+> **Upgrading from v2?** Check the [Upgrade Guide](UPGRADE.md).
+
+---
+
+## Upgrading from v2 to v3
+
+We have introduced **breaking changes** in v3, including:
+- PHP 8.3 requirement
+- Switch to [Saloon](https://docs.saloon.dev/) for HTTP requests
+- DTOs and Enums for better type safety
+- Unified `PaymayaConnector` instead of multiple clients
+
+➡ **See full details in the [Upgrade Guide](UPGRADE.md).**
+
+---
+
 ## Usage
 
-You can copy the sample to test it.
+Below are common usage examples.  
+Refer to [PayMaya API Docs](https://developers.maya.ph/reference) for full details.
+
+---
 
 ### Checkout
 https://developers.maya.ph/reference/createv1checkout
@@ -240,30 +271,43 @@ $updatingDto = new WebhookDto(
 $webhookDto = $api->send(new UpdateWebhookRequest($updatingDto))
     ->dto();
 ```
+---
 
 ## Testing
 
-``` bash
+Run the tests with:
+
+```bash
 vendor/bin/phpunit
 ```
 
+---
+
 ## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+See [CHANGELOG](CHANGELOG.md) for details.
+
+---
 
 ## Contributing
 
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for guidelines.
 
-## Security Vulnerabilities
+---
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+## Security
+
+Please review [our security policy](../../security/policy) for details.
+
+---
 
 ## Credits
 
 - [Lloric Mayuga Garcia](https://github.com/lloricode)
 - [All Contributors](../../contributors)
 
+---
+
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). See [LICENSE](LICENSE.md) for more information.
