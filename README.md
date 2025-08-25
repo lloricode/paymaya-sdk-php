@@ -1,6 +1,6 @@
-![Paymaya SDK](https://banners.beyondco.de/Paymaya%20SDK%20PHP.png?theme=light&packageManager=composer+require&packageName=lloricode%2Fpaymaya-sdk-php&pattern=architect&style=style_2&description=Paymaya+SDK+for+PHP&md=1&showWatermark=1&fontSize=100px&images=https%3A%2F%2Fwww.php.net%2Fimages%2Flogos%2Fnew-php-logo.svg)
+![PayMaya SDK](https://banners.beyondco.de/PayMaya%20SDK%20PHP.png?theme=light&packageManager=composer+require&packageName=lloricode%2Fpaymaya-sdk-php&pattern=architect&style=style_2&description=PayMaya+SDK+for+PHP&md=1&showWatermark=1&fontSize=100px&images=https%3A%2F%2Fwww.php.net%2Fimages%2Flogos%2Fnew-php-logo.svg)
 
-# Paymaya SDK for PHP
+# PayMaya SDK for PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/lloricode/paymaya-sdk-php.svg?style=flat-square)](https://packagist.org/packages/lloricode/paymaya-sdk-php)
 [![Tests](https://img.shields.io/github/actions/workflow/status/lloricode/paymaya-sdk-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/lloricode/paymaya-sdk-php/actions/workflows/run-tests.yml)
@@ -10,30 +10,39 @@
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D71HJZD)
 
-Paymaya SDK for PHP.
+A modern, type-safe PayMaya SDK for PHP built on [Saloon](https://docs.saloon.dev/) for making secure and structured API calls.
+
+---
 
 - [Installation](#installation)
 - [Usage](#usage)
     - [Checkout](#checkout)
     - [Customization](#customization)
-    - [Webhooks](#webhook)
-       - [Checkout](#checkout-webhook)
+    - [Webhooks](#webhooks)
+        - [Checkout Webhook](#checkout-webhook)
+
+---
 
 ## Installation
 
-You can install the package via composer:
+Install via Composer:
 
 ```bash
 composer require lloricode/paymaya-sdk-php
 ```
 
+---
+
 ## Usage
 
-You can copy the sample to test it.
+You can copy these examples for quick testing and integration.
+
+---
 
 ### Checkout
-https://developers.maya.ph/reference/createv1checkout
-``` php
+[PayMaya Checkout API](https://developers.maya.ph/reference/createv1checkout)
+
+```php
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDetailDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BillingAddressDto;
@@ -53,8 +62,8 @@ use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 
 $api = new PaymayaConnector(
     environment: Environment::Sandbox,
-    secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
-    publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
+    secretKey: 'sk-your-secret-key',
+    publicKey: 'pk-your-public-key',
 );
 
 $checkout = new CheckoutDto(
@@ -154,8 +163,11 @@ echo 'url: '.$checkoutResponse->redirectUrl."\n";
 $checkoutDto = $api->send(new GetCheckoutRequest($checkoutResponse->checkoutId))->dto();
 ```
 
+---
+
 ### Customization
-https://developers.maya.ph/reference/setv1customizations-1
+[Set Customization API](https://developers.maya.ph/reference/setv1customizations-1)
+
 ```php
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
 use Lloricode\Paymaya\Enums\Environment;
@@ -166,11 +178,11 @@ use Lloricode\Paymaya\Requests\Customization\SetCustomizationRequest;
 
 $api = new PaymayaConnector(
     environment: Environment::Sandbox,
-    secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
-    publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
+    secretKey: 'sk-your-secret-key',
+    publicKey: 'pk-your-public-key',
 );
 
-// register (readonly DTO via constructor)
+// register
 $api->send(new SetCustomizationRequest(
     new CustomizationDto(
         logoUrl: 'https://image-logo.png',
@@ -179,8 +191,7 @@ $api->send(new SetCustomizationRequest(
         customTitle: 'Test Title Mock',
         colorScheme: '#e01c44',
     )
-))
-    ->dto();
+))->dto();
 
 // retrieve
 /** @var CustomizationDto $customizationDto */
@@ -190,10 +201,13 @@ $customizationDto = $api->send(new RetrieveCustomizationRequest)->dto();
 $api->send(new RemoveCustomizationRequest);
 ```
 
-### Webhook
+---
+
+### Webhooks
 
 #### Checkout Webhook
-https://developers.maya.ph/reference/createv1webhook-1
+[Webhook API](https://developers.maya.ph/reference/createv1webhook-1)
+
 ```php
 use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
 use Lloricode\Paymaya\Enums\Environment;
@@ -206,8 +220,8 @@ use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
 
 $api = new PaymayaConnector(
     environment: Environment::Sandbox,
-    secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
-    publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
+    secretKey: 'sk-your-secret-key',
+    publicKey: 'pk-your-public-key',
 );
 
 // retrieve
@@ -219,7 +233,7 @@ foreach ($webhooks as $webhook) {
     $api->send(new DeleteWebhookRequest($webhook->id));
 }
 
-// register (readonly DTOs via constructors)
+// register
 /** @var WebhookDto $createdWebhookDto */
 $createdWebhookDto = $api->send(new CreateWebhookRequest(
     new WebhookDto(
@@ -228,7 +242,7 @@ $createdWebhookDto = $api->send(new CreateWebhookRequest(
     )
 ));
 
-// update (create a new readonly DTO with the existing id and new callback URL)
+// update
 $existing = $webhooks[Webhook::CHECKOUT_SUCCESS];
 $updatingDto = new WebhookDto(
     id: $existing->id,
@@ -237,33 +251,44 @@ $updatingDto = new WebhookDto(
 );
 
 /** @var WebhookDto $webhookDto */
-$webhookDto = $api->send(new UpdateWebhookRequest($updatingDto))
-    ->dto();
+$webhookDto = $api->send(new UpdateWebhookRequest($updatingDto))->dto();
 ```
+
+---
 
 ## Testing
 
-``` bash
+```bash
 vendor/bin/phpunit
 ```
 
+---
+
 ## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+See [CHANGELOG](CHANGELOG.md) for recent changes.
+
+---
 
 ## Contributing
 
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+See [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-## Security Vulnerabilities
+---
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+## Security
+
+See [Security Policy](../../security/policy).
+
+---
 
 ## Credits
 
 - [Lloric Mayuga Garcia](https://github.com/lloricode)
 - [All Contributors](../../contributors)
 
+---
+
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). See [LICENSE](LICENSE.md) for more information.

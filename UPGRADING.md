@@ -1,89 +1,88 @@
-# Upgrading
+![Paymaya SDK](https://banners.beyondco.de/Paymaya%20SDK%20PHP.png?theme=light&packageManager=composer+require&packageName=lloricode%2Fpaymaya-sdk-php&pattern=architect&style=style_2&description=Paymaya+SDK+for+PHP&md=1&showWatermark=1&fontSize=100px&images=https%3A%2F%2Fwww.php.net%2Fimages%2Flogos%2Fnew-php-logo.svg)
 
-This document contains upgrade instructions for breaking changes in each major release.
+# PayMaya SDK for PHP
 
----
-
-## TL;DR – Breaking Changes in v3
-
-- **PHP 8.3+ required** (previously 8.2)
-- **Uses [Saloon](https://docs.saloon.dev/) instead of direct Guzzle usage**
-- **Removed multiple clients (`CheckoutClient`, `WebhookClient`, etc.)**
-    - Use **`PaymayaConnector`** + **Request classes**
-- **Introduced Enums** (`Environment::Sandbox` instead of string constants)
-- **Introduced DTOs** for request payloads (instead of raw arrays)
-- **Internal structure reorganized**:
-    - `Enums/`, `DataTransferObjects/`, `Requests/`
-- **Error handling via Saloon exceptions**
-- **Laravel users should install [`lloricode/laravel-paymaya-sdk`](https://github.com/lloricode/laravel-paymaya-sdk)**
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/lloricode/paymaya-sdk-php.svg?style=flat-square)](https://packagist.org/packages/lloricode/paymaya-sdk-php)
+[![Tests](https://img.shields.io/github/actions/workflow/status/lloricode/paymaya-sdk-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/lloricode/paymaya-sdk-php/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/lloricode/paymaya-sdk-php.svg?style=flat-square)](https://packagist.org/packages/lloricode/paymaya-sdk-php)
+[![codecov](https://codecov.io/gh/lloricode/paymaya-sdk-php/branch/main/graph/badge.svg?token=S1INCAHVSV)](https://app.codecov.io/gh/lloricode/paymaya-sdk-php/tree/main)
 
 ---
 
-## v3.x (from v2.x)
-
-Version 3 introduces **breaking changes** to improve code structure, type safety, and developer experience.
-
-### Why v3?
-
-- **Simplified API calls** using a single `PaymayaConnector` instead of multiple clients.
-- **DTO-based requests** for better type safety and maintainability.
-- **Enum support** for standardized values (like environment, status, etc.).
-- **Modern PHP features** (typed properties, readonly, enums).
-- **Adopts [Saloon](https://docs.saloon.dev/)** for HTTP requests (Saloon is built on top of Guzzle).
-- **Reorganized internal structure** for better maintainability:
-    - `Enums` for constants
-    - `DataTransferObjects` for typed payloads
-    - `Requests` for Saloon-powered requests
+A modern and type-safe **PayMaya SDK for PHP**, built with [Saloon](https://docs.saloon.dev/) on top of Guzzle.  
+Provides an elegant API for working with **Checkout**, **Customizations**, and **Webhooks**.
 
 ---
 
-### Minimum Requirements
+## Support us
 
-| Requirement    | v2         | v3         |
-|---------------|-----------|-----------|
-| PHP Version   | ^8.2      | ^8.3      |
-| HTTP Layer    | `guzzlehttp/guzzle` | `saloonphp/saloon` (uses Guzzle under the hood) |
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D71HJZD)  
+If you find this package helpful, consider supporting its development via Ko-fi or [PayPal](https://www.paypal.com/donate?hosted_button_id=V8PYXUNG6QP44).
 
 ---
 
-### Why PHP 8.3?
+## Requirements
 
-- **Active Support** – PHP 8.3 is still under **active support**, not just security fixes.
-- **Reduced Maintenance Complexity** – Dropping older PHP versions simplifies the codebase, avoiding polyfills or backward compatibility hacks.
-- **Modern Features** – We take advantage of the latest language features such as:
-    - **Readonly properties**
-    - **Enums**
-    - **Improved type safety**
-- **Future-Proof** – Encourages developers to adopt the latest technologies for long-term sustainability.
+- **PHP 8.3+**
+- Composer
+
+We always encourage using the **latest PHP versions** for better performance and security.  
+See [supported PHP versions](https://www.php.net/supported-versions.php) and [what's new](https://php.watch/versions).
 
 ---
 
-### Major Changes
+## Installation
 
-#### Initialization
+You can install the package via Composer:
 
-**Before (v2):**
-```php
-$checkout = (new Checkout())
-    ->setTotalAmount(
-        (new TotalAmount())
-            ->setValue(100) // ...
-    ) // ...
-    
-$checkoutResponse = (new CheckoutClient(
-    new PaymayaClient(
-        'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl', // secret
-        'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah', // public
-        PaymayaClient::ENVIRONMENT_SANDBOX
-    )
-))->execute($checkout);
-
-echo 'id: '.$checkoutResponse->checkoutId."\n";
-echo 'url: '.$checkoutResponse->redirectUrl."\n";
+```bash
+composer require lloricode/paymaya-sdk-php
 ```
 
-**Now (v3):**
-```php
+> **Upgrading from v2?** Check the [Upgrade Guide](UPGRADING.md).
+
+---
+
+## Upgrading from v2 to v3
+
+We have introduced **breaking changes** in v3, including:
+- PHP 8.3 requirement
+- Switch to [Saloon](https://docs.saloon.dev/) for HTTP requests
+- DTOs and Enums for better type safety
+- Unified `PaymayaConnector` instead of multiple clients
+
+➡ **See full details in the [Upgrade Guide](UPGRADE.md).**
+
+---
+
+## Usage
+
+Below are common usage examples.  
+Refer to [PayMaya API Docs](https://developers.maya.ph/reference) for full details.
+
+---
+
+
+### Checkout
+https://developers.maya.ph/reference/createv1checkout
+``` php
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDetailDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BillingAddressDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BuyerDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\ContactDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\ShippingAddressDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\ItemDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\MetaDataDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\RedirectUrlDto;
+use Lloricode\Paymaya\DataTransferObjects\Checkout\TotalAmountDto;
+use Lloricode\Paymaya\Enums\Environment;
+use Lloricode\Paymaya\PaymayaConnector;
+use Lloricode\Paymaya\Requests\Checkout\CreateCheckoutRequest;
+use Lloricode\Paymaya\Requests\Checkout\GetCheckoutRequest;
+use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
+
 $api = new PaymayaConnector(
     environment: Environment::Sandbox,
     secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
@@ -96,150 +95,221 @@ $checkout = new CheckoutDto(
         details: new AmountDetailDto(
             subtotal: 100
         )
-    ), // ...
-    
+    ),
+    buyer: new BuyerDto(
+        firstName: 'John',
+        middleName: 'Paul',
+        lastName: 'Doe',
+        birthday: '1995-10-24',
+        customerSince: '1995-10-24',
+        gender: 'M',
+        contact: new ContactDto(
+            phone: '+639181008888',
+            email: 'merchant@merchantsite.com'
+        ),
+        shippingAddress: new ShippingAddressDto(
+            firstName: 'John',
+            middleName: 'Paul',
+            lastName: 'Doe',
+            phone: '+639181008888',
+            email: 'merchant@merchantsite.com',
+            line1: '6F Launchpad',
+            line2: 'Reliance Street',
+            city: 'Mandaluyong City',
+            state: 'Metro Manila',
+            zipCode: '1552',
+            countryCode: 'PH',
+            shippingType: 'ST'
+        ),
+        billingAddress: new BillingAddressDto(
+            line1: '6F Launchpad',
+            line2: 'Reliance Street',
+            city: 'Mandaluyong City',
+            state: 'Metro Manila',
+            zipCode: '1552',
+            countryCode: 'PH'
+        )
+    ),
+    items: [
+        new ItemDto(
+            name: 'Canvas Slip Ons',
+            quantity: 1,
+            code: 'CVG-096732',
+            description: 'Shoes',
+            amount: new AmountDto(
+                value: 100,
+                details: new AmountDetailDto(
+                    discount: 0,
+                    serviceCharge: 0,
+                    shippingFee: 0,
+                    tax: 0,
+                    subtotal: 100
+                )
+            ),
+            totalAmount: new AmountDto(
+                value: 100,
+                details: new AmountDetailDto(
+                    discount: 0,
+                    serviceCharge: 0,
+                    shippingFee: 0,
+                    tax: 0,
+                    subtotal: 100
+                )
+            )
+        ),
+    ],
+    redirectUrl: new RedirectUrlDto(
+        success: 'https://www.merchantsite.com/success',
+        failure: 'https://www.merchantsite.com/failure',
+        cancel: 'https://www.merchantsite.com/cancel'
+    ),
+    requestReferenceNumber: '1551191039',
+    metadata: new MetaDataDto(
+        smi: 'smi',
+        smn: 'smn',
+        mci: 'mci',
+        mpc: 'mpc',
+        mco: 'mco',
+        mst: 'mst'
+    )
+);
+
+// submit
+/** @var CheckoutResponse $checkoutResponse */
 $checkoutResponse = $api->send(new CreateCheckoutRequest($checkout))->dto();
 
 echo 'id: '.$checkoutResponse->checkoutId."\n";
 echo 'url: '.$checkoutResponse->redirectUrl."\n";
+
+// retrieve
+/** @var CheckoutDto $checkoutDto */
+$checkoutDto = $api->send(new GetCheckoutRequest($checkoutResponse->checkoutId))->dto();
 ```
 
----
-
-#### Removed Multiple Clients
-- **Removed:** `CheckoutClient`, `CustomizationClient`, `WebhookClient`, `PaymayaClient`, etc.
-- **Use instead:** `PaymayaConnector` + specific Request classes like:
-    - `CreateCheckoutRequest`
-    - `GetCheckoutRequest`
-    - `CreateWebhookRequest`
-
----
-
-#### Request & Response Handling
-- v2 used **arrays** for payloads.
-- v3 uses **DTO objects** for better structure and type safety.
-
-**Old (v2):**
+### Customization
+https://developers.maya.ph/reference/setv1customizations-1
 ```php
-$checkout = (new Checkout())
-    ->setTotalAmount(
-        // ...
-    )
-    ->setBuyer(
-        // ...
-    )
-    ->addItem(
-        // ...
-    )
-    ->setRedirectUrl(
-        // ...
-    )
-    ->setRequestReferenceNumber('1551191039')
-    ->setMetadata(
-       // ...
-    );
-```
+use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
+use Lloricode\Paymaya\Enums\Environment;
+use Lloricode\Paymaya\PaymayaConnector;
+use Lloricode\Paymaya\Requests\Customization\RemoveCustomizationRequest;
+use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
+use Lloricode\Paymaya\Requests\Customization\SetCustomizationRequest;
 
-**New (v3):**
-```php
-$checkout = new CheckoutDto(
-    totalAmount: new TotalAmountDto(
-        value: 100,
-        details: new AmountDetailDto(
-            subtotal: 100
-        )
-    ),
-    buyer: // ...
-    items: // ...
-    redirectUrl: // ...
-    requestReferenceNumber: '1551191039',
-    metadata: // ...
+$api = new PaymayaConnector(
+    environment: Environment::Sandbox,
+    secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
+    publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
 );
+
+// register (readonly DTO via constructor)
+$api->send(new SetCustomizationRequest(
+    new CustomizationDto(
+        logoUrl: 'https://image-logo.png',
+        iconUrl: 'https://image-icon.png',
+        appleTouchIconUrl: 'https://image-apple.png',
+        customTitle: 'Test Title Mock',
+        colorScheme: '#e01c44',
+    )
+))
+    ->dto();
+
+// retrieve
+/** @var CustomizationDto $customizationDto */
+$customizationDto = $api->send(new RetrieveCustomizationRequest)->dto();
+
+// delete
+$api->send(new RemoveCustomizationRequest);
 ```
 
----
+### Webhook
 
-#### Environment & Config
-- **Old:**
+#### Checkout Webhook
+https://developers.maya.ph/reference/createv1webhook-1
 ```php
-Environment::SANDBOX;
-```
-- **New:**
-```php
-Environment::Sandbox; // Enum case
-```
+use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
+use Lloricode\Paymaya\Enums\Environment;
+use Lloricode\Paymaya\Enums\Webhook;
+use Lloricode\Paymaya\PaymayaConnector;
+use Lloricode\Paymaya\Requests\Webhook\CreateWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\GetAllWebhookRequest;
+use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
 
----
+$api = new PaymayaConnector(
+    environment: Environment::Sandbox,
+    secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
+    publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
+);
 
-### Error Handling
+// retrieve
+/** @var array<string, WebhookDto> $webhooks */
+$webhooks = $api->send(new GetAllWebhookRequest)->dto();
 
-**Before:**
-- Errors returned as arrays or Guzzle exceptions.
-
-**Now:**
-- Errors throw `RequestException` from Saloon.
-- Use `try...catch`:
-
-```php
-try {
-    $response = $connector->send($request);
-} catch (\Saloon\Exceptions\Request\RequestException $e) {
-    // Handle API error
+// delete all
+foreach ($webhooks as $webhook) {
+    $api->send(new DeleteWebhookRequest($webhook->id));
 }
+
+// register (readonly DTOs via constructors)
+/** @var WebhookDto $createdWebhookDto */
+$createdWebhookDto = $api->send(new CreateWebhookRequest(
+    new WebhookDto(
+        name: Webhook::CHECKOUT_SUCCESS,
+        callbackUrl: 'https://web.test/test/success'
+    )
+));
+
+// update (create a new readonly DTO with the existing id and new callback URL)
+$existing = $webhooks[Webhook::CHECKOUT_SUCCESS];
+$updatingDto = new WebhookDto(
+    id: $existing->id,
+    name: $existing->name,
+    callbackUrl: 'https://web.test/test/update-success'
+);
+
+/** @var WebhookDto $webhookDto */
+$webhookDto = $api->send(new UpdateWebhookRequest($updatingDto))
+    ->dto();
 ```
 
 ---
 
-### Laravel Users
+## Testing
 
-If you are building a Laravel application, install the Laravel integration package:
+Run the tests with:
 
 ```bash
-composer require lloricode/laravel-paymaya-sdk
+vendor/bin/phpunit
 ```
 
-This package provides:
-- Auto configuration through Laravel service provider
-- Facades for quick access
-- Config file publishing
+---
 
-See [Laravel PayMaya SDK](https://github.com/lloricode/laravel-paymaya-sdk) for usage.
+## Changelog
+
+See [CHANGELOG](CHANGELOG.md) for details.
 
 ---
 
-### Old → New Class & Method Mapping
+## Contributing
 
-| v2 Class / Method                             | v3 Replacement                              |
-|-----------------------------------------------|---------------------------------------------|
-| `CheckoutClient::execute() + PaymayaClient`   | `PaymayaConnector + CreateCheckoutRequest` |
-| `CheckoutClient::retrieve() + PaymayaClient`  | `PaymayaConnector + GetCheckoutRequest`    |
-| `WebhookClient::register() + PaymayaClient`   | `PaymayaConnector + CreateWebhookRequest`  |
-| `WebhookClient::retrieve() + PaymayaClient`   | `PaymayaConnector + GetAllWebhookRequest`    |
-| `PaymayaClient::ENVIRONMENT_SANDBOX`          | `Environment::Sandbox` (Enum)             |
-| `PaymayaClient::ENVIRONMENT_PRODUCTION`       | `Environment::Production` (Enum)          |
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for guidelines.
 
 ---
 
-## Future Upgrade Policy
+## Security
 
-We aim to **always support the latest PHP versions** to:
-- Reduce technical debt
-- Take advantage of new language features
-- Encourage modern development practices
-- Ensure long-term compatibility and maintainability
-
-If you plan to contribute, please make sure to:
-- Follow the current PHP minimum version requirement
-- Prefer modern syntax and features whenever possible
-
-### Check PHP Active Support
-
-- [PHP Supported Versions](https://www.php.net/supported-versions.php)
-- [PHP Version Changes & Features](https://php.watch/versions)
+Please review [our security policy](../../security/policy) for details.
 
 ---
 
-## References
-- [Full Documentation](https://github.com/lloricode/paymaya-sdk-php)
-- [Saloon Documentation](https://docs.saloon.dev/)
-- [Laravel Integration](https://github.com/lloricode/laravel-paymaya-sdk)
+## Credits
+
+- [Lloric Mayuga Garcia](https://github.com/lloricode)
+- [All Contributors](../../contributors)
+
+---
+
+## License
+
+The MIT License (MIT). See [LICENSE](LICENSE.md) for more information.
