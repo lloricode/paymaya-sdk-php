@@ -39,7 +39,7 @@ You can install the package via Composer:
 composer require lloricode/paymaya-sdk-php
 ```
 
-> **Upgrading from v2?** Check the [Upgrade Guide](UPGRADE.md).
+> **Upgrading from v2?** Check the [Upgrade Guide](UPGRADING.md).
 
 ---
 
@@ -51,7 +51,7 @@ We have introduced **breaking changes** in v3, including:
 - DTOs and Enums for better type safety
 - Unified `PaymayaConnector` instead of multiple clients
 
-➡ **See full details in the [Upgrade Guide](UPGRADE.md).**
+➡ **See full details in the [Upgrade Guide](UPGRADING.md).**
 
 ---
 
