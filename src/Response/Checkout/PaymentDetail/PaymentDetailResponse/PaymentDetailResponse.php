@@ -7,7 +7,7 @@ namespace Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailRespons
 use Lloricode\Paymaya\Response\Checkout\BaseResponse;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailResponse\EFS\EFS;
 
-class PaymentDetailResponse extends BaseResponse
+readonly class PaymentDetailResponse extends BaseResponse
 {
     public function __construct(public EFS $efs) {}
 }

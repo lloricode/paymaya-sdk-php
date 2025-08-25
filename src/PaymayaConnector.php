@@ -48,7 +48,9 @@ class PaymayaConnector extends Connector
             GetAllWebhookRequest::class,
             UpdateWebhookRequest::class => $this->secretKey,
             CreateCheckoutRequest::class => $this->publicKey,
+            // @codeCoverageIgnoreStart
             default => throw new Exception('Request ['.$pendingRequest->getRequest()::class.'] not found for getting token type.'),
+            // @codeCoverageIgnoreEnd
         };
 
         $pendingRequest->authenticate(new TokenAuthenticator(base64_encode($token), 'Basic'));

@@ -8,7 +8,7 @@ use Lloricode\Paymaya\Response\Checkout\BaseResponse;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailResponse\EFS\Amount\Amount;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailResponse\EFS\Payer\Payer;
 
-class EFS extends BaseResponse
+readonly class EFS extends BaseResponse
 {
     public function __construct(
         public string $paymentTransactionReferenceNo,

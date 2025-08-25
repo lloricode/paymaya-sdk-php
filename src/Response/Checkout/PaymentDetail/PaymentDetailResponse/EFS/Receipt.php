@@ -6,7 +6,7 @@ namespace Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailRespons
 
 use Lloricode\Paymaya\Response\Checkout\BaseResponse;
 
-class Receipt extends BaseResponse
+readonly class Receipt extends BaseResponse
 {
     public function __construct(
         public string $transactionId,

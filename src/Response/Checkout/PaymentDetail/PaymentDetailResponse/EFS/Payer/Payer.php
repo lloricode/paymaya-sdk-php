@@ -7,7 +7,7 @@ namespace Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailRespons
 use Lloricode\Paymaya\Response\Checkout\BaseResponse;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailResponse\EFS\Payer\FundingInstrument\FundingInstrument;
 
-class Payer extends BaseResponse
+readonly class Payer extends BaseResponse
 {
     public function __construct(
         public FundingInstrument $fundingInstrument

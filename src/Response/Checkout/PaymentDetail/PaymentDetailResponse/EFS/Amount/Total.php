@@ -6,7 +6,7 @@ namespace Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailRespons
 
 use Lloricode\Paymaya\Response\Checkout\BaseResponse;
 
-class Total extends BaseResponse
+readonly class Total extends BaseResponse
 {
     public function __construct(
         public string $currency,
