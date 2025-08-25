@@ -195,7 +195,6 @@ $api->send(new RemoveCustomizationRequest);
 #### Checkout Webhook
 
 ```php
-
 use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\Enums\Webhook;
@@ -221,38 +220,25 @@ foreach ($webhooks as $webhook) {
 }
 
 // register (readonly DTOs via constructors)
-$api->send(new CreateWebhookRequest(
+/** @var WebhookDto $createdWebhookDto */
+$createdWebhookDto = $api->send(new CreateWebhookRequest(
     new WebhookDto(
         name: Webhook::CHECKOUT_SUCCESS,
         callbackUrl: 'https://web.test/test/success'
     )
 ));
 
-$api->send(new CreateWebhookRequest(
-    new WebhookDto(
-        name: Webhook::CHECKOUT_FAILURE,
-        callbackUrl: 'https://web.test/test/failure'
-    )
-));
-
-$api->send(new CreateWebhookRequest(
-    new WebhookDto(
-        name: Webhook::CHECKOUT_DROPOUT,
-        callbackUrl: 'https://web.test/test/drop'
-    )
-));
-
 // update (create a new readonly DTO with the existing id and new callback URL)
 $existing = $webhooks[Webhook::CHECKOUT_SUCCESS];
-$updatedDto = new WebhookDto(
+$updatingDto = new WebhookDto(
     id: $existing->id,
     name: $existing->name,
     callbackUrl: 'https://web.test/test/update-success'
 );
 
-$webhooks = $api->send(new UpdateWebhookRequest($updatedDto))
+/** @var WebhookDto $webhookDto */
+$webhookDto = $api->send(new UpdateWebhookRequest($updatingDto))
     ->dto();
-
 ```
 
 ## Testing
