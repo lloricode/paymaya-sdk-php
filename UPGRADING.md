@@ -162,7 +162,7 @@ $checkout = new CheckoutDto(
 #### Environment & Config
 - **Old:**
 ```php
-Environment::SANDBOX;
+PaymayaClient::ENVIRONMENT_SANDBOX;
 ```
 - **New:**
 ```php
