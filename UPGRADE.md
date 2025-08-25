@@ -64,33 +64,50 @@ Version 3 introduces **breaking changes** to improve code structure, type safety
 
 **Before (v2):**
 ```php
-$checkoutClient = new CheckoutClient('public-key', 'secret-key', Environment::SANDBOX);
-$response = $checkoutClient->createCheckout($payload);
+$checkout = (new Checkout())
+    ->setTotalAmount(
+        (new TotalAmount())
+            ->setValue(100) // ...
+    ) // ...
+    
+$checkoutResponse = (new CheckoutClient(
+    new PaymayaClient(
+        'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl', // secret
+        'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah', // public
+        PaymayaClient::ENVIRONMENT_SANDBOX
+    )
+))->execute($checkout);
+
+echo 'id: '.$checkoutResponse->checkoutId."\n";
+echo 'url: '.$checkoutResponse->redirectUrl."\n";
 ```
 
 **Now (v3):**
 ```php
-use Lloricode\Paymaya\PaymayaConnector;
-use Lloricode\Paymaya\Requests\CreateCheckoutRequest;
-use Lloricode\Paymaya\DataTransferObjects\CheckoutDto;
-
-$connector = new PaymayaConnector(apiKey: 'your-api-key', secret: 'your-secret');
-
-$response = $connector->send(
-    new CreateCheckoutRequest(
-        new CheckoutDto(
-            amount: 100.00,
-            currency: 'PHP',
-            redirectUrl: 'https://your-site.com/success'
-        )
-    )
+$api = new PaymayaConnector(
+    environment: Environment::sandbox,
+    secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
+    publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
 );
+
+$checkout = new CheckoutDto(
+    totalAmount: new TotalAmountDto(
+        value: 100,
+        details: new AmountDetailDto(
+            subtotal: 100
+        )
+    ), // ...
+    
+$checkoutResponse = $api->send(new CreateCheckoutRequest($checkout))->dto();
+
+echo 'id: '.$checkoutResponse->checkoutId."\n";
+echo 'url: '.$checkoutResponse->redirectUrl."\n";
 ```
 
 ---
 
 #### Removed Multiple Clients
-- **Removed:** `CheckoutClient`, `PaymentsClient`, `WebhookClient`, etc.
+- **Removed:** `CheckoutClient`, `CustomizationClient`, `WebhookClient`, `PaymayaClient`, etc.
 - **Use instead:** `PaymayaConnector` + specific Request classes like:
     - `CreateCheckoutRequest`
     - `GetCheckoutRequest`
@@ -104,17 +121,40 @@ $response = $connector->send(
 
 **Old (v2):**
 ```php
-$checkoutClient->createCheckout([
-    'amount' => [
-        'value' => 100,
-        'currency' => 'PHP'
-    ]
-]);
+$checkout = (new Checkout())
+    ->setTotalAmount(
+        // ...
+    )
+    ->setBuyer(
+        // ...
+    )
+    ->addItem(
+        // ...
+    )
+    ->setRedirectUrl(
+        // ...
+    )
+    ->setRequestReferenceNumber('1551191039')
+    ->setMetadata(
+       // ...
+    );
 ```
 
 **New (v3):**
 ```php
-new CheckoutDto(amount: 100, currency: 'PHP');
+$checkout = new CheckoutDto(
+    totalAmount: new TotalAmountDto(
+        value: 100,
+        details: new AmountDetailDto(
+            subtotal: 100
+        )
+    ),
+    buyer: // ...
+    items: // ...
+    redirectUrl: // ...
+    requestReferenceNumber: '1551191039',
+    metadata: // ...
+);
 ```
 
 ---
@@ -169,14 +209,14 @@ See [Laravel PayMaya SDK](https://github.com/lloricode/laravel-paymaya-sdk) for 
 
 ### Old → New Class & Method Mapping
 
-| v2 Class / Method              | v3 Replacement                              |
-|--------------------------------|---------------------------------------------|
-| `CheckoutClient::createCheckout()` | `PaymayaConnector + CreateCheckoutRequest` |
-| `CheckoutClient::retrieve()`      | `PaymayaConnector + GetCheckoutRequest`    |
-| `WebhookClient::register()`       | `PaymayaConnector + CreateWebhookRequest`  |
-| `WebhookClient::list()`           | `PaymayaConnector + ListWebhookRequest`    |
-| `Environment::SANDBOX`            | `Environment::Sandbox` (Enum)             |
-| `Environment::PRODUCTION`         | `Environment::Production` (Enum)          |
+| v2 Class / Method                             | v3 Replacement                              |
+|-----------------------------------------------|---------------------------------------------|
+| `CheckoutClient::execute() + PaymayaClient`   | `PaymayaConnector + CreateCheckoutRequest` |
+| `CheckoutClient::retrieve() + PaymayaClient`  | `PaymayaConnector + GetCheckoutRequest`    |
+| `WebhookClient::register() + PaymayaClient`   | `PaymayaConnector + CreateWebhookRequest`  |
+| `WebhookClient::retrieve() + PaymayaClient`   | `PaymayaConnector + GetAllWebhookRequest`    |
+| `PaymayaClient::ENVIRONMENT_SANDBOX`          | `Environment::Sandbox` (Enum)             |
+| `PaymayaClient::ENVIRONMENT_PRODUCTION`       | `Environment::Production` (Enum)          |
 
 ---
 
@@ -196,12 +236,6 @@ If you plan to contribute, please make sure to:
 
 - [PHP Supported Versions](https://www.php.net/supported-versions.php)
 - [PHP Version Changes & Features](https://php.watch/versions)
-
----
-
-## v4.x (TBD)
-
-*Details will be added here when v4 is released.*
 
 ---
 

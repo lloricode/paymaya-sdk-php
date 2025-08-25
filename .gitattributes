@@ -16,4 +16,5 @@
 /pint.json          export-ignore
 /.run               export-ignore
 /phpstan.neon       export-ignore
+/UPGRADE.md         export-ignore
 
