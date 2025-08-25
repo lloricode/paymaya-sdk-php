@@ -34,7 +34,6 @@ You can copy the sample to test it.
 ### Checkout
 https://developers.maya.ph/reference/createv1checkout
 ``` php
-
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDetailDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Amount\AmountDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BillingAddressDto;
@@ -49,10 +48,11 @@ use Lloricode\Paymaya\DataTransferObjects\Checkout\TotalAmountDto;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\PaymayaConnector;
 use Lloricode\Paymaya\Requests\Checkout\CreateCheckoutRequest;
-use Lloricode\Paymaya\Requests\Checkout\RetrieveCheckoutRequest;
+use Lloricode\Paymaya\Requests\Checkout\GetCheckoutRequest;
+use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 
 $api = new PaymayaConnector(
-    environment: Environment::sandbox,
+    environment: Environment::Sandbox,
     secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
     publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
 );
@@ -143,14 +143,15 @@ $checkout = new CheckoutDto(
 );
 
 // submit
+/** @var CheckoutResponse $checkoutResponse */
 $checkoutResponse = $api->send(new CreateCheckoutRequest($checkout))->dto();
 
 echo 'id: '.$checkoutResponse->checkoutId."\n";
 echo 'url: '.$checkoutResponse->redirectUrl."\n";
 
 // retrieve
-$api->send(new RetrieveCheckoutRequest($checkoutResponse->checkoutId))->dto();
-
+/** @var CheckoutDto $checkoutDto */
+$checkoutDto = $api->send(new GetCheckoutRequest($checkoutResponse->checkoutId))->dto();
 ```
 
 ### Customization
