@@ -157,7 +157,6 @@ $checkoutDto = $api->send(new GetCheckoutRequest($checkoutResponse->checkoutId))
 ### Customization
 
 ```php
-
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\PaymayaConnector;
@@ -184,11 +183,11 @@ $api->send(new SetCustomizationRequest(
     ->dto();
 
 // retrieve
-$api->send(new RetrieveCustomizationRequest)->dto();
+/** @var CustomizationDto $customizationDto */
+$customizationDto = $api->send(new RetrieveCustomizationRequest)->dto();
 
 // delete
 $api->send(new RemoveCustomizationRequest);
-
 ```
 
 ### Webhook
