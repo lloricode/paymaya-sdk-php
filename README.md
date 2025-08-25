@@ -165,7 +165,7 @@ use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\SetCustomizationRequest;
 
 $api = new PaymayaConnector(
-    environment: Environment::sandbox,
+    environment: Environment::Sandbox,
     secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
     publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
 );
@@ -206,7 +206,7 @@ use Lloricode\Paymaya\Requests\Webhook\GetAllWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
 
 $api = new PaymayaConnector(
-    environment: Environment::sandbox,
+    environment: Environment::Sandbox,
     secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
     publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
 );

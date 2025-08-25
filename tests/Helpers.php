@@ -11,7 +11,7 @@ use Saloon\Http\Response;
 function paymayaConnectorSend(Request $request): Response
 {
     return (new PaymayaConnector(
-        environment: Environment::testing,
+        environment: Environment::Testing,
         secretKey: 'fake-secretKey',
         publicKey: 'fake-publicKey',
     ))->send($request);

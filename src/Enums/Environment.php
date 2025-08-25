@@ -6,16 +6,16 @@ namespace Lloricode\Paymaya\Enums;
 
 enum Environment: string
 {
-    case production = 'production';
-    case sandbox = 'sandbox';
-    case testing = 'testing';
+    case Production = 'Production';
+    case Sandbox = 'Sandbox';
+    case Testing = 'Testing';
 
     public function url(): string
     {
         return match ($this) {
-            self::production => 'https://pg.paymaya.com',
-            self::sandbox => 'https://pg-sandbox.paymaya.com',
-            self::testing => 'http://test.local',
+            self::Production => 'https://pg.paymaya.com',
+            self::Sandbox => 'https://pg-sandbox.paymaya.com',
+            self::Testing => 'http://test.local',
         };
     }
 }
