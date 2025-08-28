@@ -8,7 +8,6 @@ use Lloricode\Paymaya\DataTransferObjects\BaseDto;
 
 /**
  * https://developers.paymaya.com/blog/entry/paymaya-checkout-api-overview#webhooks
- *
  */
 readonly class WebhookDto extends BaseDto
 {
