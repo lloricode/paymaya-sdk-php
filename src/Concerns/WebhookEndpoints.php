@@ -18,17 +18,17 @@ trait WebhookEndpoints
      */
     public function webhooks(): array
     {
-        return $this->send(new GetAllWebhookRequest)->dtoOrFail();
+        return $this->send(new GetAllWebhookRequest)->dto();
     }
 
     public function createWebhook(WebhookDto $webhookDto): WebhookDto
     {
-        return $this->send(new CreateWebhookRequest($webhookDto))->dtoOrFail();
+        return $this->send(new CreateWebhookRequest($webhookDto))->dto();
     }
 
     public function updateWebhooks(WebhookDto $webhookDto): WebhookDto
     {
-        return $this->send(new UpdateWebhookRequest($webhookDto))->dtoOrFail();
+        return $this->send(new UpdateWebhookRequest($webhookDto))->dto();
     }
 
     public function deleteWebhook(string $webhookId): self

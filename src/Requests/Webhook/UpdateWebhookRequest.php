@@ -36,16 +36,6 @@ class UpdateWebhookRequest extends Request implements HasBody
 
     public function createDtoFromResponse(Response $response): WebhookDto
     {
-
-        //        try {
-        $data = $response->array();
-        //        }catch (GuzzleException $e) {
-        //            if ($e->getCode() === 404) {
-        //                return [];
-        //            }
-        //
-        //        }
-
-        return new WebhookDto(...$data);
+        return new WebhookDto(...$response->array());
     }
 }

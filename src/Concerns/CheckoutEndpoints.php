@@ -14,11 +14,11 @@ trait CheckoutEndpoints
 {
     public function getCheckout(string $id): CheckoutDto
     {
-        return $this->send(new GetCheckoutRequest($id))->dtoOrFail();
+        return $this->send(new GetCheckoutRequest($id))->dto();
     }
 
     public function createCheckout(CheckoutDto $checkoutDto): CheckoutResponse
     {
-        return $this->send(new CreateCheckoutRequest($checkoutDto))->dtoOrFail();
+        return $this->send(new CreateCheckoutRequest($checkoutDto))->dto();
     }
 }

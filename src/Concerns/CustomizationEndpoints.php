@@ -14,12 +14,12 @@ trait CustomizationEndpoints
 {
     public function customizations(): CustomizationDto
     {
-        return $this->send(new RetrieveCustomizationRequest)->dtoOrFail();
+        return $this->send(new RetrieveCustomizationRequest)->dto();
     }
 
     public function createCustomization(CustomizationDto $customizationDto): CustomizationDto
     {
-        return $this->send(new SetCustomizationRequest($customizationDto))->dtoOrFail();
+        return $this->send(new SetCustomizationRequest($customizationDto))->dto();
     }
 
     public function deleteCustomization(): self

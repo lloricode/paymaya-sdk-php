@@ -35,7 +35,7 @@ test('retrieve', function () {
 
 test('webhook zero data retrieved', function () {
 
-    MockClient::global([
+    $mockClient = MockClient::global([
         GetAllWebhookRequest::class => MockResponse::make(
             status: 404,
         ),

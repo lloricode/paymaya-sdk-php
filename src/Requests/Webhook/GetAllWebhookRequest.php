@@ -26,18 +26,8 @@ class GetAllWebhookRequest extends Request
      */
     public function createDtoFromResponse(Response $response): array
     {
-
-        //        try {
-        $data = $response->array();
-        //        }catch (GuzzleException $e) {
-        //            if ($e->getCode() === 404) {
-        //                return [];
-        //            }
-        //
-        //        }
-
         $array = [];
-        foreach ($data as $value) {
+        foreach ($response->array() as $value) {
             $array[$value['name']] = new WebhookDto(...$value);
         }
 
