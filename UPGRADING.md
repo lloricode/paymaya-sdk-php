@@ -9,7 +9,7 @@ This document contains upgrade instructions for breaking changes in each major r
 - **PHP 8.3+ required** (previously 8.2)
 - **Uses [Saloon](https://docs.saloon.dev/) instead of direct Guzzle usage**
 - **Removed multiple clients (`CheckoutClient`, `WebhookClient`, etc.)**
-    - Use **`PaymayaConnector`** + **Request classes**
+    - Use **`Paymaya`** + **Request classes**
 - **Introduced Enums** (`Environment::Sandbox` instead of string constants)
 - **Introduced DTOs** for request payloads (instead of raw arrays)
 - **Internal structure reorganized**:
@@ -25,7 +25,7 @@ Version 3 introduces **breaking changes** to improve code structure, type safety
 
 ### Why v3?
 
-- **Simplified API calls** using a single `PaymayaConnector` instead of multiple clients.
+- **Simplified API calls** using a single `Paymaya` instead of multiple clients.
 - **DTO-based requests** for better type safety and maintainability.
 - **Enum support** for standardized values (like environment, status, etc.).
 - **Modern PHP features** (typed properties, readonly, enums).
@@ -84,7 +84,7 @@ echo 'url: '.$checkoutResponse->redirectUrl."\n";
 
 **Now (v3):**
 ```php
-$api = new PaymayaConnector(
+$api = new Paymaya(
     environment: Environment::Sandbox,
     secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
     publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
