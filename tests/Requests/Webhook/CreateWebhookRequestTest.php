@@ -18,14 +18,12 @@ it('register', function () {
         ),
     ]);
 
-    /** @var WebhookDto $webhookResponse */
-    $webhookResponse = paymayaConnectorSend(new CreateWebhookRequest(
+    $webhookResponse = paymaya()->createWebhook(
         new WebhookDto(
             name: $data['name'],
             callbackUrl: $data['callbackUrl'],
         )
-    ))
-        ->dto();
+    );
 
     assertEquals($data['id'], $webhookResponse->id);
     assertEquals($data['name'], $webhookResponse->name);

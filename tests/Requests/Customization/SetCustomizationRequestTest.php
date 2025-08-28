@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
 use Lloricode\Paymaya\Requests\Customization\SetCustomizationRequest;
 use Saloon\Http\Faking\MockClient;
@@ -30,24 +28,15 @@ it('register', function () {
         ),
     ]);
 
-    try {
-        $response = paymayaConnectorSend(new SetCustomizationRequest(
-            new CustomizationDto(
-                logoUrl: 'https://image-logo.png',
-                iconUrl: 'https://image-icon.png',
-                appleTouchIconUrl: 'https://image-apple.png',
-                customTitle: 'Test Title Mock',
-                colorScheme: '#e01c44',
-            )
-        ))
-            ->dto();
-    } catch (ErrorException) {
-        $this->fail('ErrorException');
-    } catch (ClientException $e) {
-        $this->fail('ClientException: '.$e->getMessage().$e->getResponse()->getBody());
-    } catch (GuzzleException) {
-        $this->fail('GuzzleException');
-    }
+    $response = paymaya()->createCustomization(
+        new CustomizationDto(
+            logoUrl: 'https://image-logo.png',
+            iconUrl: 'https://image-icon.png',
+            appleTouchIconUrl: 'https://image-apple.png',
+            customTitle: 'Test Title Mock',
+            colorScheme: '#e01c44',
+        )
+    );
 
     assertSame(
         json_encode(json_decode($data), JSON_PRETTY_PRINT),

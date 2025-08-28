@@ -94,12 +94,9 @@ use Lloricode\Paymaya\DataTransferObjects\Checkout\MetaDataDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\RedirectUrlDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\TotalAmountDto;
 use Lloricode\Paymaya\Enums\Environment;
-use Lloricode\Paymaya\PaymayaConnector;
-use Lloricode\Paymaya\Requests\Checkout\CreateCheckoutRequest;
-use Lloricode\Paymaya\Requests\Checkout\GetCheckoutRequest;
-use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
+use Lloricode\Paymaya\Paymaya;
 
-$api = new PaymayaConnector(
+$api = new Paymaya(
     environment: Environment::Sandbox,
     secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
     publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
@@ -191,15 +188,13 @@ $checkout = new CheckoutDto(
 );
 
 // submit
-/** @var CheckoutResponse $checkoutResponse */
-$checkoutResponse = $api->send(new CreateCheckoutRequest($checkout))->dto();
+$checkoutResponse = $api->createCheckout($checkout);
 
 echo 'id: '.$checkoutResponse->checkoutId."\n";
 echo 'url: '.$checkoutResponse->redirectUrl."\n";
 
 // retrieve
-/** @var CheckoutDto $checkoutDto */
-$checkoutDto = $api->send(new GetCheckoutRequest($checkoutResponse->checkoutId))->dto();
+$checkoutDto = $api->getCheckout($checkoutResponse->checkoutId);
 ```
 
 ### Customization
@@ -207,19 +202,16 @@ https://developers.maya.ph/reference/setv1customizations-1
 ```php
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Customization\CustomizationDto;
 use Lloricode\Paymaya\Enums\Environment;
-use Lloricode\Paymaya\PaymayaConnector;
-use Lloricode\Paymaya\Requests\Customization\RemoveCustomizationRequest;
-use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
-use Lloricode\Paymaya\Requests\Customization\SetCustomizationRequest;
+use Lloricode\Paymaya\Paymaya;
 
-$api = new PaymayaConnector(
+$api = new Paymaya(
     environment: Environment::Sandbox,
     secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
     publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
 );
 
 // register (readonly DTO via constructor)
-$api->send(new SetCustomizationRequest(
+$api->createCustomization(
     new CustomizationDto(
         logoUrl: 'https://image-logo.png',
         iconUrl: 'https://image-icon.png',
@@ -227,15 +219,13 @@ $api->send(new SetCustomizationRequest(
         customTitle: 'Test Title Mock',
         colorScheme: '#e01c44',
     )
-))
-    ->dto();
+);
 
 // retrieve
-/** @var CustomizationDto $customizationDto */
-$customizationDto = $api->send(new RetrieveCustomizationRequest)->dto();
+$customizationDto = $api->customizations();
 
 // delete
-$api->send(new RemoveCustomizationRequest);
+$api->deleteCustomization();
 ```
 
 ### Webhook
@@ -246,13 +236,9 @@ https://developers.maya.ph/reference/createv1webhook-1
 use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\Enums\Webhook;
-use Lloricode\Paymaya\PaymayaConnector;
-use Lloricode\Paymaya\Requests\Webhook\CreateWebhookRequest;
-use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
-use Lloricode\Paymaya\Requests\Webhook\GetAllWebhookRequest;
-use Lloricode\Paymaya\Requests\Webhook\UpdateWebhookRequest;
+use Lloricode\Paymaya\Paymaya;
 
-$api = new PaymayaConnector(
+$api = new Paymaya(
     environment: Environment::Sandbox,
     secretKey: 'sk-X8qolYjy62kIzEbr0QRK1h4b4KDVHaNcwMYk39jInSl',
     publicKey: 'pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah',
@@ -260,21 +246,20 @@ $api = new PaymayaConnector(
 
 // retrieve
 /** @var array<string, WebhookDto> $webhooks */
-$webhooks = $api->send(new GetAllWebhookRequest)->dto();
+$webhooks = $api->webhooks();
 
 // delete all
 foreach ($webhooks as $webhook) {
-    $api->send(new DeleteWebhookRequest($webhook->id));
+    $api->deleteWebhook($webhook->id);
 }
 
 // register (readonly DTOs via constructors)
-/** @var WebhookDto $createdWebhookDto */
-$createdWebhookDto = $api->send(new CreateWebhookRequest(
+$createdWebhookDto = $api->createWebhook(
     new WebhookDto(
         name: Webhook::CHECKOUT_SUCCESS,
         callbackUrl: 'https://web.test/test/success'
     )
-));
+);
 
 // update (create a new readonly DTO with the existing id and new callback URL)
 $existing = $webhooks[Webhook::CHECKOUT_SUCCESS];
@@ -284,9 +269,7 @@ $updatingDto = new WebhookDto(
     callbackUrl: 'https://web.test/test/update-success'
 );
 
-/** @var WebhookDto $webhookDto */
-$webhookDto = $api->send(new UpdateWebhookRequest($updatingDto))
-    ->dto();
+$webhookDto = $api->updateWebhooks($updatingDto);
 ```
 ---
 

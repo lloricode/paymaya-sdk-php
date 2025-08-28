@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\BillingAddressDto;
 use Lloricode\Paymaya\DataTransferObjects\Checkout\Buyer\ShippingAddressDto;
-use Lloricode\Paymaya\DataTransferObjects\Checkout\CheckoutDto;
 use Lloricode\Paymaya\Requests\Checkout\GetCheckoutRequest;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetail;
 use Saloon\Http\Faking\MockClient;
@@ -180,10 +179,7 @@ it('show with id success', function () {
         ),
     ]);
 
-    /** @var CheckoutDto $checkoutResponse */
-    $checkoutResponse = paymayaConnectorSend(new GetCheckoutRequest('4ef96167-b8f2-4400-912e-5bd2f4289cfb'))->dto();
-
-    assertInstanceOf(CheckoutDto::class, $checkoutResponse);
+    $checkoutResponse = paymaya()->getCheckout('4ef96167-b8f2-4400-912e-5bd2f4289cfb');
 
     assertEquals('4ef96167-b8f2-4400-912e-5bd2f4289cfb', $checkoutResponse->id);
     assertInstanceOf(PaymentDetail::class, $checkoutResponse->paymentDetails);

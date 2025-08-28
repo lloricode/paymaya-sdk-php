@@ -28,8 +28,7 @@ it('retrieve', function () {
         ),
     ]);
 
-    $response = paymayaConnectorSend(new RetrieveCustomizationRequest)
-        ->dto();
+    $response = paymaya()->customizations();
 
     assertSame(
         json_encode(json_decode($data), JSON_PRETTY_PRINT),
@@ -44,8 +43,7 @@ it('retrieve no data', function () {
         ),
     ]);
 
-    $response = paymayaConnectorSend(new RetrieveCustomizationRequest)
-        ->dto();
+    $response = paymaya()->customizations();
 
     assertSame(
         json_encode(json_decode(json_encode(new CustomizationDto)), JSON_PRETTY_PRINT),

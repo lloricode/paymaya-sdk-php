@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 use Lloricode\Paymaya\Enums\Environment;
 use Lloricode\Paymaya\Enums\Webhook;
-use Lloricode\Paymaya\PaymayaConnector;
-use Saloon\Http\Request;
-use Saloon\Http\Response;
+use Lloricode\Paymaya\Paymaya;
 
-function paymayaConnectorSend(Request $request): Response
+function paymaya(): Paymaya
 {
-    return (new PaymayaConnector(
+    return new Paymaya(
         environment: Environment::Testing,
         secretKey: 'fake-secretKey',
         publicKey: 'fake-publicKey',
-    ))->send($request);
+    );
 }
 
 function sampleWebhookData(array $override = []): array

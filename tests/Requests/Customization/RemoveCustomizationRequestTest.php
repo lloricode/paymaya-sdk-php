@@ -6,8 +6,6 @@ use Lloricode\Paymaya\Requests\Customization\RemoveCustomizationRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 
-use function PHPUnit\Framework\assertEquals;
-
 it('delete data', function () {
     $mockClient = MockClient::global([
         RemoveCustomizationRequest::class => MockResponse::make(
@@ -15,8 +13,8 @@ it('delete data', function () {
         ),
     ]);
 
-    $response = paymayaConnectorSend(new RemoveCustomizationRequest);
+    paymaya()->deleteCustomization();
 
     $mockClient->assertSentCount(1);
-    assertEquals(204, $response->status());
+
 });

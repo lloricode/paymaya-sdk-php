@@ -98,7 +98,7 @@ $checkout = new CheckoutDto(
         )
     ), // ...
     
-$checkoutResponse = $api->send(new CreateCheckoutRequest($checkout))->dto();
+$checkoutResponse = $api->createCheckout($checkout);
 
 echo 'id: '.$checkoutResponse->checkoutId."\n";
 echo 'url: '.$checkoutResponse->redirectUrl."\n";
@@ -108,10 +108,10 @@ echo 'url: '.$checkoutResponse->redirectUrl."\n";
 
 #### Removed Multiple Clients
 - **Removed:** `CheckoutClient`, `CustomizationClient`, `WebhookClient`, `PaymayaClient`, etc.
-- **Use instead:** `PaymayaConnector` + specific Request classes like:
-    - `CreateCheckoutRequest`
-    - `GetCheckoutRequest`
-    - `CreateWebhookRequest`
+- **Use instead:** `new Paymaya` + specific Request classes like:
+    - `->createCheckout()`
+    - `->getCheckout()`
+    - `->createWebhook()`
 
 ---
 
@@ -182,7 +182,7 @@ Environment::Sandbox; // Enum case
 
 ```php
 try {
-    $response = $connector->send($request);
+    $response = $connector->createCheckout($dto);
 } catch (\Saloon\Exceptions\Request\RequestException $e) {
     // Handle API error
 }
@@ -209,12 +209,12 @@ See [Laravel PayMaya SDK](https://github.com/lloricode/laravel-paymaya-sdk) for 
 
 ### Old → New Class & Method Mapping
 
-| v2 Class / Method                             | v3 Replacement                              |
-|-----------------------------------------------|---------------------------------------------|
-| `CheckoutClient::execute() + PaymayaClient`   | `PaymayaConnector + CreateCheckoutRequest` |
-| `CheckoutClient::retrieve() + PaymayaClient`  | `PaymayaConnector + GetCheckoutRequest`    |
-| `WebhookClient::register() + PaymayaClient`   | `PaymayaConnector + CreateWebhookRequest`  |
-| `WebhookClient::retrieve() + PaymayaClient`   | `PaymayaConnector + GetAllWebhookRequest`    |
+| v2 Class / Method                             | v3 Replacement                            |
+|-----------------------------------------------|-------------------------------------------|
+| `CheckoutClient::execute() + PaymayaClient`   | `(new Paymaya)->createCheckout()`         |
+| `CheckoutClient::retrieve() + PaymayaClient`  | `(new Paymaya)->getCheckout()`   |
+| `WebhookClient::register() + PaymayaClient`   | `(new Paymaya)->createWebhook()` |
+| `WebhookClient::retrieve() + PaymayaClient`   | `(new Paymaya)->webhooks()` |
 | `PaymayaClient::ENVIRONMENT_SANDBOX`          | `Environment::Sandbox` (Enum)             |
 | `PaymayaClient::ENVIRONMENT_PRODUCTION`       | `Environment::Production` (Enum)          |
 

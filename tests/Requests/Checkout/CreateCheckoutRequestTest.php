@@ -2,10 +2,7 @@
 
 declare(strict_types=1);
 
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\GuzzleException;
 use Lloricode\Paymaya\Requests\Checkout\CreateCheckoutRequest;
-use Lloricode\Paymaya\Response\Checkout\CheckoutResponse;
 use Lloricode\Paymaya\Test\TestHelper;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
@@ -26,18 +23,7 @@ it('check via sandbox', function () {
         ),
     ]);
 
-    $checkoutResponse = null;
-
-    try {
-        /** @var CheckoutResponse $checkoutResponse */
-        $checkoutResponse = paymayaConnectorSend(new CreateCheckoutRequest(TestHelper::buildCheckout()))->dto();
-    } catch (ErrorException) {
-        $this->fail('ErrorException');
-    } catch (ClientException $e) {
-        $this->fail('ClientException: '.$e->getMessage().$e->getResponse()->getBody());
-    } catch (GuzzleException) {
-        $this->fail('GuzzleException');
-    }
+    $checkoutResponse = paymaya()->createCheckout(TestHelper::buildCheckout());
 
     assertEquals($id, $checkoutResponse->checkoutId);
     assertEquals($url, $checkoutResponse->redirectUrl);

@@ -6,8 +6,6 @@ use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 
-use function PHPUnit\Framework\assertEquals;
-
 it('delete', function () {
     $data = sampleWebhookData();
 
@@ -17,10 +15,8 @@ it('delete', function () {
         ),
     ]);
 
-    $response = paymayaConnectorSend(new DeleteWebhookRequest($data['id']));
+    paymaya()->deleteWebhook($data['id']);
 
     $mockClient->assertSentCount(1);
 
-    assertEquals(200, $response->status());
-    assertEquals(json_encode($data), $response->body());
 });

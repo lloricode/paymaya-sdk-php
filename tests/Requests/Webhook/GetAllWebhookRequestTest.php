@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use GuzzleHttp\Exception\GuzzleException;
-use Lloricode\Paymaya\DataTransferObjects\Webhook\WebhookDto;
 use Lloricode\Paymaya\Requests\Webhook\GetAllWebhookRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
@@ -20,10 +19,7 @@ test('retrieve', function () {
         ),
     ]);
 
-    $response = paymayaConnectorSend(new GetAllWebhookRequest);
-
-    /** @var list<WebhookDto> $webhookResponses */
-    $webhookResponses = $response->dto();
+    $webhookResponses = paymaya()->webhooks();
 
     assertCount(1, $webhookResponses);
     $mockClient->assertSentCount(1);
@@ -35,7 +31,6 @@ test('retrieve', function () {
     assertEquals($sampleData['createdAt'], $webhookResponses[0]->createdAt);
     assertEquals($sampleData['updatedAt'], $webhookResponses[0]->updatedAt);
 
-    assertEquals(200, $response->status());
 });
 
 test('webhook zero data retrieved', function () {

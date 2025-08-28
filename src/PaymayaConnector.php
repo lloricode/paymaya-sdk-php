@@ -21,6 +21,9 @@ use Saloon\Http\PendingRequest;
 use Saloon\Traits\Plugins\AcceptsJson;
 use Saloon\Traits\Plugins\HasTimeout;
 
+/**
+ * @internal
+ */
 class PaymayaConnector extends Connector
 {
     use AcceptsJson;

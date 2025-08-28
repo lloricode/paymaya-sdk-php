@@ -19,20 +19,15 @@ it('update', function () {
         ),
     ]);
 
-    $response = paymayaConnectorSend(new UpdateWebhookRequest(
+    $webhookResponse = paymaya()->updateWebhooks(
         new WebhookDto(
             id: $data['id'],
             name: $data['name'],
             callbackUrl: $newUrl,
         )
-    ));
-
-    /** @var WebhookDto $webhookResponse */
-    $webhookResponse = $response->dto();
+    );
 
     $mockClient->assertSentCount(1);
-
-    assertEquals(200, $response->status());
 
     assertEquals($newUrl, $webhookResponse->callbackUrl);
 });
