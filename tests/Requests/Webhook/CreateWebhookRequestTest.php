@@ -13,7 +13,7 @@ it('register', function () {
     $data = sampleWebhookData();
 
     MockClient::global([
-        CreateWebhookRequest::class => MockResponse::make(
+        CreateWebhookRequest::class => new MockResponse(
             body: $data,
         ),
     ]);

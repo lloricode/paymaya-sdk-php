@@ -10,7 +10,7 @@ it('delete', function () {
     $data = sampleWebhookData();
 
     $mockClient = MockClient::global([
-        DeleteWebhookRequest::class => MockResponse::make(
+        DeleteWebhookRequest::class => new MockResponse(
             body: $data,
         ),
     ]);

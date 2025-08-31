@@ -23,7 +23,7 @@ it('retrieve', function () {
 }';
 
     MockClient::global([
-        RetrieveCustomizationRequest::class => MockResponse::make(
+        RetrieveCustomizationRequest::class => new MockResponse(
             body: $data,
         ),
     ]);
@@ -38,7 +38,7 @@ it('retrieve', function () {
 
 it('retrieve no data', function () {
     MockClient::global([
-        RetrieveCustomizationRequest::class => MockResponse::make(
+        RetrieveCustomizationRequest::class => new MockResponse(
             status: 404,
         ),
     ]);

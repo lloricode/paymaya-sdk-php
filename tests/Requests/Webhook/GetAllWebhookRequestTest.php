@@ -14,7 +14,7 @@ test('retrieve', function () {
     $sampleData = sampleWebhookData();
 
     $mockClient = MockClient::global([
-        GetAllWebhookRequest::class => MockResponse::make(
+        GetAllWebhookRequest::class => new MockResponse(
             body: [$sampleData],
         ),
     ]);
@@ -36,7 +36,7 @@ test('retrieve', function () {
 test('webhook zero data retrieved', function () {
 
     $mockClient = MockClient::global([
-        GetAllWebhookRequest::class => MockResponse::make(
+        GetAllWebhookRequest::class => new MockResponse(
             status: 404,
         ),
     ]);
@@ -52,7 +52,7 @@ it('throw exception', function () {
     $this->expectException(GuzzleException::class);
 
     MockClient::global([
-        GetAllWebhookRequest::class => MockResponse::make(
+        GetAllWebhookRequest::class => new MockResponse(
             status: 400,
         ),
     ]);

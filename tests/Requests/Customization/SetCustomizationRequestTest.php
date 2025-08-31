@@ -23,7 +23,7 @@ it('register', function () {
 }';
 
     MockClient::global([
-        SetCustomizationRequest::class => MockResponse::make(
+        SetCustomizationRequest::class => new MockResponse(
             body: $data,
         ),
     ]);

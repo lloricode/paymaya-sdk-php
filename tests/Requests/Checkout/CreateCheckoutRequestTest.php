@@ -15,7 +15,7 @@ it('check via sandbox', function () {
     $url = 'https://test';
 
     MockClient::global([
-        CreateCheckoutRequest::class => MockResponse::make(
+        CreateCheckoutRequest::class => new MockResponse(
             body: [
                 'checkoutId' => $id,
                 'redirectUrl' => $url,

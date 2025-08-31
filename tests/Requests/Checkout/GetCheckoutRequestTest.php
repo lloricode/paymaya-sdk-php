@@ -174,7 +174,7 @@ it('show with id success', function () {
 }';
 
     MockClient::global([
-        GetCheckoutRequest::class => MockResponse::make(
+        GetCheckoutRequest::class => new MockResponse(
             body: $responseData,
         ),
     ]);

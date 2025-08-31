@@ -8,7 +8,7 @@ use Saloon\Http\Faking\MockResponse;
 
 it('delete data', function () {
     $mockClient = MockClient::global([
-        RemoveCustomizationRequest::class => MockResponse::make(
+        RemoveCustomizationRequest::class => new MockResponse(
             status: 204,
         ),
     ]);

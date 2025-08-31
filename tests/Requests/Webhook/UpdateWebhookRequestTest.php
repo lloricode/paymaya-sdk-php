@@ -14,7 +14,7 @@ it('update', function () {
     $data = sampleWebhookData(['callbackUrl' => $newUrl]);
 
     $mockClient = MockClient::global([
-        UpdateWebhookRequest::class => MockResponse::make(
+        UpdateWebhookRequest::class => new MockResponse(
             body: $data,
         ),
     ]);
