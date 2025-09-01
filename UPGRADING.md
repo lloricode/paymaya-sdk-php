@@ -15,7 +15,7 @@ This document contains upgrade instructions for breaking changes in each major r
 - **Internal structure reorganized**:
     - `Enums/`, `DataTransferObjects/`, `Requests/`
 - **Error handling via Saloon exceptions**
-- **Laravel users should install [`lloricode/laravel-paymaya-sdk`](https://github.com/lloricode/laravel-paymaya-sdk)**
+- **Laravel users should install [`lloricode/laravel-maya-sdk`](https://github.com/lloricode/laravel-maya-sdk)**
 
 ---
 
@@ -195,7 +195,7 @@ try {
 If you are building a Laravel application, install the Laravel integration package:
 
 ```bash
-composer require lloricode/laravel-paymaya-sdk
+composer require lloricode/laravel-maya-sdk
 ```
 
 This package provides:
@@ -203,7 +203,7 @@ This package provides:
 - Facades for quick access
 - Config file publishing
 
-See [Laravel PayMaya SDK](https://github.com/lloricode/laravel-paymaya-sdk) for usage.
+See [Laravel PayMaya SDK](https://github.com/lloricode/laravel-maya-sdk) for usage.
 
 ---
 
@@ -242,4 +242,4 @@ If you plan to contribute, please make sure to:
 ## References
 - [Full Documentation](https://github.com/lloricode/paymaya-sdk-php)
 - [Saloon Documentation](https://docs.saloon.dev/)
-- [Laravel Integration](https://github.com/lloricode/laravel-paymaya-sdk)
+- [Laravel Integration](https://github.com/lloricode/laravel-maya-sdk)
