@@ -4,8 +4,10 @@
     "keywords": [
         "lloricode",
         "paymaya",
+        "maya",
         "sdk",
-        "php"
+        "php",
+        "hacktoberfest"
     ],
     "homepage": "https://github.com/lloricode/paymaya-sdk-php",
     "license": "MIT",
