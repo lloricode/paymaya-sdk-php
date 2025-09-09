@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailResponse\EFS\Payer\FundingInstrument;
 
-use Lloricode\Paymaya\Response\Checkout\BaseResponse;
+use Lloricode\Paymaya\Response\BaseResponse;
 
 readonly class Card extends BaseResponse
 {

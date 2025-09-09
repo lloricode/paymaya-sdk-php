@@ -11,6 +11,8 @@ use Lloricode\Paymaya\Requests\Checkout\GetCheckoutRequest;
 use Lloricode\Paymaya\Requests\Customization\RemoveCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\SetCustomizationRequest;
+use Lloricode\Paymaya\Requests\Payment\PaymentRefundRequest;
+use Lloricode\Paymaya\Requests\Payment\RetrievePaymentRequest;
 use Lloricode\Paymaya\Requests\Webhook\CreateWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\GetAllWebhookRequest;
@@ -21,6 +23,7 @@ use Saloon\Http\PendingRequest;
 use Saloon\Traits\Plugins\AcceptsJson;
 use Saloon\Traits\Plugins\AlwaysThrowOnErrors;
 use Saloon\Traits\Plugins\HasTimeout;
+use SensitiveParameter;
 
 /**
  * @internal
@@ -37,13 +40,17 @@ class PaymayaConnector extends Connector
 
     public function __construct(
         private readonly Environment $environment,
+        #[SensitiveParameter]
         private readonly string $secretKey,
+        #[SensitiveParameter]
         private readonly string $publicKey,
     ) {}
 
     public function boot(PendingRequest $pendingRequest): void
     {
         $token = match ($pendingRequest->getRequest()::class) {
+            RetrievePaymentRequest::class,
+            PaymentRefundRequest::class,
             GetCheckoutRequest::class ,
             RemoveCustomizationRequest::class,
             SetCustomizationRequest::class,

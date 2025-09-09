@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailResponse;
 
-use Lloricode\Paymaya\Response\Checkout\BaseResponse;
+use Lloricode\Paymaya\Response\BaseResponse;
 use Lloricode\Paymaya\Response\Checkout\PaymentDetail\PaymentDetailResponse\EFS\EFS;
 
 readonly class PaymentDetailResponse extends BaseResponse
