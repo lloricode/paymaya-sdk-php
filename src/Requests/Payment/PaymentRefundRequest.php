@@ -36,6 +36,7 @@ class PaymentRefundRequest extends Request implements HasBody
 
     public function createDtoFromResponse(Response $response): RefundPayment200Response|RefundPayment202Response
     {
+        /** @phpstan-ignore match.unhandled */
         return match ($response->status()) {
             200 => RefundPayment200Response::fromArray($response->array()),
             202 => RefundPayment202Response::fromArray($response->array()),
