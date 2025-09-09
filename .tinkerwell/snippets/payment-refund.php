@@ -17,7 +17,7 @@ try {
         "8f25422a-12fa-4b4b-9c92-26ea7224ea8e",
         new PaymentRefundDto(
             reason: "Customer requested refund",
-            totalAmount: new PaymentTotalAmountDto(amount: 0.1, currency: "PHP")
+            totalAmount: new PaymentTotalAmountDto(amount: 1, currency: "PHP")
         )
     );
     ray($r)->green();

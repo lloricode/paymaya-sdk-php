@@ -15,7 +15,7 @@ $api = new Paymaya(
 
 $checkout = new CheckoutDto(
     totalAmount: new TotalAmountDto(
-        value: 1,
+        value: 1_000,
         details: new AmountDetailDto(subtotal: 2)
     ),
     redirectUrl: new RedirectUrlDto(
