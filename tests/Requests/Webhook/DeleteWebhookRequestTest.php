@@ -12,6 +12,7 @@ it('delete', function () {
     $mockClient = MockClient::global([
         DeleteWebhookRequest::class => new MockResponse(
             body: $data,
+            status: 200, // 200 is the actual response of their api
         ),
     ]);
 
