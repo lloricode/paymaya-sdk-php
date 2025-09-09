@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lloricode\Paymaya\Concerns;
 
 use Lloricode\Paymaya\DataTransferObjects\Payment\PaymentRefundDto;
-use Lloricode\Paymaya\Requests\Payment\RetrievePaymentRequest;
 use Lloricode\Paymaya\Requests\Payment\PaymentRefundRequest;
+use Lloricode\Paymaya\Requests\Payment\RetrievePaymentRequest;
 use Lloricode\Paymaya\Response\Payment\Create\PaymentResponse;
 use Lloricode\Paymaya\Response\Payment\Refund\RefundPayment200Response;
 use Lloricode\Paymaya\Response\Payment\Refund\RefundPayment202Response;
