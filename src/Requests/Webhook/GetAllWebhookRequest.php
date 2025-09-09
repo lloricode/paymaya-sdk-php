@@ -26,11 +26,15 @@ class GetAllWebhookRequest extends Request
      */
     public function createDtoFromResponse(Response $response): array
     {
-        $array = [];
-        foreach ($response->array() as $value) {
-            $array[$value['name']] = new WebhookDto(...$value);
+        /** @var list<array{id:string|null, name:string|null, callbackUrl:string|null, createdAt:string|null, updatedAt:string|null}> $array */
+        $array = $response->array();
+
+        $return = [];
+        foreach ($array as $value) {
+
+            $return[$value['name']] = new WebhookDto(...$value);
         }
 
-        return $array;
+        return $return;
     }
 }

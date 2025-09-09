@@ -23,6 +23,9 @@ class RetrieveCustomizationRequest extends Request
 
     public function createDtoFromResponse(Response $response): CustomizationDto
     {
-        return new CustomizationDto(...$response->array());
+        /** @var array{logoUrl:string, iconUrl:string, appleTouchIconUrl:string, customTitle:string, colorScheme:string, hideReceiptInput:bool, skipResultPage:bool, showMerchantName:bool, redirectTimer:int} $array */
+        $array = $response->array();
+
+        return new CustomizationDto(...$array);
     }
 }

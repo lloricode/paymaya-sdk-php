@@ -21,7 +21,7 @@ readonly class RefundPayment200Response extends BaseResponse
         public RefundPayment200RefundedAmount $refundedAmount,
     ) {}
 
-    public static function fromArray(mixed $array): self
+    public static function fromArray(array $array): self
     {
         $array['receipt'] = new RefundPayment200Receipt(
             ...$array['receipt']

@@ -22,7 +22,10 @@ trait WebhookEndpoints
      */
     public function webhooks(): array
     {
-        return $this->send(new GetAllWebhookRequest)->dto();
+        /** @var array<string, WebhookDto> $dto */
+        $dto = $this->send(new GetAllWebhookRequest)->dto();
+
+        return $dto;
     }
 
     /**
@@ -32,7 +35,10 @@ trait WebhookEndpoints
      */
     public function createWebhook(WebhookDto $webhookDto): WebhookDto
     {
-        return $this->send(new CreateWebhookRequest($webhookDto))->dto();
+        /** @var WebhookDto $dto */
+        $dto = $this->send(new CreateWebhookRequest($webhookDto))->dto();
+
+        return $dto;
     }
 
     /**
@@ -42,7 +48,10 @@ trait WebhookEndpoints
      */
     public function updateWebhooks(WebhookDto $webhookDto): WebhookDto
     {
-        return $this->send(new UpdateWebhookRequest($webhookDto))->dto();
+        /** @var WebhookDto $dto */
+        $dto = $this->send(new UpdateWebhookRequest($webhookDto))->dto();
+
+        return $dto;
     }
 
     /**

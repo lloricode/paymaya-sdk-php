@@ -19,7 +19,10 @@ trait CustomizationEndpoints
      */
     public function customizations(): CustomizationDto
     {
-        return $this->send(new RetrieveCustomizationRequest)->dto();
+        /** @var CustomizationDto $dto */
+        $dto = $this->send(new RetrieveCustomizationRequest)->dto();
+
+        return $dto;
     }
 
     /**
@@ -29,7 +32,10 @@ trait CustomizationEndpoints
      */
     public function createCustomization(CustomizationDto $customizationDto): CustomizationDto
     {
-        return $this->send(new SetCustomizationRequest($customizationDto))->dto();
+        /** @var CustomizationDto $dto */
+        $dto = $this->send(new SetCustomizationRequest($customizationDto))->dto();
+
+        return $dto;
     }
 
     /**

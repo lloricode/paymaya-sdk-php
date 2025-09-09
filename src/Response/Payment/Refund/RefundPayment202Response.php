@@ -13,7 +13,7 @@ readonly class RefundPayment202Response extends BaseResponse
         public string $status,
     ) {}
 
-    public static function fromArray(mixed $array): self
+    public static function fromArray(array $array): self
     {
         return new self(...$array);
     }

@@ -34,6 +34,9 @@ class CreateWebhookRequest extends Request implements HasBody
 
     public function createDtoFromResponse(Response $response): WebhookDto
     {
-        return new WebhookDto(...$response->array());
+        /** @var array{id:string|null, name:string|null, callbackUrl:string|null, createdAt:string|null, updatedAt:string|null} $array */
+        $array = $response->array();
+
+        return new WebhookDto(...$array);
     }
 }

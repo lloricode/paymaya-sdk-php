@@ -19,7 +19,10 @@ trait CheckoutEndpoints
      */
     public function getCheckout(string $id): CheckoutDto
     {
-        return $this->send(new GetCheckoutRequest($id))->dto();
+        /** @var CheckoutDto $dto */
+        $dto = $this->send(new GetCheckoutRequest($id))->dto();
+
+        return $dto;
     }
 
     /**
@@ -29,6 +32,9 @@ trait CheckoutEndpoints
      */
     public function createCheckout(CheckoutDto $checkoutDto): CheckoutResponse
     {
-        return $this->send(new CreateCheckoutRequest($checkoutDto))->dto();
+        /** @var CheckoutResponse $dto */
+        $dto = $this->send(new CreateCheckoutRequest($checkoutDto))->dto();
+
+        return $dto;
     }
 }

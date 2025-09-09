@@ -35,6 +35,9 @@ class CreateCheckoutRequest extends Request implements HasBody
 
     public function createDtoFromResponse(Response $response): CheckoutResponse
     {
-        return new CheckoutResponse(...$response->array());
+        /** @var array{checkoutId:string, redirectUrl:string} $array */
+        $array = $response->array();
+
+        return new CheckoutResponse(...$array);
     }
 }

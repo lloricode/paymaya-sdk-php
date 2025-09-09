@@ -21,7 +21,10 @@ trait PaymentEndpoints
      */
     public function paymentRefund(string $id, PaymentRefundDto $paymentRefund): RefundPayment200Response|RefundPayment202Response
     {
-        return $this->send(new PaymentRefundRequest($id, $paymentRefund))->dto();
+        /** @var RefundPayment200Response|RefundPayment202Response $dto */
+        $dto = $this->send(new PaymentRefundRequest($id, $paymentRefund))->dto();
+
+        return $dto;
     }
 
     /**
@@ -31,6 +34,9 @@ trait PaymentEndpoints
      */
     public function getPayment(string $id): PaymentResponse
     {
-        return $this->send(new RetrievePaymentRequest($id))->dto();
+        /** @var PaymentResponse $dto */
+        $dto = $this->send(new RetrievePaymentRequest($id))->dto();
+
+        return $dto;
     }
 }
