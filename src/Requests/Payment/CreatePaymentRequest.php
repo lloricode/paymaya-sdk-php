@@ -19,7 +19,7 @@ class CreatePaymentRequest extends Request
 
     public function resolveEndpoint(): string
     {
-        return "/payments/v1/payments/$this->id";
+        return 'payments/v1/payments/'.$this->id;
     }
 
     public function createDtoFromResponse(Response $response): PaymentResponse

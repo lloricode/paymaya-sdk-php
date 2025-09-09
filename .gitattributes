@@ -17,4 +17,5 @@
 /phpstan.neon       export-ignore
 /UPGRADE.md         export-ignore
 /composer.lock        export-ignore
+/.tinkerwell       export-ignore
 

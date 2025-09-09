@@ -23,15 +23,16 @@ readonly class RefundPayment200Response extends BaseResponse
 
     public static function fromArray(mixed $array): self
     {
-
         $array['receipt'] = new RefundPayment200Receipt(
             ...$array['receipt']
         );
+
         $array['transactionAmount'] = new RefundPayment200TransactionAmount(
             ...$array['transactionAmount']
         );
-        $array['receipt'] = new RefundPayment200RefundedAmount(
-            ...$array['receipt']
+
+        $array['refundedAmount'] = new RefundPayment200RefundedAmount(
+            ...$array['refundedAmount']
         );
 
         return new self(...$array);

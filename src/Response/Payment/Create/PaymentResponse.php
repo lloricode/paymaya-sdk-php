@@ -19,31 +19,35 @@ readonly class PaymentResponse extends BaseResponse
         public bool $canCapture,
         public string $createdAt,
         public string $updatedAt,
-        public string $description,
-        public string $paymentTokenId,
-        public FundSource $fundSource,
-        public Receipt $receipt,
-        public string $approvalCode,
-        public string $receiptNumber,
         public string $requestReferenceNumber,
+        public ?string $description = null,
+        public ?string $paymentTokenId = null,
+        public ?FundSource $fundSource = null,
+        public ?Receipt $receipt = null,
+        public ?string $approvalCode = null,
+        public ?string $receiptNumber = null,
     ) {}
 
     public static function fromArray(array $array): self
     {
         $array['amount'] = (float) $array['amount'];
 
-        $array['fundSource'] = new FundSource(
-            $array['fundSource']['type'],
-            $array['fundSource']['id'],
-            $array['fundSource']['description'],
-            new Detail(
-                ...$array['fundSource']['details']
-            )
-        );
+        if (isset($array['fundSource'])) {
+            $array['fundSource'] = new FundSource(
+                $array['fundSource']['type'],
+                $array['fundSource']['id'],
+                $array['fundSource']['description'],
+                new Detail(
+                    ...$array['fundSource']['details']
+                )
+            );
+        }
 
-        $array['receipt'] = new Receipt(
-            ...$array['receipt']
-        );
+        if (isset($array['receipt'])) {
+            $array['receipt'] = new Receipt(
+                ...$array['receipt']
+            );
+        }
 
         return new self(...$array);
     }

@@ -26,7 +26,7 @@ class PaymentRefundRequest extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return "/payments/v1/payments/$this->id/refunds";
+        return 'payments/v1/payments/'.$this->id.'/refunds';
     }
 
     protected function defaultBody(): array
@@ -37,8 +37,8 @@ class PaymentRefundRequest extends Request implements HasBody
     public function createDtoFromResponse(Response $response): RefundPayment200Response|RefundPayment202Response
     {
         return match ($response->status()) {
-            200 => RefundPayment200Response::fromArray(...$response->array()),
-            202 => RefundPayment202Response::fromArray(...$response->array()),
+            200 => RefundPayment200Response::fromArray($response->array()),
+            202 => RefundPayment202Response::fromArray($response->array()),
         };
     }
 }
