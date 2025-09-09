@@ -21,24 +21,20 @@
     ],
     "require": {
         "php": "^8.3",
-        "ext-json": "*",
         "saloonphp/saloon": "^3.14"
     },
     "require-dev": {
         "composer-runtime-api": "^2.2.2",
-        "laravel/pint": "^1.5",
-        "mockery/mockery": "^1.4",
-        "pestphp/pest": "^4.0.2",
-        "phly/keep-a-changelog": "^2.11",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^2.1",
-        "phpstan/phpstan-deprecation-rules": "^2.0.1",
-        "phpstan/phpstan-phpunit": "^2.0.4",
-        "rector/rector": "^2.0.9",
-        "spatie/ray": "^1.36",
-        "spatie/x-ray": "^1.1",
-        "ticketswap/phpstan-error-formatter": "^1.1",
-        "tomasvotruba/type-coverage": "^2.0"
+        "laravel/pint": "^1.24",
+        "pestphp/pest": "^4.0.4",
+        "phpstan/extension-installer": "^1.4.3",
+        "phpstan/phpstan": "^2.1.22",
+        "phpstan/phpstan-deprecation-rules": "^2.0.3",
+        "phpstan/phpstan-phpunit": "^2.0.7",
+        "rector/rector": "^2.1.6",
+        "spatie/ray": "^1.42",
+        "ticketswap/phpstan-error-formatter": "^1.1.6",
+        "tomasvotruba/type-coverage": "^2.0.2"
     },
     "autoload": {
         "psr-4": {
