@@ -54,8 +54,7 @@
         "test-coverage": "vendor/bin/pest --coverage",
         "refactor": "vendor/bin/rector process",
         "refactor-dry-run": "vendor/bin/rector process --dry-run",
-        "format" : "vendor/bin/pint",
-        "x-ray": "vendor/bin/x-ray src tests"
+        "format" : "vendor/bin/pint -p"
     },
     "config": {
         "sort-packages": true,

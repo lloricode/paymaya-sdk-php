@@ -26,6 +26,8 @@ use Saloon\Traits\Plugins\HasTimeout;
 use SensitiveParameter;
 
 /**
+ * https://developers.maya.ph/reference/api-environments
+ *
  * @internal
  */
 class PaymayaConnector extends Connector
