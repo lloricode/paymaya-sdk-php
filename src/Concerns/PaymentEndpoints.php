@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lloricode\Paymaya\Concerns;
 
 use Lloricode\Paymaya\DataTransferObjects\Payment\PaymentRefundDto;
-use Lloricode\Paymaya\Requests\Payment\CreatePaymentRequest;
+use Lloricode\Paymaya\Requests\Payment\RetrievePaymentRequest;
 use Lloricode\Paymaya\Requests\Payment\PaymentRefundRequest;
 use Lloricode\Paymaya\Response\Payment\Create\PaymentResponse;
 use Lloricode\Paymaya\Response\Payment\Refund\RefundPayment200Response;
@@ -29,8 +29,8 @@ trait PaymentEndpoints
      * @throws \Saloon\Exceptions\Request\RequestException
      * @throws \Saloon\Exceptions\Request\ClientException
      */
-    public function createPayment(string $id): PaymentResponse
+    public function getPayment(string $id): PaymentResponse
     {
-        return $this->send(new CreatePaymentRequest($id))->dto();
+        return $this->send(new RetrievePaymentRequest($id))->dto();
     }
 }

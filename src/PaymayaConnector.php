@@ -11,7 +11,7 @@ use Lloricode\Paymaya\Requests\Checkout\GetCheckoutRequest;
 use Lloricode\Paymaya\Requests\Customization\RemoveCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\RetrieveCustomizationRequest;
 use Lloricode\Paymaya\Requests\Customization\SetCustomizationRequest;
-use Lloricode\Paymaya\Requests\Payment\CreatePaymentRequest;
+use Lloricode\Paymaya\Requests\Payment\RetrievePaymentRequest;
 use Lloricode\Paymaya\Requests\Payment\PaymentRefundRequest;
 use Lloricode\Paymaya\Requests\Webhook\CreateWebhookRequest;
 use Lloricode\Paymaya\Requests\Webhook\DeleteWebhookRequest;
@@ -46,7 +46,7 @@ class PaymayaConnector extends Connector
     public function boot(PendingRequest $pendingRequest): void
     {
         $token = match ($pendingRequest->getRequest()::class) {
-            CreatePaymentRequest::class,
+            RetrievePaymentRequest::class,
             PaymentRefundRequest::class,
             GetCheckoutRequest::class ,
             RemoveCustomizationRequest::class,

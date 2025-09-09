@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Lloricode\Paymaya\Requests\Payment\CreatePaymentRequest;
+use Lloricode\Paymaya\Requests\Payment\RetrievePaymentRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 
@@ -46,12 +46,12 @@ it('create', function () {
         'receiptNumber' => '4c9f8acfa3b2',
     ];
     MockClient::global([
-        CreatePaymentRequest::class => new MockResponse(
+        RetrievePaymentRequest::class => new MockResponse(
             body: $data,
         ),
     ]);
 
-    $dto = paymaya()->createPayment($data['id']);
+    $dto = paymaya()->getPayment($data['id']);
     $data['amount'] = (float) $data['amount'];
     assertSame($data, json_decode(json_encode($dto), true));
 });
@@ -72,12 +72,12 @@ it('create 2', function () {
         'requestReferenceNumber' => 'reference_id',
     ];
     MockClient::global([
-        CreatePaymentRequest::class => new MockResponse(
+        RetrievePaymentRequest::class => new MockResponse(
             body: $data,
         ),
     ]);
 
-    $dto = paymaya()->createPayment($data['id']);
+    $dto = paymaya()->getPayment($data['id']);
     $data['amount'] = (float) $data['amount'];
 
     assertSame($data, array_filter(

@@ -9,7 +9,10 @@ use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 
-class CreatePaymentRequest extends Request
+/**
+ * https://developers.maya.ph/reference/getpaymentviapaymentid-1
+ */
+class RetrievePaymentRequest extends Request
 {
     protected Method $method = Method::GET;
 
