@@ -68,7 +68,7 @@ This package provides:
 - **Configuration file** for managing API keys and environment
 - **Laravel-specific helpers** for better developer experience
 
-📘 Learn more here: [Laravel PayMaya SDK](https://github.com/lloricode/laravel-maya-sdk)
+📘 Learn more here: [Laravel Maya SDK](https://github.com/lloricode/laravel-maya-sdk)
 
 ---
 

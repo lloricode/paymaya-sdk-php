@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## v3.1.1 - 2025-09-09
+
+### What's Changed
+
+* Add payment endpoints and DTOs for payment processing by @lloricode in https://github.com/lloricode/paymaya-sdk-php/pull/27
+
+**Full Changelog**: https://github.com/lloricode/paymaya-sdk-php/compare/v3.1.0...v3.1.1
+
 ## v3.1.0 - 2025-08-28
 
 **Full Changelog**: https://github.com/lloricode/paymaya-sdk-php/compare/v3.0.0...v3.1.0
