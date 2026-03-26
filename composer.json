@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": "^8.3",
-        "saloonphp/saloon": "^3.14"
+        "saloonphp/saloon": "^4.0"
     },
     "require-dev": {
         "composer-runtime-api": "^2.2.2",
