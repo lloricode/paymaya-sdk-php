@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## v3.2.0 - Bump saloonphp/saloon from 3.14.0 to 4.0.0 - 2026-04-18
+
+### What's Changed
+
+* Build(deps): Bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/lloricode/paymaya-sdk-php/pull/28
+* Build(deps): Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/lloricode/paymaya-sdk-php/pull/30
+* Build(deps-dev): Bump symfony/process from 7.3.3 to 7.4.5 by @dependabot[bot] in https://github.com/lloricode/paymaya-sdk-php/pull/31
+* Build(deps): Bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/lloricode/paymaya-sdk-php/pull/29
+* Build(deps): Bump ramsey/composer-install from 3 to 4 by @dependabot[bot] in https://github.com/lloricode/paymaya-sdk-php/pull/32
+* Build(deps): Bump saloonphp/saloon from 3.14.0 to 4.0.0 by @dependabot[bot] in https://github.com/lloricode/paymaya-sdk-php/pull/33
+* Build(deps): Bump dependabot/fetch-metadata from 2.5.0 to 3.0.0 by @dependabot[bot] in https://github.com/lloricode/paymaya-sdk-php/pull/34
+* Build(deps): Bump codecov/codecov-action from 5 to 6 by @dependabot[bot] in https://github.com/lloricode/paymaya-sdk-php/pull/35
+
+**Full Changelog**: https://github.com/lloricode/paymaya-sdk-php/compare/v3.1.2...v3.2.0
+
 ## v3.2 - Bump saloonphp/saloon from 3.14.0 to 4.0.0  - 2026-04-18
 
 ### What's Changed
